@@ -1,0 +1,94 @@
+﻿@media only screen and (max-width: 768px) {
+/*Resource found on Css-Tricks, adjustments and additions made by Ryan*/
+
+/* Force table to not be like tables anymore */
+	.blueTable table, thead, tbody, th, td, tr, .appTable table, .userTable table, .contactTable tr { 
+		display: block;
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.blueTable thead tr, .emergencyTable thead tr, .appTable thead tr, .userTable thead tr, .contactTable thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+    .emergencyTable {
+        width:100%;
+    }
+	.blueTable tr, .emergencyTable tr, .appTable tr, .userTable tr, .contactTable tr { 
+        border: 1px solid #ccc; 
+        width: 100%;
+	}
+	
+	.blueTable td, .emergencyTable td, .appTable td, .userTable td, .contactTable tr { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	.blueTable td:before, .emergencyTable td:before, .appTable td:before, .userTable td:before .contactTable td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	.blueTable td:nth-of-type(1):before { content: "Heading1"; }
+	.blueTable td:nth-of-type(2):before { content: "Heading2"; }
+	.blueTable td:nth-of-type(3):before { content: "Heading3"; }
+	.blueTable td:nth-of-type(4):before { content: "Heading4"; }
+	.blueTable td:nth-of-type(5):before { content: "Heading5"; }
+	.blueTable td:nth-of-type(6):before { content: "Heading6"; }
+	.blueTable td:nth-of-type(7):before { content: "Heading7"; }
+	.blueTable td:nth-of-type(8):before { content: "Heading8"; }
+	.blueTable td:nth-of-type(9):before { content: "Heading9"; }
+
+    .blueTable td:hover, .appTable td:hover, .userTable td:hover, .contactTable td:hover  {
+        background-color:#cafff5;
+    }
+
+    table.blueTable td, table.blueTable th, table.appTable td, table.appTable th, table.userTable th, table.contactTable td, table.contactTable th {
+        border: 1px solid #6ba2dd;
+    }
+    
+    .emergencyTable td:nth-of-type(1):before { content: "Time"; }
+	.emergencyTable td:nth-of-type(2):before { content: "Update On"; }
+	.emergencyTable td:nth-of-type(3):before { content: "Update By"; }
+	.emergencyTable td:nth-of-type(4):before { content: "Edit"; }
+	.emergencyTable td:nth-of-type(5):before { content: "Delete"; }
+
+	.appTable td:nth-of-type(1):before { content: "Doctor Name"; }
+	.appTable td:nth-of-type(2):before { content: "Patient Name"; }
+	.appTable td:nth-of-type(3):before { content: "Date"; }
+	.appTable td:nth-of-type(4):before { content: "Time"; }
+	.appTable td:nth-of-type(5):before { content: "Reason"; }
+	.appTable td:nth-of-type(6):before { content: "Status"; }
+	.appTable td:nth-of-type(7):before { content: "Action"; }
+    
+
+	.userTable td:nth-of-type(1):before { content: "Name"; }
+	.userTable td:nth-of-type(2):before { content: "User Name"; }
+	.userTable td:nth-of-type(3):before { content: "Date of Birth"; }
+	.userTable td:nth-of-type(4):before { content: "Identification"; }
+	.userTable td:nth-of-type(5):before { content: "Department"; }
+	.userTable td:nth-of-type(6):before { content: "Join Date"; }
+	.userTable td:nth-of-type(7):before { content: "Specility"; }
+	.userTable td:nth-of-type(8):before { content: "Community Group Name"; }
+	.userTable td:nth-of-type(9):before { content: "Is Locked"; }
+	.userTable td:nth-of-type(10):before { content: "Action"; }
+
+    .contactTable td:nth-of-type(1):before { content: "From"; }
+	.contactTable td:nth-of-type(2):before { content: "Subject"; }
+	.contactTable td:nth-of-type(3):before { content: "Date"; }
+	.contactTable td:nth-of-type(4):before { content: "View/Delete"; }
+}

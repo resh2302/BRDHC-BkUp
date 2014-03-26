@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="HealthAlerts">
+  <DataContextMoniker Name="/HealthAlertsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9fd8bbce-a7bd-4c65-b107-b4c89db6d357" absoluteBounds="0.5, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/HealthAlertsDataContext/brdhc_HealthAlert" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fff36bdf-650b-4b14-b3a5-6ddfd8b0f8bd" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5376ad0c-45f1-46fe-ad24-02209300b05a" absoluteBounds="3.125, 0.5, 2, 1.0016910807291668">
+      <DataClassMoniker Name="/HealthAlertsDataContext/brdhc_AlertSubscriber" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6cefc1b8-068b-49ea-91e7-a24557a261d5" absoluteBounds="3.1400000000000006, 0.96, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

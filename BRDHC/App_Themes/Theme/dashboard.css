@@ -1,0 +1,116 @@
+﻿.pnlLeftMenu .Menu ul
+{  
+    background: #668d8e;
+    padding: 0;  
+    margin: 0 auto; 
+}
+.pnlLeftMenu .Menu ul li{
+    border-bottom:1px solid #a4cebe;
+}
+.pnlLeftMenu .Menu ul li a{
+    border-right:1px solid #a4cebe;
+}
+.pnlLeftMenu .Menu ul li a:hover,.pnlLeftMenu .Menu ul li a.selected
+{
+     color:black;
+     background-color: #668d8e;
+}
+.pnlLeftMenu  .Menu ul ul li
+{
+    width:auto;
+    background:#668d8e;
+}
+.pnlContent fieldset {
+    border:none;
+}
+.pnlContent legend {
+    font-size:18px;
+    padding:5px 5px 5px 10px;
+    width:100%;
+    background-color:#a4cebe;
+    margin-bottom:10px;
+    border-radius:10px;
+    color:#004153;
+    font-weight:bold;
+    font-family: 'Roboto Slab', serif;
+    box-shadow: 0 5px 5px #bdc3c4;
+    text-align:left;
+}
+.infoLabel {
+    background-color:#668d8e;
+    width:100px;
+    margin-bottom:10px;
+    padding:5px 5px 5px 10px;
+    font-size:15px;
+    font-family: 'Roboto Slab', serif;
+    border:solid 1px #a4cebe;
+    border-radius:15px;
+    width: 170px;
+    text-align:left;
+    display:inline-block;
+    /* added by Reshma - was repeated in style.css line 511 */
+    width: 170px;
+    text-align:left;
+    display:inline-block;
+}
+.pnlContent input[type="text"] {
+    padding:5px;
+    margin-left:-15px;
+    border:solid 1px #a4cebe;
+    font-size:15px;
+    font-family: 'Roboto Slab', serif;
+}
+.passLabel {
+    background-color:#668d8e;
+    width:100px;
+    padding:5px;
+    font-size:15px;
+    font-family: 'Roboto Slab', serif;
+    border:solid 1px #a4cebe;
+    border-radius:15px;
+    text-align:left;
+}
+.passBox {
+    height:20px;
+    margin-left:-15px;
+    padding:5px;
+    border:solid 1px #a4cebe;
+    font-size:15px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.statusMsg { /* added by Reshma */
+    background: #F3D3D3;
+    border-left: 4px solid #F15C5C;
+    display: block;
+    padding: 10px;
+    color: #B44A48;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+    .statusMsg:first-letter {
+        text-transform:capitalize;
+    }
+@media only screen and (max-width: 480px) {
+    .pnlContent legend {
+    width:100%;
+    margin-left:-10px;
+    }
+    .infoLabel {
+    width:100%;
+    margin-left:-10px;
+    }
+    .pnlContent input[type="text"] {
+    width:95%;
+    margin:0 auto;
+    }
+    .passLabel {
+    width:100%;
+    margin-left:-10px;
+    }
+    .passBox {
+    margin:0 auto;
+    margin-left:-10px;
+    }
+}

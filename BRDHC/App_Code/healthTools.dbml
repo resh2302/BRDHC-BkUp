@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_65818_brdhc" Class="healthToolsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=s10.winhost.com;Initial Catalog=DB_65818_brdhc;User ID=DB_65818_brdhc_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="myCon" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.brdhc_HealthTools_Quiz" Member="brdhc_HealthTools_Quizs">
+    <Type Name="brdhc_HealthTools_Quiz">
+      <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="THISname" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="THISimage" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="THIScalories" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="THISfat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="THATname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="THATimage" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="THATcalories" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="THATfat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Answer" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

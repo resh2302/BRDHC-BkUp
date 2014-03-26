@@ -1,0 +1,38 @@
+﻿
+/* ================================ BY JAGSIR (START)===============================*/
+
+td.formHeader {
+    text-align:center;
+    color: #6c6e58; 
+    background-color: #fbf3e8; 
+    font-weight: bold;
+}
+td.displayHeader {
+    background-color: gray; 
+    font-size: 24px; 
+    color: white;
+}#divDetails td {
+    padding:5px;
+    text-align:center;
+    border: 1px solid white;
+}
+
+#divForm td {
+    padding:5px 10px;
+    border-spacing: 1px;
+}
+#divDetails tr.itemTemp {
+    background-color: #F6E3CE;
+}
+#divDetails tr.altItemTemp {
+    background-color: #E0E0F8;
+}
+
+#divDetails tr.colHeaderRow{
+    background-color: #151B54; 
+    font-size: 20px; 
+    color: white; 
+    height: 20px
+}
+
+/* ================================ BY JAGSIR (END)===============================*/

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UserDetails">
+  <DataContextMoniker Name="/UserDetailsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6bd6d826-21a0-4931-b532-d04432e1c6f1" absoluteBounds="3.625, 0.875, 2, 4.2708154296875">
+      <DataClassMoniker Name="/UserDetailsDataContext/brdhc_UserBasicInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5f407e6b-91ba-464c-b54c-e82582123b41" absoluteBounds="3.6399999999999997, 1.335, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3d8e5616-bc2c-4040-bbd5-132eb1cb8041" absoluteBounds="6.25, 2.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/UserDetailsDataContext/aspnet_UsersInRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be42b7df-7b3c-4f49-af90-0d395a86f1ad" absoluteBounds="6.265, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bc615ad5-b196-4dd2-a401-5d16398d5c3b" absoluteBounds="6.875, 0.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/UserDetailsDataContext/aspnet_Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5048bf97-bcae-4bf6-b61f-b28b488c66f7" absoluteBounds="6.89, 1.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.5625 : 2.39589680989583); (7.5625 : 2.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/UserDetailsDataContext/aspnet_Role/aspnet_Role_aspnet_UsersInRole" />
+      <nodes>
+        <classShapeMoniker Id="bc615ad5-b196-4dd2-a401-5d16398d5c3b" />
+        <classShapeMoniker Id="3d8e5616-bc2c-4040-bbd5-132eb1cb8041" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="01a499a5-114e-43dc-b663-0e96c9f7e9cb" absoluteBounds="6.625, 4.875, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/UserDetailsDataContext/brdhc_DoctorSpeciality" />
+      <nestedChildShapes>
+        <elementListCompartment Id="629df924-fbae-4d9e-95dc-acd26cc1d016" absoluteBounds="6.64, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

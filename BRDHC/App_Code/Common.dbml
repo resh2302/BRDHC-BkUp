@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_65818_brdhc" Class="CommonDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=s10.winhost.com;Initial Catalog=DB_65818_brdhc;User ID=DB_65818_brdhc_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="myCon" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.brdhc_Cities" Member="brdhc_Cities">
+    <Type Name="brdhc_City">
+      <Column Name="CityId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StateId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="brdhc_State_brdhc_City" Member="brdhc_State" ThisKey="StateId" OtherKey="StateId" Type="brdhc_State" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.brdhc_Country" Member="brdhc_Countries">
+    <Type Name="brdhc_Country">
+      <Column Name="CountryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="brdhc_Country_brdhc_State" Member="brdhc_States" ThisKey="CountryId" OtherKey="CountryId" Type="brdhc_State" />
+    </Type>
+  </Table>
+  <Table Name="dbo.brdhc_States" Member="brdhc_States">
+    <Type Name="brdhc_State">
+      <Column Name="StateId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CountryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="brdhc_State_brdhc_City" Member="brdhc_Cities" ThisKey="StateId" OtherKey="StateId" Type="brdhc_City" />
+      <Association Name="brdhc_Country_brdhc_State" Member="brdhc_Country" ThisKey="CountryId" OtherKey="CountryId" Type="brdhc_Country" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.brdhc_DashboardMenus" Member="brdhc_DashboardMenus">
+    <Type Name="brdhc_DashboardMenus">
+      <Column Name="MenuId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MenuTitle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MenuUrl" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_getAlertSubscribers" Method="sp_getAlertSubscribers">
+    <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
+    <ElementType Name="sp_getAlertSubscribersResult">
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(101) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

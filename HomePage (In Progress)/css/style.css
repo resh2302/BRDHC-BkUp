@@ -1,0 +1,167 @@
+﻿body {
+    width:1000px;
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+}
+a {
+    text-decoration: none;
+    list-style: none;
+}
+ul {
+    list-style: none;
+}
+h1 {
+	font-family: 'Roboto Slab', serif;
+    font-weight:bold;
+	font-size: 20px;
+}
+.rm_green {
+    float:right;
+    padding-top:10px;
+    color:#668d8e;
+}
+.rm_red {
+    float:right;
+    padding-top:10px;
+    color:#cf7671;
+}
+#footer {
+    width:100%;
+    height:320px;
+    background-color:#3e423a;
+}
+#f1 {
+    float:left;
+    width: 20%;
+    height:100%;
+    color: #a4cebe;
+}
+#f1 ul li {
+    padding-top:10px;
+}
+#f1 a:link {
+    color:#a4cebe;
+    text-decoration:none;
+}
+
+.lititle {
+    font-weight:bold;
+    font-size:20px;
+}
+#f2 {
+    float:left;
+    width:40%;
+    color:#bfbe64;
+
+}
+#f2 ul li {
+    padding-top:10px;
+}
+#f2 a:link {
+    color:#bfbe64;
+    text-decoration:none;
+}
+#f3 {
+    padding-top:25px;
+    float:right;
+    width:40%;
+    color:#bfbe64;
+
+}
+#f3 .lititle {
+    display:none;
+}
+#f3 ul li {
+    padding-top:10px;
+}
+#f3 a:link {
+    color:#bfbe64;
+    text-decoration:none;
+}
+/*Footer Link styling*/
+#footer a:visited {color:inherit;}
+#footer a:hover {text-decoration:underline;}
+#footer a:active {text-decoration:underline;}
+#arr {
+    height:20px;
+    float:right;
+    padding-right:10px;
+    font-size:20px;
+    color:#fbf3e8;
+    padding-bottom:10px;
+}
+/***** Media Queries *****/
+
+@media screen and (max-width: 768px) {
+    body {
+    width:100%;
+    }
+    #footer{
+    height:340px;
+    }
+    #arr {
+    font-size:18px;
+    }
+}
+@media screen and (max-width: 480px) {
+    body {
+    width:100%;
+    }
+    #footer {
+    height:auto;
+    }
+    #f1{
+    background-color:#3e423a;
+    width:100%;
+    }
+    #f2{
+    background-color:#3e423a;
+    width:100%;
+    }
+    #f3{
+    background-color:#3e423a;
+    width:100%;
+    }
+    #f3 .lititle {
+    display:block;
+    }
+    #arr {
+    width:100%;
+    text-align:center;
+    font-size:16px;
+    height:50px;
+    background-color:#3e423a;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    body {
+    width:100%;
+    }
+    #footer {
+    height:auto;
+    }
+    #f1{
+    background-color:#3e423a;
+    width:100%;
+    }
+    #f2{
+    background-color:#3e423a;
+    width:100%;
+    }
+    #f3{
+    background-color:#3e423a;
+    width:100%;
+    }
+    #f3 .lititle {
+    display:block;
+    }
+    #arr {
+    width:100%;
+    text-align:center;
+    font-size:16px;
+    height:50px;
+    background-color:#3e423a;
+    }
+}

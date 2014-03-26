@@ -1,0 +1,60 @@
+﻿#googleMap {
+
+}
+#contactLeft {
+    float:left;
+    width:450px;
+    margin-bottom:50px;
+}
+#contactRight {
+    width:50%;
+    margin-top:25px;
+    float:right;
+    margin-bottom:25px;
+}
+.textContact {
+    padding:5px;
+    margin-left:-15px;
+    border:solid 1px #a4cebe;
+    font-size:15px;
+    font-family: 'Roboto Slab', serif;
+}
+#panelWrapper {
+width:450px;
+height:0px;
+overflow:scroll;
+}
+#d_panel {
+    font-size:15px;
+width:450px;
+}
+    #d_panel th, tr, td {
+    width:425px;
+    }
+#cHeader {
+    font-size: 30px;
+    border-bottom: 2px solid #b2bb5d;
+    color: #668d8e;
+}
+.message {
+color:red;
+font-size:24px;
+}
+.viewFont {
+font-weight:bold;
+}
+.viewMsg {
+font-size:17px;
+}
+.replyMsg {
+color:grey;
+font-size:17px;
+padding-left:50px;
+}
+.replyBox {
+height:0px;
+overflow:hidden;
+}
+.cSmall {
+font-size:11px;
+}

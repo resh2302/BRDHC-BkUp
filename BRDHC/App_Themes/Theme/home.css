@@ -1,0 +1,292 @@
+﻿
+#contentwrapper {
+    margin: 0 auto;
+    width:95%;
+    overflow:auto;
+    background-color:#fbf3e8;
+    padding:10px;
+}
+#left {
+    float:left;
+    width:30%;
+}
+
+#l_top
+{
+    background-color:#668d8e;
+    padding:7px;
+    overflow:auto;
+}
+
+
+    #l_top h3
+    {
+        margin-bottom:0;
+    }
+    #l_top article {
+        color: #fbf3e8;
+        
+        
+    }
+
+#l_bottom h1 {
+color:#668d8e;
+}
+#social_media {
+padding-top: 50px;
+}
+.sm_img {
+padding:10px;
+}
+
+#right {
+    float:right;
+    width:65%;
+   font-size:30px;
+    border-bottom: 2px solid #b2bb5d;
+    color:#668d8e;
+}
+#btm_1,#top_1 {
+  
+    float:right;
+    width:65%;
+    height:auto;
+    overflow:auto;
+   
+    
+}
+#btm_2 {
+    float:right;
+    width:65%;
+    height:auto;
+    overflow:auto;
+}
+#b_topleft,#b_mission {
+    float:left;
+    width:48%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+#alert
+{
+    width:65%;
+    margin:0 auto;
+    overflow:auto;
+    float:right;
+    background-color:#cf7671;
+    padding:3px;
+    color:#fbf3e8;
+    margin-top:10px;
+}
+
+#news
+{
+    width:65%;
+    margin:0 auto;
+    overflow:auto;
+     float:right;
+      padding:3px;
+      margin-top:10px;
+      border-bottom:2px solid #b2bb5d;
+}
+#b_topright,#b_vision {
+    float:right;
+    width:48%;
+    margin: 0 auto;
+    overflow: auto;
+}
+#b_topright h2 {
+    color:#cf7671;
+}
+#b_topright article {
+    color:#cf7671;
+}
+.rm_green {
+    float:right;
+    padding-top:10px;
+    color:#668d8e;
+}
+#b_left {
+    float:left;
+    width:48%;
+    margin-bottom:20px;
+}
+#mbox1{
+    margin-top: 50px;
+    overflow:hidden;
+    background-color:#b2bb5d;
+    height: 145px;
+    width: 283px;
+}
+.mtitle{
+	font-family: 'Roboto Slab', serif;
+    font-weight:bold;
+	font-size: 20px;
+	text-align:center;
+}
+#list{
+	margin-left:15px;
+}
+#mbox2{
+    margin-top: 50px;
+    overflow:hidden;
+    background-color:#a4cebe;
+    height: 145px;
+    width: 283px;
+}
+#b_right {
+    float:right;
+    width:48%;
+
+}
+/***** Media Queries *****/
+
+@media screen and (max-width: 768px) {
+    #mbox1 {
+    width:220px;
+    }
+    #mbox2 {
+    width:220px;
+    }
+    .mimg {
+    width:220px;
+    height:46px;
+    }
+    .mimg2 
+    {
+    width:220px;
+    height:46px;
+    }
+
+
+}
+
+@media screen and (max-width: 480px) {
+    #left,#right {
+    width:100%;
+    }
+    #btm_1 {
+    float:left;
+    width:100%;
+    }
+    #btm_2 {
+    float:left;
+    padding: 10%;
+    width:70%;
+    }
+    #b_topleft {
+    width:95%;
+    }
+    #b_topright {
+    float:left;
+    width:95%;
+    }
+    #b_right {
+    float:none;
+    width:100%;
+    }
+    #b_left {
+    float:none;
+    width:100%;
+    }
+    #mbox1 {
+    width:283px;
+    }
+    #mbox2 {
+    float:left;
+    width:283px;
+    }
+    .mimg {
+    width:283px;
+    height:59px;
+    }
+    .mimg2 
+    {
+    width:283px;
+    height:59px;
+    margin-bottom:20px;
+    }
+
+    #top_1
+    {
+    float:left;
+    width:100%;
+    }
+    #b_missiom
+    {
+       width:95%;
+
+    }
+    #b_vision
+    {
+        float:left;
+    width:95%;
+    }
+
+    #alert_box,#new_box
+    {
+    float:left;
+    width:95%;
+    }
+
+    #alert,#news
+    {
+        width:95%;
+    }
+
+}
+@media screen and (max-width: 320px) {
+    #left {
+    width:100%;
+    }
+    #btm_1 {
+    float:left;
+    width:100%;
+    }
+    #btm_2 {
+    float:left;
+    padding:initial;
+    width:100%;
+    }
+    #b_topleft {
+    width:95%;
+    }
+    #b_topright {
+    float:left;
+    width:95%;
+    }
+    #b_right {
+    float: left;
+    padding:initial;
+    margin: 0 auto;
+    width:100%;
+    }
+    #b_left {
+    padding:initial;
+    margin: 0 auto;
+    width:100%;
+    }
+    #mbox1 {
+    width:283px;
+    }
+    #mbox2 {
+    width:283px;
+    }
+    .mimg {
+    width:283px;
+    height:59px;
+    }
+    .mimg2 
+    {
+    width:283px;
+    height:59px;
+    margin-bottom:20px;
+    }
+
+    #right
+    {
+        float:left;
+        width:100%;
+    }
+}

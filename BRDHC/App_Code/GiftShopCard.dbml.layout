@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="GiftShopCard">
+  <DataContextMoniker Name="/GiftShopCardDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9a0e8dfa-702c-476a-913d-45f528a68ea5" absoluteBounds="3, 2.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/GiftShopCardDataContext/brdhc_GiftShopSendCard" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1915340a-ea6a-44a7-b4f1-35c260974eec" absoluteBounds="3.0149999999999997, 2.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

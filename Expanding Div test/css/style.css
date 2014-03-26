@@ -1,0 +1,38 @@
+body{
+width:500px;
+margin: 0 auto;
+}
+#box{
+margin-top: 50px;
+overflow:hidden;
+background-color:#b2bb5d;
+height: 145px;
+width: 283px;
+}
+#title{
+	font-family: 'Arbutus Slab', serif;
+	font-size: 20px;
+	font-weight:bold;
+	text-align:center;
+}
+#test{
+	font-family: 'Arbutus Slab', serif;
+	font-size: 16px;
+}
+#list{
+	margin-left:15px;
+}
+ul{
+	font-family: 'Actor', sans-serif;
+	list-style:none;
+}
+#footer{
+width:500px;
+background-color:#2499C6;
+height:100px;
+}
+#header{
+width:500px;
+background-color:#2499C6;
+height:100px;
+}
