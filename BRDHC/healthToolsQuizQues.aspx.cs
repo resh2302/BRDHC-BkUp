@@ -31,26 +31,26 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
 
     protected void btnThis_Click(object sender, EventArgs e)
     {
-<<<<<<< HEAD
+
         
-        HiddenField hdfThisAns = ((HiddenField)grid_quiz.SelectedRow.Cells[1].FindControl("hdf_thisAns"));
-        Guid QuestionID = Guid.Parse( hdfThisAns.Value);
+        //HiddenField hdfThisAns = ((HiddenField)grid_quiz.SelectedRow.Cells[1].FindControl("hdf_thisAns"));
+        //Guid QuestionID = Guid.Parse( hdfThisAns.Value);
 
-        quizClass objLinq = new quizClass();
-        string Answer = objLinq.getAnswer(QuestionID).ToString();
-        grid_quiz.DataBind();
+        //quizClass objLinq = new quizClass();
+        //string Answer = objLinq.getAnswer(QuestionID).ToString();
+        //grid_quiz.DataBind();
 
-        if (Answer == "THIS")
-        {
-            Label lbl_this = ((Label)grid_quiz.FindControl("lbl_this"));
-            lbl_this.Text = "Correct!";
-            //score += 1;
-        }
-        else
-        {
-            Label lbl_this = ((Label)grid_quiz.FindControl("lbl_this"));
-            lbl_this.Text = "Sorry!";
-=======
+        //if (Answer == "THIS")
+        //{
+        //    Label lbl_this = ((Label)grid_quiz.FindControl("lbl_this"));
+        //    lbl_this.Text = "Correct!";
+        //    //score += 1;
+        //}
+        //else
+        //{
+        //    Label lbl_this = ((Label)grid_quiz.FindControl("lbl_this"));
+        //    lbl_this.Text = "Sorry!";
+
         int row = ((GridViewRow)((Control)sender).NamingContainer).RowIndex;
 
         Panel PnlMpeThis = (Panel)grid_quiz.Rows[row].FindControl("pnl_mpeThis");
@@ -72,7 +72,7 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
         {
             Label lbl_ans = (Label)PnlMpeThis.FindControl("lbl_ans");
             lbl_ans.Text = "Sorry!";
->>>>>>> e0c6896c0429f4208b2a9104ea08124b255f1375
+
         }
     }
 
@@ -102,19 +102,19 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
         }
     }
 
-<<<<<<< HEAD
-        lblO.Text = "Index : "; //+ grid_quiz.PageIndex + "Count : " + grid_quiz.PageCount ;
-         if (grid_quiz.PageIndex < grid_quiz.PageCount)
-        {
-            grid_quiz.PageIndex ++;
-            //_subBind();
+
+        //lblO.Text = "Index : "; //+ grid_quiz.PageIndex + "Count : " + grid_quiz.PageCount ;
+        // if (grid_quiz.PageIndex < grid_quiz.PageCount)
+        //{
+        //    grid_quiz.PageIndex ++;
+        //    //_subBind();
              
-        }
-        else {
-            Response.Redirect("~/healthToolsQuizScore.aspx?");
-        }
+        //}
+        //else {
+        //    Response.Redirect("~/healthToolsQuizScore.aspx?");
+        //}
          
-=======
+
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //if (grid_quiz.PageIndex <= (grid_quiz.PageCount - 1))
@@ -139,8 +139,6 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
         quizClass objLinq = new quizClass();
         grid_quiz.DataSource = objLinq.getQues();
         grid_quiz.DataBind();
-
->>>>>>> e0c6896c0429f4208b2a9104ea08124b255f1375
     }
 
 }
