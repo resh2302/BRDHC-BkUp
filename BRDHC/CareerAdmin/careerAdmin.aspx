@@ -39,7 +39,7 @@
                             <asp:TextBox ID="txt_des" TextMode="multiline" Columns="50" Rows="15" runat="server" />
                             <br />
                             <asp:Label ID="lbl_exp" Text="Expiry Date :" runat="server" CssClass="infoLabel" />
-                            <asp:TextBox ID="txt_exp" runat="server" AutoPostBack="true" onkeypress="return false;" />
+                            <asp:TextBox ID="txt_exp" runat="server" AutoPostBack="true"/>
                             <ajax:CalendarExtender ID="cd_exp" FirstDayOfWeek="Monday" EnableViewState="true" PopupPosition="BottomRight" Format="yyyy-MM-dd" TargetControlID="txt_exp" PopupButtonID="imgCal" runat="server"></ajax:CalendarExtender>
                              &nbsp;<asp:ImageButton ID="imgCal" runat="server" ImageUrl="~/images/calendar_icon.png" ToolTip="Select Appointment Date" />
                             <br />
@@ -70,8 +70,8 @@
                                     <td><%#Eval("JobPostingDate") %></td>
                                     <td><%#Eval("ExpDate") %></td>
                                     <td>
-                                        <asp:Button ID="btn_updV" runat="server" CommandArgument='<%#Eval("JobPostId") %>' CommandName="Upd" Text="Update"/>
-                                        <asp:Button ID="btn_delete" runat="server" CommandArgument='<%#Eval("JobPostId") %>' CommandName="Del" Text="Delete"/>
+                                        <asp:Button ID="btn_updV" runat="server" CommandArgument='<%#Eval("JobPostId") %>' CommandName="Update" Text="Update"/>
+                                        <asp:Button ID="btn_delete" runat="server" CommandArgument='<%#Eval("JobPostId") %>' CommandName="Delete" Text="Delete"/>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -92,12 +92,41 @@
                                 <asp:TextBox ID="txt_emailU" runat="server" Text='<%#Eval("ContactEmail") %>' />
                                 <br />
                                 <asp:Label ID="lbl_expU" Text="Expiry Date :" runat="server" CssClass="infoLabel" />
-                                <asp:TextBox ID="txt_expU" runat="server" AutoPostBack="true" onkeypress="return false;" />
+                                <asp:TextBox ID="txt_expU" runat="server" AutoPostBack="true" />
                                 <ajax:CalendarExtender ID="cd_expU" FirstDayOfWeek="Monday" EnableViewState="true" PopupPosition="BottomRight" Format="yyyy-MM-dd" TargetControlID="txt_exp" PopupButtonID="imgCal" runat="server"></ajax:CalendarExtender>
                                 &nbsp;<asp:ImageButton ID="imgCal" runat="server" ImageUrl="~/images/calendar_icon.png" ToolTip="Select Appointment Date" />
                                 <br />
                                 <asp:Button ID="btn_updU" runat="server" CommandArgument='<%#Eval("JobPostId") %>' CommandName="Update" Text="Submit Update"/>
                                 <asp:Button ID="btn_delU" runat="server" CommandArgument='<%#Eval("JobPostId") %>' CommandName="Delete" Text="Delete" />     
+                        </ItemTemplate>
+                    </asp:ListView>
+                </asp:Panel>
+                <asp:Panel ID="pvl_apps" runat="server">
+                    <asp:DropDownList ID="ddl_job" runat="server" OnSelectedIndexChanged="" AutoPostBack="true">
+                        <asp:ListItem Text="Careers" Value=" " />
+                    </asp:DropDownList>
+
+                    <asp:ListView ID="lv_apps" runat="server">
+                        <ItemTemplate>
+                            <table class="blueTable table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>View/Delete</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <asp:HiddenField ID="hdf_id" runat="server" Value='<%#Eval("ApplicationId") %>' />
+                                    <td><%#Eval("FirstName") %> <%#Eval("LastName") %></td>
+                                    <td><%#Eval("Email") %></td>
+                                    <td><%#Eval("Phone") %></td>
+                                    <td>
+                                        <asp:Button ID="btn_view" runat="server" CommandArgument='<%#Eval("ApplicationId") %>' CommandName="Update" Text="Update" />
+                                        <asp:Button ID="btn_delete" runat="server" CommandArgument='<%#Eval("ApplicationId") %>' CommandName="Delete" Text="Delete" />
+                                    </td>
+                                </tr>
                         </ItemTemplate>
                     </asp:ListView>
                 </asp:Panel>

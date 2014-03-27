@@ -29,7 +29,8 @@ public class careerAppClass
         return singleApp;
     }
     //insert
-    public bool insertApp(Guid appID, Guid jobID, string _fname, string _lname, string _email, string _phone, string _resume)
+    public bool insertApp(Guid appID, Guid jobID, string _fname, string _lname, string _email, string _phone //string _resume
+        )
     {
         careersAppDataContext objApps = new careersAppDataContext();
         using (objApps)
@@ -41,11 +42,27 @@ public class careerAppClass
             objNewApp.LastName = _lname;
             objNewApp.Email = _email;
             objNewApp.Phone = _phone;
-            objNewApp.ResumePath = _resume;
+            //objNewApp.ResumePath = _resume;
             objApps.brdhc_JobApplications.InsertOnSubmit(objNewApp);
             objApps.SubmitChanges();
             return true;
         }
+    }
+
+    public bool uploadResume(Guid appID, Guid jobID, string resume)
+    {
+        careersAppDataContext objApps = new careersAppDataContext();
+        using (objApps)
+        {
+            brdhc_JobApplication objNewRes = new brdhc_JobApplication();
+            objNewRes.ApplicationId = appID;
+            objNewRes.JobPostId = jobID;
+            objNewRes.ResumePath = resume;
+            //objApps.brdhc_JobApplications.
+            objApps.SubmitChanges();
+            return true;
+        }
+     
     }
 
     public bool deleteApp(Guid appID)
