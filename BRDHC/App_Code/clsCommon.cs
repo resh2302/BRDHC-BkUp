@@ -20,12 +20,14 @@ using System.Data;
 /// </summary>
 public class clsCommon
 {
+    #region "Email Properties"
     string smtpHost = WebConfigurationManager.AppSettings["smtpHost"].ToString();
     string fromEmail = WebConfigurationManager.AppSettings["fromEmail"].ToString();
     string fromName = WebConfigurationManager.AppSettings["fromName"].ToString();
     string mailPasswod = WebConfigurationManager.AppSettings["mailPasswod"].ToString();
+    # endregion
 
-    #region "Load common Valuse in  dropdows"
+    #region "Load common valuse in  dropdows"
 
     public IQueryable<brdhc_Country> getAllCountries()
     {
@@ -168,6 +170,18 @@ public class clsCommon
         }
         return timeIntervals;
     }
+
+    # region "Email Functions"
+    /// <summary>
+    /// sendEmail()
+    /// </summary>
+    /// <param name="to"></param>
+    /// <param name="cc"></param>
+    /// <param name="bcc"></param>
+    /// <param name="msgBody"></param>
+    /// <param name="subject"></param>
+    /// <param name="isBodyHTML"></param>
+    /// <returns></returns>
     public string sendEMail(string to, string cc, string bcc, string msgBody, string subject, bool isBodyHTML)
     {
         string result = null;
@@ -201,6 +215,15 @@ public class clsCommon
         }
         return result;
     }
+    /// <summary>
+    /// sendEMail()
+    /// </summary>
+    /// <param name="to"></param>
+    /// <param name="cc"></param>
+    /// <param name="msgBody"></param>
+    /// <param name="subject"></param>
+    /// <param name="isBodyHTML"></param>
+    /// <returns></returns>
     public string sendEMail(string to, string cc, string msgBody, string subject, bool isBodyHTML)
     {
         string result = null;
@@ -233,6 +256,14 @@ public class clsCommon
         }
         return result;
     }
+    /// <summary>
+    /// sendEMail()
+    /// </summary>
+    /// <param name="to"></param>
+    /// <param name="msgBody"></param>
+    /// <param name="subject"></param>
+    /// <param name="isBodyHTML"></param>
+    /// <returns></returns>
     public string sendEMail(string to, string msgBody, string subject, bool isBodyHTML)
     {
         string result = null;
@@ -265,6 +296,54 @@ public class clsCommon
         return result;
     }
 
+    # endregion
+
+    public static void saveError(Exception ex)
+    {
+        string eventName = ex.TargetSite.ToString();
+
+        System.Diagnostics.StackTrace st = new System.Diagnostics.StackTrace(ex, true);
+
+        System.Diagnostics.StackFrame frame = st.GetFrame(0); //returns {PermissionDemand at offset 5316022 in file:line:column <filename unknown>:0:0}
+
+        //Get the file name
+        string fileName = frame.GetFileName();
+        string[] file = fileName.Split('\\');
+        string finalFileName = file[file.Count() - 1].ToString();
+
+        //Get the method name
+        string methodName = frame.GetMethod().Name; //returns PermissionDemand
+
+        //Get the line number from the stack frame
+        int line = frame.GetFileLineNumber(); //returns 0
+
+        //Get the column number
+        int col = frame.GetFileColumnNumber(); //returns 0    
+
+
+        // create a new table with one row and this table is similar in schema with the table in database
+        brdhc_ErrorLog svTable = new brdhc_ErrorLog()
+        {
+            FileName = finalFileName,
+            MethodName = methodName,
+            EventName = eventName,
+            LineNumber = line,
+            ColumnNumber = col,
+            Message = ex.Message.ToString(),
+            ExceptionType = ex.GetType().ToString(),
+            ExceptionTime = DateTime.Now
+        };
+        CommonDataContext obj = new CommonDataContext();
+        // call the function to save the row into actual database table
+        obj.brdhc_ErrorLogs.InsertOnSubmit(svTable);
+        obj.SubmitChanges();
+
+    }
+    public IQueryable<brdhc_ErrorLog> getErrorLogs()
+    {
+        CommonDataContext objCommon = new CommonDataContext();
+        return objCommon.brdhc_ErrorLogs.Select(el => el);
+    }
 
     public List<sp_getAlertSubscribersResult> sp_getAlertSubscribers(string applicationName)
     {

@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Services;
+
+/// <summary>
+/// Summary description for wsHealthAlerts
+/// </summary>
+[WebService(Namespace = "http://www.brdhchumber.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+[System.Web.Script.Services.ScriptService]
+public class wsHealthAlerts : System.Web.Services.WebService
+{
+    public wsHealthAlerts()
+    {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+
+    [WebMethod]
+    public string HelloWorld()
+    {
+        return "Hello World";
+    }
+
+    [WebMethod]
+    public bool deleteHealthAlert(string _healthAlertId)
+    {
+        clsHealthAlerts objHAlerts = new clsHealthAlerts();
+        bool result = false;
+        try
+        {
+            objHAlerts.deleteHealthAlert(new Guid(_healthAlertId));
+            result = true;
+        }
+        catch (Exception ex)
+        {
+            result = false;
+        }
+        return result;
+    }
+
+    [WebMethod]
+    public string sendToFriend(string _emails, string _aid)
+    {
+        string result = "fail";
+        
+            clsCommon objCom = new clsCommon();
+            string toEmail = _emails;
+            StringBuilder strBody = new StringBuilder();
+            strBody.Append("<br />");
+            strBody.Append("<br />");
+            strBody.Append("<h3>Hi!</h3>");
+            strBody.Append("<br />");
+            strBody.Append("There is alert on brdhc hospital. Click <a href='www.brdhchumber.com/alerts.aspx/aid=" + _aid + "'>Here</a> to check.");
+            strBody.Append("<br />");
+            string emailResult = objCom.sendEMail(toEmail, strBody.ToString(), "BRDHC Humber Alerts", true);
+            if (string.IsNullOrEmpty(emailResult))
+            {
+                result = "pass";
+            }
+            else
+            {
+                result = emailResult;
+            }
+
+        return result;
+
+    }
+}

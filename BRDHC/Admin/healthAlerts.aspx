@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="Theme" AutoEventWireup="true" CodeFile="healthAlerts.aspx.cs" Inherits="Admin_healthAlerts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" ValidateRequest="false" Theme="Theme" AutoEventWireup="true" CodeFile="healthAlerts.aspx.cs" Inherits="Admin_healthAlerts" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <%@ MasterType VirtualPath="~/brdhc.master" %>
@@ -57,13 +57,12 @@
                                     </div>
                                     <asp:Label runat="server" ID="lblDescription" Text='<%#Eval("HealthAlertDescription") %>'>
                                     </asp:Label>
-                                    <div id="div<%# Container.ItemIndex %>" class="hideDesc">
+                                    <div id="div_<%# Container.ItemIndex %>" class="hideDesc">
                                         <asp:Label ID="lblADesc" runat="server" Text='<%# Eval("HealthAlertDescription") %>'></asp:Label><br />
-                                        <input type="submit" name='tmpDialogueClose' value='Close Dialogue' id="tmpDialogueClose" />
+                                        <a id="GB_<%# Container.ItemIndex %>" href="#" onclick="javascript:switchViews('<%# Container.ItemIndex %>', 'close');return false;">Go Back</a>
                                     </div>
                                     <br />
-                                    <a href="javascript:switchViews('div<%# Container.ItemIndex %>', 'one');">Show Details</a>
-                                    <%--<asp:LinkButton ID="lbtnMore" OnClientClick='javascript:switchViews("div<%# Container.ItemIndex %>","one"); return false;' runat="server">Read More</asp:LinkButton>--%>
+                                    <a id="RM_<%# Container.ItemIndex %>" href="#" onclick="javascript:switchViews('<%# Container.ItemIndex %>', 'show');return false;">Read More</a>
                                     <br />
                                     <asp:Label ID="lblPublish" runat="server" Text='<%#Eval("Published") %>' /><br />
                                     <asp:Button ID="btnEdit" Text="Edit" runat="server" CommandName="editAlert" />
@@ -78,14 +77,6 @@
 
                     <div class='form-group' style="margin: 30px; text-align: right;">
                         <div class='col-md-12 control-label'>
-                            <%--<asp:DataPager ID="dpRecords" runat="server" PagedControlID="lstRecords"
-                                PageSize="4" OnPreRender="dpRecords_PreRender">
-                                <Fields>
-                                    <asp:NextPreviousPagerField ShowFirstPageButton="True" ShowNextPageButton="False" />
-                                    <asp:NumericPagerField />
-                                    <asp:NextPreviousPagerField ShowLastPageButton="True" ShowPreviousPageButton="False" />
-                                </Fields>
-                            </asp:DataPager>--%>
                         </div>
                     </div>
                 </asp:Panel>
@@ -94,4 +85,3 @@
         </asp:UpdatePanel>
     </asp:Panel>
 </asp:Content>
-
