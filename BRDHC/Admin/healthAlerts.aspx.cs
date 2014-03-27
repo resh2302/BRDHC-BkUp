@@ -77,28 +77,28 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
         //if (Page.IsValid)
         //{
         MembershipUser user = Membership.GetUser();
-            lblErr.Visible = true;
-            try
+        lblErr.Visible = true;
+        try
+        {
+            string title = txtATitle.Text;
+            string description = txtDesc.Text;
+            if (_healthAlertId == null || _healthAlertId == Guid.Empty)
             {
-                string title = txtATitle.Text;
-                string description = txtDesc.Text;
-                if (_healthAlertId == null || _healthAlertId == Guid.Empty) 
-                {
-                    _healthAlertId = Guid.NewGuid(); 
-                    objHAlerts.saveHealthAlert(_healthAlertId, title, description, DateTime.Now, user.ProviderUserKey.ToString(), false);
-                    lblErr.Text = "Health Alert added successfully.";
-                    btnSU.Text = "Update";
-                }
-                else
-                {
-                    objHAlerts.updateHealthAlert(_healthAlertId, title, description, DateTime.Now, user.ProviderUserKey.ToString(), false);
-                    lblErr.Text = "Health Alert update successfully.";
-                }
+                _healthAlertId = Guid.NewGuid();
+                objHAlerts.saveHealthAlert(_healthAlertId, title, description, DateTime.Now, user.ProviderUserKey.ToString(), false);
+                lblErr.Text = "Health Alert added successfully.";
+                btnSU.Text = "Update";
             }
-            catch (Exception ex)
+            else
             {
-                lblErr.Text = ex.Message.ToString();
+                objHAlerts.updateHealthAlert(_healthAlertId, title, description, DateTime.Now, user.ProviderUserKey.ToString(), false);
+                lblErr.Text = "Health Alert update successfully.";
             }
+        }
+        catch (Exception ex)
+        {
+            lblErr.Text = ex.Message.ToString();
+        }
         //}
     }
 
@@ -146,14 +146,14 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
                     strBody.Append("<h3>Hi! " + fullName + "</h3>");
                     strBody.Append("<br />");
                     strBody.Append("<br />");
-                    strBody.Append("We thought to notify you that there is an alert <a href='www.brdhchumber.com'>"+title+"</a>");
+                    strBody.Append("We thought to notify you that there is an alert <a href='www.brdhchumber.com'>" + title + "</a>");
                     strBody.Append("<br />");
                     strBody.Append("Below is the description. Please look at it and forward this to others.");
                     strBody.Append("<br />");
                     strBody.Append("<br />");
                     strBody.Append(description);
                     strBody.Append("<br />");
-                    strBody.Append("<b>Note: </b> If you do not want to get future emails <a href='www.brdhchumber.com/unsubscribe.aspx?uid='"+subscriberId+"'>unsubscribe<a/> here.");
+                    strBody.Append("<b>Note: </b> If you do not want to get future emails <a href='www.brdhchumber.com/unsubscribe.aspx?uid='" + subscriberId + "'>unsubscribe<a/> here.");
                     strBody.Append("<br />");
                     strBody.Append("Wishing you very healthy life.");
                     strBody.Append("<br />");
@@ -191,7 +191,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
     }
     protected void lstRecords_ItemCommand(object sender, DataListCommandEventArgs e)
     {
-                lblErr.Visible = false;
+        lblErr.Visible = false;
         _healthAlertId = Guid.Parse(((HiddenField)e.Item.FindControl("hdfHealthAlertId")).Value);
         if (e.CommandName == "editAlert")
         {
@@ -199,7 +199,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
             txtDesc.Text = ((Label)e.Item.FindControl("lblADesc")).Text;
             pnlDetails.Visible = true;
             pnlTable.Visible = false;
-            btnSU.Text = "Update"; 
+            btnSU.Text = "Update";
         }
         else if (e.CommandName == "delAlert")
         {

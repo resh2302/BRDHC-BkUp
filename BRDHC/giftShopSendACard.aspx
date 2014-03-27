@@ -45,7 +45,8 @@
                
         <div class="msAll90 msTRight">
 
-            <asp:Button CssClass="btn" runat="server" ID="btnSendFlowers" Text="Send now" OnClick="btnSendFlowers_Click" />
+            <asp:Button CssClass="btn" runat="server" ID="btnSendFlowers" Text="Send now" OnCommand="btnSendFlowers_Command" CommandName="Insert"  />
+            <%--OnClick="btnSendFlowers_Click"--%>
 
         </div>    
               
@@ -55,6 +56,8 @@
       <asp:Panel ID="pnlMsSent" runat="server" Visible="false">
 
         <div class="msAll90 msOH msPadBot30 msPadTop30">
+
+           <asp:Label ID="lbl_output" runat="server" />
 
           <asp:Label ID="mSlblTks" runat="server" Text="Your message has been sent. <br/> You will be notified once the card has been delivered!" CssClass="msHeader3" />
         

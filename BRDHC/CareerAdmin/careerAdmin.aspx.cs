@@ -10,6 +10,21 @@ public partial class careerAdmin : System.Web.UI.Page
     careersClass objCareer = new careersClass();
     careerAppClass objApplication = new careerAppClass();
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            subLoadAll();
+            _panelControl(pnlAdd);
+            ddl_job.DataSource = objCareer.getJobs();
+            ddl_job.DataTextField = "JobTitle";
+            ddl_job.DataValueField = "JobPostId";
+            ddl_job.DataBind();
+            ddl_job.Items.Insert(0, new ListItem("--- Select Career---"));
+            ddl_job.SelectedIndex = 0;
+        }
+    }
+
     private void _panelControl(Panel pnl)
     {
         pnlAdd.Visible = false;
@@ -18,14 +33,13 @@ public partial class careerAdmin : System.Web.UI.Page
         pnl.Visible = true;
     }
 
-    protected void Page_Load(object sender, EventArgs e)
+    public void viewAll(object sender, CommandEventArgs e)
     {
-        if (!Page.IsPostBack)
-        {
-            subLoadAll();
-            _panelControl(pnlAdd);
-        }
+        subLoadAll();
+        _subRebind();
+        _panelControl(pnlViewAll);
     }
+
     private void subLoadAll()
     {
         IQueryable<brdhc_JobPost> objData = objCareer.getJobs();
@@ -35,12 +49,16 @@ public partial class careerAdmin : System.Web.UI.Page
         lv_allJobs.DataBind();
     }
 
-    public void viewAll(object sender, CommandEventArgs e)
+    private void loadApps(Guid id)
     {
-        subLoadAll();
-        _subRebind();
-        _panelControl(pnlViewAll);
+        IQueryable<brdhc_JobApplication> objAppData = objApplication.getAppByJobID(id);
+        lv_apps.Items.Clear();
+        lv_allJobs.DataSource = objAppData;
+        lv_allJobs.EditIndex = -1;
+        lv_apps.DataBind();
     }
+
+
 
     private void _subRebind()
     {
@@ -68,10 +86,10 @@ public partial class careerAdmin : System.Web.UI.Page
     {
         switch (e.CommandName)
         {
-            case "Upd":
+            case "Update":
                 _showUpdate(Guid.Parse(e.CommandArgument.ToString()));
                 break;
-            case "Del":
+            case "Delete":
                 deleteCareer(e);
                 break;
         }
