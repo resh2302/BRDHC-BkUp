@@ -10,6 +10,8 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
     public static int score = 0;
     public static int pageIndex = 0;
 
+    //quizClass objLinq = new quizClass();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
