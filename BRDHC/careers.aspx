@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="careers.aspx.cs" Inherits="careers" %>
-
+﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="careers.aspx.cs" Inherits="careers" %>
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
@@ -9,7 +9,7 @@
         $(function () {
             $(".displayCareers").accordion({
                 collapsible: true,
-                active: false 
+                active: false
             });
         });
 
@@ -19,7 +19,12 @@
 
     
     <asp:Panel ID="pnl_main" runat="server">
+        <asp:Image ID="img_head" ImageUrl="~/images/careerH.png" runat="server" Width="100%" />
         <section id="cHeader">Careers</section>
+        <br />
+        <article>Here at Blind River District Hospital, are multiple opportunities to grow professionally. With state of the art equipment, we assure
+             our patients and staff that the best care possible can be provided by this facility. Nested into a rural landscape, but not to far away 
+            from urban hubs, Blind River can be the place for you.  </article>
         <br />
         <div class="displayCareers" style = "width:100%">
             <asp:Repeater ID="rpt_careers" runat="server" OnItemCommand="mainCommands">
@@ -53,7 +58,7 @@
                 <br />
                 <asp:HiddenField ID="hdf_id" runat="server" Value='<%#Eval("JobPostId") %>' />
                 <br />
-                <asp:Label ID="lbl_message" runat="server"/>
+                <asp:Label ID="lbl_message" CssClass="message" runat="server"/>
                 <br />
                 <asp:Label ID="lbl_fname" Text="First name:" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_fname" runat="server" CssClass="textContact" />
@@ -61,9 +66,9 @@
                 <asp:Label ID="lbl_lname" Text="Last name:" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_lname" runat="server" CssClass="textContact" />
                 <br />
-                <asp:Label ID="lbl_cover" Text="Description:" CssClass="infoLabel" runat="server" />
+                <asp:Label ID="lbl_cover" Text="Cover Letter / About You:" CssClass="infoLabel" runat="server" />
                 <br />
-                <asp:TextBox ID="txt_cover" TextMode="multiline" Columns="50" Rows="15" runat="server" />
+                <FTB:FreeTextBox ID="txt_cover" runat="server" />
                 <br />
                 <asp:Label ID="lbl_email" Text="Email :" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_email" runat="server" CssClass="textContact" />

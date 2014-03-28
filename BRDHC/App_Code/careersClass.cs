@@ -59,8 +59,9 @@ public class careersClass
         careersDataContext objJobs = new careersDataContext();
         using (objJobs)
         {
-            var objDelJob = objJobs.brdhc_JobPosts.Single(x => x.JobPostId == jobID);
-            objJobs.brdhc_JobPosts.DeleteOnSubmit(objDelJob);
+            var objDelJob = objJobs.brdhc_JobPosts.Where(x => x.JobPostId == jobID);
+            objJobs.brdhc_JobPosts.DeleteAllOnSubmit(objDelJob);
+            objJobs.SubmitChanges();
             return true;
         }
     }

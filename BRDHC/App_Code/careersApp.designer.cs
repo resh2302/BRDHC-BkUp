@@ -93,6 +93,10 @@ public partial class brdhc_JobApplication : INotifyPropertyChanging, INotifyProp
 	
 	private string _ResumePath;
 	
+	private string _CoverLetter;
+	
+	private string _Reply;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -111,6 +115,10 @@ public partial class brdhc_JobApplication : INotifyPropertyChanging, INotifyProp
     partial void OnPhoneChanged();
     partial void OnResumePathChanging(string value);
     partial void OnResumePathChanged();
+    partial void OnCoverLetterChanging(string value);
+    partial void OnCoverLetterChanged();
+    partial void OnReplyChanging(string value);
+    partial void OnReplyChanged();
     #endregion
 	
 	public brdhc_JobApplication()
@@ -238,7 +246,7 @@ public partial class brdhc_JobApplication : INotifyPropertyChanging, INotifyProp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumePath", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumePath", DbType="VarChar(100)")]
 	public string ResumePath
 	{
 		get
@@ -254,6 +262,46 @@ public partial class brdhc_JobApplication : INotifyPropertyChanging, INotifyProp
 				this._ResumePath = value;
 				this.SendPropertyChanged("ResumePath");
 				this.OnResumePathChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CoverLetter", DbType="VarChar(MAX)")]
+	public string CoverLetter
+	{
+		get
+		{
+			return this._CoverLetter;
+		}
+		set
+		{
+			if ((this._CoverLetter != value))
+			{
+				this.OnCoverLetterChanging(value);
+				this.SendPropertyChanging();
+				this._CoverLetter = value;
+				this.SendPropertyChanged("CoverLetter");
+				this.OnCoverLetterChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reply", DbType="VarChar(MAX)")]
+	public string Reply
+	{
+		get
+		{
+			return this._Reply;
+		}
+		set
+		{
+			if ((this._Reply != value))
+			{
+				this.OnReplyChanging(value);
+				this.SendPropertyChanging();
+				this._Reply = value;
+				this.SendPropertyChanged("Reply");
+				this.OnReplyChanged();
 			}
 		}
 	}

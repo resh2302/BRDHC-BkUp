@@ -10,6 +10,7 @@ public partial class careers : System.Web.UI.Page
 {
     careersClass objCareer = new careersClass();
     careerAppClass objApp = new careerAppClass();
+    clsCommon objSendMail = new clsCommon();
 
     private void _panelControl(Panel pnl)
     {
@@ -52,14 +53,18 @@ public partial class careers : System.Web.UI.Page
         TextBox lname = (TextBox)e.Item.FindControl("txt_lname");
         TextBox email = (TextBox)e.Item.FindControl("txt_email");
         TextBox phone = (TextBox)e.Item.FindControl("txt_phone");
+        FreeTextBoxControls.FreeTextBox cover = (FreeTextBoxControls.FreeTextBox)e.Item.FindControl("txt_cover");
         Label message = (Label)e.Item.FindControl("lbl_message");
         FileUpload resume = (FileUpload)e.Item.FindControl("fu_res");
+        string filename = Path.GetFileName(resume.FileName);
 
 
         switch (e.CommandName)
         {
             case "Insert":
-                objApp.insertApp(newApp, jobID, fname.Text, lname.Text, email.Text, phone.Text);
+                objApp.insertApp(newApp, jobID, fname.Text, lname.Text, email.Text, phone.Text, filename, cover.Text);
+                objSendMail.sendEMail(email.Text, "<div><br />" + "<br />Thank you for yor application! <br/>"
+                    + "' <br />We will take your application into consideration and reply if neccesary", "(Blind River District Health Centre) Thank you for your application", true);
                 if (resume.HasFile)
                 {
                     try
@@ -68,11 +73,10 @@ public partial class careers : System.Web.UI.Page
                         {
                             if (resume.PostedFile.ContentLength < 100000)
                             {
-                                string filename = Path.GetFileName(resume.FileName);
-                                resume.SaveAs(Server.MapPath("~/UpResume") + filename);
-                                string resumepath = Server.MapPath("~/UpResume") + filename;
-                                objApp.uploadResume(newApp, jobID, resumepath); 
-                                //StatusLabel.Text = "Upload status: File uploaded!";
+                                //string filename = Path.GetFileName(resume.FileName);
+                                resume.SaveAs(Server.MapPath("~/UpResume/") + filename);
+                                //objApp.uploadResume(newApp, jobID, filename);
+                                message.Text = "You have succesfully applied";
                             }
                             else
                                 message.Text = "Upload status: The file has to be less than 100 kb!";
@@ -93,37 +97,6 @@ public partial class careers : System.Web.UI.Page
                 break;
         }
     }
-    //protected void uploadCheck(object sender, RepeaterCommandEventArgs e)
-    //{
-        
-    //    Label message = (Label)e.Item.FindControl("lbl_message");
-    //    FileUpload resume = (FileUpload)e.Item.FindControl("fu_res");
-    //    if (resume.HasFile)
-    //    {
-    //        try
-    //        {
-    //            if (resume.PostedFile.ContentType == "doc/docx")
-    //            {
-    //                if (resume.PostedFile.ContentLength < 100000)
-    //                {
-    //                    string filename = Path.GetFileName(resume.FileName);
-    //                    resume.SaveAs(Server.MapPath("~/UpResume") + filename);
-    //                    string resumepath = Server.MapPath("~/UpResume") + filename;
-    //                    //StatusLabel.Text = "Upload status: File uploaded!";
-    //                }
-    //                else
-    //                    message.Text = "Upload status: The file has to be less than 100 kb!";
-    //            }
-    //            else
-    //                message.Text = "Upload status: Word Documents allowed!";
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            message.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
-    //        }
-    //    }
-    //}
-
     private void _subRebind()
     {
         rpt_careers.DataSource = objCareer.getJobs();

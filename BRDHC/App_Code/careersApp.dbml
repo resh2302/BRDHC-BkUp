@@ -8,7 +8,9 @@
       <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Phone" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="ResumePath" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ResumePath" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CoverLetter" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Reply" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
