@@ -14,7 +14,7 @@
         <asp:Panel ID="pnlContent" CssClass="pnlContent " runat="server">
             <asp:Label ID="lblStatus" runat="server" Visible="false" CssClass="statusMsg" />
             <%--REquired--%>
-            <asp:Button ID="btn_create" runat="server" Text="NEW INVOICE" OnClick="btn_create_Click" />
+            <asp:Button ID="btn_create" runat="server" Text="NEW INVOICE"  />
             <%--<ajax:ModalPopupExtender ID="mpeCreate" runat="server" 
                 TargetControlID="btn_create"
                 PopupControlID="pnlAdd"
