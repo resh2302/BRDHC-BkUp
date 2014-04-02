@@ -73,6 +73,24 @@ public class clsUserDetails
         return objdoc.sp_SearchDoctorsBySpeciality(applicationName,speciality).ToList();
     }
 
+    public List<brdhc_UserBasicInfo> getAllPatients() //created by REshma for PayBills feature
+    {
+        UserDetailsDataContext objDC = new UserDetailsDataContext();
+
+        var patients = (from p in objDC.brdhc_UserBasicInfos
+                       orderby p.UserId
+                       select p);
+        return patients.ToList<brdhc_UserBasicInfo>();
+
+        //from x in products
+        //         select new {
+        //             x.Id,
+        //             x.Code,
+        //             x.Description,
+        //             DisplayField = String.Format("{0} ({1})", x.Code, x.Description)
+        //         };
+    }
+
     public List<brdhc_UserBasicInfo> getPatient(string identification)
     {
         UserDetailsDataContext objDet = new UserDetailsDataContext();

@@ -1,0 +1,9 @@
+﻿.rm_leftBox {
+    display: inline-block;
+    width: 45%;
+}
+
+.rm_rightBox {
+    display: inline-block;
+    width: 45%;
+}
