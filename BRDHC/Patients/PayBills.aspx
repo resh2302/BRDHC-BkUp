@@ -29,7 +29,7 @@
                     <th>Status</th>
                     <th></th>
                 </tr>
-                <asp:GridView ID="gvInvoice" runat="server" GridLines="Both">
+                <asp:GridView ID="gvInvoice" runat="server" GridLines="Both" AllowPaging="true" PageSize="5">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
@@ -38,10 +38,10 @@
                                     <td><%#Eval("CreatedOn") %></td>
                                     <td><%#Eval("TotalAmt") %></td>
                                     <td><%#Eval("CreatedBy") %></td>
-                                    <td><%#Eval("PayableBy") %></td>
+                                    <td><%#Eval("DueOn") %></td>
                                     <td><%#Eval("Status") %></td>
                                     <td>
-                                        <asp:Button ID="btnSelect" runat="server" Text="PAY NOW" />
+                                        <asp:Button ID="btnSelect" runat="server" Text="PAY NOW" CommandArgument='<%#Eval("InvoiceID") %>' OnCommand="btnSelect_Command" />
                                     </td>
                                 </tr>
                             </ItemTemplate>

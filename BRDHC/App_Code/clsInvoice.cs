@@ -20,6 +20,13 @@ public class clsInvoice
         return allInvoices;
     }
 
+    public IQueryable<brdhc_Invoice> getInvoicesById(Guid id)
+    {
+        InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
+        var invoice = from x in objInvoiceDC.brdhc_Invoices where x.InvoiceID == id orderby x.InvoiceID select x;
+        return invoice;
+    }
+
     public System.Collections.ArrayList insertInvoice(Guid _pID, DateTime _createdOn, string _createdBy, string _reason, string _status, DateTime _dueOn)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();

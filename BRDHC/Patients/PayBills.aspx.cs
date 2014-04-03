@@ -7,7 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class PayBills : System.Web.UI.Page
 {
-   
+    clsInvoiceItems objItems = new clsInvoiceItems();
+    clsInvoice objInvoice = new clsInvoice();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,6 +23,8 @@ public partial class PayBills : System.Web.UI.Page
 
     private void _subRebind()
     {
+        gvInvoice.DataSource = objInvoice.getInvoices();
+        gvInvoice.DataBind();
           
     }
 
@@ -29,5 +32,19 @@ public partial class PayBills : System.Web.UI.Page
        
     }
 
-    
+
+    protected void btnSelect_Command(object sender, CommandEventArgs e)
+    {
+
+        IQueryable<brdhc_Invoice> invoice = objInvoice.getInvoicesById(Guid.Parse(e.CommandArgument.ToString()));
+
+        List<brdhc_Invoice> inv = invoice.ToList<brdhc_Invoice>();
+
+        
+        var arr = invoice.ToArray();
+        string amt = arr[0].TotalAmt.ToString();
+        string invID = arr[0].InvoiceID.ToString();
+
+        Response.Redirect("https://sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=reshSell@gmail.com&item_name=BRDHC Charges&amount=" + amt + "&item_number=" + invID);
+    }
 }

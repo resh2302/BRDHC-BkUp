@@ -63,8 +63,7 @@
                                                 <asp:Button ID="btnAddITem" runat="server" Text="+" CssClass="itemBtn" OnClick="btnAddITem_Click" />
                                             </td>
                                         </tr>
-                                        <asp:UpdatePanel ID="upItems" runat="server">
-                                    <ContentTemplate>
+                                       
                                         <asp:GridView ID="gvItems" runat="server">
                                             <Columns>
                                                 <asp:TemplateField>
@@ -82,11 +81,7 @@
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
-                                        </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnAddITem" EventName="Click" />
-                                            </Triggers>
-                                </asp:UpdatePanel>
+                                        
                                     </table>
                                 </asp:Panel>
                                     

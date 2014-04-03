@@ -50,7 +50,6 @@ public class clsInvoiceItems
         {
             total = total + x.ItemCost;
         }
-
         return total;
     }
 }
