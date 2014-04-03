@@ -85,7 +85,7 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
 	
 	private System.DateTime _CreatedOn;
 	
-	private double _TotalAmt;
+	private System.Nullable<double> _TotalAmt;
 	
 	private string _CreatedBy;
 	
@@ -105,7 +105,7 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
     partial void OnPatientIDChanged();
     partial void OnCreatedOnChanging(System.DateTime value);
     partial void OnCreatedOnChanged();
-    partial void OnTotalAmtChanging(double value);
+    partial void OnTotalAmtChanging(System.Nullable<double> value);
     partial void OnTotalAmtChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
@@ -182,8 +182,8 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmt", DbType="Float NOT NULL")]
-	public double TotalAmt
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmt", DbType="Float")]
+	public System.Nullable<double> TotalAmt
 	{
 		get
 		{

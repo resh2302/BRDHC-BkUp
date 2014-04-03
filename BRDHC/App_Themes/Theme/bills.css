@@ -7,3 +7,11 @@
     display: inline-block;
     width: 45%;
 }
+
+.itemTxt {
+    margin : 0;
+}
+
+.itemBtn {
+    padding: 2px;
+}
