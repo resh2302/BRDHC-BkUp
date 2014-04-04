@@ -15,7 +15,7 @@ public partial class Admin_appointments : System.Web.UI.Page
     clsUserDetails objUser = new clsUserDetails();
     clsAppointments objApp = new clsAppointments();
     static string strPatientUserId;
-    //static string strPatientEmailId;
+    static string strTime;
     static string strAppointmentId;
     # endregion
 
@@ -101,6 +101,7 @@ public partial class Admin_appointments : System.Web.UI.Page
         strPatientUserId = string.Empty;
         strAppointmentId = string.Empty;
         lblErr.Visible = false;
+        strTime = string.Empty;
     }
 
     # region "REPEATER LOADING AND EVENTS"
@@ -219,7 +220,7 @@ public partial class Admin_appointments : System.Web.UI.Page
         txtPName.Text = ((Label)e.Item.FindControl("lblPName")).Text;
         ddlDoctor.SelectedValue = ((HiddenField)e.Item.FindControl("hdfDId")).Value;
         txtDate.Text = ((Label)e.Item.FindControl("lblDate")).Text;
-        string strTime = ((Label)e.Item.FindControl("lblTime")).Text;
+        strTime = ((Label)e.Item.FindControl("lblTime")).Text;
         removeBookedTimes(strTime);
         int index = ddlTimes.Items.IndexOf(new ListItem(strTime));
         ddlTimes.SelectedIndex = index;
@@ -235,7 +236,7 @@ public partial class Admin_appointments : System.Web.UI.Page
        
     protected void txtDate_TextChanged(object sender, EventArgs e)
     {
-        removeBookedTimes(string.Empty);
+        removeBookedTimes(strTime);
     }
 
     private void removeBookedTimes(string previousTime)
