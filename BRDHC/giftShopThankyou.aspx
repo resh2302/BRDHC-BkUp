@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/healthTools.master" AutoEventWireup="true" CodeFile="giftShopSendACard.aspx.cs" Theme="HealthTools" Inherits="giftShopSendACard" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/healthTools.master" AutoEventWireup="true" CodeFile="giftShopThankyou.aspx.cs" Inherits="giftShopThankyou" Theme="HealthTools" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -6,6 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     
     <asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
+
+        <div class="msAll60">
+            <asp:Label runat="server" ID="lbl_thk" CssClass="msHeader4 msImp msPadTop30" />
+        </div>
 
         <div class="msAll98">
                 <asp:Label ID="quizH2" runat="server" Text="Send a handwritten card to a loved one" CssClass="msHeader2" />
@@ -72,7 +76,6 @@
         </div>
 
       </asp:Panel>
-                   
 
     </asp:Panel>
 
