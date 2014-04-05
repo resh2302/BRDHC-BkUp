@@ -54,7 +54,7 @@ public class clsAppointments
     {
         AppointmentsDataContext objApp = new AppointmentsDataContext();
         // select that particular row that is to be updated
-        var appointment = objApp.brdhc_PatientAppointments.Single(p => p.AppointmentId == new Guid(appointmentId));
+        var appointment = objApp.brdhc_PatientAppointments.Single(p => p.AppointmentId == Convert.ToInt32(appointmentId));
         // make the changes
            appointment.PatientUserId = new Guid(patientUserId);
             appointment.DoctorUserId = new Guid(doctorUserId);
@@ -72,7 +72,7 @@ public class clsAppointments
         // select the particular records from databse table and delete it
         var appointments =
             from a in objApp.brdhc_PatientAppointments
-            where (a.AppointmentId == new Guid(appointmentId))
+            where (a.AppointmentId == Convert.ToInt32(appointmentId))
             select a;
         // call the function to delete it and submit the changes
         objApp.brdhc_PatientAppointments.DeleteAllOnSubmit(appointments);

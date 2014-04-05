@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
-
+    <script type="text/javascript" src="../js/prescriptions.js"></script>
     <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
 
         <asp:Label ID="lblErr" runat="server" Visible="false" CssClass="statusMsg" />

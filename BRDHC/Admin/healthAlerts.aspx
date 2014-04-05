@@ -55,15 +55,19 @@
                                         (
                                         <asp:Label ID="lblDate" runat="server" SkinID="date" Text='<%#Eval("AlertDate") %>' />)
                                     </div>
-                                    <asp:Label runat="server" ID="lblDescription" Text='<%#Eval("HealthAlertDescription") %>'>
-                                    </asp:Label>
+
                                     <div id="div_<%# Container.ItemIndex %>" class="hideDesc">
                                         <asp:Label ID="lblADesc" runat="server" Text='<%# Eval("HealthAlertDescription") %>'></asp:Label><br />
                                         <a id="GB_<%# Container.ItemIndex %>" href="#" onclick="javascript:switchViews('<%# Container.ItemIndex %>', 'close');return false;">Go Back</a>
                                     </div>
+
                                     <br />
-                                    <a id="RM_<%# Container.ItemIndex %>" href="#" onclick="javascript:switchViews('<%# Container.ItemIndex %>', 'show');return false;">Read More</a>
-                                    <br />
+                                    <div>
+                                        <asp:Label runat="server" ID="lblDescription" Text='<%#Eval("HealthAlertDescription") %>'>
+                                        </asp:Label>
+                                        <a id="RM_<%# Container.ItemIndex %>" href="#" onclick="javascript:switchViews('<%# Container.ItemIndex %>', 'show');return false;">Read More</a>
+                                        <br />
+                                    </div>
                                     <asp:Label ID="lblPublish" runat="server" Text='<%#Eval("Published") %>' /><br />
                                     <asp:Button ID="btnEdit" Text="Edit" runat="server" CommandName="editAlert" />
                                     &nbsp;&nbsp;
