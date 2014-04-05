@@ -33,101 +33,35 @@
     <div class="msAll90 msOH">
             
         <div class="msAll98 msPadTop20 msCenter">
-
-            <div class="msLeft msPadRL5">
-
-            <asp:Image ID="msBouquet1" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet1.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
-
-            <asp:Label runat="server" ID="lblMsBqt1" Text="Price: $10.00" CssClass="msDisBlk msPadTop10" />
-
-         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-
-                <input type="hidden" name="cmd" value="_xclick" />
-                <input type="hidden" name="business" value="markiGiftshop@blah.com" />
-                <input type='hidden' name='currency_code' value='CAD'/>
-                <input type="hidden" name="item_name" value="BRDHC Bouquet - 10.00" />
-                <input type="hidden" name="amount" value="10.00" /> 
-                <input type="submit" value="Purchase" class="btn msDisBlk msMargTop10" />
-
-           </form>            
-
-            </div>
-
-            <div class="msLeft msPadRL5">
-
-            <asp:Image ID="msBouquet2" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet4.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
-
-            <asp:Label runat="server" ID="lblMsBqt2" Text="Price: $20.00" CssClass="msDisBlk msPadTop10" />
-
-            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-
-                <input type="hidden" name="cmd" value="_xclick" />
-                <input type="hidden" name="business" value="markiGiftshop@blah.com" />
-                <input type='hidden' name='currency_code' value='CAD'/>
-                <input type="hidden" name="item_name" value="BRDHC Bouquet - 20.00" />
-                <input type="hidden" name="amount" value="20.00" /> 
-                <input type="submit" value="Purchase" class="btn msDisBlk msMargTop10" />
-
-            </form>
-
-            </div>
-
-
-            <div class="msLeft msPadRL5">
             
-            <asp:Image ID="msBouquet3" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet3.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
-
-             <asp:Label runat="server" ID="lblMsBqt3" Text="Price: $30.00" CssClass="msDisBlk msPadTop10" />
-
-            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-
-                <input type="hidden" name="cmd" value="_xclick" />
-                <input type="hidden" name="business" value="markiGiftshop@blah.com" />
-                <input type='hidden' name='currency_code' value='CAD'/>
-                <input type="hidden" name="item_name" value="BRDHC Bouquet - 30.00" />
-                <input type="hidden" name="amount" value="30.00" /> 
-                <input type="submit" value="Purchase" class="btn msDisBlk msMargTop10" />
-
-            </form>
-
+            <div class="msLeft msPadRL5">
+                <asp:Image ID="msBouquet1" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet1.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
+                <asp:Label runat="server" ID="lblMsBqt1" Text="Price: $10.00" CssClass="msDisBlk msPadTop10" />
+                <asp:Button ID="btn_10" runat="server" OnClick="btn_10_Click" Text="Purchase" CssClass="btn msDisBlk msMargTop10" />                         
             </div>
             
             <div class="msLeft msPadRL5">
+                <asp:Image ID="msBouquet2" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet4.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
+                <asp:Label runat="server" ID="lblMsBqt2" Text="Price: $20.00" CssClass="msDisBlk msPadTop10" />
+                <asp:Button ID="btn_20" runat="server" OnClick="btn_20_Click" Text="Purchase" CssClass="btn msDisBlk msMargTop10" />
+            </div>
 
-            <asp:Image ID="msBouquet4" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet2.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
-
-            <asp:Label runat="server" ID="Label1" Text="Price: $40.00" CssClass="msDisBlk msPadTop10" />
-
-            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-
-                <input type="hidden" name="cmd" value="_xclick" />
-                <input type="hidden" name="business" value="markiGiftshop@blah.com" />
-                <input type='hidden' name='currency_code' value='CAD'/>
-                <input type="hidden" name="item_name" value="BRDHC Bouquet - 40.00" />
-                <input type="hidden" name="amount" value="40.00" /> 
-                <input type="submit" value="Purchase" class="btn msDisBlk msMargTop10" />
-
-            </form>
-
+            <div class="msLeft msPadRL5">   
+                <asp:Image ID="msBouquet3" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet3.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
+                <asp:Label runat="server" ID="lblMsBqt3" Text="Price: $30.00" CssClass="msDisBlk msPadTop10" />
+                <asp:Button ID="btn_30" runat="server" OnClick="btn_30_Click" Text="Purchase" CssClass="btn msDisBlk msMargTop10" />
+            </div>
+            
+            <div class="msLeft msPadRL5">
+                <asp:Image ID="msBouquet4" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet2.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
+                <asp:Label runat="server" ID="Label1" Text="Price: $40.00" CssClass="msDisBlk msPadTop10" />
+                <asp:Button ID="btn_40" runat="server" OnClick="btn_40_Click" Text="Purchase" CssClass="btn msDisBlk msMargTop10" />
             </div>
 
             <div class="msLeft msPadRL5">
-
-            <asp:Image ID="msBouquet5" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet5.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
-
-             <asp:Label runat="server" ID="Label2" Text="Price: $50.00" CssClass="msDisBlk msPadTop10" />
-
-              <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-
-                <input type="hidden" name="cmd" value="_xclick" />
-                <input type="hidden" name="business" value="markiGiftshop@blah.com" />
-                <input type='hidden' name='currency_code' value='CAD'/>
-                <input type="hidden" name="item_name" value="BRDHC Bouquet - 50.00" />
-                <input type="hidden" name="amount" value="50.00" /> 
-                <input type="submit" value="Purchase" class="btn msDisBlk msMargTop10" />
-
-            </form>
-
+                <asp:Image ID="msBouquet5" ImageUrl="~/App_Themes/HealthTools/images/giftshop/bouquet5.png" runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
+                <asp:Label runat="server" ID="Label2" Text="Price: $50.00" CssClass="msDisBlk msPadTop10" />
+                <asp:Button ID="btn_50" runat="server" OnClick="btn_50_Click" Text="Purchase" CssClass="btn msDisBlk msMargTop10" />
             </div>
                  
          </div>

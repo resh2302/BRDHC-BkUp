@@ -17,28 +17,23 @@ public partial class giftShopSendACard : System.Web.UI.Page
             _subRebind();
         }
     }
-    
-    //protected void btnSendFlowers_Click(object sender, EventArgs e)
-    //{
-    //    _strOutput(ObjCard.commitInsert(msSACYourName.Text, msSACYourEmail.Text, msSACPname.Text, msSACPrn.Text, msSACTo.Text, msSACFrom.Text, msSACYourMessage.Text
-             
-    //}
 
     protected void btnSendFlowers_Command(object sender, CommandEventArgs e)
     {
         if (e.CommandName == "Insert")
         {
-        _strOutput(ObjCard.commitInsert(msSACYourName.Text, msSACYourEmail.Text, msSACPname.Text, msSACPrn.Text, msSACTo.Text, msSACFrom.Text, msSACYourMessage.Text));
+        _strOutput(ObjCard.commitInsert(msSACYourName.Text, msSACYourEmail.Text, msSACPname.Text, msSACPrn.Text, msSACTo.Text, msSACFrom.Text, msSACYourMessage.Text), "sent");
             _subRebind();
+            _panelControl(pnlMsSent);
         }
 
     }
 
-
     private void _panelControl(Panel pnl)
     {
         pnlMsMsg.Visible = false;
-        pnlMsSent.Visible = true;
+        pnlMsSent.Visible = false;
+        pnl.Visible = true;
     }
 
     private void _subRebind()
@@ -55,9 +50,9 @@ public partial class giftShopSendACard : System.Web.UI.Page
     private void _strOutput(bool flag, string str)
     {
         if (flag)
-            lbl_output.Text = "Happy" + str;
+            mSlblTks.Text = "Your message has been " + str + ". <br /><br /> You will be notified via email once your card has been delivered.";
         else
-            lbl_output.Text = "Sad" + str;
+            mSlblTks.Text = "Unfortunately your message was no able to be " + str + ". <br /><br /> Please call 111-222-3333 to have your message taken over the phone.";
     
     }
 
