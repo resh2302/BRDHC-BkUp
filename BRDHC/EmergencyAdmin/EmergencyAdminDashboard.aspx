@@ -22,7 +22,7 @@
         </asp:Panel>
         <asp:Panel ID="pnlDashboard" runat="server"> <%--REquired--%>
             <asp:Panel ID="pnlLeftMenu" CssClass="pnlLeftMenu" runat="server"> <%--REquired--%>
-                <uc:EmergencyMenu ID="ucMenu" runat="server" />
+                <%--<uc:EmergencyMenu ID="ucMenu" runat="server" />--%>
             </asp:Panel>
             <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server"> <%--REquired--%>
                 <asp:LoginName ID="lnUsername" runat="server" FormatString="Hello {0}" /> <%--display username here--%>

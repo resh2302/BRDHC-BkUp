@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_65818_brdhc" Class="prescriptionsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=s10.winhost.com;Initial Catalog=DB_65818_brdhc;User ID=DB_65818_brdhc_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="myCon" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.brdhc_PatientPrescriptions" Member="brdhc_PatientPrescriptions">
+    <Type Name="brdhc_PatientPrescription">
+      <Column Name="PrescriptionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AppointmentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Repeat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateWritten" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="brdhc_PatientPrescription_brdhc_PrescriptionDetail" Member="brdhc_PrescriptionDetails" ThisKey="PrescriptionId" OtherKey="PrescriptionId" Type="brdhc_PrescriptionDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.brdhc_PrescriptionDetails" Member="brdhc_PrescriptionDetails">
+    <Type Name="brdhc_PrescriptionDetail">
+      <Column Name="PrescriptionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Medicine" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Timings" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Days" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="brdhc_PatientPrescription_brdhc_PrescriptionDetail" Member="brdhc_PatientPrescription" ThisKey="PrescriptionId" OtherKey="PrescriptionId" Type="brdhc_PatientPrescription" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

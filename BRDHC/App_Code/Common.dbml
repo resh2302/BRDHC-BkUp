@@ -34,7 +34,6 @@
       <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-<<<<<<< HEAD
   <Table Name="dbo.brdhc_ErrorLogs" Member="brdhc_ErrorLogs">
     <Type Name="brdhc_ErrorLog">
       <Column Name="ErrorId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -56,6 +55,4 @@
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-=======
->>>>>>> 8adab5dc42e213a308e1ecd80ac2a8cb41ba7013
 </Database>

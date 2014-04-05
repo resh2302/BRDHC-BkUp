@@ -64,7 +64,7 @@
                     <br />
                     <asp:Panel ID="pnlAppSearch" GroupingText="Apppointment Search" runat="server" CssClass="pnlLabel">
                         <asp:Panel ID="pnlSearchApp" runat="server" CssClass="pnlLabel">
-                            <asp:Label ID="lblName" runat="server" AssociatedControlID="txtSearchName" Text="Search by Patient" CssClass="infoLabel"></asp:Label>
+                            <asp:Label ID="lblName" runat="server" AssociatedControlID="txtSearchName" Text="Patient Name" CssClass="infoLabel"></asp:Label>
                             <asp:TextBox ID="txtSearchName" runat="server"></asp:TextBox><asp:Button ID="btnAppSearch" runat="server" Text="Search" CausesValidation="false" OnClick="subSearchAppointments" />
                         </asp:Panel>
                     </asp:Panel>

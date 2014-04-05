@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="setDashboradMenus.aspx.cs" Inherits="Admin_setDashboradMenus" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="setDashboardMenus.aspx.cs" Inherits="Admin_setDashboradMenus" %>
 
 <!DOCTYPE html>
 
