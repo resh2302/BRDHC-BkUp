@@ -11,7 +11,7 @@
         <br />
         <asp:Panel ID="pnlDetails" GroupingText="New Prescription" runat="server" CssClass="pnlLabel">
             <asp:Panel ID="pnlSearch" runat="server" CssClass="pnlLabel">
-                <asp:Label ID="lblSearch" runat="server" AssociatedControlID="txtSearch" Text="Search for Patient" CssClass="infoLabel"></asp:Label>
+                <asp:Label ID="lblSearch" runat="server" AssociatedControlID="txtSearch" Text="Appointment Id" CssClass="infoLabel"></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" CausesValidation="false" />
             </asp:Panel>
             <br />

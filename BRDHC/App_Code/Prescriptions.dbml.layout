@@ -14,7 +14,7 @@
         <elementListCompartment Id="10f0c8b0-8258-4b8d-8e7f-282d007abbac" absoluteBounds="0.76499999999999968, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.8125 : 2.07859537760417); (1.8125 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.8125 : 2.07859537760417); (1.8125 : 2.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prescriptionsDataContext/brdhc_PatientPrescription/brdhc_PatientPrescription_brdhc_PrescriptionDetail" />
       <nodes>
         <classShapeMoniker Id="be84cf33-9ede-4811-b9e4-fcd889bd825b" />

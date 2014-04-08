@@ -22,14 +22,17 @@ public class wsPrescriptions : System.Web.Services.WebService {
     [WebMethod]
     public string getPrescription(string appointmentId) {
         clsPrescriptions objPres = new clsPrescriptions();
+        brdhc_PatientPrescription data = new brdhc_PatientPrescription();
         IQueryable<brdhc_PatientPrescription> presc = objPres.getPrescription(appointmentId);
         if(presc.Count()>0){
             foreach (brdhc_PatientPrescription ob in presc)
-            { 
-               
+            {
+                data = ob;
             }
-        }
-        return "Hello";
+        } 
+        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+        return js.Serialize(data);
     }
     
 }

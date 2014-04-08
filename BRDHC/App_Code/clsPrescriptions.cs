@@ -31,4 +31,19 @@ public class clsPrescriptions
         return prescription;
     }
 
+    public List<sp_SearchPatientPrescriptionResult> getPatientPrescription(string appointmentId)
+    {
+        List<sp_SearchPatientPrescriptionResult> myList = new List<sp_SearchPatientPrescriptionResult>();
+        try
+        {
+            PrescriptionsDataContext obj = new PrescriptionsDataContext();
+            myList = obj.sp_SearchPatientPrescription(Convert.ToInt32(appointmentId)).ToList();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return myList;
+    }
+
 }

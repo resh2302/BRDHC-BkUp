@@ -298,7 +298,7 @@ public partial class sp_SearchAppsByPatientNameResult
 	
 	private string _DoctorName;
 	
-	private System.Guid _AppointmentId;
+	private int _AppointmentId;
 	
 	private System.Guid _PatientUserId;
 	
@@ -334,8 +334,8 @@ public partial class sp_SearchAppsByPatientNameResult
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentId", DbType="UniqueIdentifier NOT NULL")]
-	public System.Guid AppointmentId
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentId", DbType="int NOT NULL")]
+	public int AppointmentId
 	{
 		get
 		{

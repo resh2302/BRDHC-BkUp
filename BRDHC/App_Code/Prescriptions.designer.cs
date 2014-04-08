@@ -79,6 +79,13 @@ public partial class PrescriptionsDataContext : System.Data.Linq.DataContext
 			return this.GetTable<brdhc_PrescriptionDetail>();
 		}
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_SearchPatientPrescription")]
+	public ISingleResult<sp_SearchPatientPrescriptionResult> sp_SearchPatientPrescription([global::System.Data.Linq.Mapping.ParameterAttribute(Name="AppointmentId", DbType="Int")] System.Nullable<int> appointmentId)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), appointmentId);
+		return ((ISingleResult<sp_SearchPatientPrescriptionResult>)(result.ReturnValue));
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.brdhc_PatientPrescriptions")]
@@ -309,6 +316,104 @@ public partial class brdhc_PrescriptionDetail
 			if ((this._Quantity != value))
 			{
 				this._Quantity = value;
+			}
+		}
+	}
+}
+
+public partial class sp_SearchPatientPrescriptionResult
+{
+	
+	private int _AppointmentId;
+	
+	private string _PatientName;
+	
+	private string _HealthCard;
+	
+	private string _DoctorName;
+	
+	private System.Nullable<int> _PrescriptionId;
+	
+	public sp_SearchPatientPrescriptionResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentId", DbType="Int NOT NULL")]
+	public int AppointmentId
+	{
+		get
+		{
+			return this._AppointmentId;
+		}
+		set
+		{
+			if ((this._AppointmentId != value))
+			{
+				this._AppointmentId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientName", DbType="VarChar(101) NOT NULL", CanBeNull=false)]
+	public string PatientName
+	{
+		get
+		{
+			return this._PatientName;
+		}
+		set
+		{
+			if ((this._PatientName != value))
+			{
+				this._PatientName = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HealthCard", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+	public string HealthCard
+	{
+		get
+		{
+			return this._HealthCard;
+		}
+		set
+		{
+			if ((this._HealthCard != value))
+			{
+				this._HealthCard = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorName", DbType="VarChar(101)")]
+	public string DoctorName
+	{
+		get
+		{
+			return this._DoctorName;
+		}
+		set
+		{
+			if ((this._DoctorName != value))
+			{
+				this._DoctorName = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionId", DbType="Int")]
+	public System.Nullable<int> PrescriptionId
+	{
+		get
+		{
+			return this._PrescriptionId;
+		}
+		set
+		{
+			if ((this._PrescriptionId != value))
+			{
+				this._PrescriptionId = value;
 			}
 		}
 	}
