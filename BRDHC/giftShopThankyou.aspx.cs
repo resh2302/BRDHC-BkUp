@@ -15,7 +15,8 @@ public partial class giftShopThankyou : System.Web.UI.Page
         var status = Request.QueryString["st"];
         var price = Request.QueryString["amt"];
 
-        lbl_thk.Text = "THANK YOU for your purchase. A receipt has been sent to the email that you provided. You will be notified via email once the flowers have been delivered. <br /><br /> If you would like to include a handwritten card please fill in your details and message below. " + id + status + price;
+        lbl_thk.Text = "THANK YOU for your purchase. A receipt has been sent to the email that you provided. <br /><br /> If you would like to include a handwritten card please fill in your details and message below. " + id + status + price;
+        //You will be notified via email once the flowers have been delivered
         
         if (!Page.IsPostBack)
         {

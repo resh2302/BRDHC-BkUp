@@ -16,18 +16,11 @@ public class quizClass
         return allQues;
     }
 
-    public IQueryable<string> getAnswer(Guid _qID)
+    public string getAnswer(Guid _QuestionID)
     {
         healthToolsDataContext objQuiz = new healthToolsDataContext();
-        var ans = objQuiz.brdhc_HealthTools_Quizs.Where(x => x.QuestionID == _qID).Select(x => x.Answer);
-        return ans;
-    }
-    //I gotta fix this query string... D'oh!
-    public IQueryable<string> getAns(Guid _QuestionID)
-    {
-        healthToolsDataContext objQuiz = new healthToolsDataContext();
-        var ans = objQuiz.brdhc_HealthTools_Quizs.Where(x => x.QuestionID == _QuestionID).Select(x => x.Answer);
-        return ans;
+        var ans = objQuiz.brdhc_HealthTools_Quizs.Single(x => x.QuestionID == _QuestionID);
+        return ans.Answer;
     }
 
     public IQueryable<brdhc_HealthTools_Quiz> getQuesById(Guid _QuestionID)

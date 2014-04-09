@@ -50,7 +50,8 @@ public partial class giftShopSendACard : System.Web.UI.Page
     private void _strOutput(bool flag, string str)
     {
         if (flag)
-            mSlblTks.Text = "Your message has been " + str + ". <br /><br /> You will be notified via email once your card has been delivered.";
+            mSlblTks.Text = "Your message has been " + str + ". <br /><br />";
+            // You will be notified via email once your card has been delivered.
         else
             mSlblTks.Text = "Unfortunately your message was no able to be " + str + ". <br /><br /> Please call 111-222-3333 to have your message taken over the phone.";
     

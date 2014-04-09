@@ -129,8 +129,8 @@ public partial class brdhc_HealthTools_Quiz : INotifyPropertyChanging, INotifyPr
 	{
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(AutoSync = AutoSync.OnInsert, IsDbGenerated = true, Storage = "_QuestionID", DbType = "UniqueIdentifier NOT NULL", IsPrimaryKey = true)]
 	public System.Guid QuestionID
 	{
 		get
