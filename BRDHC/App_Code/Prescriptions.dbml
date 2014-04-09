@@ -27,6 +27,8 @@
       <Column Name="HealthCard" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="DoctorName" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
       <Column Name="PrescriptionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Repeat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateWritten" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

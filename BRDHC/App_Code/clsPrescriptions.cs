@@ -23,7 +23,7 @@ public class clsPrescriptions
 
     public IQueryable<brdhc_PatientPrescription> getPrescription(string appointmentId)
     {
-        PrescriptionsDataContext udObj = new PrescriptionsDataContext();
+        prescriptionsDataContext udObj = new prescriptionsDataContext();
         var prescription =
             from p in udObj.brdhc_PatientPrescriptions
             where p.AppointmentId == Convert.ToInt32(appointmentId)
@@ -36,7 +36,7 @@ public class clsPrescriptions
         List<sp_SearchPatientPrescriptionResult> myList = new List<sp_SearchPatientPrescriptionResult>();
         try
         {
-            PrescriptionsDataContext obj = new PrescriptionsDataContext();
+            prescriptionsDataContext obj = new prescriptionsDataContext();
             myList = obj.sp_SearchPatientPrescription(Convert.ToInt32(appointmentId)).ToList();
         }
         catch (Exception ex)

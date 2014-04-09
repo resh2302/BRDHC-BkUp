@@ -22,7 +22,7 @@ using System.Reflection;
 
 
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_65818_brdhc")]
-public partial class PrescriptionsDataContext : System.Data.Linq.DataContext
+public partial class prescriptionsDataContext : System.Data.Linq.DataContext
 {
 	
 	private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -34,31 +34,31 @@ public partial class PrescriptionsDataContext : System.Data.Linq.DataContext
   partial void Deletebrdhc_PatientPrescription(brdhc_PatientPrescription instance);
   #endregion
 	
-	public PrescriptionsDataContext() : 
+	public prescriptionsDataContext() : 
 			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["myCon"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public PrescriptionsDataContext(string connection) : 
+	public prescriptionsDataContext(string connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public PrescriptionsDataContext(System.Data.IDbConnection connection) : 
+	public prescriptionsDataContext(System.Data.IDbConnection connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public PrescriptionsDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public prescriptionsDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public PrescriptionsDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public prescriptionsDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
@@ -334,6 +334,10 @@ public partial class sp_SearchPatientPrescriptionResult
 	
 	private System.Nullable<int> _PrescriptionId;
 	
+	private System.Nullable<int> _Repeat;
+	
+	private System.Nullable<System.DateTime> _DateWritten;
+	
 	public sp_SearchPatientPrescriptionResult()
 	{
 	}
@@ -414,6 +418,38 @@ public partial class sp_SearchPatientPrescriptionResult
 			if ((this._PrescriptionId != value))
 			{
 				this._PrescriptionId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Repeat", DbType="Int")]
+	public System.Nullable<int> Repeat
+	{
+		get
+		{
+			return this._Repeat;
+		}
+		set
+		{
+			if ((this._Repeat != value))
+			{
+				this._Repeat = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateWritten", DbType="Date")]
+	public System.Nullable<System.DateTime> DateWritten
+	{
+		get
+		{
+			return this._DateWritten;
+		}
+		set
+		{
+			if ((this._DateWritten != value))
+			{
+				this._DateWritten = value;
 			}
 		}
 	}

@@ -134,10 +134,10 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
                     string toEmail = "";
                     string subscriberId = "";
                     StringBuilder strBody = new StringBuilder();
-                    if (record.Name != null)
-                    {
+                    //if (record.Name != null)
+                    //{
                         fullName = record.Name.ToString();
-                    }
+                    //}
                     toEmail = record.Email.ToString();
                     subscriberId = record.UserId.ToString();
 
@@ -164,6 +164,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
             catch (Exception ex)
             {
                 lblErr.Text = ex.Message.ToString();
+                clsCommon.saveError(ex);
             }
         }
     }

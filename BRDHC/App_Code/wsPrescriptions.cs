@@ -22,10 +22,10 @@ public class wsPrescriptions : System.Web.Services.WebService {
     [WebMethod]
     public string getPrescription(string appointmentId) {
         clsPrescriptions objPres = new clsPrescriptions();
-        brdhc_PatientPrescription data = new brdhc_PatientPrescription();
-        IQueryable<brdhc_PatientPrescription> presc = objPres.getPrescription(appointmentId);
+        sp_SearchPatientPrescriptionResult data = new sp_SearchPatientPrescriptionResult();
+        List<sp_SearchPatientPrescriptionResult> presc = objPres.getPatientPrescription(appointmentId);
         if(presc.Count()>0){
-            foreach (brdhc_PatientPrescription ob in presc)
+            foreach (sp_SearchPatientPrescriptionResult ob in presc)
             {
                 data = ob;
             }

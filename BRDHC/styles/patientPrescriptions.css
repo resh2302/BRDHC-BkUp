@@ -1,0 +1,15 @@
+﻿body {
+}
+
+.blocker{
+    z-index:1000;
+    height:100%;
+    /*width:100%;*/
+    background: white;
+    opacity:0.9;
+    position: absolute;
+}
+
+.aboveAll{
+    z-index:1010;
+}
