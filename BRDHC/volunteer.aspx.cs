@@ -24,16 +24,21 @@ public partial class volunteer : System.Web.UI.Page
     protected void loadOpps()
     {
         IQueryable<brdhc_volunteerOpp> objOpps = objVol.getOpps();
-        ckl_opps.DataSource = objOpps;
-        ckl_opps.DataTextField = "OppTitle";
-        ckl_opps.DataValueField = "OppId";
-        ckl_opps.DataBind();
-        //ckl_opps.Attributes.Add("CssClass", "cblOpps");
-        if (objOpps.Count() > 0)
-        { 
+        //ckl_opps.DataSource = objOpps;
+        //ckl_opps.DataTextField = "OppTitle";
+        //ckl_opps.DataValueField = "OppId";
+        //ckl_opps.DataBind();
 
+
+        //ckl_opps.Attributes.Add("CssClass", "cblOpps");
+
+
+        if (objOpps.Count() > 0)
+        {
+            rptOpps.DataSource = objOpps;
+            rptOpps.DataBind();
         }
-        ViewData(new Guid(ckl_opps.Items[0].Value));
+        //ViewData(new Guid(ckl_opps.Items[0].Value));
 
         //lblOpp.Text = ckl_opps.Items[0].Text.ToString();
     }
@@ -59,5 +64,14 @@ public partial class volunteer : System.Web.UI.Page
             }
         }
         
+    }
+    protected void rptOpps_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        switch (e.CommandName)
+        {
+            case "getOpps":
+                ViewData(new Guid(e.CommandArgument.ToString()));
+                break;
+        }
     }
 }

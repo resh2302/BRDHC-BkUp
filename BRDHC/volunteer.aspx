@@ -18,6 +18,30 @@
                 <asp:CheckBoxList  AutoPostBack="true" ID="ckl_opps" runat="server">
                     <%-- Current Opportunities are loaded into the checkbox list from the codebehind file --%>
                 </asp:CheckBoxList>
+
+                <asp:Repeater ID="rptOpps" runat="server" OnItemCommand="rptOpps_ItemCommand">
+                    <HeaderTemplate>
+                        <table>
+                            <tr>
+                                <th>Select</th>
+                                <th>Name</th>
+                            </tr>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <asp:HiddenField ID="hdnOppID" runat="server" Value='<%#Eval("OppId") %>' />
+                                <asp:CheckBox ID="chk" runat="server" />
+                            </td>
+                            <td>
+                                <asp:LinkButton ID="lnk" runat="server" CommandArgument='<%#Eval("OppId") %>' CommandName="getOpps" Text='<%#Eval("OppTitle") %>'></asp:LinkButton>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
             </div>
         
             <div id="ind_opps">
