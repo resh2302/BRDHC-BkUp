@@ -8,10 +8,11 @@ public class volunteerClass
     public IQueryable<brdhc_volunteerOpp> getOpps()
     {
         //creating an instance of our LINQ object
-        volunteerClassDataContext objVol = new volunteerClassDataContext();
         //creating an anonymous variable with its value being the instance of the LINQ object
-        var allOpps = objVol.brdhc_volunteerOpps.Select(x => x);
         //var allOpps = from x in objProd.products select x;
+
+        volunteerClassDataContext objVol = new volunteerClassDataContext();
+        var allOpps = objVol.brdhc_volunteerOpps.Select(x => x);
         return allOpps;
     }
 
@@ -26,9 +27,9 @@ public class volunteerClass
     {
         volunteerClassDataContext objVol = new volunteerClassDataContext();
         var allOpps = objVol.brdhc_volunteerOpps.Where(x => x.OppId == _OppId).Select(x => x);
+        return allOpps;
         //x into x, select all columns from the table
         //x.Id to access a specific column in the table
-        return allOpps;
     }
 
     //THIS IS AN INSERT

@@ -11,7 +11,7 @@
 
          <div class="msLeft60">
 
-            <asp:Label ID="quizH2" runat="server" Text="Welcome to the BRDHC Gift Shop" CssClass="msHeader2" />
+            <asp:Label ID="quizH2" runat="server" Text="Welcome to the BRDHC Gift Shoppp" CssClass="msHeader2" />
             <asp:Label ID="quizP" runat="server" Text="The BRDHC gift shop is run by the hospital auxiliary vounteers. Please click on the link 'send a card' below to send a free handwritten card to a loved one. You may also purchase flowers by clicking on link 'send flowers'. There are various bouquets available. You can add a free card to your purcahse at the checkout." CssClass="msPara" />
             
             <div class="msOH msPadTop20 msPadBot40">
