@@ -1,6 +1,6 @@
 ﻿* {
     padding: 0;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     line-height: normal;
 }
 
@@ -95,6 +95,8 @@ html, body {
 
 .pnlContainer {
     background: rgba(251,243,232,0.4);
+    height: 100%;
+    overflow: hidden;
 }
 
 .msLineBot {
@@ -243,7 +245,9 @@ a:hover {
 }
 
 #logo_template {
-    width: 88%;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 0 40px;
 }
 
 
@@ -398,7 +402,7 @@ a {
 }
 
 .msAll70 {
-    width: 90%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -416,6 +420,11 @@ a {
 
 .msLeft {
     float: left;
+}
+
+.msLeft20 {
+    float: left;
+    width: 20%;
 }
 
 .msLeft30 {
@@ -453,6 +462,12 @@ a {
 .msRight {
     float: right;
 }
+
+.msRight80 {
+    float: right;
+    width: 80%;
+}
+
 
 .msRight70 {
     float: right;
@@ -556,6 +571,10 @@ a {
     padding-left: 10px;
 }
 
+.msPadL30 {
+    padding-left: 30px;
+}
+
 /*PADDING RIGHT*/
 
 .msPadR10 {
@@ -563,6 +582,10 @@ a {
 }
 
 /*MARGIN BOTTOM*/
+
+.msMargBot5 {
+    margin-bottom: 5px;
+}
 
 .msMargBot10 {
     margin-bottom: 10px;
@@ -599,6 +622,10 @@ a {
 .msMargRL10 {
     margin: 0px 10px;
 }
+
+.msMargR20 {
+    margin-right: 20px;
+    }
 
 /*ALIGN CENTER*/
 

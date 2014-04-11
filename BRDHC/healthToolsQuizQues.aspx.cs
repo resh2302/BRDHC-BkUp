@@ -91,7 +91,7 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
         {
             pnlContainer.Visible = false;
             pnlResults.Visible = true;
-            lblResults.Text = "Your Score is: " + score.ToString();
+            lblResults.Text = "Thank you for trying the Healthy Eating Quiz!<br /> You got" + score.ToString() + "answers correct.";
         }
 
     }

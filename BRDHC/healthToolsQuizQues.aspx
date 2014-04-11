@@ -11,7 +11,9 @@
         <ContentTemplate>
             
             <asp:Panel ID="pnlResults" runat="server">
-                <asp:Label ID="lblResults" runat="server" CssClass="msHeader3 msImp"></asp:Label>
+                <div class="msPadTop30 msPadBot30">
+                <asp:Label ID="lblResults" runat="server" CssClass="msHeader3 msImp" />
+                </div>
             </asp:Panel>
 
             <asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
