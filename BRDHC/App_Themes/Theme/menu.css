@@ -1,7 +1,10 @@
-﻿
+﻿.menuWrapper {
+    max-width: 990px;
+    margin: 0 auto;
+} 
+
 .Menu {  
-   margin:0 auto;
-   width: 990px;
+   width: 100%;
    font-size: 10pt;  
    font-family: 'PT Sans', Arial, sans-serif;  
 }
@@ -47,10 +50,11 @@
  {
 
     .Menu {
-        width:100%;
+        width:90%;
+        margin: 0 auto;
     }
     .Menu ul{  
-       width:100% !important;      
+       width:50% !important;      
     }      
     .headerMenu li   /*.Menu li*/
     {       
@@ -189,7 +193,7 @@
 
 .slicknav_nav ul {
 	background: #6c6e58;
-    width: 990px;
+    max-width: 990px;
     padding: 0;  
     margin: 0 auto;
 }
@@ -204,7 +208,7 @@
     border-bottom: 0;
     line-height: 30px;  
     min-width:165px;
-    max-width:300px;
+    /*max-width:300px;*/
     z-index:9999;
     text-decoration:none;
 }

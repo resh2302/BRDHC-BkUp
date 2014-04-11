@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="HeaderMenu.ascx.cs" Inherits="HeaderMenu" %>
 
+<div class="menuWrapper">
+
 <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" CssClass="Menu headerMenu" 
     StaticEnableDefaultPopOutImage="False" Font-Bold="True">
 
@@ -64,4 +66,6 @@
         </Items>
          
 </asp:Menu>
+
+</div>
 
