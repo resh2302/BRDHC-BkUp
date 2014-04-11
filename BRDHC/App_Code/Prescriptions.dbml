@@ -11,6 +11,7 @@
   </Table>
   <Table Name="dbo.brdhc_PrescriptionDetails" Member="brdhc_PrescriptionDetails">
     <Type Name="brdhc_PrescriptionDetail">
+      <Column Name="PrescriptionDetailsId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="PrescriptionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Medicine" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Timings" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
@@ -28,7 +29,7 @@
       <Column Name="DoctorName" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
       <Column Name="PrescriptionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Repeat" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DateWritten" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DateWritten" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -16,7 +16,6 @@
                     <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" />
                 </asp:Panel>
                 <br />
-
                 <asp:HiddenField ID="hdfPresId" runat="server" />
 
                 <asp:Label ID="lblHCard" Text="Patient Health Card:" runat="server" CssClass="infoLabel" />

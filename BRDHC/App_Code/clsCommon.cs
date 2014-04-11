@@ -60,8 +60,6 @@ public class clsCommon
         return cities;
     }
     
- 
-
     public DataTable getMenusByRoleName(string roleName)
     {DataTable dtbl = new DataTable();
         CommonDataContext objCommon = new CommonDataContext();
