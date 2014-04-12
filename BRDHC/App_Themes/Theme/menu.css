@@ -1,10 +1,12 @@
-﻿
-.Menu
-{  
-    margin:0 auto;
-    width:990px;
+﻿.menuWrapper {
+    max-width: 990px;
+    margin: 0 auto;
+} 
+
+.Menu {  
+   width: 100%;
    font-size: 10pt;  
-    font-family: 'PT Sans', Arial, sans-serif;  
+   font-family: 'PT Sans', Arial, sans-serif;  
 }
 
 .Menu ul
@@ -17,7 +19,7 @@
 
 .Menu ul ul li
 {
-    width:auto;
+    width: auto;
     background:#6c6e58;
 }
 .Menu ul li
@@ -28,33 +30,31 @@
     
 }
 
-.Menu ul li a
-{
+.Menu ul li a {
     color: #fff;
-    border-bottom: 0;
+    /*border-bottom: 0;*/
     line-height: 40px;  
     min-width:160px;
-    max-width:300px;
-    border-right: 1px solid #b5be64;
+    padding: 0 8px;
+    width: 100%;
+    /*max-width:300px;*/
+    /*marki commented this out: border-right: 1px solid #b5be64;*/
 }
 
-.Menu ul li a:hover, .Menu ul li a.selected
-{
+.Menu ul li a:hover, .Menu ul li a.selected {
     color:black;
-     background-color: #b5be64; 
+    background-color: #b5be64; 
 }
 
 @media screen and (max-width: 990px)
  {
 
-    .Menu
-    {
-        width:100%;
+    .Menu {
+        width:90%;
+        margin: 0 auto;
     }
-    .Menu ul 
-    {  
-       width:100% !important;
-       
+    .Menu ul{  
+       width:50% !important;      
     }      
     .headerMenu li   /*.Menu li*/
     {       
@@ -62,16 +62,14 @@
      }  
     
    .Menu a {  
-       
-       text-align:left;   
+       /*marki commented out: text-align: left;*/   
        font-size:14px; 
-       
        }
 
    .Menu ul li a
    {
        border-right:none;
-        border-left:1px solid #b5be64 ;
+        /*commented out by marki: border-left:1px solid #b5be64 ;*/
    }
 
 }
@@ -79,61 +77,75 @@
 
 @media only screen and (max-width : 480px) {
     
-    
-    .slicknav_nav
-    {  
+    .slicknav_nav {  
         width:100%;
         border-bottom: 0;  
     }  
     .slicknav_nav ul {  
-          
         height: auto;  
         width:100%;
     }
-
-        .slicknav_nav a {
-            border-right:none;
-           
-        }
-
-    .slicknav_nav ul li 
-    {
+    .slicknav_nav a {
+        border-right:none;       
+    }
+    .slicknav_nav ul li {
        border-bottom: 1px solid #b5be64;    
        width:49.7%; 
-       height: auto; 
-        border-right: 1px solid #b5be64;
-   
+       height: auto;
+       text-align:center;
+        /*marki commented this out: border-right: 1px solid #b5be64;*/
     } 
-  .slicknav_nav ul ul li a
-    {
+    .slicknav_nav ul ul li a {
        font-size:12px;
-       
     }
-     }
+}
     
-    @media only screen and (max-width : 320px) 
-    {
-        .slicknav_nav ul li
-        {
-            min-width:320px;
-        } 
-    
-    .slicknav_nav ul li a
-    {
-        min-width:320px;
-    }
-         
-      
-    }  
+@media only screen and (max-width : 320px) {
+    .slicknav_nav ul li {
+       max-width:320px;
+     } 
+     .slicknav_nav ul li a {
+       max-width:320px;
+        }
+}  
     
 
-
-    .slicknav_btn { position: relative; display: block; vertical-align: middle; float: right; padding: 0.438em 0.625em 0.438em 0.625em; line-height: 1.125em; cursor: pointer; }
-.slicknav_menu  .slicknav_menutxt { display: block; line-height: 1.188em; float: left; }
-.slicknav_menu .slicknav_icon { float: left; margin: 0.188em 0 0 0.438em; }
-.slicknav_menu .slicknav_no-text { margin: 0 }
-.slicknav_menu .slicknav_icon-bar { display: block; width: 1.125em; height: 0.125em; -webkit-border-radius: 1px; -moz-border-radius: 1px; border-radius: 1px; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); }
-.slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar { margin-top: 0.188em }
+.slicknav_btn { 
+    position: relative;
+    display: block;
+    vertical-align: middle;
+    float: right;
+    padding: 0.438em 0.625em;
+    line-height: 1.125em;
+    cursor: pointer;
+    color: #6c6e58;
+}
+.slicknav_menu  .slicknav_menutxt {
+    display: block;
+    line-height: 1.188em;
+    float: left;
+}
+.slicknav_menu .slicknav_icon {
+    float: left;
+    margin: 0.188em 0 0 0.438em;
+}
+.slicknav_menu .slicknav_no-text {
+    margin: 0;
+}
+.slicknav_menu .slicknav_icon-bar {
+    display: block;
+    width: 1.125em;
+    height: 0.125em;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+.slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar {
+    margin-top: 0.188em
+}
 
 .slicknav_nav .slicknav_arrow { font-size: 1em; margin: 0 0 0 0.4em; height:25px; }
 
@@ -144,17 +156,17 @@
 .slicknav_btn {
 	margin: 5px 5px 6px;	
 	text-decoration:none;	
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);	
+	/*text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);*/	
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;  
-	background-color: #222222;
+	background-color: #6c6e58;
 }
 /* Button Text */
 .slicknav_menu  .slicknav_menutxt {	
 	color: #FFF;
 	font-weight: bold;	
-	text-shadow: 0 1px 3px #000;	
+	/*text-shadow: 0 1px 3px #000;*/	
 }
 /* Button Lines */
 .slicknav_menu .slicknav_icon-bar {
@@ -169,16 +181,11 @@
 	padding:0;
 	font-size:0.875em;
 }
-.slicknav_nav, .slicknav_nav ul 
-{
-    
-	list-style: none;
-	
+.slicknav_nav, .slicknav_nav ul {
+    list-style: none;
 }
 	
-	
-	.slicknav_nav ul ul li
-{
+.slicknav_nav ul ul li {
     width:auto;
     background:#6c6e58;
     z-index:9999;
@@ -186,13 +193,14 @@
 
 .slicknav_nav ul {
 	background: #6c6e58;
-    width: 990px;
+    max-width: 990px;
     padding: 0;  
     margin: 0 auto;
 }
 .slicknav_nav .slicknav_item {
 	
 }
+
 .slicknav_nav a{
 	 color: #fff;
     padding: 4px 2px 4px;
@@ -200,7 +208,7 @@
     border-bottom: 0;
     line-height: 30px;  
     min-width:165px;
-    max-width:300px;
+    /*max-width:300px;*/
     z-index:9999;
     text-decoration:none;
 }
@@ -218,15 +226,9 @@
      margin-left:15px;   
 }
     
-    
-    
-
 .slicknav_menu {
 	display:none;
 }
-
-
-
 
 
 @media screen and (max-width: 40em) {
@@ -235,7 +237,6 @@
 	}
 	
 	.js .slicknav_menu {
-		display:block;
-		
+		display:block;		
 	}
 }

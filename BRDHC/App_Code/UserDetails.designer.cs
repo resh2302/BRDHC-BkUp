@@ -236,8 +236,9 @@ public partial class brdhc_UserBasicInfo : INotifyPropertyChanging, INotifyPrope
 	{
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserBasicInfoId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+
+	[global::System.Data.Linq.Mapping.ColumnAttribute(AutoSync=AutoSync.OnInsert, IsDbGenerated=true, Storage="_UserBasicInfoId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+
 	public System.Guid UserBasicInfoId
 	{
 		get

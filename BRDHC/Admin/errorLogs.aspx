@@ -10,42 +10,42 @@
                 <Columns>
                     <asp:TemplateField HeaderText="File Name">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("FileName")%>'></asp:Label>
+                            <asp:Label ID="lblFileName" runat="server" Text='<%# Eval("FileName")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Method Name">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("MethodName")%>'></asp:Label>
+                            <asp:Label ID="lblMethodName" runat="server" Text='<%# Eval("MethodName")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Event Name">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("EventName")%>'></asp:Label>
+                            <asp:Label ID="lblEventName" runat="server" Text='<%# Eval("EventName")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Line Number">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("LineNumber")%>'></asp:Label>
+                            <asp:Label ID="lblLineNum" runat="server" Text='<%# Eval("LineNumber")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Column Number">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("ColumnNumber")%>'></asp:Label>
+                            <asp:Label ID="lblColNum" runat="server" Text='<%# Eval("ColumnNumber")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Message">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("Message")%>'></asp:Label>
+                            <asp:Label ID="lblMessage" runat="server" Text='<%# Eval("Message")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Exception Type">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("ExceptionType")%>'></asp:Label>
+                            <asp:Label ID="lblEType" runat="server" Text='<%# Eval("ExceptionType")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Exception Time">
                         <ItemTemplate>
-                            <asp:Label ID="lblFName" runat="server" Text='<%# Eval("ExceptionTime")%>'></asp:Label>
+                            <asp:Label ID="lblETime" runat="server" Text='<%# Eval("ExceptionTime")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="volApplicationClass">
+  <DataContextMoniker Name="/volApplicationClassDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a1bde42a-fa46-4f51-89d1-77520965011d" absoluteBounds="2.375, 1.375, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/volApplicationClassDataContext/brdhc_volunteerApp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eb00fae7-2d4f-4a09-b96a-5cb8d11a670a" absoluteBounds="2.3899999999999997, 1.835, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

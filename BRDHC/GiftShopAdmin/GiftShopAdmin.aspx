@@ -70,7 +70,7 @@
                     </asp:Panel>
 
 
-                    <asp:Panel ID="pnl_flowers" GroupingText="GIFT SHOP - FLOWERS" runat="server" CssClass="msPadTop10" />
+                    <%--<asp:Panel ID="pnl_flowers" GroupingText="GIFT SHOP - FLOWERS" runat="server" CssClass="msPadTop10" />
                     
                         <asp:GridView ID="gv_flowers" runat="server" DataKeyNames="CardID" AutoGenerateColumns="False" >     
                             <Columns>
@@ -90,7 +90,7 @@
                             </Fields>
                         </asp:DetailsView>
 
-                    </asp:Panel>
+                    </asp:Panel>--%>
 
 
             </asp:Panel>

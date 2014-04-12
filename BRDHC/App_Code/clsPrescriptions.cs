@@ -14,16 +14,16 @@ using System.Web;
 /// </summary>
 public class clsPrescriptions
 {
-	public clsPrescriptions()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    public clsPrescriptions()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 
     public IQueryable<brdhc_PatientPrescription> getPrescription(string appointmentId)
     {
-        PrescriptionsDataContext udObj = new PrescriptionsDataContext();
+        prescriptionsDataContext udObj = new prescriptionsDataContext();
         var prescription =
             from p in udObj.brdhc_PatientPrescriptions
             where p.AppointmentId == Convert.ToInt32(appointmentId)
@@ -31,4 +31,91 @@ public class clsPrescriptions
         return prescription;
     }
 
+    public List<sp_SearchPatientPrescriptionResult> getPatientPrescription(string appointmentId)
+    {
+        List<sp_SearchPatientPrescriptionResult> myList = new List<sp_SearchPatientPrescriptionResult>();
+        try
+        {
+            prescriptionsDataContext obj = new prescriptionsDataContext();
+            myList = obj.sp_SearchPatientPrescription(Convert.ToInt32(appointmentId)).ToList();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return myList;
+    }
+
+
+    public string savePrescription(int appointmentId, int repeat, DateTime presDate) // save new record into databse
+    {
+        // create a new table with one row and this table is similar in schema with the table in database
+        brdhc_PatientPrescription svTable = new brdhc_PatientPrescription()
+        {
+            AppointmentId = appointmentId,
+            DateWritten = presDate,
+            Repeat = repeat
+        };
+        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+        // call the function to save the row into actual database table
+        objDataContext.brdhc_PatientPrescriptions.InsertOnSubmit(svTable);
+        objDataContext.SubmitChanges();
+        return svTable.PrescriptionId.ToString();
+    }
+
+    public void updatePrescription(int prescriptionId, int appointmentId, int repeat, DateTime presDate)
+    {
+        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+        // select that particular row that is to be updated
+        var tblRecords = objDataContext.brdhc_PatientPrescriptions.Single(p => p.PrescriptionId == Convert.ToInt32(prescriptionId));
+        // make the changes     
+        tblRecords.AppointmentId = appointmentId;
+        tblRecords.DateWritten = presDate;
+        tblRecords.Repeat = repeat;
+        // update the datebase table with new values
+        objDataContext.SubmitChanges();
+    }
+
+
+
+    public IQueryable<brdhc_PrescriptionDetail> getPrescriptionDetails(int prescriptionId)
+    {
+        prescriptionsDataContext udObj = new prescriptionsDataContext();
+        var results =
+            from p in udObj.brdhc_PrescriptionDetails
+            where p.PrescriptionId == prescriptionId
+            select p;
+        return results;
+    }
+
+    public void deletePresDetails(int prescriptionId)
+    {
+        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+        // select the particular records from databse table and delete it
+        var tblRecords =
+            from a in objDataContext.brdhc_PrescriptionDetails
+            where (a.PrescriptionId == prescriptionId)
+            select a;
+        // call the function to delete it and submit the changes
+        objDataContext.brdhc_PrescriptionDetails.DeleteAllOnSubmit(tblRecords);
+        objDataContext.SubmitChanges();
+    }
+
+    public void savePrescriptionDetails(int _prescriptionId, string _medicine, string _timings, int _days, int _quantity) // save new record into databse
+    {
+        // create a new table with one row and this table is similar in schema with the table in database
+        brdhc_PrescriptionDetail svTable = new brdhc_PrescriptionDetail()
+        {
+            PrescriptionId = _prescriptionId,
+            Medicine = _medicine,
+            Timings = _timings,
+            Days = _days,
+            Quantity = _quantity
+        };
+        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+        // call the function to save the row into actual database table
+        objDataContext.brdhc_PrescriptionDetails.InsertOnSubmit(svTable);
+        objDataContext.SubmitChanges();
+        //return svTable.PrescriptionId.ToString();
+    }
 }
