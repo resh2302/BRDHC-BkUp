@@ -46,46 +46,62 @@ public class clsPrescriptions
         return myList;
     }
 
-
     public string savePrescription(int appointmentId, int repeat, DateTime presDate) // save new record into databse
     {
         // create a new table with one row and this table is similar in schema with the table in database
-        brdhc_PatientPrescription svTable = new brdhc_PatientPrescription()
+        string result = "0";
+        try
         {
-            AppointmentId = appointmentId,
-            DateWritten = presDate,
-            Repeat = repeat
-        };
-        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
-        // call the function to save the row into actual database table
-        objDataContext.brdhc_PatientPrescriptions.InsertOnSubmit(svTable);
-        objDataContext.SubmitChanges();
-        return svTable.PrescriptionId.ToString();
+            brdhc_PatientPrescription svTable = new brdhc_PatientPrescription()
+            {
+                AppointmentId = appointmentId,
+                DateWritten = presDate,
+                Repeat = repeat
+            };
+            prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+            // call the function to save the row into actual database table
+            objDataContext.brdhc_PatientPrescriptions.InsertOnSubmit(svTable);
+            objDataContext.SubmitChanges();
+            result = svTable.PrescriptionId.ToString();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return result;
     }
 
-    public void updatePrescription(int prescriptionId, int appointmentId, int repeat, DateTime presDate)
+    public string updatePrescription(int prescriptionId, int appointmentId, int repeat, DateTime presDate)
     {
-        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
-        // select that particular row that is to be updated
-        var tblRecords = objDataContext.brdhc_PatientPrescriptions.Single(p => p.PrescriptionId == Convert.ToInt32(prescriptionId));
-        // make the changes     
-        tblRecords.AppointmentId = appointmentId;
-        tblRecords.DateWritten = presDate;
-        tblRecords.Repeat = repeat;
-        // update the datebase table with new values
-        objDataContext.SubmitChanges();
+        string result = "0";
+        try
+        {
+            prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+            // select that particular row that is to be updated
+            var tblRecords = objDataContext.brdhc_PatientPrescriptions.Single(p => p.PrescriptionId == Convert.ToInt32(prescriptionId));
+            // make the changes     
+            tblRecords.AppointmentId = appointmentId;
+            tblRecords.DateWritten = presDate;
+            tblRecords.Repeat = repeat;
+            // update the datebase table with new values
+            objDataContext.SubmitChanges();
+            result = "1";
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return result;
     }
-
-
 
     public IQueryable<brdhc_PrescriptionDetail> getPrescriptionDetails(int prescriptionId)
     {
-        prescriptionsDataContext udObj = new prescriptionsDataContext();
-        var results =
-            from p in udObj.brdhc_PrescriptionDetails
-            where p.PrescriptionId == prescriptionId
-            select p;
-        return results;
+        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+        var presDetails =
+            from pd in objDataContext.brdhc_PrescriptionDetails
+            where pd.PrescriptionId == 1
+            select pd;
+        return presDetails;
     }
 
     public void deletePresDetails(int prescriptionId)

@@ -37,11 +37,8 @@ function getPrescriptionDetails($presId)
         dataType: "json",
         success: function (res) {
 
-            var myData = JSON.parse(res.d); // data.d is a JSON formatted string, to turn it into a JSON object
-            // we use JSON.parse
-            // now that myData is a JSON object we can access its properties like normal
-         
-            getPrescriptionDetails(myData.PrescriptionId);
+            var myData = JSON.parse(res.d);
+            console.log(myData);
         }
     });
 }
