@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -37,13 +38,31 @@ public class wsPrescriptions : System.Web.Services.WebService {
     }
 
     [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //public List<brdhc_PrescriptionDetail> getPresDetails(string prescriptionId)
     public string getPresDetails(string prescriptionId)
     {
         clsPrescriptions objPres = new clsPrescriptions();
-        IQueryable<brdhc_PrescriptionDetail> details = objPres.getPrescriptionDetails(Convert.ToInt32(prescriptionId));
-        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+        sp_SearchPrescriptionDetailsResult data = new sp_SearchPrescriptionDetailsResult();
+        List<sp_SearchPrescriptionDetailsResult> presc = objPres.getPrescriptionDetails(Convert.ToInt32(prescriptionId));
+        StringBuilder strB = new StringBuilder();
 
-        return js.Serialize(details);
+        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+        //if (presc.Count() > 0)
+        //{
+        //    foreach (sp_SearchPrescriptionDetailsResult ob in presc)
+        //    {
+        //        data = ob;
+        //        js.Serialize(data, strB);
+        //        strB.Append(',');
+        //    }
+        //}
+
+        //strB.ToString().Remove(strB.ToString().LastIndexOf(','), 1);
+        // //js.Serialize(data, strB);
+        // return strB.ToString();
+
+        return js.Serialize(presc);
     }
     
 

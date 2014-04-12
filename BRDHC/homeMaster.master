@@ -51,7 +51,7 @@
             </asp:Panel>
      </asp:Panel>
 
-            <asp:ContentPlaceHolder id="cphSiteMasterBody pnlContainer" runat="server">
+            <asp:ContentPlaceHolder id="cphSiteMasterBod" runat="server">
         
             </asp:ContentPlaceHolder>
 
