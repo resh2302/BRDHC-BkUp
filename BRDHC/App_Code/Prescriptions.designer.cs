@@ -96,6 +96,13 @@ public partial class prescriptionsDataContext : System.Data.Linq.DataContext
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), prescriptionId);
 		return ((ISingleResult<sp_SearchPrescriptionDetailsResult>)(result.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_SearchPrescriptionsByPatientName")]
+	public ISingleResult<sp_SearchPrescriptionsByPatientNameResult> sp_SearchPrescriptionsByPatientName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PatientName", DbType="NVarChar(256)")] string patientName)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), patientName);
+		return ((ISingleResult<sp_SearchPrescriptionsByPatientNameResult>)(result.ReturnValue));
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.brdhc_PatientPrescriptions")]
@@ -728,6 +735,140 @@ public partial class sp_SearchPrescriptionDetailsResult
 			if ((this._Quantity != value))
 			{
 				this._Quantity = value;
+			}
+		}
+	}
+}
+
+public partial class sp_SearchPrescriptionsByPatientNameResult
+{
+	
+	private int _AppointmentId;
+	
+	private string _PatientName;
+	
+	private string _HealthCard;
+	
+	private string _DoctorName;
+	
+	private System.Nullable<int> _PrescriptionId;
+	
+	private System.Nullable<int> _Repeat;
+	
+	private string _DateWritten;
+	
+	public sp_SearchPrescriptionsByPatientNameResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentId", DbType="Int NOT NULL")]
+	public int AppointmentId
+	{
+		get
+		{
+			return this._AppointmentId;
+		}
+		set
+		{
+			if ((this._AppointmentId != value))
+			{
+				this._AppointmentId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientName", DbType="VarChar(101) NOT NULL", CanBeNull=false)]
+	public string PatientName
+	{
+		get
+		{
+			return this._PatientName;
+		}
+		set
+		{
+			if ((this._PatientName != value))
+			{
+				this._PatientName = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HealthCard", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+	public string HealthCard
+	{
+		get
+		{
+			return this._HealthCard;
+		}
+		set
+		{
+			if ((this._HealthCard != value))
+			{
+				this._HealthCard = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorName", DbType="VarChar(101)")]
+	public string DoctorName
+	{
+		get
+		{
+			return this._DoctorName;
+		}
+		set
+		{
+			if ((this._DoctorName != value))
+			{
+				this._DoctorName = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionId", DbType="Int")]
+	public System.Nullable<int> PrescriptionId
+	{
+		get
+		{
+			return this._PrescriptionId;
+		}
+		set
+		{
+			if ((this._PrescriptionId != value))
+			{
+				this._PrescriptionId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Repeat", DbType="Int")]
+	public System.Nullable<int> Repeat
+	{
+		get
+		{
+			return this._Repeat;
+		}
+		set
+		{
+			if ((this._Repeat != value))
+			{
+				this._Repeat = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateWritten", DbType="VarChar(10)")]
+	public string DateWritten
+	{
+		get
+		{
+			return this._DateWritten;
+		}
+		set
+		{
+			if ((this._DateWritten != value))
+			{
+				this._DateWritten = value;
 			}
 		}
 	}

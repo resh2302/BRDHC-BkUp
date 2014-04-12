@@ -46,6 +46,21 @@ public class clsPrescriptions
         return myList;
     }
 
+    public List<sp_SearchPrescriptionsByPatientNameResult> getPrescriptionsByPatientName(string patientName)
+    {
+        List<sp_SearchPrescriptionsByPatientNameResult> myList = new List<sp_SearchPrescriptionsByPatientNameResult>();
+        try
+        {
+            prescriptionsDataContext obj = new prescriptionsDataContext();
+            myList = obj.sp_SearchPrescriptionsByPatientName(patientName).ToList();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return myList;
+    }
+
     public string savePrescription(int appointmentId, int repeat, DateTime presDate) // save new record into databse
     {
         // create a new table with one row and this table is similar in schema with the table in database
