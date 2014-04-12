@@ -32,7 +32,7 @@ public class clsAppointments
         return obj.sp_GetBookedTime(Guid.Parse(doctorUserId), appointmentDate).ToList();
     }
 
-    public void bookAppointment(string patientUserId, string doctorUserId, string appointmentDate, string appointmentTime, string reason, bool isApproved) // save new record into databse
+    public void bookAppointment(string patientUserId, string doctorUserId, string appointmentDate, string appointmentTime, string reason, string approvalStatus) // save new record into databse
     {
         // create a new table with one row and this table is similar in schema with the table in database
         brdhc_PatientAppointment svTable = new brdhc_PatientAppointment()
@@ -42,7 +42,7 @@ public class clsAppointments
             AppointmentDate = Convert.ToDateTime(appointmentDate),
             AppointmentTime = appointmentTime,
             Reason = reason,
-            IsApproved = isApproved
+            approvalStatus = approvalStatus // Jagsir I have changed this - Reshma
         };
         AppointmentsDataContext objApp = new AppointmentsDataContext();
         // call the function to save the row into actual database table
@@ -50,7 +50,7 @@ public class clsAppointments
         objApp.SubmitChanges();
     }
 
-    public void updateAppointment(string appointmentId, string patientUserId, string doctorUserId, string appointmentDate, string appointmentTime, string reason, bool isApproved)
+    public void updateAppointment(string appointmentId, string patientUserId, string doctorUserId, string appointmentDate, string appointmentTime, string reason, string approvalStatus)
     {
         AppointmentsDataContext objApp = new AppointmentsDataContext();
         // select that particular row that is to be updated
@@ -61,7 +61,8 @@ public class clsAppointments
             appointment.AppointmentDate = Convert.ToDateTime(appointmentDate);
             appointment.AppointmentTime = appointmentTime;
             appointment.Reason = reason;
-            appointment.IsApproved = isApproved;
+            appointment.approvalStatus = approvalStatus; // Jagsir I have changed this - Reshma
+            appointment.CreatedOnDate = DateTime.Now; // Jagsir I added this because the default value gave some very old date - Reshma
         // update the datebase table with new values
         objApp.SubmitChanges();
     }
@@ -79,4 +80,26 @@ public class clsAppointments
         objApp.SubmitChanges();
     }
 
+    public List<sp_getAppByPatientIDResult> getAppByPatientID(Guid pid) //added by REshma
+    {
+        
+        AppointmentsDataContext obj = new AppointmentsDataContext();
+        return obj.sp_getAppByPatientID(pid).ToList();
+    }
+
+    public List<sp_getAppByDocIDResult> getAppByDocID(Guid docID) // added by REshma
+    {
+        List<sp_getAppByDocIDResult> myList = new List<sp_getAppByDocIDResult>();
+        AppointmentsDataContext obj = new AppointmentsDataContext();
+        return obj.sp_getAppByDocID(docID).ToList();
+    }
+
+    public void updateAppointmentRequest(int appointmentId, string approvalStatus)
+    {
+        AppointmentsDataContext objApp = new AppointmentsDataContext();
+        var appointment = objApp.brdhc_PatientAppointments.Single(p => p.AppointmentId == Convert.ToInt32(appointmentId));
+
+        appointment.approvalStatus = approvalStatus;// Jagsir I have changed this - Reshma
+        objApp.SubmitChanges();
+    }
 }

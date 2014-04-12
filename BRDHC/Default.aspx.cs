@@ -18,7 +18,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else if (Roles.IsUserInRole(user.UserName, "Patients"))
         {
-            Response.Redirect("Patients/patientDashboard.aspx");
+            Response.Redirect("Patients/PatientAppointment.aspx");
         }
         else if (Roles.IsUserInRole(user.UserName, "Doctors"))
         {
