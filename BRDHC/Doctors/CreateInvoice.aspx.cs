@@ -41,14 +41,16 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         strDocUname = Membership.GetUser().ToString();
 
         ddlInvoice.DataSource = objUser.getAllPatientNames();
-        //ddlInvoice.DataTextFormatString = "{0} {1}";
         ddlInvoice.DataTextField = "patientName";
         
         ddlInvoice.DataValueField = "UserId";
         ddlInvoice.DataBind();
 
-        gvInvoices.DataSource = objInvoice.getInvoicesbyDocUname(strDocUname);
-        gvInvoices.DataBind();
+        gvPending.DataSource = objInvoice.getInvoicebyDocStatus(strDocUname, "Pending"); // get status pending
+        gvPending.DataBind();
+
+        gvPaid.DataSource = objInvoice.getInvoicebyDocStatus(strDocUname, "Paid"); // get status paid
+        gvPending.DataBind();
 
         txtInvDate.Text = DateTime.Now.ToString();
 
@@ -229,12 +231,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
     }
     protected void btnTotal_Click(object sender, EventArgs e)
     {
-        //foreach (TableCell cell in gvItems.Rows(e.RowIndex).Cells)
-        //{
-        //    TextBox txt1 = (TextBox)cell.FindControl("txtControlName");
-        //    // or if you don't want to hard code the control name and assuming that there is only 1 control in the cell then use this:
-        //    TextBox txt2 = (TextBox)cell.Controls(0);
-        //}
+        
         double total = 0.0;
         foreach (GridViewRow row in gvItems.Rows)
         {
@@ -252,11 +249,11 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         txtTotal.Text = total.ToString();
 
     }
-    protected void gvInvoices_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvInvoices_PageIndexChanging(object sender, GridViewPageEventArgs e) // create dp for gvpaid
     {
-        gvInvoices.PageIndex = e.NewPageIndex;
-        gvInvoices.DataSource = objInvoice.getInvoices();
-        gvInvoices.DataBind();
+        gvPending.PageIndex = e.NewPageIndex;
+        gvPending.DataSource = objInvoice.getInvoices();
+        gvPending.DataBind();
     }
     
     protected void lnkRemove_Click(object sender, EventArgs e)
@@ -269,5 +266,15 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
 
         int rowIndex = gvr.RowIndex;
     }
-    
+
+    protected void gvItems_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        if (ViewState["CurrentTable"] != null)
+        {
+            DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+            dtCurrentTable.Rows.RemoveAt(e.RowIndex);
+            gvItems.DataSource = dtCurrentTable;
+            gvItems.DataBind();
+        }
+    }
 }

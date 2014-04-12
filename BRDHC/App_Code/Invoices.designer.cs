@@ -78,6 +78,13 @@ public partial class InvoicesDataContext : System.Data.Linq.DataContext
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), docUName);
 		return ((ISingleResult<sp_getInvoiceByDocNameResult>)(result.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_getInvoiceByDocStatus")]
+	public ISingleResult<sp_getInvoiceByDocStatusResult> sp_getInvoiceByDocStatus([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(255)")] string docUName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(255)")] string status)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), docUName, status);
+		return ((ISingleResult<sp_getInvoiceByDocStatusResult>)(result.ReturnValue));
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.brdhc_Invoice")]
@@ -92,7 +99,7 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
 	
 	private System.DateTime _CreatedOn;
 	
-	private System.Nullable<double> _TotalAmt;
+	private double _TotalAmt;
 	
 	private string _CreatedBy;
 	
@@ -101,6 +108,10 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
 	private string _Reason;
 	
 	private System.DateTime _DueOn;
+	
+	private string _TransactionID;
+	
+	private System.Nullable<System.DateTime> _PaidOn;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -112,7 +123,7 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
     partial void OnPatientIDChanged();
     partial void OnCreatedOnChanging(System.DateTime value);
     partial void OnCreatedOnChanged();
-    partial void OnTotalAmtChanging(System.Nullable<double> value);
+    partial void OnTotalAmtChanging(double value);
     partial void OnTotalAmtChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
@@ -122,6 +133,10 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
     partial void OnReasonChanged();
     partial void OnDueOnChanging(System.DateTime value);
     partial void OnDueOnChanged();
+    partial void OnTransactionIDChanging(string value);
+    partial void OnTransactionIDChanged();
+    partial void OnPaidOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnPaidOnChanged();
     #endregion
 	
 	public brdhc_Invoice()
@@ -189,8 +204,8 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmt", DbType="Float")]
-	public System.Nullable<double> TotalAmt
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmt", DbType="Float NOT NULL")]
+	public double TotalAmt
 	{
 		get
 		{
@@ -285,6 +300,46 @@ public partial class brdhc_Invoice : INotifyPropertyChanging, INotifyPropertyCha
 				this._DueOn = value;
 				this.SendPropertyChanged("DueOn");
 				this.OnDueOnChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionID", DbType="VarChar(MAX)")]
+	public string TransactionID
+	{
+		get
+		{
+			return this._TransactionID;
+		}
+		set
+		{
+			if ((this._TransactionID != value))
+			{
+				this.OnTransactionIDChanging(value);
+				this.SendPropertyChanging();
+				this._TransactionID = value;
+				this.SendPropertyChanged("TransactionID");
+				this.OnTransactionIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaidOn", DbType="DateTime")]
+	public System.Nullable<System.DateTime> PaidOn
+	{
+		get
+		{
+			return this._PaidOn;
+		}
+		set
+		{
+			if ((this._PaidOn != value))
+			{
+				this.OnPaidOnChanging(value);
+				this.SendPropertyChanging();
+				this._PaidOn = value;
+				this.SendPropertyChanged("PaidOn");
+				this.OnPaidOnChanged();
 			}
 		}
 	}
@@ -475,6 +530,212 @@ public partial class sp_getInvoiceByDocNameResult
 			if ((this._DueOn != value))
 			{
 				this._DueOn = value;
+			}
+		}
+	}
+}
+
+public partial class sp_getInvoiceByDocStatusResult
+{
+	
+	private string _PatientName;
+	
+	private System.Guid _InvoiceID;
+	
+	private System.Guid _PatientID;
+	
+	private System.DateTime _CreatedOn;
+	
+	private double _TotalAmt;
+	
+	private string _CreatedBy;
+	
+	private string _Status;
+	
+	private string _Reason;
+	
+	private System.DateTime _DueOn;
+	
+	private string _TransactionID;
+	
+	private System.Nullable<System.DateTime> _PaidOn;
+	
+	public sp_getInvoiceByDocStatusResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientName", DbType="VarChar(101) NOT NULL", CanBeNull=false)]
+	public string PatientName
+	{
+		get
+		{
+			return this._PatientName;
+		}
+		set
+		{
+			if ((this._PatientName != value))
+			{
+				this._PatientName = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceID", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid InvoiceID
+	{
+		get
+		{
+			return this._InvoiceID;
+		}
+		set
+		{
+			if ((this._InvoiceID != value))
+			{
+				this._InvoiceID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid PatientID
+	{
+		get
+		{
+			return this._PatientID;
+		}
+		set
+		{
+			if ((this._PatientID != value))
+			{
+				this._PatientID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedOn", DbType="Date NOT NULL")]
+	public System.DateTime CreatedOn
+	{
+		get
+		{
+			return this._CreatedOn;
+		}
+		set
+		{
+			if ((this._CreatedOn != value))
+			{
+				this._CreatedOn = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmt", DbType="Float NOT NULL")]
+	public double TotalAmt
+	{
+		get
+		{
+			return this._TotalAmt;
+		}
+		set
+		{
+			if ((this._TotalAmt != value))
+			{
+				this._TotalAmt = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string CreatedBy
+	{
+		get
+		{
+			return this._CreatedBy;
+		}
+		set
+		{
+			if ((this._CreatedBy != value))
+			{
+				this._CreatedBy = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string Status
+	{
+		get
+		{
+			return this._Status;
+		}
+		set
+		{
+			if ((this._Status != value))
+			{
+				this._Status = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reason", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+	public string Reason
+	{
+		get
+		{
+			return this._Reason;
+		}
+		set
+		{
+			if ((this._Reason != value))
+			{
+				this._Reason = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DueOn", DbType="Date NOT NULL")]
+	public System.DateTime DueOn
+	{
+		get
+		{
+			return this._DueOn;
+		}
+		set
+		{
+			if ((this._DueOn != value))
+			{
+				this._DueOn = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionID", DbType="VarChar(MAX)")]
+	public string TransactionID
+	{
+		get
+		{
+			return this._TransactionID;
+		}
+		set
+		{
+			if ((this._TransactionID != value))
+			{
+				this._TransactionID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaidOn", DbType="DateTime")]
+	public System.Nullable<System.DateTime> PaidOn
+	{
+		get
+		{
+			return this._PaidOn;
+		}
+		set
+		{
+			if ((this._PaidOn != value))
+			{
+				this._PaidOn = value;
 			}
 		}
 	}

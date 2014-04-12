@@ -33,6 +33,13 @@ public class clsInvoice
         return objInvoiceDC.sp_getInvoiceByDocName(docUsername).ToList();
     }
 
+    public List<sp_getInvoiceByDocStatusResult> getInvoicebyDocStatus(string docUsername, string status)
+    {
+        InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
+        return objInvoiceDC.sp_getInvoiceByDocStatus(docUsername, status).ToList();
+    }
+
+
     public IQueryable<brdhc_Invoice> getInvoicesById(Guid id)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -83,5 +90,22 @@ public class clsInvoice
             return true;
         }
     }
- 
+
+    public void updateTransaction(Guid invID, string txID, DateTime txDate)
+    {
+        InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
+
+        try
+        {
+            var inv = objInvoiceDC.brdhc_Invoices.Single(x => x.InvoiceID == invID);
+            inv.TransactionID = txID;
+            inv.PaidOn = txDate;
+            inv.Status = "Paid";
+            objInvoiceDC.SubmitChanges();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+    }
 }

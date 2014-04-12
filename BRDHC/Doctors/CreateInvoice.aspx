@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/brdhc.master" CodeFile="CreateInvoice.aspx.cs" Inherits="Doctors_CreateInvoice" Theme="HealthTools" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/brdhc.master" CodeFile="CreateInvoice.aspx.cs" Inherits="Doctors_CreateInvoice" Theme="Theme" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 
@@ -48,7 +48,7 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlAmount" GroupingText="Invoice Items" runat="server">
                                 <asp:Panel ID="pnlItems" runat="server">
-                                    <asp:GridView ID="gvItems" CssClass="r_gvItems" runat="server" ShowFooter="true" OnRowDataBound="gvItems_RowDataBound" AutoGenerateColumns="false" >
+                                    <asp:GridView ID="gvItems" CssClass="r_gvItems" runat="server" ShowFooter="true" OnRowDataBound="gvItems_RowDataBound" OnRowDeleting="gvItems_RowDeleting" AutoGenerateColumns="false" >
                                         <Columns>
                                             <asp:BoundField HeaderText="Item Number" DataField="ItemNumber" />
                                             <asp:TemplateField HeaderText="Description">
@@ -64,7 +64,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkRemove" Text="Remove" CssClass="lnk" runat="server" OnClick="lnkRemove_Click" />
+                                                    <asp:LinkButton ID="lnkRemove" Text="Remove" CssClass="lnk" runat="server" CommandName="Delete"  />
                                                 </ItemTemplate>
                                                  <FooterStyle HorizontalAlign="NotSet" />
                                                 <FooterTemplate>
@@ -86,14 +86,18 @@
                         </ContentTemplate>
                     </ajax:TabPanel>
 
-                    <ajax:TabPanel ID="tabView" runat="server" HeaderText="View Invoices">
+                    <ajax:TabPanel ID="tabPending" runat="server" HeaderText="Pending Invoices">
                         <ContentTemplate>
                             <asp:Panel ID="pnlView" GroupingText="All Invoices" runat="server">
-                                <asp:GridView ID="gvInvoices" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvInvoices_PageIndexChanging">
+                                <asp:GridView ID="gvPending" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvInvoices_PageIndexChanging">
                                     <Columns>
+                                        <asp:TemplateField HeaderText="Invoice ID">
+                                            <ItemTemplate>
+                                                <%#Eval("InvoiceID") %>
+                                            </ItemTemplate>
+                                            </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Patient Name">
                                             <ItemTemplate>
-                                                <%--<%#Eval("InvoiceID") %>--%>
                                                 <%#Eval("PatientName") %>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -112,7 +116,7 @@
                                                 <%#Eval("DueOn") %>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Status">
+                                        <asp:TemplateField HeaderText="Status (Remove this)">
                                             <ItemTemplate>
                                                 <%#Eval("Status") %>
                                             </ItemTemplate>
@@ -129,13 +133,69 @@
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-
                             </asp:Panel>
                         </ContentTemplate>
                     </ajax:TabPanel>
+
+                    <ajax:TabPanel ID="tabPaid" runat="server" HeaderText="Paid Invoices">
+                        <ContentTemplate>
+                            <asp:GridView ID="gvPaid" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvInvoices_PageIndexChanging">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Invoice ID">
+                                            <ItemTemplate>
+                                                <%#Eval("InvoiceID") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Patient Name">
+                                            <ItemTemplate>
+                                                <%#Eval("PatientName") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Created On">
+                                            <ItemTemplate>
+                                                <%#Eval("CreatedOn") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Created By">
+                                            <ItemTemplate>
+                                                <%#Eval("CreatedBy") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Due On">
+                                            <ItemTemplate>
+                                                <%#Eval("DueOn") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Status (Remove this)">
+                                            <ItemTemplate>
+                                                <%#Eval("Status") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Total Amount">
+                                            <ItemTemplate>
+                                                <%#Eval("TotalAmt") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Transaction ID">
+                                            <ItemTemplate>
+                                                <%#Eval("TransactionID") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Paid On">
+                                            <ItemTemplate>
+                                                <%#Eval("PaidOn") %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="View Items">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkItems" Text="View Items" CommandArgument='<%#Eval("InvoiceID") %>' runat="server" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                        </ContentTemplate>
+                    </ajax:TabPanel>
                 </ajax:TabContainer>
-
-
 
             </asp:Panel>
         </asp:Panel>
