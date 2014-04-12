@@ -6,6 +6,18 @@
       <Column Name="AppointmentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Repeat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DateWritten" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="brdhc_PatientPrescription_brdhc_PrescriptionDetail" Member="brdhc_PrescriptionDetails" ThisKey="PrescriptionId" OtherKey="PrescriptionId" Type="brdhc_PrescriptionDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.brdhc_PrescriptionDetails" Member="brdhc_PrescriptionDetails">
+    <Type Name="brdhc_PrescriptionDetail">
+      <Column Name="PrescriptionDetailsId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PrescriptionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Medicine" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Timings" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Days" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="brdhc_PatientPrescription_brdhc_PrescriptionDetail" Member="brdhc_PatientPrescription" ThisKey="PrescriptionId" OtherKey="PrescriptionId" Type="brdhc_PatientPrescription" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.sp_SearchPatientPrescription" Method="sp_SearchPatientPrescription">
@@ -18,6 +30,17 @@
       <Column Name="PrescriptionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Repeat" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DateWritten" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_SearchPrescriptionDetails" Method="sp_SearchPrescriptionDetails">
+    <Parameter Name="PrescriptionId" Parameter="prescriptionId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_SearchPrescriptionDetailsResult">
+      <Column Name="PrescriptionDetailsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrescriptionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Medicine" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Timings" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Days" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

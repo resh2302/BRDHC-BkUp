@@ -94,15 +94,29 @@ public class clsPrescriptions
         return result;
     }
 
-    public IQueryable<brdhc_PrescriptionDetail> getPrescriptionDetails(int prescriptionId)
+    public List<sp_SearchPrescriptionDetailsResult> getPrescriptionDetails(int prescriptionId)
     {
-        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
-        var presDetails =
-            from pd in objDataContext.brdhc_PrescriptionDetails
-            where pd.PrescriptionId == 1
-            select pd;
-        return presDetails;
+        List<sp_SearchPrescriptionDetailsResult> myList = new List<sp_SearchPrescriptionDetailsResult>();
+        try
+        {
+            prescriptionsDataContext obj = new prescriptionsDataContext();
+            myList = obj.sp_SearchPrescriptionDetails(prescriptionId).ToList();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return myList;
     }
+    //public IQueryable<brdhc_PrescriptionDetail> getPrescriptionDetails(int prescriptionId)
+    //{
+    //    prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+    //    var presDetails =
+    //        from pd in objDataContext.brdhc_PrescriptionDetails
+    //        where pd.PrescriptionId == prescriptionId
+    //        select pd;
+    //    return presDetails;
+    //}
 
     public void deletePresDetails(int prescriptionId)
     {

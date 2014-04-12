@@ -32,6 +32,9 @@ public partial class prescriptionsDataContext : System.Data.Linq.DataContext
   partial void Insertbrdhc_PatientPrescription(brdhc_PatientPrescription instance);
   partial void Updatebrdhc_PatientPrescription(brdhc_PatientPrescription instance);
   partial void Deletebrdhc_PatientPrescription(brdhc_PatientPrescription instance);
+  partial void Insertbrdhc_PrescriptionDetail(brdhc_PrescriptionDetail instance);
+  partial void Updatebrdhc_PrescriptionDetail(brdhc_PrescriptionDetail instance);
+  partial void Deletebrdhc_PrescriptionDetail(brdhc_PrescriptionDetail instance);
   #endregion
 	
 	public prescriptionsDataContext() : 
@@ -72,11 +75,26 @@ public partial class prescriptionsDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
+	public System.Data.Linq.Table<brdhc_PrescriptionDetail> brdhc_PrescriptionDetails
+	{
+		get
+		{
+			return this.GetTable<brdhc_PrescriptionDetail>();
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_SearchPatientPrescription")]
 	public ISingleResult<sp_SearchPatientPrescriptionResult> sp_SearchPatientPrescription([global::System.Data.Linq.Mapping.ParameterAttribute(Name="AppointmentId", DbType="Int")] System.Nullable<int> appointmentId)
 	{
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), appointmentId);
 		return ((ISingleResult<sp_SearchPatientPrescriptionResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_SearchPrescriptionDetails")]
+	public ISingleResult<sp_SearchPrescriptionDetailsResult> sp_SearchPrescriptionDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrescriptionId", DbType="Int")] System.Nullable<int> prescriptionId)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), prescriptionId);
+		return ((ISingleResult<sp_SearchPrescriptionDetailsResult>)(result.ReturnValue));
 	}
 }
 
@@ -94,6 +112,8 @@ public partial class brdhc_PatientPrescription : INotifyPropertyChanging, INotif
 	
 	private System.DateTime _DateWritten;
 	
+	private EntitySet<brdhc_PrescriptionDetail> _brdhc_PrescriptionDetails;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -110,6 +130,7 @@ public partial class brdhc_PatientPrescription : INotifyPropertyChanging, INotif
 	
 	public brdhc_PatientPrescription()
 	{
+		this._brdhc_PrescriptionDetails = new EntitySet<brdhc_PrescriptionDetail>(new Action<brdhc_PrescriptionDetail>(this.attach_brdhc_PrescriptionDetails), new Action<brdhc_PrescriptionDetail>(this.detach_brdhc_PrescriptionDetails));
 		OnCreated();
 	}
 	
@@ -189,6 +210,254 @@ public partial class brdhc_PatientPrescription : INotifyPropertyChanging, INotif
 				this._DateWritten = value;
 				this.SendPropertyChanged("DateWritten");
 				this.OnDateWrittenChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="brdhc_PatientPrescription_brdhc_PrescriptionDetail", Storage="_brdhc_PrescriptionDetails", ThisKey="PrescriptionId", OtherKey="PrescriptionId")]
+	public EntitySet<brdhc_PrescriptionDetail> brdhc_PrescriptionDetails
+	{
+		get
+		{
+			return this._brdhc_PrescriptionDetails;
+		}
+		set
+		{
+			this._brdhc_PrescriptionDetails.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_brdhc_PrescriptionDetails(brdhc_PrescriptionDetail entity)
+	{
+		this.SendPropertyChanging();
+		entity.brdhc_PatientPrescription = this;
+	}
+	
+	private void detach_brdhc_PrescriptionDetails(brdhc_PrescriptionDetail entity)
+	{
+		this.SendPropertyChanging();
+		entity.brdhc_PatientPrescription = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.brdhc_PrescriptionDetails")]
+public partial class brdhc_PrescriptionDetail : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _PrescriptionDetailsId;
+	
+	private int _PrescriptionId;
+	
+	private string _Medicine;
+	
+	private string _Timings;
+	
+	private System.Nullable<int> _Days;
+	
+	private System.Nullable<int> _Quantity;
+	
+	private EntityRef<brdhc_PatientPrescription> _brdhc_PatientPrescription;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPrescriptionDetailsIdChanging(int value);
+    partial void OnPrescriptionDetailsIdChanged();
+    partial void OnPrescriptionIdChanging(int value);
+    partial void OnPrescriptionIdChanged();
+    partial void OnMedicineChanging(string value);
+    partial void OnMedicineChanged();
+    partial void OnTimingsChanging(string value);
+    partial void OnTimingsChanged();
+    partial void OnDaysChanging(System.Nullable<int> value);
+    partial void OnDaysChanged();
+    partial void OnQuantityChanging(System.Nullable<int> value);
+    partial void OnQuantityChanged();
+    #endregion
+	
+	public brdhc_PrescriptionDetail()
+	{
+		this._brdhc_PatientPrescription = default(EntityRef<brdhc_PatientPrescription>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionDetailsId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int PrescriptionDetailsId
+	{
+		get
+		{
+			return this._PrescriptionDetailsId;
+		}
+		set
+		{
+			if ((this._PrescriptionDetailsId != value))
+			{
+				this.OnPrescriptionDetailsIdChanging(value);
+				this.SendPropertyChanging();
+				this._PrescriptionDetailsId = value;
+				this.SendPropertyChanged("PrescriptionDetailsId");
+				this.OnPrescriptionDetailsIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionId", DbType="Int NOT NULL")]
+	public int PrescriptionId
+	{
+		get
+		{
+			return this._PrescriptionId;
+		}
+		set
+		{
+			if ((this._PrescriptionId != value))
+			{
+				if (this._brdhc_PatientPrescription.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnPrescriptionIdChanging(value);
+				this.SendPropertyChanging();
+				this._PrescriptionId = value;
+				this.SendPropertyChanged("PrescriptionId");
+				this.OnPrescriptionIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Medicine", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+	public string Medicine
+	{
+		get
+		{
+			return this._Medicine;
+		}
+		set
+		{
+			if ((this._Medicine != value))
+			{
+				this.OnMedicineChanging(value);
+				this.SendPropertyChanging();
+				this._Medicine = value;
+				this.SendPropertyChanged("Medicine");
+				this.OnMedicineChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Timings", DbType="VarChar(100)")]
+	public string Timings
+	{
+		get
+		{
+			return this._Timings;
+		}
+		set
+		{
+			if ((this._Timings != value))
+			{
+				this.OnTimingsChanging(value);
+				this.SendPropertyChanging();
+				this._Timings = value;
+				this.SendPropertyChanged("Timings");
+				this.OnTimingsChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Days", DbType="Int")]
+	public System.Nullable<int> Days
+	{
+		get
+		{
+			return this._Days;
+		}
+		set
+		{
+			if ((this._Days != value))
+			{
+				this.OnDaysChanging(value);
+				this.SendPropertyChanging();
+				this._Days = value;
+				this.SendPropertyChanged("Days");
+				this.OnDaysChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+	public System.Nullable<int> Quantity
+	{
+		get
+		{
+			return this._Quantity;
+		}
+		set
+		{
+			if ((this._Quantity != value))
+			{
+				this.OnQuantityChanging(value);
+				this.SendPropertyChanging();
+				this._Quantity = value;
+				this.SendPropertyChanged("Quantity");
+				this.OnQuantityChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="brdhc_PatientPrescription_brdhc_PrescriptionDetail", Storage="_brdhc_PatientPrescription", ThisKey="PrescriptionId", OtherKey="PrescriptionId", IsForeignKey=true)]
+	public brdhc_PatientPrescription brdhc_PatientPrescription
+	{
+		get
+		{
+			return this._brdhc_PatientPrescription.Entity;
+		}
+		set
+		{
+			brdhc_PatientPrescription previousValue = this._brdhc_PatientPrescription.Entity;
+			if (((previousValue != value) 
+						|| (this._brdhc_PatientPrescription.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._brdhc_PatientPrescription.Entity = null;
+					previousValue.brdhc_PrescriptionDetails.Remove(this);
+				}
+				this._brdhc_PatientPrescription.Entity = value;
+				if ((value != null))
+				{
+					value.brdhc_PrescriptionDetails.Add(this);
+					this._PrescriptionId = value.PrescriptionId;
+				}
+				else
+				{
+					this._PrescriptionId = default(int);
+				}
+				this.SendPropertyChanged("brdhc_PatientPrescription");
 			}
 		}
 	}
@@ -343,6 +612,122 @@ public partial class sp_SearchPatientPrescriptionResult
 			if ((this._DateWritten != value))
 			{
 				this._DateWritten = value;
+			}
+		}
+	}
+}
+
+public partial class sp_SearchPrescriptionDetailsResult
+{
+	
+	private int _PrescriptionDetailsId;
+	
+	private int _PrescriptionId;
+	
+	private string _Medicine;
+	
+	private string _Timings;
+	
+	private System.Nullable<int> _Days;
+	
+	private System.Nullable<int> _Quantity;
+	
+	public sp_SearchPrescriptionDetailsResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionDetailsId", DbType="Int NOT NULL")]
+	public int PrescriptionDetailsId
+	{
+		get
+		{
+			return this._PrescriptionDetailsId;
+		}
+		set
+		{
+			if ((this._PrescriptionDetailsId != value))
+			{
+				this._PrescriptionDetailsId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionId", DbType="Int NOT NULL")]
+	public int PrescriptionId
+	{
+		get
+		{
+			return this._PrescriptionId;
+		}
+		set
+		{
+			if ((this._PrescriptionId != value))
+			{
+				this._PrescriptionId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Medicine", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+	public string Medicine
+	{
+		get
+		{
+			return this._Medicine;
+		}
+		set
+		{
+			if ((this._Medicine != value))
+			{
+				this._Medicine = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Timings", DbType="VarChar(100)")]
+	public string Timings
+	{
+		get
+		{
+			return this._Timings;
+		}
+		set
+		{
+			if ((this._Timings != value))
+			{
+				this._Timings = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Days", DbType="Int")]
+	public System.Nullable<int> Days
+	{
+		get
+		{
+			return this._Days;
+		}
+		set
+		{
+			if ((this._Days != value))
+			{
+				this._Days = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+	public System.Nullable<int> Quantity
+	{
+		get
+		{
+			return this._Quantity;
+		}
+		set
+		{
+			if ((this._Quantity != value))
+			{
+				this._Quantity = value;
 			}
 		}
 	}

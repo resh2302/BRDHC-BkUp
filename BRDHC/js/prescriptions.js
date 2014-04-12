@@ -1,8 +1,12 @@
 ﻿
+$mediArray = [];
+$firstRow = true;
+$rowId = 0;
+$newPresId = 0;
 
-function getPatientPrescription()
+function getPatientPrescription($appId)
 {
-    $appId = $('#cphSiteMasterBody_txtSearch').val();
+    //$appId = $('#cphSiteMasterBody_txtSearch').val();
     //alert($appId);
     $.ajax({
         type: "POST",
@@ -29,6 +33,7 @@ function getPatientPrescription()
 
 function getPrescriptionDetails($presId)
 {
+    //alert($presId);
     $.ajax({
         type: "POST",
         url: "../wsPrescriptions.asmx/getPresDetails",
@@ -36,17 +41,29 @@ function getPrescriptionDetails($presId)
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (res) {
-
             var myData = JSON.parse(res.d);
             console.log(myData);
+            $rowId = 0;
+            $.each(myData, function (index, itemData) {
+                console.log(itemData.PrescriptionId);
+                $newMedicine = "<tr>";
+                $newMedicine += "<td style='padding:10px;'>";
+                $newMedicine += "<label id='lblMedName_" + $rowId + "' class='infoLabel'>Medicine Name: </label><input type='text' id='txtMedName_" + $rowId + "' value='" + itemData.Medicine + "'/><br/>";
+                $newMedicine += "<label id='lblQuantity_" + $rowId + "' class='infoLabel'>Quantity to take: </label><input type='text' id='txtQuantity_" + $rowId + "' value='" + itemData.Quantity + "'/><br/>";
+                $newMedicine += "<label id='lblDays_" + $rowId + "' class='infoLabel'>For how many days: </label><input type='text' id='txtDays_" + $rowId + "' value='" + itemData.Days + "' /><br/>";
+                $newMedicine += "</td>";
+                $newMedicine += "</tr>";
+                $('#tblMedDetail tr:last').before($newMedicine);
+                $rowId = eval($rowId + 1);
+            });
+            
         }
     });
 }
 
 $(document).ready(function () {
 
-    $mediArray = [];
-    $firstRow = true;
+
     $("#cphSiteMasterBody_hdfPresId").val("0")
 
     $('#cphSiteMasterBody_pnlDetails').hide();
@@ -73,50 +90,40 @@ $(document).ready(function () {
 
             clearMedicineDetails();
 
-            getPatientPrescription();
+            getPatientPrescription($appId);
         }
     });
 
     $('#cphSiteMasterBody_btnAddMed').click(function (e) {
         e.preventDefault();
         // alert($mediArray.length);
-        if ($firstRow) {
+        if ($rowId == 0) {
             $newMedicine = "<tr>";
             $newMedicine += "<td style='padding:10px;'>";
-            $newMedicine += "<label id='lblMedName_" + eval($mediArray.length) + "' class='infoLabel'>Medicine Name: </label><input type='text' id='txtMedName_" + eval($mediArray.length) + "'/><br/>";
-            $newMedicine += "<label id='lblQuantity_" + eval($mediArray.length) + "' class='infoLabel'>Quantity to take: </label><input type='text' id='txtQuantity_" + eval($mediArray.length) + "'/><br/>";
-            $newMedicine += "<label id='lblDays_" + eval($mediArray.length) + "' class='infoLabel'>For how many days: </label><input type='text' id='txtDays_" + eval($mediArray.length) + "' /><br/>";
+            $newMedicine += "<label id='lblMedName_" + $rowId + "' class='infoLabel'>Medicine Name: </label><input type='text' id='txtMedName_" + $rowId + "'/><br/>";
+            $newMedicine += "<label id='lblQuantity_" + $rowId + "' class='infoLabel'>Quantity to take: </label><input type='text' id='txtQuantity_" + $rowId + "'/><br/>";
+            $newMedicine += "<label id='lblDays_" + $rowId + "' class='infoLabel'>For how many days: </label><input type='text' id='txtDays_" + $rowId + "' /><br/>";
             $newMedicine += "</td>";
             $newMedicine += "</tr>";
             $('#tblMedDetail tr:last').before($newMedicine);
             $firstRow = false;
+            $rowId = eval($rowId + 1);
         }
         else {
-            $name = $('#txtMedName_' + $mediArray.length).val();
-            $quant = $('#txtQuantity_' + $mediArray.length).val();
-            $day = $('#txtDays_' + $mediArray.length).val();
-
+            $name = $('#txtMedName_' + eval($rowId-1)).val();
+            $quant = $('#txtQuantity_' + eval($rowId - 1)).val();
+            $day = $('#txtDays_' + eval($rowId - 1)).val();
             if ($name != '' && $quant != '' && $day != '') {
-                var newObj = { "MedName": $name, "Quantity": $quant, "Days": $day };
-
-                var medicineInfo = new Object();
-                medicineInfo.PrescriptionId = 0;
-                medicineInfo.Medicine = $name;
-                medicineInfo.Timings = "Morning";
-                medicineInfo.Days = $day;
-                medicineInfo.Quantity = $quant;
-
-                $mediArray[$mediArray.length] = medicineInfo;
-                // alert('length = ' + $mediArray.length);
 
                 $newMedicine = "<tr>";
                 $newMedicine += "<td style='padding:10px;'>";
-                $newMedicine += "<label id='lblMedName_" + eval($mediArray.length) + "' class='infoLabel'>Medicine Name: </label><input type='text' id='txtMedName_" + eval($mediArray.length) + "'/><br/>";
-                $newMedicine += "<label id='lblQuantity_" + eval($mediArray.length) + "' class='infoLabel'>Quantity to take: </label><input type='text' id='txtQuantity_" + eval($mediArray.length) + "'/><br/>";
-                $newMedicine += "<label id='lblDays_" + eval($mediArray.length) + "' class='infoLabel'>For how many days: </label><input type='text' id='txtDays_" + eval($mediArray.length) + "' /><br/>";
+                $newMedicine += "<label id='lblMedName_" + $rowId + "' class='infoLabel'>Medicine Name: </label><input type='text' id='txtMedName_" + $rowId + "'/><br/>";
+                $newMedicine += "<label id='lblQuantity_" + $rowId + "' class='infoLabel'>Quantity to take: </label><input type='text' id='txtQuantity_" + $rowId + "'/><br/>";
+                $newMedicine += "<label id='lblDays_" + $rowId + "' class='infoLabel'>For how many days: </label><input type='text' id='txtDays_" + $rowId + "' /><br/>";
                 $newMedicine += "</td>";
                 $newMedicine += "</tr>";
                 $('#tblMedDetail tr:last').before($newMedicine);
+                $rowId = eval($rowId + 1);
             }
             else {
                 alert('A single medicine is allowed at a time!');
@@ -126,11 +133,11 @@ $(document).ready(function () {
 
     $('#cphSiteMasterBody_btnSU').click(function (e) {
         e.preventDefault();
+        $mediArray.splice(0, $mediArray.length);
         $appId = $('#cphSiteMasterBody_txtSearch').val();
         $presId = $("#cphSiteMasterBody_hdfPresId").val();
         $presDate = $("#cphSiteMasterBody_txtDate").val();
         $rept = $("#cphSiteMasterBody_txtRepeat").val();
-
 
         $.ajax({
             type: "POST",
@@ -140,59 +147,173 @@ $(document).ready(function () {
             dataType: "json",
             success: function (msg) {
                 $("#cphSiteMasterBody_hdfPresId").val(msg.d);
-                console.log('No error in prescription----' + $("#cphSiteMasterBody_hdfPresId").val());
+                $newPresId = msg.d;
+                $rowInd = 0;
+                $('#tblMedDetail tr:not(:last-child)').each(function (rowIndex, element) {
+                    //alert($(this).find('#txtMedName_' + $rowInd).val());
+
+                    $name = $(this).find('#txtMedName_' + $rowInd).val();
+                    $quant = $(this).find('#txtQuantity_' + $rowInd).val();
+                    $day = $(this).find('#txtDays_' + $rowInd).val();
+
+                    if ($name != '' && $quant != '' && $day != '') {
+
+                        var medicineInfo = new Object();
+                        medicineInfo.PrescriptionId = $newPresId;
+                        medicineInfo.Medicine = $name;
+                        medicineInfo.Timings = "Morning";
+                        medicineInfo.Days = $day;
+                        medicineInfo.Quantity = $quant;
+
+                        $mediArray[$mediArray.length] = medicineInfo;
+                    }
+
+                    $rowInd++;
+                });
+
+                if ($newPresId != "0") {
+                    $.ajax({
+                        type: "POST",
+                        url: "../wsPrescriptions.asmx/savePresDetails",
+                        data: JSON.stringify({ medDetails: $mediArray }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            var elem = msg.d;
+                            console.log('No error in details----' + elem);
+                        },
+                        error: function (er) {
+                            console.log("This is details:------  " + er);
+                        }
+                    });
+                }
             },
             error: function (er) {
                 alert('error in prescription');
                 console.log("This is prescription:------  " + er);
             }
         });
-
-
-
-        $name = $('#txtMedName_' + $mediArray.length).val();
-        $quant = $('#txtQuantity_' + $mediArray.length).val();
-        $day = $('#txtDays_' + $mediArray.length).val();
-
-        if ($name != '' && $quant != '' && $day != '') {
-
-            var medicineInfo = new Object();
-            medicineInfo.PrescriptionId = $("#cphSiteMasterBody_hdfPresId").val();
-            medicineInfo.Medicine = $name;
-            medicineInfo.Timings = "Morning";
-            medicineInfo.Days = $day;
-            medicineInfo.Quantity = $quant;
-
-            $mediArray[$mediArray.length] = medicineInfo;            
-        }
-
-        $rowInd = 0;
-        $('#tblMedDetail tr:not(:last-child)').each(function () {
-            $mediArray[$rowInd].PrescriptionId = $("#cphSiteMasterBody_hdfPresId").val();
-            $rowInd++;
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "../wsPrescriptions.asmx/savePresDetails",
-            data:JSON.stringify({ medDetails: $mediArray }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (msg) {
-                var elem = msg.d;
-                console.log('No error in details----' + elem);
-            },
-            error: function (er) {
-                console.log("This is details:------  " + er);
-            }
-        });
     });
+
+    //$('#cphSiteMasterBody_btnAddMed').click(function (e) {
+    //    e.preventDefault();
+    //    // alert($mediArray.length);
+    //    if ($firstRow) {
+    //        $newMedicine = "<tr>";
+    //        $newMedicine += "<td style='padding:10px;'>";
+    //        $newMedicine += "<label id='lblMedName_" + eval($mediArray.length) + "' class='infoLabel'>Medicine Name: </label><input type='text' id='txtMedName_" + eval($mediArray.length) + "'/><br/>";
+    //        $newMedicine += "<label id='lblQuantity_" + eval($mediArray.length) + "' class='infoLabel'>Quantity to take: </label><input type='text' id='txtQuantity_" + eval($mediArray.length) + "'/><br/>";
+    //        $newMedicine += "<label id='lblDays_" + eval($mediArray.length) + "' class='infoLabel'>For how many days: </label><input type='text' id='txtDays_" + eval($mediArray.length) + "' /><br/>";
+    //        $newMedicine += "</td>";
+    //        $newMedicine += "</tr>";
+    //        $('#tblMedDetail tr:last').before($newMedicine);
+    //        $firstRow = false;
+    //    }
+    //    else {
+    //        $name = $('#txtMedName_' + $mediArray.length).val();
+    //        $quant = $('#txtQuantity_' + $mediArray.length).val();
+    //        $day = $('#txtDays_' + $mediArray.length).val();
+
+    //        if ($name != '' && $quant != '' && $day != '') {
+    //            var newObj = { "MedName": $name, "Quantity": $quant, "Days": $day };
+
+    //            var medicineInfo = new Object();
+    //            medicineInfo.PrescriptionId = 0;
+    //            medicineInfo.Medicine = $name;
+    //            medicineInfo.Timings = "Morning";
+    //            medicineInfo.Days = $day;
+    //            medicineInfo.Quantity = $quant;
+
+    //            $mediArray[$mediArray.length] = medicineInfo;
+    //            // alert('length = ' + $mediArray.length);
+
+    //            $newMedicine = "<tr>";
+    //            $newMedicine += "<td style='padding:10px;'>";
+    //            $newMedicine += "<label id='lblMedName_" + eval($mediArray.length) + "' class='infoLabel'>Medicine Name: </label><input type='text' id='txtMedName_" + eval($mediArray.length) + "'/><br/>";
+    //            $newMedicine += "<label id='lblQuantity_" + eval($mediArray.length) + "' class='infoLabel'>Quantity to take: </label><input type='text' id='txtQuantity_" + eval($mediArray.length) + "'/><br/>";
+    //            $newMedicine += "<label id='lblDays_" + eval($mediArray.length) + "' class='infoLabel'>For how many days: </label><input type='text' id='txtDays_" + eval($mediArray.length) + "' /><br/>";
+    //            $newMedicine += "</td>";
+    //            $newMedicine += "</tr>";
+    //            $('#tblMedDetail tr:last').before($newMedicine);
+    //        }
+    //        else {
+    //            alert('A single medicine is allowed at a time!');
+    //        }
+    //    }
+    //});
+
+    //$('#cphSiteMasterBody_btnSU').click(function (e) {
+    //    e.preventDefault();
+    //    $appId = $('#cphSiteMasterBody_txtSearch').val();
+    //    $presId = $("#cphSiteMasterBody_hdfPresId").val();
+    //    $presDate = $("#cphSiteMasterBody_txtDate").val();
+    //    $rept = $("#cphSiteMasterBody_txtRepeat").val();
+    //    $newPresId = 0;
+
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "../wsPrescriptions.asmx/savePrescription",
+    //        data: "{ prescriptionId: '" + $presId + "',  appointmentId: '" + $appId + "', repeat: '" + $rept + "', presDate: '" + $presDate + "'}",
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: "json",
+    //        success: function (msg) {
+    //            $("#cphSiteMasterBody_hdfPresId").val(msg.d);
+    //            $newPresId = msg.d;
+    //            //console.log('No error in prescription----' + $("#cphSiteMasterBody_hdfPresId").val());
+
+    //            $name = $('#txtMedName_' + $mediArray.length).val();
+    //            $quant = $('#txtQuantity_' + $mediArray.length).val();
+    //            $day = $('#txtDays_' + $mediArray.length).val();
+
+    //            if ($name != '' && $quant != '' && $day != '') {
+
+    //                var medicineInfo = new Object();
+    //                medicineInfo.PrescriptionId = $newPresId;
+    //                medicineInfo.Medicine = $name;
+    //                medicineInfo.Timings = "Morning";
+    //                medicineInfo.Days = $day;
+    //                medicineInfo.Quantity = $quant;
+
+    //                $mediArray[$mediArray.length] = medicineInfo;
+    //            }
+
+    //            $rowInd = 0;
+    //            $('#tblMedDetail tr:not(:last-child)').each(function () {
+    //                $mediArray[$rowInd].PrescriptionId = $newPresId;
+    //                $rowInd++;
+    //                //alert($newPresId);
+    //            });
+
+    //            if ($newPresId != "0") {
+    //                $.ajax({
+    //                    type: "POST",
+    //                    url: "../wsPrescriptions.asmx/savePresDetails",
+    //                    data: JSON.stringify({ medDetails: $mediArray }),
+    //                    contentType: "application/json; charset=utf-8",
+    //                    dataType: "json",
+    //                    success: function (msg) {
+    //                        var elem = msg.d;
+    //                        console.log('No error in details----' + elem);
+    //                    },
+    //                    error: function (er) {
+    //                        console.log("This is details:------  " + er);
+    //                    }
+    //                });
+    //            }
+    //        },
+    //        error: function (er) {
+    //            alert('error in prescription');
+    //            console.log("This is prescription:------  " + er);
+    //        }
+    //    });
+    //});
 });
 
 function clearMedicineDetails()
 {
-
     $mediArray.splice(0, $mediArray.length);
     $('#tblMedDetail tr:not(:last-child)').remove();
+    $newPresId = 0;
+    $rowId = 0;
 }
 

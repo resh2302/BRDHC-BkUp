@@ -148,12 +148,12 @@ public partial class Admin_appointments : System.Web.UI.Page
                 string strHead = "";
                 if (string.IsNullOrEmpty(strAppointmentId))
                 {
-                    objApp.bookAppointment(strPatientUserId, ddlDoctor.SelectedValue.ToString(), txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, true);
+                    objApp.bookAppointment(strPatientUserId, ddlDoctor.SelectedValue.ToString(), txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, "Accepted");
                     strHead = "Your appointment has been booked with doctor ";
                 }
                 else
                 {
-                    objApp.updateAppointment(strAppointmentId, strPatientUserId, ddlDoctor.SelectedValue.ToString(), txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, true);
+                    objApp.updateAppointment(strAppointmentId, strPatientUserId, ddlDoctor.SelectedValue.ToString(), txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, "Accepted");
                     strHead = "Your appointment has been rescheduled with doctor ";
                 }
                 string strFullName = txtPName.Text;
