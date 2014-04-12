@@ -17,6 +17,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
     string strDocUname;
     Guid insertedInvoiceID;
     double total;
+    string  
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -276,5 +277,13 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
             gvItems.DataSource = dtCurrentTable;
             gvItems.DataBind();
         }
+    }
+
+    protected void gvSubItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvSubItems.PageIndex = e.NewPageIndex;
+        gvSubItems.DataSource = objItems.getItemsByInvoiceID();
+        gvSubItems.DataBind();
+
     }
 }

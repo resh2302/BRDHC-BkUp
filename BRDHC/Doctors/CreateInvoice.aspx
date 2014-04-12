@@ -10,8 +10,8 @@
     <asp:Panel ID="pnlContainer" Style="display: inline-block; width: 79%;" runat="server">
 
         <asp:Panel ID="pnlHead" CssClass="pnlHead" runat="server">
-        
-                <asp:Label ID="lblDashboard" CssClass="lblDashboard" runat="server" />
+
+            <asp:Label ID="lblDashboard" CssClass="lblDashboard" runat="server" />
             <asp:LinkButton ID="mnuToggle" CssClass="dashboardMenuBtn btn" PostBackUrl="#" runat="server" Text="DASHBOARD MENU" />
         </asp:Panel>
         <asp:Panel ID="pnlDashboard" CssClass="pnlDashboard fullWidth" runat="server">
@@ -48,7 +48,7 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlAmount" GroupingText="Invoice Items" runat="server">
                                 <asp:Panel ID="pnlItems" runat="server">
-                                    <asp:GridView ID="gvItems" CssClass="r_gvItems" runat="server" ShowFooter="true" OnRowDataBound="gvItems_RowDataBound" OnRowDeleting="gvItems_RowDeleting" AutoGenerateColumns="false" >
+                                    <asp:GridView ID="gvItems" CssClass="r_gvItems" runat="server" ShowFooter="true" OnRowDataBound="gvItems_RowDataBound" OnRowDeleting="gvItems_RowDeleting" AutoGenerateColumns="false">
                                         <Columns>
                                             <asp:BoundField HeaderText="Item Number" DataField="ItemNumber" />
                                             <asp:TemplateField HeaderText="Description">
@@ -60,13 +60,12 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtCost" runat="server" Text="00.00" />
                                                 </ItemTemplate>
-                                               
                                             </asp:TemplateField>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkRemove" Text="Remove" CssClass="lnk" runat="server" CommandName="Delete"  />
+                                                    <asp:LinkButton ID="lnkRemove" Text="Remove" CssClass="lnk" runat="server" CommandName="Delete" />
                                                 </ItemTemplate>
-                                                 <FooterStyle HorizontalAlign="NotSet" />
+                                                <FooterStyle HorizontalAlign="NotSet" />
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="btnAddITem" runat="server" CssClass="lnk" Text="Add Item" OnClick="btnAddITem_Click" />
                                                 </FooterTemplate>
@@ -95,7 +94,7 @@
                                             <ItemTemplate>
                                                 <%#Eval("InvoiceID") %>
                                             </ItemTemplate>
-                                            </asp:TemplateField>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Patient Name">
                                             <ItemTemplate>
                                                 <%#Eval("PatientName") %>
@@ -129,6 +128,12 @@
                                         <asp:TemplateField HeaderText="View Items">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkItems" Text="View Items" CommandArgument='<%#Eval("InvoiceID") %>' runat="server" />
+                                                <ajax:ModalPopupExtender ID="mpeItems" runat="server"
+                                                    CancelControlID="btnCancel" OkControlID="btnOkay"
+                                                    TargetControlID="lnkItems" PopupControlID="pnlItemsPopup"
+                                                    PopupDragHandleControlID="PopupHeader" Drag="true"
+                                                    BackgroundCssClass="ModalPopupBG">
+                                                </ajax:ModalPopupExtender>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -140,65 +145,99 @@
                     <ajax:TabPanel ID="tabPaid" runat="server" HeaderText="Paid Invoices">
                         <ContentTemplate>
                             <asp:GridView ID="gvPaid" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvInvoices_PageIndexChanging">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Invoice ID">
-                                            <ItemTemplate>
-                                                <%#Eval("InvoiceID") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Patient Name">
-                                            <ItemTemplate>
-                                                <%#Eval("PatientName") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Created On">
-                                            <ItemTemplate>
-                                                <%#Eval("CreatedOn") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Created By">
-                                            <ItemTemplate>
-                                                <%#Eval("CreatedBy") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Due On">
-                                            <ItemTemplate>
-                                                <%#Eval("DueOn") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Status (Remove this)">
-                                            <ItemTemplate>
-                                                <%#Eval("Status") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Total Amount">
-                                            <ItemTemplate>
-                                                <%#Eval("TotalAmt") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Transaction ID">
-                                            <ItemTemplate>
-                                                <%#Eval("TransactionID") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Paid On">
-                                            <ItemTemplate>
-                                                <%#Eval("PaidOn") %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="View Items">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lnkItems" Text="View Items" CommandArgument='<%#Eval("InvoiceID") %>' runat="server" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Invoice ID">
+                                        <ItemTemplate>
+                                            <%#Eval("InvoiceID") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Patient Name">
+                                        <ItemTemplate>
+                                            <%#Eval("PatientName") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Created On">
+                                        <ItemTemplate>
+                                            <%#Eval("CreatedOn") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Created By">
+                                        <ItemTemplate>
+                                            <%#Eval("CreatedBy") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Due On">
+                                        <ItemTemplate>
+                                            <%#Eval("DueOn") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Status (Remove this)">
+                                        <ItemTemplate>
+                                            <%#Eval("Status") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Total Amount">
+                                        <ItemTemplate>
+                                            <%#Eval("TotalAmt") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Transaction ID">
+                                        <ItemTemplate>
+                                            <%#Eval("TransactionID") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Paid On">
+                                        <ItemTemplate>
+                                            <%#Eval("PaidOn") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="View Items">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkItems" Text="View Items" CommandArgument='<%#Eval("InvoiceID") %>' runat="server" />
+
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
                         </ContentTemplate>
                     </ajax:TabPanel>
                 </ajax:TabContainer>
 
             </asp:Panel>
         </asp:Panel>
+    </asp:Panel>
+
+    <%-- Modal --%>
+    <asp:Panel ID="pnlItemsPopup" Style="display: none" runat="server">
+        <div class="popupItems">
+            <div class="PopupHeader" id="PopupHeader">
+                Invoice ID :
+                                                        <asp:Label ID="lblID" runat="server" Text='<%#Eval("InvoiceID") %>' />
+            </div>
+            <div class="PopupBody">
+
+                <asp:GridView ID="gvSubItems" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="3" OnPageIndexChanging="gvSubItems_PageIndexChanging">
+                    <%--add page index thing--%>
+                    <Columns>
+                        <asp:TemplateField HeaderText="Item Name">
+                            <ItemTemplate>
+                                <%#Eval("ItemName") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Item Cost">
+                            <ItemTemplate>
+                                <%#Eval("ItemCost") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+
+            </div>
+            <div class="Controls">
+                <input id="btnOkay" type="button" value="Done" />
+                <input id="btnCancel" type="button" value="Cancel" />
+            </div>
+        </div>
     </asp:Panel>
 </asp:Content>
 

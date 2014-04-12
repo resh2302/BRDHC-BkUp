@@ -28,3 +28,20 @@ padding:5px;
     color: #004153;
     text-decoration: underline;
 }
+
+/* modal style */
+.ModalPopupBG
+{
+    background-color: #a4cebe;
+    filter: alpha(opacity=50);
+    opacity: 0.4;
+}
+
+.popupItems
+{
+    min-width:200px;
+    min-height:150px;
+    background:white;
+    padding: 20px;
+    border-radius: 4px;
+}
