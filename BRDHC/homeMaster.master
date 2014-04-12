@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="App_Themes/Theme/contactUs.css" />
     <link href="App_Themes/Theme/home.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="App_Themes/HealthTools/healthTools.css" />
+    <link rel="stylesheet" href="App_Themes/HealthTools/responsiveGrid.css" />
 
      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>

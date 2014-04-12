@@ -27,7 +27,6 @@
     background:#6c6e58;
 }
 
-
 .Menu ul li a {
     color: #fff;
     line-height: 40px;  
@@ -39,20 +38,26 @@
     background-color: #b5be64; 
 }
 
-@media screen and (max-width: 990px)
- {
+@media screen and (max-width: 990px){
     .Menu {
-        width:50%;
+        width:100%;
         margin: 0 auto;
     }
     .Menu ul{  
        width:100%;      
-    }      
-    .headerMenu li   /*.Menu li*/
-    {       
-      width:100%;
-     }  
+    } 
     
+    .Menu li {       
+      width:33.3333%;
+     }
+         
+    /*.headerMenu li {       
+      width:100%;
+     }*/
+      
+    .Menu ul ul li {
+        width: 100%;
+    }
    .Menu a {  
        /*marki commented out: text-align: left;*/   
        font-size:14px; 
@@ -70,7 +75,8 @@
     
     .slicknav_nav {  
         width:100%;
-        border-bottom: 0;  
+        border-bottom: 0;
+        background-color: #fff; 
     }  
     .slicknav_nav ul {  
         height: auto;  
@@ -143,9 +149,10 @@
 
 .slicknav_menu {
 	font-size:16px;
+    background-color: #fff;
 }
 .slicknav_btn {
-	margin: 5px 5px 6px;	
+	margin: 26px 5px 5px;	
 	text-decoration:none;	
 	/*text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);*/	
 	-webkit-border-radius: 4px;
@@ -153,6 +160,14 @@
 	border-radius: 4px;  
 	background-color: #6c6e58;
 }
+
+
+@media (max-width:480px) {
+    .slicknav_btn {
+    margin: 10px 5px 5px;
+    }
+}
+
 /* Button Text */
 .slicknav_menu  .slicknav_menutxt {	
 	color: #FFF;
