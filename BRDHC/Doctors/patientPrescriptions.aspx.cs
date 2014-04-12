@@ -16,4 +16,11 @@ public partial class Doctors_patientPrescriptions : System.Web.UI.Page
         }
 
     }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+        clsPrescriptions objPres = new clsPrescriptions();
+        IQueryable<brdhc_PatientPrescription> o = objPres.getPrescription("1");
+        IQueryable<brdhc_PrescriptionDetail> details = objPres.getPrescriptionDetails(1);
+    }
 }

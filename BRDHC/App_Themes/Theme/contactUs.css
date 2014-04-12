@@ -36,6 +36,17 @@ width:450px;
     border-bottom: 2px solid #b2bb5d;
     color: #668d8e;
 }
+
+
+#link
+{
+    float:right;
+}
+
+.fheader {
+    font-size: 20px;
+    color: #668d8e;
+}
 .message {
 color:red;
 font-size:24px;

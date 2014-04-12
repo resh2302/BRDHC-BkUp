@@ -1,17 +1,30 @@
-﻿.rm_leftBox {
-    display: inline-block;
-    width: 45%;
-}
-
-.rm_rightBox {
-    display: inline-block;
-    width: 45%;
-}
-
-.itemTxt {
-    margin : 0;
-}
+﻿
 
 .itemBtn {
     padding: 2px;
+}
+
+.r_gvItems {
+    text-align : center;
+}
+
+.r_gvItems input[type="text"] {
+    margin: 0 !important;
+}
+
+select {
+padding:5px;
+    margin-left: -15px !important;
+    border:solid 1px #a4cebe;
+    font-size:15px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.fullWidth {
+    width: 100% !important;
+}
+
+.lnk {
+    color: #004153;
+    text-decoration: underline;
 }

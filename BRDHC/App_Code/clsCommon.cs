@@ -60,8 +60,6 @@ public class clsCommon
         return cities;
     }
     
- 
-
     public DataTable getMenusByRoleName(string roleName)
     {DataTable dtbl = new DataTable();
         CommonDataContext objCommon = new CommonDataContext();
@@ -69,6 +67,7 @@ public class clsCommon
         {
             var menu =
                 from m in objCommon.brdhc_DashboardMenus
+                where (m.RoleName.ToLower() != ("Patients").ToLower())
                 orderby m.MenuTitle
                 select m;
             dtbl = LINQToDataTable(menu);
@@ -77,7 +76,7 @@ public class clsCommon
         {
             var menu =
                 from m in objCommon.brdhc_DashboardMenus
-                where (m.RoleName == roleName.ToLower())
+                where (m.RoleName.ToLower() == roleName.ToLower())
                 orderby m.MenuTitle
                 select m;
             dtbl = LINQToDataTable(menu);
@@ -308,35 +307,38 @@ public class clsCommon
 
         //Get the file name
         string fileName = frame.GetFileName();
-        string[] file = fileName.Split('\\');
-        string finalFileName = file[file.Count() - 1].ToString();
-
-        //Get the method name
-        string methodName = frame.GetMethod().Name; //returns PermissionDemand
-
-        //Get the line number from the stack frame
-        int line = frame.GetFileLineNumber(); //returns 0
-
-        //Get the column number
-        int col = frame.GetFileColumnNumber(); //returns 0    
-
-
-        // create a new table with one row and this table is similar in schema with the table in database
-        brdhc_ErrorLog svTable = new brdhc_ErrorLog()
+        if (!string.IsNullOrEmpty(fileName))
         {
-            FileName = finalFileName,
-            MethodName = methodName,
-            EventName = eventName,
-            LineNumber = line,
-            ColumnNumber = col,
-            Message = ex.Message.ToString(),
-            ExceptionType = ex.GetType().ToString(),
-            ExceptionTime = DateTime.Now
-        };
-        CommonDataContext obj = new CommonDataContext();
-        // call the function to save the row into actual database table
-        obj.brdhc_ErrorLogs.InsertOnSubmit(svTable);
-        obj.SubmitChanges();
+            string[] file = fileName.Split('\\');
+            string finalFileName = file[file.Count() - 1].ToString();
+
+            //Get the method name
+            string methodName = frame.GetMethod().Name; //returns PermissionDemand
+
+            //Get the line number from the stack frame
+            int line = frame.GetFileLineNumber(); //returns 0
+
+            //Get the column number
+            int col = frame.GetFileColumnNumber(); //returns 0    
+
+
+            // create a new table with one row and this table is similar in schema with the table in database
+            brdhc_ErrorLog svTable = new brdhc_ErrorLog()
+            {
+                FileName = finalFileName,
+                MethodName = methodName,
+                EventName = eventName,
+                LineNumber = line,
+                ColumnNumber = col,
+                Message = ex.Message.ToString(),
+                ExceptionType = ex.GetType().ToString(),
+                ExceptionTime = DateTime.Now
+            };
+            CommonDataContext obj = new CommonDataContext();
+            // call the function to save the row into actual database table
+            obj.brdhc_ErrorLogs.InsertOnSubmit(svTable);
+            obj.SubmitChanges();
+        }
 
     }
     public IQueryable<brdhc_ErrorLog> getErrorLogs()

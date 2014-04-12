@@ -122,4 +122,10 @@
       <Column Name="Speciality" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.sp_getAllPatientNames" Method="sp_getAllPatientNames">
+    <ElementType Name="sp_getAllPatientNamesResult">
+      <Column Name="patientName" Type="System.String" DbType="VarChar(101) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

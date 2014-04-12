@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
 using System.Web.Services;
 
 /// <summary>
@@ -33,6 +34,70 @@ public class wsPrescriptions : System.Web.Services.WebService {
         System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
 
         return js.Serialize(data);
+    }
+
+    [WebMethod]
+    public string getPresDetails(string prescriptionId)
+    {
+        clsPrescriptions objPres = new clsPrescriptions();
+        IQueryable<brdhc_PrescriptionDetail> details = objPres.getPrescriptionDetails(Convert.ToInt32(prescriptionId));
+        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+        return js.Serialize(details);
+    }
+    
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string savePrescription(string prescriptionId, string appointmentId, string repeat, string presDate)
+    {
+        clsPrescriptions objPres = new clsPrescriptions();
+        string strResult = "0";
+        if (prescriptionId != "0")
+        {
+            strResult = prescriptionId;
+        }
+        else {
+            try
+            {
+                strResult = objPres.savePrescription(Convert.ToInt32(appointmentId), Convert.ToInt32(repeat), Convert.ToDateTime(presDate));
+            }
+            catch (Exception ex)
+            {
+                clsCommon.saveError(ex);
+                strResult = "0";
+            }
+        }
+        return strResult;
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+   // public string savePrescription(string appointmentId, string repeat, string presDate, List<brdhc_PrescriptionDetail> medDetails)
+    public string savePresDetails(List<brdhc_PrescriptionDetail> medDetails)
+    {
+        clsPrescriptions objPres = new clsPrescriptions();
+        string strResult = "";
+        if (medDetails.Count>0)
+        {
+            try
+            {
+                objPres.deletePresDetails(medDetails[0].PrescriptionId);
+                foreach (brdhc_PrescriptionDetail objDet in medDetails)
+                {
+                    objPres.savePrescriptionDetails(Convert.ToInt32(objDet.PrescriptionId), objDet.Medicine.ToString(), objDet.Timings.ToString(), Convert.ToInt32(objDet.Days), Convert.ToInt32(objDet.Quantity));
+                }
+
+                strResult = "pass";
+            }
+            catch (Exception ex)
+            {
+                clsCommon.saveError(ex);
+                strResult = ex.ToString();
+            }
+        }
+
+        return strResult;
     }
     
 }
