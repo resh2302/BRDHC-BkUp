@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class volunteer : System.Web.UI.Page
 {
-    //private static string _OppId = "1";
+    private static string _OppId = "1";
 
     volunteerClass objVol = new volunteerClass();
 
@@ -20,7 +20,6 @@ public partial class volunteer : System.Web.UI.Page
         }
     }
 
-    // Get all the opportunites from the db and load them into the repeater
     protected void loadOpps()
     {
         IQueryable<brdhc_volunteerOpp> objOpps = objVol.getOpps();

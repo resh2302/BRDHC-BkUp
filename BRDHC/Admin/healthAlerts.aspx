@@ -1,15 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" ValidateRequest="false" Theme="Theme" AutoEventWireup="true" CodeFile="healthAlerts.aspx.cs" Inherits="Admin_healthAlerts" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/brdhc.master" ValidateRequest="false" Theme="HealthTools" AutoEventWireup="true" CodeFile="healthAlerts.aspx.cs" Inherits="Admin_healthAlerts" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
+
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 
 <asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
-<asp:Content ID="cntBody" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
-    <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
-        <link href="../styles/healthAlerts.css" rel="stylesheet" />
+<link href="../styles/healthAlerts.css" rel="stylesheet" />
         <script type="text/javascript" src="../js/healthAlert.js"></script>
+</asp:Content>
 
+<asp:Content ID="cntBody" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
+
+    <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
+        
         <asp:UpdatePanel ID="updPanel" runat="server">
             <ContentTemplate>
 

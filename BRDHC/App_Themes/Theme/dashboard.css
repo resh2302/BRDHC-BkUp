@@ -29,11 +29,11 @@
     width:100%;
     background-color:#a4cebe;
     margin-bottom:10px;
-    border-radius:10px;
+    border-radius:5px;
     color:#004153;
     font-weight:bold;
-    font-family: 'Roboto Slab', serif;
-    box-shadow: 0 5px 5px #bdc3c4;
+    font-family: 'Roboto', serif;
+    /*box-shadow: 0 5px 5px #bdc3c4;*/
     text-align:left;
 }
 .infoLabel {
@@ -42,7 +42,7 @@
     margin-bottom:10px;
     padding:5px 5px 5px 10px;
     font-size:15px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
     border:solid 1px #a4cebe;
     border-radius:15px;
     width: 170px;
@@ -52,20 +52,22 @@
     width: 170px;
     text-align:left;
     display:inline-block;
+    color: #fff;
 }
 .pnlContent input[type="text"] {
     padding:5px;
     margin-left:-15px;
+    margin-right: 10px;
     border:solid 1px #a4cebe;
     font-size:15px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
 }
 .passLabel {
     background-color:#668d8e;
     width:100px;
     padding:5px;
     font-size:15px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
     border:solid 1px #a4cebe;
     border-radius:15px;
     text-align:left;
@@ -76,7 +78,7 @@
     padding:5px;
     border:solid 1px #a4cebe;
     font-size:15px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
 }
 
 .statusMsg { /* added by Reshma */

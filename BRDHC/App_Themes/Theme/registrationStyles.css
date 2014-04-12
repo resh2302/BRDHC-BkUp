@@ -8,7 +8,7 @@ td.formHeader {
     font-weight: bold;
 }
 td.displayHeader {
-    background-color: gray; 
+    background-color: #417378; 
     font-size: 24px; 
     color: white;
 }#divDetails td {
@@ -22,14 +22,16 @@ td.displayHeader {
     border-spacing: 1px;
 }
 #divDetails tr.itemTemp {
-    background-color: #F6E3CE;
+    background-color: #6C6E58; /*light gray*/
+    color: #fff;
 }
 #divDetails tr.altItemTemp {
-    background-color: #E0E0F8;
+    background-color: #B2BB5D; /*lime green*/
+    color: #fff;
 }
 
 #divDetails tr.colHeaderRow{
-    background-color: #151B54; 
+    background-color: #A4CFBE; /*light aqua*/
     font-size: 20px; 
     color: white; 
     height: 20px

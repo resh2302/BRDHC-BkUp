@@ -1,12 +1,12 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/healthTools.master" AutoEventWireup="true" CodeFile="giftShopWelcome.aspx.cs" Theme="HealthTools" Inherits="giftShopWelcome" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="giftShopWelcome.aspx.cs" Theme="HealthTools" Inherits="giftShopWelcome" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     
+    <div id="container">
     <asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
-
     <div class="msAll96 msOH">
 
          <div class="msLeft60">
@@ -43,7 +43,8 @@
         </div>
 
       </div>
-        
+      
+    </div>      
     </asp:Panel>
-
+    </div>
 </asp:Content>

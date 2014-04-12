@@ -1,16 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="contactUs.aspx.cs" Inherits="contactUs" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="contactUs.aspx.cs" Inherits="contactUs" Theme="HealthTools" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDr1FaTphJdx4IHRCbOcts4k46ayhsKw70&sensor=false"></script>
 <script src="<%# Page.ResolveClientUrl("~/js/googleMapD.js") %>"></script>
 <link rel="stylesheet" href="App_Themes/Theme/contactUs.css" />
-
-
 </asp:Content>
 
-
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
+
+<div id="container">
+<asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
+<div class="msAll98 msPadBot10 msOH">
+
     <div id="contactLeft">
     <section id="cHeader">Contact Us</section>
         <h2>Leave Us a Message</h2>
@@ -38,8 +40,10 @@
         <br />
         <asp:Button ID="btn_msg" Text="Send" runat="server" CommandName="Insert" OnClientClick="return confirm('Are you sure you would like to send a Message?')" OnCommand="subMessage" />
         <br />
-
     </div>
+
+
+
     <section id="contactRight">
     <script>
         var directionsDisplay;
@@ -130,5 +134,9 @@
         <br />
         <input type="button" name="Go" value="Get Directions" onclick="getDirections()" />
     </section>
-</asp:Content>
 
+
+</div>
+</asp:Panel>
+</div>
+</asp:Content>

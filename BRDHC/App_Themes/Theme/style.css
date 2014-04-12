@@ -1,23 +1,21 @@
 ﻿body 
 {
-  font-family:'Palatino Linotype';
-  background-color:white;
-  margin:0 auto;
-  width:100%;
+  font-family:'Lato', sans-serif;
+  /*background-color:white;*/
+  margin: 0 auto;
+  width: 100%;
   padding: 0;
 }
 
 
-#container
-{
-    
-  margin:0px auto; 
-  width:990px;
-  max-width:100%;
+#container {  
+  margin: 0 auto; 
+  width: 990px;
+  max-width: 100%;
 }
 
 
- .header_container{
+.header_container {
 	width: 990px;
 	margin: 0 auto;
 	overflow: hidden;
@@ -102,7 +100,7 @@ font-size:1.1em;
 
 #logo_template h1
      {
-         display:none;
+         /*display:none;*/
         
      }
 
@@ -136,7 +134,7 @@ ul {
     list-style: none;
 }
 h1 {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Roboto', serif;
     font-weight:bold;
 	font-size: 20px;
 }
@@ -507,7 +505,7 @@ h1 {
     color: #668d8e;
     text-transform: uppercase;
     font-weight:bold;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
     font-size: 1.5em;
 }
 
@@ -539,7 +537,7 @@ h1 {
 
     /* Buttons */
 
-input[type="submit"], input[type="button"], input[type="reset"], button, .btn, .btnUpdate, .btnAdd, .pinkBtn {
+/*input[type="submit"], input[type="button"], input[type="reset"], button, .btn, .btnUpdate, .btnAdd, .pinkBtn {
     border: none;
     background: #cf7671;
     box-shadow: 0px 3px 0px 0px #8B524F;
@@ -554,21 +552,22 @@ input[type="submit"], input[type="button"], input[type="reset"], button, .btn, .
 	font-family: 'Helvetica Neue', Helvetica, sans-serif;
     min-width:120px;
     text-transform:uppercase;
-}
+}*/
 
 input[type="submit"].btnCancel, input[type="reset"] , .greyBtn {
-    background: #6c6e58;
-box-shadow: 0px 3px 0px 0px #43443B;
+    background: #6C6E58;
+/*marki changed box-shadow: 0px 3px 0px 0px #43443B;*/
 }
 
 input[type="submit"].redBtn , .redBtn {
-    background: #DF5048;
+    background: #cf7671;
+    /*marki changed background: #DF5048;*/
 }
 
 input[type="submit"].greenBtn, .greenBtn {
     /*background: #b5be64;*/
     background: #A6AF58;
-    box-shadow: 0px 3px 0px 0px #757A4A;
+    /*marki change box-shadow: 0px 3px 0px 0px #757A4A;*/
 }
 
 input[type="submit"]:hover, input[type="button"]:hover,button:hover, .btn:hover, .btnUpdate:hover, .btnAdd:hover , .pinkBtn:hover {
@@ -626,7 +625,7 @@ table.blueTable td, table.blueTable th {
 .blueTable th {
     color:#004153;
     font-weight:bold;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
     background-color:#a4cebe;
     box-shadow: inset 0 -10px 10px -10px #668d8e;
     overflow:auto;
@@ -720,7 +719,7 @@ table.blueTable td, table.blueTable th {
 
 .pnlEmergencyNewTime {
     text-align:center;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
 }
 
     .pnlEmergencyNewTime legend {

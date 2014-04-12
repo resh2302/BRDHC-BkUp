@@ -11,7 +11,7 @@
         <div class="msAll98 msPadBot10 msOH">
         <asp:Label ID="lbl_vol_opp" runat="server" Text="Volunteer Opportunities" CssClass="msHeader2" />
         <br />
-        <asp:Label ID="lbl_select" runat="server" Text="Click on the opportunity titles below to see more information, then select the opportunities you are interested in applying for:::" CssClass="msPara" />
+        <asp:Label ID="lbl_select" runat="server" Text="Click on the opportunity titles below to see more information, then select the opportunities you are interested in applying for:" CssClass="msPara" />
         </div>
 
         <div class="msAll90 msOH">

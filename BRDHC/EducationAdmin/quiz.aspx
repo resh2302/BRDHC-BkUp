@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/healthTools.master" AutoEventWireup="true" CodeFile="quiz.aspx.cs" Theme="HealthTools" Inherits="EducationAdmin_quiz" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="quiz.aspx.cs" Theme="HealthTools" Inherits="EducationAdmin_quiz" %>
 
-<%@ MasterType VirtualPath="~/healthTools.master" %>
+<%@ MasterType VirtualPath="~/brdhc.master" %>
 
-<asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+<%--<asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>--%>
 
 <asp:Content ID="cntBody" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
 

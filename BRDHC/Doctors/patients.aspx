@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" Theme="Theme" CodeFile="patients.aspx.cs" Inherits="Doctors_patients" %>
 
 <asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
-<asp:Content ID="cntBody" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     <script type="text/javascript" src="../js/doctorsJScript.js"></script>
+</asp:Content>
+
+<asp:Content ID="cntBody" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
+
+    <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
+
     <asp:Label ID="lblErr" runat="server"></asp:Label>
     <asp:Panel ID="pnlForm" runat="server">
         <div id="divForm">
@@ -227,6 +231,7 @@
 
             </table>
         </div>
+    </asp:Panel>
     </asp:Panel>
 </asp:Content>
 

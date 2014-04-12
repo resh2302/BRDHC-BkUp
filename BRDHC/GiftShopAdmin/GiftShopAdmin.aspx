@@ -1,13 +1,13 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/healthTools.master" AutoEventWireup="true" Theme="HealthTools" CodeFile="GiftShopAdmin.aspx.cs" Inherits="GiftShopAdmin_GiftShopAdmin" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/brdhc.master"  AutoEventWireup="true" Theme="HealthTools" CodeFile="GiftShopAdmin.aspx.cs" Inherits="GiftShopAdmin_GiftShopAdmin" %>
 
-<%@ MasterType VirtualPath="~/healthTools.master" %>
+<%@ MasterType VirtualPath="~/brdhc.master" %>
 
-<asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+<%--<asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>--%>
 
 <asp:Content ID="cntBody" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
 
-            <asp:Panel ID="pnlContent" CssClass="pnlContent msPadTop10" runat="server">
+            <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
                 
                 <asp:Panel ID="pnl_cards" GroupingText="GIFT SHOP - CARDS" runat="server" CssClass="msPadTop10">
 
@@ -91,8 +91,7 @@
                         </asp:DetailsView>
 
                     </asp:Panel>--%>
-
-
+    
             </asp:Panel>
 
 </asp:Content>

@@ -1,27 +1,27 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/healthTools.master" AutoEventWireup="true" CodeFile="healthToolsQuizQues.aspx.cs" Theme="HealthTools" Inherits="healthToolsQuizQues" %>
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+<%--<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>--%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         
         <ContentTemplate>
-            
-            <asp:Panel ID="pnlResults" runat="server">
-                <div class="msPadTop30 msPadBot30">
-                <asp:Label ID="lblResults" runat="server" CssClass="msHeader3 msImp" />
-                </div>
-            </asp:Panel>
 
             <asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
+            
+            <asp:Panel ID="pnlResults" runat="server">
+                <asp:Label ID="lblResults" runat="server" CssClass="msHeader3 msImp" />
+            </asp:Panel>
 
                 <asp:Label ID="quizH2" runat="server" Text="Healthy Eating Quiz" CssClass="msHeader2 msCenter" />
                 <br />
                 <br />
                 <asp:Label runat="server" ID="lblO" />
+
+                <div class="msAll70">
 
                 <asp:GridView ID="grid_quiz" runat="server" AllowPaging="true" PageSize="1" AutoGenerateColumns="false" DataKeyNames="QuestionID" OnPageIndexChanging="grid_page" GridLines="None">
 
@@ -33,12 +33,12 @@
                         <asp:TemplateField>
 
                             <HeaderTemplate>
-                                <asp:Label ID="quizH3" runat="server" Text="Which is the healthier option??" CssClass="msHeader3 msPadBot20" />
+                                <asp:Label ID="quizH3" runat="server" Text="Which is the healthier option?" CssClass="msHeader3 msPadBot20" />
                             </HeaderTemplate>
 
                             <ItemTemplate>
 
-                                <div class="msAll90">
+                                
 
                                     <div class="msLeft50 msCenter msPadBot30">
 

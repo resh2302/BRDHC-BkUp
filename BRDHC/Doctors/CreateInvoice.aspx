@@ -1,13 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/brdhc.master" CodeFile="CreateInvoice.aspx.cs" Inherits="Doctors_CreateInvoice" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/brdhc.master" CodeFile="CreateInvoice.aspx.cs" Inherits="Doctors_CreateInvoice" Theme="HealthTools" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     <%--REquired--%>
     <asp:Panel ID="pnlContainer" Style="display: inline-block; width: 79%;" runat="server">
+
         <asp:Panel ID="pnlHead" CssClass="pnlHead" runat="server">
-            <asp:Label ID="lblDashboard" CssClass="lblDashboard" runat="server" />
+        
+                <asp:Label ID="lblDashboard" CssClass="lblDashboard" runat="server" />
             <asp:LinkButton ID="mnuToggle" CssClass="dashboardMenuBtn btn" PostBackUrl="#" runat="server" Text="DASHBOARD MENU" />
         </asp:Panel>
         <asp:Panel ID="pnlDashboard" CssClass="pnlDashboard" runat="server">

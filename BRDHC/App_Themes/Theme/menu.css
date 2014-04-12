@@ -9,36 +9,29 @@
    font-family: 'PT Sans', Arial, sans-serif;  
 }
 
-.Menu ul
-{  
+.Menu ul {  
     background: #6c6e58;
     padding: 0;  
     margin: 0 auto; 
 }
 
+.Menu ul li {
+    text-align:center;
+    min-width: 160px;
+    height:40px;
+    border-bottom: 1px solid #b5be64;    
+}
 
-.Menu ul ul li
-{
-    width: auto;
+.Menu ul ul li {
+    width: 0 auto;
     background:#6c6e58;
 }
-.Menu ul li
-{
-    text-align:center;
-    height:40px;
-    border-bottom: 1px solid #b5be64;
-    
-}
+
 
 .Menu ul li a {
     color: #fff;
-    /*border-bottom: 0;*/
     line-height: 40px;  
-    min-width:160px;
     padding: 0 8px;
-    width: 100%;
-    /*max-width:300px;*/
-    /*marki commented this out: border-right: 1px solid #b5be64;*/
 }
 
 .Menu ul li a:hover, .Menu ul li a.selected {
@@ -48,17 +41,16 @@
 
 @media screen and (max-width: 990px)
  {
-
     .Menu {
-        width:90%;
+        width:50%;
         margin: 0 auto;
     }
     .Menu ul{  
-       width:50% !important;      
+       width:100%;      
     }      
     .headerMenu li   /*.Menu li*/
     {       
-      width:50%;
+      width:100%;
      }  
     
    .Menu a {  
@@ -66,8 +58,7 @@
        font-size:14px; 
        }
 
-   .Menu ul li a
-   {
+   .Menu ul li a {
        border-right:none;
         /*commented out by marki: border-left:1px solid #b5be64 ;*/
    }
@@ -75,7 +66,7 @@
 }
 
 
-@media only screen and (max-width : 480px) {
+@media (max-width: 480px) {
     
     .slicknav_nav {  
         width:100%;
@@ -100,7 +91,7 @@
     }
 }
     
-@media only screen and (max-width : 320px) {
+@media (max-width: 320px) {
     .slicknav_nav ul li {
        max-width:320px;
      } 
@@ -231,7 +222,7 @@
 }
 
 
-@media screen and (max-width: 40em) {
+@media (max-width: 40em) {
 	.js .headerMenu {
 		display:none;
 	}
