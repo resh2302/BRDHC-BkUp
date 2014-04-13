@@ -22,7 +22,7 @@
             <ajax:TabContainer ID="tcBills" runat="server">
                 <ajax:TabPanel ID="tpPending" runat="server" HeaderText="Pending Bills" OnDemandMode="Once">
                     <ContentTemplate>
-                        <asp:GridView ID="gvPendingInvoice" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPendingInvoice_PageIndexChanging" OnRowDataBound="gvPendingInvoice_RowDataBound">
+                        <asp:GridView ID="gvPendingInvoice" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPendingInvoice_PageIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="Doctor Username">
                                     <ItemTemplate>

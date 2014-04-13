@@ -47,7 +47,6 @@ public partial class PayBills : System.Web.UI.Page
 
         List<brdhc_Invoice> inv = invoice.ToList<brdhc_Invoice>();
 
-        
         var arr = invoice.ToArray();
         string amt = arr[0].TotalAmt.ToString();
         string invID = arr[0].InvoiceID.ToString();
