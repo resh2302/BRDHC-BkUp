@@ -88,7 +88,7 @@
                     <ajax:TabPanel ID="tabPending" runat="server" HeaderText="Pending Invoices">
                         <ContentTemplate>
                             <asp:Panel ID="pnlView" GroupingText="All Invoices" runat="server">
-                                <asp:GridView ID="gvPending" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvInvoices_PageIndexChanging">
+                                <asp:GridView ID="gvPending" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPending_PageIndexChanging">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Invoice ID">
                                             <ItemTemplate>
@@ -144,11 +144,21 @@
 
                     <ajax:TabPanel ID="tabPaid" runat="server" HeaderText="Paid Invoices">
                         <ContentTemplate>
-                            <asp:GridView ID="gvPaid" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvInvoices_PageIndexChanging">
+                            <asp:GridView ID="gvPaid" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPaid_PageIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Invoice ID">
                                         <ItemTemplate>
                                             <%#Eval("InvoiceID") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Transaction ID">
+                                        <ItemTemplate>
+                                            <%#Eval("TransactionID") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Paid On">
+                                        <ItemTemplate>
+                                            <%#Eval("PaidOn") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Patient Name">
@@ -181,20 +191,10 @@
                                             <%#Eval("TotalAmt") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Transaction ID">
-                                        <ItemTemplate>
-                                            <%#Eval("TransactionID") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Paid On">
-                                        <ItemTemplate>
-                                            <%#Eval("PaidOn") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    
                                     <asp:TemplateField HeaderText="View Items">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkItems" Text="View Items" CommandArgument='<%#Eval("InvoiceID") %>' runat="server" />
-
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -216,7 +216,7 @@
             </div>
             <div class="PopupBody">
 
-                <asp:GridView ID="gvSubItems" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="3" OnPageIndexChanging="gvSubItems_PageIndexChanging">
+                <asp:GridView ID="gvSubItems" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="3"> <%--OnPageIndexChanging="gvSubItems_PageIndexChanging">--%>
                     <%--add page index thing--%>
                     <Columns>
                         <asp:TemplateField HeaderText="Item Name">

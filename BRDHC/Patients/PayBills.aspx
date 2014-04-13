@@ -67,8 +67,18 @@
                 <%--/ #tpPending--%>
                 <ajax:TabPanel ID="tpPaid" runat="server" HeaderText="Paid Bills" OnDemandMode="Once">
                     <ContentTemplate>
-                         <asp:GridView ID="gvPaidInvoice" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPendingInvoice_PageIndexChanging" OnRowDataBound="gvPendingInvoice_RowDataBound">
+                         <asp:GridView ID="gvPaidInvoice" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPaidInvoice_PageIndexChanging" OnRowDataBound="gvPaidInvoice_RowDataBound">
                             <Columns>
+                                <asp:TemplateField HeaderText="Transaction ID">
+                                    <ItemTemplate>
+                                        <%#Eval("TransactionID") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Paid On">
+                                    <ItemTemplate>
+                                        <%#Eval("PaidOn") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Doctor Username">
                                     <ItemTemplate>
                                         <%#Eval("CreatedBy") %>

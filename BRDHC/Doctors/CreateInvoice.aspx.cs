@@ -14,10 +14,9 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
     clsInvoiceItems objItems = new clsInvoiceItems();
     clsUserDetails objUser = new clsUserDetails();
 
-    string strDocUname;
+    string strDocUname = Membership.GetUser().ToString();
     Guid insertedInvoiceID;
     double total;
-    string  
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,7 +31,6 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
                 Label lblDashboard = Master.dashboardHeading;
                 lblDashboard.Text = "DOCTOR ADMIN DASHBOARD : CREATE INVOICE : " + Membership.GetUser().ToString();
                 _subRebind();
-                setInitialItemRow();
             }
         }
     }
@@ -51,7 +49,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         gvPending.DataBind();
 
         gvPaid.DataSource = objInvoice.getInvoicebyDocStatus(strDocUname, "Paid"); // get status paid
-        gvPending.DataBind();
+        gvPaid.DataBind();
 
         txtInvDate.Text = DateTime.Now.ToString();
 
@@ -76,13 +74,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         
         insertedInvoiceID = Guid.Parse(insertResult[0].ToString());
 
-        //_strMessage(Boolean.Parse(insertResult[1].ToString()), "insert invoice info");
-
-
-        // add invoice item
-        //_strMessage(objItems.insertItem(insertedInvoiceID, txtItem.Text, Convert.ToDouble(txtCost.Text)), "insert");
-
-        foreach (GridViewRow row in gvItems.Rows)
+        /*foreach (GridViewRow row in gvItems.Rows)
         {
             TextBox txtDesc = (TextBox)row.FindControl("txtItem");
             TextBox txtCost = (TextBox)row.FindControl("txtCost");
@@ -99,7 +91,9 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
                 double cost = Double.Parse(costText.ToString());
                 _strMessage(objItems.insertItem(insertedInvoiceID, desc, cost), "insert");   
             }
-        }
+
+            
+        }*/
 
         
         _subRebind();
@@ -111,28 +105,18 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         {
             lblStatus.Visible = true;
             lblStatus.Text = str + " was successful.";
-            //upStatus.Update();
                      
         }
         else
         {
             lblStatus.Visible = true;
             lblStatus.Text = "Sorry, unable to " + str + " invoice";
-            //upStatus.Update();
         }
     }
 
 
     protected void btnAddITem_Click(object sender, EventArgs e) // only create new textboxes
     {
-        //_strMessage( objItems.insertItem(insertedInvoiceID, txtItem.Text, Convert.ToDouble(txtCost.Text)), "insert");
-
-        //total = objItems.getTotal(insertedInvoiceID);
-        //txtTotal.Text = total.ToString();
-
-        //gvItems.DataSource = objItems.getItemsByInvoiceID(insertedInvoiceID);
-        //gvItems.DataBind();
-
         AddNewRowToGrid();
     }
     
@@ -220,11 +204,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         SetPreviousData();
     }
 
-    //reoverows
-    private void RemoveRows()
-    { 
-
-    }
+   
 
     protected void gvItems_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -250,12 +230,6 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         txtTotal.Text = total.ToString();
 
     }
-    protected void gvInvoices_PageIndexChanging(object sender, GridViewPageEventArgs e) // create dp for gvpaid
-    {
-        gvPending.PageIndex = e.NewPageIndex;
-        gvPending.DataSource = objInvoice.getInvoices();
-        gvPending.DataBind();
-    }
     
     protected void lnkRemove_Click(object sender, EventArgs e)
     {
@@ -279,11 +253,23 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         }
     }
 
-    protected void gvSubItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    /*protected void gvSubItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvSubItems.PageIndex = e.NewPageIndex;
         gvSubItems.DataSource = objItems.getItemsByInvoiceID();
         gvSubItems.DataBind();
 
+    }*/
+    protected void gvPaid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvPaid.PageIndex = e.NewPageIndex;
+        gvPaid.DataSource = objInvoice.getInvoicebyDocStatus(strDocUname, "Paid"); // get status pending
+        gvPaid.DataBind();
+    }
+    protected void gvPending_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvPending.PageIndex = e.NewPageIndex;
+        gvPending.DataSource = objInvoice.getInvoicebyDocStatus(strDocUname, "Pending"); // get status pending
+        gvPending.DataBind();
     }
 }

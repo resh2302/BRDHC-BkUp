@@ -35,12 +35,10 @@ public partial class PayBills : System.Web.UI.Page
 
         gvPendingInvoice.DataSource = objInvoice.getInvoicesByPatientIDandStatus(pID, "Pending");
         gvPendingInvoice.DataBind();
-    }
 
-    protected void subAdmin(object sender, CommandEventArgs e) {
-       
+        gvPaidInvoice.DataSource = objInvoice.getInvoicesByPatientIDandStatus(pID, "Paid");
+        gvPaidInvoice.DataBind();
     }
-
 
     protected void btnPay_Command(object sender, CommandEventArgs e)
     {
@@ -64,23 +62,7 @@ public partial class PayBills : System.Web.UI.Page
         _subRebind();
     }
 
-    protected void gvPendingInvoice_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            Label lblIStatus = (Label)e.Row.FindControl("lblIStatus");
-            Button btnPay = (Button)e.Row.FindControl("btnPay");
-
-            if (lblIStatus.Text == "Pending")
-            {
-                btnPay.Enabled = true;
-            }
-            else 
-            {
-                btnPay.Enabled = false;
-            }
-        }
-    }
+    
     protected void gvPendingInvoice_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         IQueryable<brdhc_Invoice> invoice = objInvoice.getInvoicesById(Guid.Parse(e.CommandArgument.ToString()));
@@ -94,4 +76,13 @@ public partial class PayBills : System.Web.UI.Page
 
         Response.Redirect("https://sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=reshSell@gmail.com&item_name=BRDHC Charges&amount=" + amt + "&item_number=" + invID);
     }
+
+    protected void gvPaidInvoice_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvPaidInvoice.PageIndex = e.NewPageIndex;
+
+        _subRebind();
+
+    }
+    
 }
