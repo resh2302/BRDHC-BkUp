@@ -11,7 +11,7 @@
     <div class="msAll98 msPadBot10 msPadTop30">
     
     <div class="bootContainer">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 msPara">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 msParaNo">
 
         <asp:Login ID="login_main" runat="server" PasswordRecoveryUrl="~/PasswordRecovery.aspx" DestinationPageUrl="~/Default.aspx" PasswordRecoveryText="Forgot Your Password?" />
     

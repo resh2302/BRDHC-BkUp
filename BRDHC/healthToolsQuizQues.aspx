@@ -24,7 +24,7 @@
                 <asp:Label runat="server" ID="lblO" />
                 </div>
 
-                <asp:GridView ID="grid_quiz" runat="server" AllowPaging="true" PageSize="1" AutoGenerateColumns="false" DataKeyNames="QuestionID" OnPageIndexChanging="grid_page" GridLines="None" CssClass="col-sm-12 msCenter">
+                <asp:GridView ID="grid_quiz" runat="server" AllowPaging="true" PageSize="1" AutoGenerateColumns="false" DataKeyNames="QuestionID" OnPageIndexChanging="grid_page" GridLines="None" CssClass="col-xs-12 msCenter">
 
                     
                     <PagerStyle HorizontalAlign="Center" Font-Size="2.7em" CssClass="msQuizNum col-xs-1 col-sm-12" />
@@ -38,21 +38,21 @@
 
                             <ItemTemplate>
              
-                                     <div class="col-sm-12 col-md-4 col-md-offset-2 msCenter msPadBot20">
+                                     <div class="col-xs-10 col-sm-4 col-sm-offset-2 msCenter msPadBot20">
                                         <asp:Image ID="imgTHIS" ImageUrl='<%#Eval ("THISimage") %>' runat="server" AlternateText="[image] of THIS" CssClass="quizImg" />
                                         <br />
                                         <br />
                                         <asp:Button CssClass="btn msBtnQuiz" runat="server" ID="msBtnThis" Text='<%#Eval ("THISname") %>' OnClick="btnThis_Click" CausesValidation="false" />
                                     </div>
 
-                                     <div class="col-sm-12 col-md-4 msCenter msPadBot20">
+                                     <div class="col-xs-10 col-sm-4 msCenter msPadBot20">
                                         <asp:Image ID="imgTHAT" ImageUrl='<%#Eval ("THATimage") %>' runat="server" AlternateText="[image] of THAT" CssClass="quizImg" />
                                         <br />
                                         <br />
                                         <asp:Button CssClass="btn msBtnQuiz" PostBackUrl="~/healthToolsQuizQues.aspx" runat="server" ID="msBtnThat" Text='<%#Eval ("THATname") %>' CausesValidation="false" OnClick="btnThat_Click" />
                                     </div>
                               
-<div class="col-sm-6 col-sm-offset-3 msCenter">
+<div class="col-sm-6 col-sm-offset-3 msCenter msMargBot30">
                                         <asp:Panel ID="pnl_mpeThis" runat="server" Visible="false" CssClass="msMpe">
 
                                             <asp:Label ID="lbl_ans" runat="server" CssClass="msHeader3" />
@@ -81,14 +81,12 @@
 
             </div>
 
-            <asp:Panel ID="pnlResults" runat="server">
-                <div class="msPadBot10 msPadTop60">
+            <asp:Panel ID="pnlResults" runat="server" CssClass="msMpe msPadBot20 msPadTop20 msMargTop50">
                 <asp:Label ID="lblResults" runat="server" CssClass="msHeader3 msImp" />
-                </div>
                 <%--<asp:image ImageUrl="~/App_Themes/HealthTools/images/quiz/gardenSalad.png" runat="server" />--%>
             </asp:Panel>
 
-            </asp:Panel>
+        </asp:Panel>
 
         </ContentTemplate>
     </asp:UpdatePanel>

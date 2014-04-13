@@ -15,7 +15,7 @@
 
                             <asp:Label runat="server" ID="lbl_mes" CssClass="msFont11 attn" />
                     
-                            <asp:GridView ID="grd_cards" runat="server" DataKeyNames="CardID" AutoGenerateColumns="False" CssClass="col-xs-12 col-sm-5" GridLines="None" >
+                            <asp:GridView ID="grd_cards" runat="server" DataKeyNames="CardID" AutoGenerateColumns="False" CssClass="col-xs-12 col-sm-6" GridLines="None" >
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
@@ -35,7 +35,7 @@
                             </asp:GridView>
 
        
-                       <div class="col-xs-12 col-sm-7">
+                       <div class="col-xs-12 col-sm-6">
 
                             <asp:DetailsView ID="dv_cards" runat="server" AutoGenerateRows="False" DataKeyNames="CardID" GridLines="None" CssClass="msMargTop30" >                              
                                 <Fields>

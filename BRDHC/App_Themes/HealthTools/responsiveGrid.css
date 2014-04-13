@@ -7,20 +7,24 @@
  */
 
 .bootContainer {
-  padding-right: 15px;
-  padding-left: 15px;
+  width: 90%;
+  padding-right: 35px;
+  padding-left: 35px;
   margin-right: auto;
   margin-left: auto;
 }
+
+/*@media (max-width: 990px) {
+  .bootContainer {
+    
+  }
+}*/
+
 @media (max-width: 768px) {
   .bootContainer {
-    width: 100%;
-  }
-}
-
-@media (max-width: 990px) {
-  .bootContainer {
-    width: 100%;
+    /*width: 90%;*/
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 

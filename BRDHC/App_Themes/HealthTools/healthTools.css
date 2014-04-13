@@ -118,6 +118,10 @@ a, .lnkbtn {
     text-decoration: none;
 }
 
+a {
+    color: #417378;
+}
+
 a:hover {
     font-weight: bold;
 }
@@ -150,14 +154,16 @@ a:hover {
 	font-family: 'Roboto', sans-serif;
     font-size: 2.8em;
 	color: #f7e6ce; /*cream*/
-    padding: 35px 20px 2px;
+    /*padding: 35px 20px 2px;*/
+    padding: 35px 0 2px;
 }
 
 .msHeader2 {
 	font-family: Arial, Verdana, sans-serif;
     font-size: 2em;
 	color: #417378; /*dark aqua*/
-    padding: 35px 20px 2px;
+    /*padding: 35px 20px 2px;*/
+    padding: 35px 0 2px;
     display: block;
 }
 
@@ -165,7 +171,6 @@ a:hover {
     font-family: Arial, Verdana, sans-serif;
     font-size: 1.2em;
 	color: #3E423A; /*dark gray*/
-    /*padding: 2px 20px;*/
     padding: 2px 0;
     line-height: 1.5em;
     display: block;
@@ -370,17 +375,13 @@ input[type="submit"], input[type="button"], input[type="reset"], button, .btn, .
 }
 
 .msQuizNum {
-    color: #fff;
-    background-color: #417378;
+    color: #B2BB5D;
+    /*background-color: #417378;*/
     margin: 5px;
 }
 
 .msQuizNum tr {
     margin: 5px;
-}
-
-a {
-    color: #A4CEBE;
 }
 
 #d_panel th, tr, td {
@@ -603,6 +604,10 @@ a {
 
 .msPadTop30 {
     padding-Top: 30px;
+}
+
+.msPadTop40 {
+    padding-Top: 40px;
 }
 
 .msPadTop60 {
