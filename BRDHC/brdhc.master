@@ -41,7 +41,7 @@
         
             <div id="wrapper_template">                
             <div id="logo_template">
-                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Login" />
+                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Logout" />
                     <img id="headerLogo" src="<%= ResolveUrl("~/images/logoBRDHCgreen.png") %>" />
                     <h1>Blind River District Health Center</h1>        
            </div>
@@ -52,6 +52,7 @@
                 <uc1:HeaderMenu ID="HeaderMenu1" runat="server" />
             </asp:Panel>
         </asp:Panel>
+
         <div id="container">
 
             <%--  CODE FROM DASHBOARD TEMPLATE --%>

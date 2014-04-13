@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/healthTools.master" CodeFile="volunteer.aspx.cs"  Theme="HealthTools" Inherits="volunteer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/healthTools.master" CodeFile="volunteer.aspx.cs"  Theme="HealthTools" Inherits="volunteer" maintainScrollPositionOnPostBack="true"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -9,6 +9,7 @@
 
        <asp:Panel ID="allOpps" runat="server">
         <div class="msAll98 msPadBot10 msOH">
+
         <asp:Label ID="lbl_vol_opp" runat="server" Text="Volunteer Opportunities" CssClass="msHeader2" />
         <br />
         <asp:Label ID="lbl_select" runat="server" Text="Click on the opportunity titles below to see more information, then select the opportunities you are interested in applying for:" CssClass="msPara" />

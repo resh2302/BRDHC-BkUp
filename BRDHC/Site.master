@@ -57,9 +57,11 @@
             </asp:Panel>
      </asp:Panel>
 
+        <div id="container">
         <asp:ContentPlaceHolder id="cphSiteMasterBody" runat="server">
         
         </asp:ContentPlaceHolder>
+        </div>
 
         <div id="footerContainer">
             <div id="footer">

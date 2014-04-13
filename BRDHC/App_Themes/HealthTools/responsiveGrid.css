@@ -12,21 +12,23 @@
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .bootContainer {
-    width: 750px;
+    width: 100%;
   }
 }
-@media (min-width: 992px) {
+
+@media (max-width: 990px) {
   .bootContainer {
-    width: 970px;
+    width: 100%;
   }
 }
-@media (min-width: 1200px) {
+
+/*@media (min-width: 1200px) {
   .bootContainer {
     width: 1170px;
   }
-}
+}*/
 /*.container-fluid {
   padding-right: 15px;
   padding-left: 15px;

@@ -165,7 +165,8 @@ a:hover {
     font-family: Arial, Verdana, sans-serif;
     font-size: 1.2em;
 	color: #3E423A; /*dark gray*/
-    padding: 2px 20px;
+    /*padding: 2px 20px;*/
+    padding: 2px 0;
     line-height: 1.5em;
     display: block;
 }
@@ -383,8 +384,26 @@ a {
 }
 
 #d_panel th, tr, td {
-    width: 700px;
+    width: 100%;
 }
+
+#cphSiteMasterBody_grid_quiz table {
+    width: 100%;
+}
+
+#cphSiteMasterBody_grid_quiz td {
+    padding: 0 10px;
+}
+
+@media (max-width: 990px) {
+    #cphSiteMasterBody_grid_quiz td {
+        padding: 0;
+    }
+}
+
+/*#cphSiteMasterBody_login_main_UserName label {
+    color: #cf7671;
+}*/
 
 .msMpe {
     padding: 30px;
@@ -411,33 +430,14 @@ a {
 
 .mslv_num_current {
     font-size: 2em;
-    color: #FBF3E8; /*cream*/
+    color: #B2BB5D; /*lime green*/
 }
-
-/*.msFormLeft {
-    float: left;
-    width: 40%;
-    font-family:Arial,Verdana,sans-serif;
-}*/
 
 .msFormLabel {
         display: block;
         padding-bottom: 12px;
         text-align: left;
 }
-
-/*.msFormRight {
-    float: Right;
-    width: 50%;
-}*/
-
-/*.msFormAll {
-    width: 60%;
-    margin: 20px auto 50px;
-    overflow: hidden;
-    text-align: center;
-}*/
-
 
 /*MARKI'S BOOTSTRAP*/
 
@@ -471,6 +471,10 @@ a {
 .msAll98 {
     width: 98%;
     margin: 0 auto;
+}
+
+.msAllMarg20 {
+    margin: 10px auto;
 }
 
 /*DIV CLASS TO FLOAT LEFT*/
@@ -669,6 +673,10 @@ a {
     margin-Top: 30px;
 }
 
+.msMargTop50 {
+    margin-Top: 50px;
+}
+
 .msMargTop300 {
     margin-top: 330px;
 }
@@ -681,6 +689,10 @@ a {
 
 .msMargR20 {
     margin-right: 20px;
+}
+
+.msLeft20 {
+    margin-left: 20px;
 }
 
 /*ALIGN CENTER*/
@@ -725,3 +737,6 @@ a {
     border-radius: 8px;
 }
 
+#cphSiteMasterBody_dv_cards td{
+    width: 0;
+}
