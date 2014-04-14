@@ -17,15 +17,18 @@
                     <asp:Label ID="lblEmpty" runat="server" Text="You have no appointments" />
                 </asp:Panel>
                 <asp:Panel ID="pnlApp" runat="server">
-                    <table>
-                        <tr>
-                            <td>Patient Name</td>
-                            <td>Date</td>
-                            <td>Time </td>
-                            <td>Reason</td>
-                            <td>Request Status</td>
-                        </tr>
+                    
                         <asp:DataList ID="dlApp" runat="server" OnItemDataBound="dlApp_ItemDataBound" OnItemCommand="dlApp_ItemCommand">
+                            <HeaderTemplate>
+                                <tr>
+                                    <td>Patient Name</td>
+                                    <td>Date</td>
+                                    <td>Time </td>
+                                    <td>Reason</td>
+                                    <td>Request Status</td>
+                                </tr>
+                            </HeaderTemplate>
+                            
                             <ItemTemplate>
                                 <tr>
                                     <td>
@@ -55,7 +58,7 @@
                                 </tr>
                             </ItemTemplate>
                         </asp:DataList>
-                    </table>
+                    
                 </asp:Panel>
 
 

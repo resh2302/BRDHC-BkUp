@@ -53,7 +53,7 @@
                                     <asp:Panel ID="pnlAmount" GroupingText="Invoice Items" runat="server">
                                         <asp:Panel ID="pnlItems" runat="server">
 
-                                            <asp:GridView ID="gvItems" CssClass="r_gvItems" runat="server" ShowFooter="true" OnRowDeleting="gvItems_RowDeleting" AutoGenerateColumns="false">
+                                            <asp:GridView ID="gvItems" CssClass="c" runat="server" ShowFooter="true" OnRowDeleting="gvItems_RowDeleting" AutoGenerateColumns="false">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Item Number" DataField="ItemNumber" />
                                                     <asp:TemplateField HeaderText="Description">
@@ -102,7 +102,7 @@
                                 <ContentTemplate>
                                     <asp:Panel ID="pnlView" CssClass="ovScroll" GroupingText="All Invoices" runat="server">
 
-                                        <asp:GridView ID="gvPending" DataKeyNames="InvoiceID" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPending_PageIndexChanging" OnRowCommand="gvPending_RowCommand">
+                                        <asp:GridView ID="gvPending" DataKeyNames="InvoiceID" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPending_PageIndexChanging" OnRowCommand="gvPending_RowCommand" CssClass="r_pendingInv">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Invoice ID">
                                                     <ItemTemplate>
@@ -272,7 +272,7 @@
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="txtICost" runat="server" Text='<%#Eval("ItemCost") %>' />
                                                                 <asp:RequiredFieldValidator ID="rfvCost" ControlToValidate="txtICost" Text="*Please enter cost" Display="Static" SetFocusOnError="true" runat="server" ValidationGroup="vgItemupdate" />
-                                                                <asp:RegularExpressionValidator ID="revCost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgItemupdate" />
+                                                                <asp:RegularExpressionValidator ID="revCost" ControlToValidate="txtICost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgItemupdate" />
                                                                 <%-- validation for number format --%>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
