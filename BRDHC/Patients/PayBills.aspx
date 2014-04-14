@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="PayBills.aspx.cs" Inherits="PayBills" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="PayBills.aspx.cs" Inherits="PayBills" Theme="Theme" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -22,7 +22,7 @@
             <ajax:TabContainer ID="tcBills" runat="server">
                 <ajax:TabPanel ID="tpPending" runat="server" HeaderText="Pending Bills" OnDemandMode="Once">
                     <ContentTemplate>
-                        <asp:GridView ID="gvPendingInvoice" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPendingInvoice_PageIndexChanging">
+                        <asp:GridView ID="gvPendingInvoice" DataKeyNames="InvoiceID" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPendingInvoice_PageIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="Doctor Username">
                                     <ItemTemplate>
@@ -52,7 +52,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="View Items">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkItems" Text="View Items" CommandArgument='<%#Eval("InvoiceID") %>' runat="server" />
+                                        <asp:LinkButton ID="lnkItems" Text="View Items" OnClick="lnkItems_Click" runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
@@ -67,7 +67,7 @@
                 <%--/ #tpPending--%>
                 <ajax:TabPanel ID="tpPaid" runat="server" HeaderText="Paid Bills" OnDemandMode="Once">
                     <ContentTemplate>
-                         <asp:GridView ID="gvPaidInvoice" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPaidInvoice_PageIndexChanging" OnRowDataBound="gvPaidInvoice_RowDataBound">
+                         <asp:GridView ID="gvPaidInvoice" runat="server" DataKeyNames="InvoiceID" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPaidInvoice_PageIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="Transaction ID">
                                     <ItemTemplate>
@@ -107,12 +107,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="View Items">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkItems" Text="View Items" CommandArgument='<%#Eval("InvoiceID") %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:Button Text="Pay Now" CssClass="btnAdd" ID="btnPay" OnCommand="btnPay_Command" runat="server" CommandArgument='<%#Eval("InvoiceID") %>' />
+                                        <asp:LinkButton ID="lnkItems" Text="View Items" OnClick="lnkItems_Click1" runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -122,6 +117,53 @@
                 <%--/ #tpPaid--%>
             </ajax:TabContainer>
             <%--/ #tcBills--%>
+             <asp:Button ID="btnInvisible" runat="server" Style="display: none" />
+
+                        <ajax:ModalPopupExtender ID="mpeItems" runat="server"
+                            OkControlID="btnOkay"
+                            TargetControlID="btnInvisible" PopupControlID="pnlItemsPopup"
+                            PopupDragHandleControlID="PopupHeader" Drag="true"
+                            BackgroundCssClass="ModalPopupBG" Enabled="true">
+                        </ajax:ModalPopupExtender>
+
+                        <asp:Panel ID="pnlItemsPopup" Style="display: none" runat="server">
+                            <div class="popupItems">
+                                <div class="PopupHeader" id="PopupHeader">
+                                    Invoice ID : 
+                            <asp:Label ID="lblID" runat="server" />
+                                </div>
+                                <div class="PopupBody">
+                                    <asp:UpdatePanel ID="upGv" runat="server" UpdateMode="Conditional">
+                                        <ContentTemplate>
+
+                                            <asp:Panel ID="gvWrapper" CssClass="r_gvWrapper" runat="server">
+
+
+                                                <asp:GridView ID="gvSubItems" runat="server" AutoGenerateColumns="False"  CssClass="gvSubItems" DataKeyNames="ItemId">
+                                                    
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="Item Name">
+                                                            <ItemTemplate>
+                                                                <%#Eval("ItemName") %>                                                                
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Item Cost">
+                                                            <ItemTemplate>
+                                                                <%#Eval("ItemCost") %>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>                                                        
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </asp:Panel>
+                                        </ContentTemplate>
+
+                                    </asp:UpdatePanel>
+                                </div>
+                                <div class="Controls">
+                                    <asp:Button ID="btnOkay" Text="CLOSE" runat="server" />
+                                </div>
+                            </div>
+                        </asp:Panel>
         </asp:Panel>
     </asp:Panel>
 

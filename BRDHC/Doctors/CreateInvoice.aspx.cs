@@ -16,7 +16,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
 
     string strDocUname = Membership.GetUser().ToString();
     Guid insertedInvoiceID;
-    double total;
+    Guid selectedInvID;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -70,11 +70,10 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
     protected void btnInsert_Click(object sender, EventArgs e)
     {
         // insert invoice
-        System.Collections.ArrayList insertResult = objInvoice.insertInvoice( Guid.Parse(txtPatientID.Text), DateTime.Parse(txtInvDate.Text),  txtCreatedBy.Text, "reason" , "Pending", DateTime.Parse(txtDueDate.Text), Double.Parse(txtTotal.Text.ToString()));
+         objInvoice.insertInvoice( Guid.Parse(txtPatientID.Text), DateTime.Parse(txtInvDate.Text),  txtCreatedBy.Text, "reason" , "Pending", DateTime.Parse(txtDueDate.Text), Double.Parse(txtTotal.Text.ToString()));
         
-        insertedInvoiceID = Guid.Parse(insertResult[0].ToString());
 
-        /*foreach (GridViewRow row in gvItems.Rows)
+        foreach (GridViewRow row in gvItems.Rows)
         {
             TextBox txtDesc = (TextBox)row.FindControl("txtItem");
             TextBox txtCost = (TextBox)row.FindControl("txtCost");
@@ -89,14 +88,13 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
             else
             {
                 double cost = Double.Parse(costText.ToString());
-                _strMessage(objItems.insertItem(insertedInvoiceID, desc, cost), "insert");   
+                objItems.insertItem(insertedInvoiceID, desc, cost);  
             }
-
             
-        }*/
+        }
 
-        
         _subRebind();
+        
     }
 
     private void _strMessage(bool flag, string str)
@@ -205,11 +203,6 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
     }
 
    
-
-    protected void gvItems_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        // to show 00.00 by default on txtCost in gvItems
-    }
     protected void btnTotal_Click(object sender, EventArgs e)
     {
         
@@ -244,22 +237,46 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
 
     protected void gvItems_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
+        //Set Previous Data on Postbacks
+        //SetPreviousData();
         if (ViewState["CurrentTable"] != null)
         {
             DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+           
             dtCurrentTable.Rows.RemoveAt(e.RowIndex);
+            ViewState["CurrentTable"] = dtCurrentTable;
+
             gvItems.DataSource = dtCurrentTable;
             gvItems.DataBind();
+            
         }
+        //Set Previous Data on Postbacks
+        SetPreviousData();
     }
 
-    /*protected void gvSubItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        gvSubItems.PageIndex = e.NewPageIndex;
-        gvSubItems.DataSource = objItems.getItemsByInvoiceID();
-        gvSubItems.DataBind();
+    
 
+   /* private void removeAllItems(GridViewDeleteEventArgs e)
+    { 
+        foreach (GridViewRow row in gvItems.Rows)
+        {
+            if (ViewState["CurrentTable"] != null)
+            {
+                DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+                if (e.RowIndex == 0)
+                {
+                    Response.Write("<script>alert('Hello');</script>");
+                }
+                else
+                {
+                    dtCurrentTable.Rows.RemoveAt(e.RowIndex);                
+                }
+                gvItems.DataSource = dtCurrentTable;
+                gvItems.DataBind();
+            }
+        }
     }*/
+
     protected void gvPaid_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvPaid.PageIndex = e.NewPageIndex;
@@ -271,5 +288,101 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         gvPending.PageIndex = e.NewPageIndex;
         gvPending.DataSource = objInvoice.getInvoicebyDocStatus(strDocUname, "Pending"); // get status pending
         gvPending.DataBind();
+    }
+    protected void lnkItems_Command(object sender, CommandEventArgs e)
+    {
+        string strSelectedInvID = e.CommandArgument.ToString();
+        lblID.Text = strSelectedInvID;
+
+        selectedInvID = Guid.Parse(lblID.Text);
+        gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
+        gvSubItems.DataBind();
+
+        
+    }
+
+
+    protected void lnkItems_Click(object sender, EventArgs e)
+    {
+        LinkButton lnkItems = sender as LinkButton;
+        GridViewRow row = (GridViewRow)lnkItems.NamingContainer;
+
+        string strSelectedInvID = gvPending.DataKeys[row.RowIndex].Value.ToString();
+        lblID.Text = strSelectedInvID;
+
+        selectedInvID = Guid.Parse(lblID.Text);
+        gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
+        gvSubItems.DataBind();
+        upMain.Update();
+        mpeItems.Show();
+    }
+
+    
+    protected void gvSubItems_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        //Get rowindex
+        int rowIndex = Convert.ToInt32(e.CommandArgument);
+        //Get Row
+        GridViewRow gvr = gvSubItems.Rows[rowIndex];
+
+        HiddenField hdfInvID = gvSubItems.Rows[rowIndex].FindControl("hdfInvID") as HiddenField;
+        HiddenField hdfItemID = gvSubItems.Rows[rowIndex].FindControl("hdfItemID") as HiddenField;
+
+        switch(e.CommandName)
+        {
+            case "update":
+                TextBox txtItem = gvSubItems.Rows[rowIndex].FindControl("txtIName") as TextBox;
+                TextBox txtICost = gvSubItems.Rows[rowIndex].FindControl("txtICost") as TextBox;
+
+                objItems.updateItem(Guid.Parse(hdfInvID.Value.ToString()), txtItem.Text.ToString(), Double.Parse(txtICost.Text.ToString()), Guid.Parse(hdfItemID.Value.ToString()));
+                break;
+
+            case "delete":
+                objItems.deleteItem(Guid.Parse(hdfItemID.Value.ToString()), Guid.Parse(hdfInvID.Value.ToString()));
+                break;
+        }
+        _subRebind();
+    }
+
+
+
+    protected void gvPending_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        //Get rowindex
+        int rowIndex = Convert.ToInt32(e.CommandArgument);
+        //Get GridViewRow
+        GridViewRow gvr = gvPending.Rows[rowIndex];
+
+        //get invoice id from label in gridview
+        Label lblID = gvPending.Rows[rowIndex].FindControl("lblID") as Label;
+
+        switch (e.CommandName)
+        {
+            case "update":
+                TextBox txtDueDate = gvPending.Rows[rowIndex].FindControl("txtDueDate") as TextBox;
+                //call update method
+                objInvoice.updateDueDate(Guid.Parse(lblID.Text), DateTime.Parse(txtDueDate.Text));
+                break;
+
+            case "delete":
+                //call delete method
+                objInvoice.deleteInvoice(Guid.Parse(lblID.Text));
+                break;
+        }
+        _subRebind();
+    }
+    protected void lnkItems_Click1(object sender, EventArgs e)
+    {
+        LinkButton lnkItems = sender as LinkButton;
+        GridViewRow row = (GridViewRow)lnkItems.NamingContainer;
+
+        string strSelectedInvID = gvPaid.DataKeys[row.RowIndex].Value.ToString();
+        lblID.Text = strSelectedInvID;
+
+        selectedInvID = Guid.Parse(lblID.Text);
+        gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
+        gvSubItems.DataBind();
+        upMain.Update();
+        mpeItems.Show();
     }
 }

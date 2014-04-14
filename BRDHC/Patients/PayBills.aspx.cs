@@ -51,7 +51,7 @@ public partial class PayBills : System.Web.UI.Page
         string amt = arr[0].TotalAmt.ToString();
         string invID = arr[0].InvoiceID.ToString();
 
-        Response.Redirect("https://sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=reshSell@gmail.com&item_name=BRDHC Charges&amount=" + amt + "&item_number=" + invID);
+        Response.Redirect("https://sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=reshSell@gmail.com&item_name=BRDHC Charges&amount=" + amt + "&item_number=" + invID+"&currency=CAD");
     }
 
     protected void gvPendingInvoice_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -62,19 +62,6 @@ public partial class PayBills : System.Web.UI.Page
     }
 
     
-    protected void gvPendingInvoice_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        IQueryable<brdhc_Invoice> invoice = objInvoice.getInvoicesById(Guid.Parse(e.CommandArgument.ToString()));
-
-        List<brdhc_Invoice> inv = invoice.ToList<brdhc_Invoice>();
-
-
-        var arr = invoice.ToArray();
-        string amt = arr[0].TotalAmt.ToString();
-        string invID = arr[0].InvoiceID.ToString();
-
-        Response.Redirect("https://sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=reshSell@gmail.com&item_name=BRDHC Charges&amount=" + amt + "&item_number=" + invID);
-    }
 
     protected void gvPaidInvoice_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -82,6 +69,36 @@ public partial class PayBills : System.Web.UI.Page
 
         _subRebind();
 
+    }
+
+    protected void lnkItems_Click(object sender, EventArgs e)
+    {
+        LinkButton lnkItems = sender as LinkButton;
+        GridViewRow row = (GridViewRow)lnkItems.NamingContainer;
+
+        string strSelectedInvID = gvPendingInvoice.DataKeys[row.RowIndex].Value.ToString();
+        lblID.Text = strSelectedInvID;
+
+        Guid selectedInvID = Guid.Parse(lblID.Text);
+        gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
+        gvSubItems.DataBind();
+        //upMain.Update();
+        mpeItems.Show();
+    }
+
+    protected void lnkItems_Click1(object sender, EventArgs e)
+    {
+        LinkButton lnkItems = sender as LinkButton;
+        GridViewRow row = (GridViewRow)lnkItems.NamingContainer;
+
+        string strSelectedInvID = gvPaidInvoice.DataKeys[row.RowIndex].Value.ToString();
+        lblID.Text = strSelectedInvID;
+
+        Guid selectedInvID = Guid.Parse(lblID.Text);
+        gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
+        gvSubItems.DataBind();
+        //upMain.Update();
+        mpeItems.Show();
     }
     
 }

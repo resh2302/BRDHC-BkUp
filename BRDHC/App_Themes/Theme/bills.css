@@ -45,3 +45,34 @@ padding:5px;
     padding: 20px;
     border-radius: 4px;
 }
+
+.PopupHeader {
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.btnRight {
+    position: relative;
+    right:0;
+}
+
+.gvSubItems {
+    margin: 20px 0;
+    width: auto;
+}
+
+.r_pnlTotal {
+    margin-top:20px;
+}
+
+.r_gvWrapper {
+    height: 150px;
+    overflow: scroll;
+    max-width: 565px;
+    text-align: center;
+}
+
+.ovScroll {
+    overflow:scroll;
+}

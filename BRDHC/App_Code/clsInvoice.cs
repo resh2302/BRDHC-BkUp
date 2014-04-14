@@ -47,10 +47,10 @@ public class clsInvoice
         return invoice;
     }
 
-    public System.Collections.ArrayList insertInvoice(Guid _pID, DateTime _createdOn, string _createdBy, string _reason, string _status, DateTime _dueOn, Double _total)
+    public void insertInvoice(Guid _pID, DateTime _createdOn, string _createdBy, string _reason, string _status, DateTime _dueOn, Double _total)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
-        using (objInvoiceDC)
+        try
         {
             Guid invoiceID = Guid.NewGuid();
             Console.Write(invoiceID);
@@ -66,20 +66,18 @@ public class clsInvoice
 
             objInvoiceDC.brdhc_Invoices.InsertOnSubmit(objInv);
             objInvoiceDC.SubmitChanges();
-                     
 
-            System.Collections.ArrayList idBool = new System.Collections.ArrayList();
-            idBool.Add(invoiceID);
-            idBool.Add(true);
-
-            return idBool;
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
         }
     }
 
-    public bool insertAmount(Guid invoiceID, double amount)
+   /* public void insertAmount(Guid invoiceID, double amount)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
-        using (objInvoiceDC)
+        try
         {
             brdhc_Invoice objInv = new brdhc_Invoice();
             objInv.TotalAmt = amount;
@@ -87,10 +85,13 @@ public class clsInvoice
             objInvoiceDC.brdhc_Invoices.InsertOnSubmit(objInv);
             objInvoiceDC.SubmitChanges();
 
-            return true;
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
         }
     }
-
+    */
     public void updateTransaction(Guid invID, string txID, DateTime txDate)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -108,4 +109,56 @@ public class clsInvoice
             clsCommon.saveError(ex);
         }
     }
+
+    public void updateDueDate(Guid invID, DateTime dueOn)
+    {
+        InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
+        try
+        {
+            var inv = objInvoiceDC.brdhc_Invoices.Single(x => x.InvoiceID == invID);
+            inv.DueOn = dueOn;
+            objInvoiceDC.SubmitChanges();
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+        }
+    }
+
+    public void deleteInvoice(Guid invID)
+    { 
+        
+       try
+        {
+           // delete all invoice items with this invID
+            // respective datacontext object
+            InvoiceItemDataContext objItemDC = new InvoiceItemDataContext();
+
+            //get rows to delete
+            var delItem = from i in objItemDC.brdhc_InvoiceItems where (i.InvoiceID == invID) select i;
+
+            // delete from table
+            objItemDC.brdhc_InvoiceItems.DeleteAllOnSubmit(delItem);
+            //commit delete
+            objItemDC.SubmitChanges();
+
+           // delete invoice
+           InvoicesDataContext objInvDC = new InvoicesDataContext();
+
+           //get row to delete
+           var delInv = from i in objInvDC.brdhc_Invoices where (i.InvoiceID == invID) select i;
+
+           //delete from table
+           objInvDC.brdhc_Invoices.DeleteAllOnSubmit(delInv);
+           //commit delete
+           objInvDC.SubmitChanges();
+            
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            
+        }
+    }
+    
 }

@@ -105,8 +105,8 @@ public partial class brdhc_InvoiceItem : INotifyPropertyChanging, INotifyPropert
 	{
 		OnCreated();
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(AutoSync = AutoSync.OnInsert,IsDbGenerated=true ,Storage = "_ItemId", DbType = "UniqueIdentifier NOT NULL", IsPrimaryKey = true)]
 	public System.Guid ItemId
 	{
 		get
