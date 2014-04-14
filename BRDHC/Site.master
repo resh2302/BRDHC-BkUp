@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Blind River District Health Centre</title>
 
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
 
@@ -46,8 +47,8 @@
                 <div id="logo_template">
 
                     <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Login" />
-                    <img id="headerLogo" src="<%= ResolveUrl("~/images/logoBRDHCgreen.png") %>" />
-                    <h1>Blind River District Health Center</h1>
+                    <asp:ImageButton ID="headerLogo" runat="server" ImageUrl="~/images/logoBRDHCgreen.png"  PostBackUrl="~/home.aspx" />
+                    <asp:Label runat="server" Text="Blind River District Health Centre" CssClass="hh1" />
                 </div>
         </div>
           
