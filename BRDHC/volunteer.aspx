@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/healthTools.master" CodeFile="volunteer.aspx.cs"  Theme="HealthTools" Inherits="volunteer" maintainScrollPositionOnPostBack="true"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Site.master" CodeFile="volunteer.aspx.cs"  Theme="HealthTools" Inherits="volunteer" maintainScrollPositionOnPostBack="true"  %>
 
 <%--overriding content on the masterpage--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">

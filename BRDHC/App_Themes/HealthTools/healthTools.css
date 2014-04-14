@@ -102,6 +102,14 @@ html, body {
     width: 100%;
 }
 
+.pnlHomeContainer {
+    background: rgba(251,243,232,0.9);
+    height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
 .msLineBot {
     border-bottom: 4px solid #B2BB5D;
 }
@@ -132,12 +140,20 @@ a:hover {
     letter-spacing: 0.1em;
     padding-bottom: 0.5em;
     text-transform: uppercase;
+    font-weight: bold;
     display: block;
 }
 
 .msh3home {
     font-family: Arial, Verdana, sans-serif;
     font-size: 1.4em;
+    padding-bottom: 0.2em;
+    display: block;
+}
+
+.msh4home {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 2.25em;
     padding-bottom: 0.2em;
     display: block;
 }
