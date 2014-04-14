@@ -30,8 +30,7 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
         {
             Label lblDashboard = Master.dashboardHeading;
             lblDashboard.Text = "EDUCATION DASHBOARD : HEALTH QUIZ";
-            _subRebind();
-            
+            _subRebind();         
         }
     }
 
@@ -60,7 +59,7 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
         }
     }
 
-    protected void subUpDel(object sender, ListViewCommandEventArgs e)
+    protected void ltv_all_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -93,8 +92,8 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
 
     protected void DataPager_PreRender(object sender, EventArgs e)
     {
-        ltv_all.DataSource = objquiz.getQues();
-        ltv_all.DataBind();
+            ltv_all.DataSource = objquiz.getQues();
+            ltv_all.DataBind();
     }
 
 
@@ -125,5 +124,4 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
         }
 
     }
-
 }

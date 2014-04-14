@@ -103,7 +103,7 @@ html, body {
 }
 
 .msLineBot {
-    border-bottom: 5px solid #B2BB5D;
+    border-bottom: 4px solid #B2BB5D;
 }
 
 /* FONT */
@@ -127,8 +127,8 @@ a:hover {
 }
 
 .msh2home {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5em;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.4em;
     letter-spacing: 0.1em;
     padding-bottom: 0.5em;
     text-transform: uppercase;
@@ -144,17 +144,24 @@ a:hover {
 
 .msphome {
     font-family: Arial, Verdana, sans-serif;
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 1.4em;
-    padding-bottom: 1em;
+    padding-bottom: 0.6em;
+    display: block;
+}
+
+.mslink {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding-bottom: 0.6em;
     display: block;
 }
 
 .msHeader1 {
-	font-family: 'Roboto', sans-serif;
-    font-size: 2.8em;
+	font-family: 'Roboto Slab', sans-serif;
+    font-size: 2.2em;
 	color: #f7e6ce; /*cream*/
-    /*padding: 35px 20px 2px;*/
     padding: 35px 0 2px;
 }
 
@@ -162,7 +169,6 @@ a:hover {
 	font-family: Arial, Verdana, sans-serif;
     font-size: 2em;
 	color: #417378; /*dark aqua*/
-    /*padding: 35px 20px 2px;*/
     padding: 35px 0 2px;
     display: block;
 }
@@ -219,15 +225,13 @@ a:hover {
 
 @media (min-width: 768px) {
     .msimg_header {
-        background: url("images/imgHeader12x5.png") no-repeat;
-        min-height: 500px;
-        min-width: 750px;
-        /* Set up proportionate scaling */
+        background: url("images/imgHeader12x5.png") no-repeat center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+        height: 420px;
         width: 100%;
-        height: auto;
-        /* Set up positioning */
-        top: 0;
-        left: 0;
     }
 }
 
@@ -235,6 +239,12 @@ a:hover {
 .msimg_header {
     background: none;
   }
+.caption {
+    display: none;
+    }
+.msHeader1 {
+    font-size: 1.8em;
+}
 }
 
 .mswrapper_h1 {
@@ -682,8 +692,8 @@ input[type="submit"], input[type="button"], input[type="reset"], button, .btn, .
     margin-Top: 50px;
 }
 
-.msMargTop300 {
-    margin-top: 330px;
+.msMargTop250 {
+    margin-top: 250px;
 }
 
 /*MARGIN RIGHT LEFT*/

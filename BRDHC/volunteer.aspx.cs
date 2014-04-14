@@ -10,8 +10,10 @@ public partial class volunteer : System.Web.UI.Page
 {
     private static string _OppId = "1";
 
+    //creating a new instance of the volunteerClass
     volunteerClass objVol = new volunteerClass();
 
+    //binding data on page load
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -20,6 +22,7 @@ public partial class volunteer : System.Web.UI.Page
         }
     }
 
+    //loading the opportunities into the repeater
     protected void loadOpps()
     {
         IQueryable<brdhc_volunteerOpp> objOpps = objVol.getOpps();
@@ -41,6 +44,7 @@ public partial class volunteer : System.Web.UI.Page
         ltv_opps.DataBind();
     }
 
+    
     protected void rptOpps_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         switch (e.CommandName)

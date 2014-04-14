@@ -8,8 +8,11 @@ using System.Web.UI.WebControls;
 
 public partial class giftShopSendACard : System.Web.UI.Page
 {
+    
+    //creating a new instance of our class
     clsGiftShopCard ObjCard = new clsGiftShopCard();
     
+    //binding data on page load
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -18,6 +21,7 @@ public partial class giftShopSendACard : System.Web.UI.Page
         }
     }
 
+    //inserting data the insert textboxes
     protected void btnSendFlowers_Command(object sender, CommandEventArgs e)
     {
         if (e.CommandName == "Insert")
@@ -29,6 +33,7 @@ public partial class giftShopSendACard : System.Web.UI.Page
 
     }
 
+    //making a panelControl to toggle the visibility of panels
     private void _panelControl(Panel pnl)
     {
         pnlMsMsg.Visible = false;
@@ -36,6 +41,7 @@ public partial class giftShopSendACard : System.Web.UI.Page
         pnl.Visible = true;
     }
 
+    //
     private void _subRebind()
     {
         msSACYourName.Text = string.Empty;

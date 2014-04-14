@@ -7,8 +7,10 @@ using System.Web.UI.WebControls;
 
 public partial class giftShopSendFlowers : System.Web.UI.Page
 {
-
+    //creating a new instance of the giftShopStoreClass
     giftShopStoreClass objBou = new giftShopStoreClass();
+    
+    //linding data on page load
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -19,6 +21,7 @@ public partial class giftShopSendFlowers : System.Web.UI.Page
         //String Name = FindControl("lbl_name");
     }
 
+    //binding data in the repeater
     protected void _subBind()
     {
         rpt_shop.DataSource = objBou.getBouquets();

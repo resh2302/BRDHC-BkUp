@@ -8,30 +8,39 @@ using System.Web.UI.WebControls;
 public partial class GiftShopAdmin_GiftShopStoreFront : System.Web.UI.Page
 {
 
+    //creating a new instance of the giftShopStore class
     giftShopStoreClass objBou = new giftShopStoreClass();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Label lblDashboard = Master.dashboardHeading;
-        lblDashboard.Text = "ADMIN DASHBOARD : GIFT SHOP";
-        _subRebind();
+        if (!Page.IsPostBack)
+        {
+            //overriding the master dashboard heading
+            Label lblDashboard = Master.dashboardHeading;
+            lblDashboard.Text = "ADMIN DASHBOARD : GIFT SHOP";
+            //binding data on pageload
+            _subRebind();
+        }
     }
 
+    //binding data to the repeater
     private void _subRebind()
     {
         rpt_all.DataSource = objBou.getBouquets();
         rpt_all.DataBind();
     }
 
-
+    //fileupload
     protected void UploadButton_Click(object sender, EventArgs e)
     {
         if (FileUploadPhoto.HasFile)
         {
             try
             {
+                //checking the file type
                 if (FileUploadPhoto.PostedFile.ContentType == "image/jpeg")
                 {
+                   //checking the file size, equale to 700 kb
                     if (FileUploadPhoto.PostedFile.ContentLength < 716800)
                     {
                         string filename = FileUploadPhoto.PostedFile.FileName;
@@ -52,6 +61,7 @@ public partial class GiftShopAdmin_GiftShopStoreFront : System.Web.UI.Page
 
     }
 
+    //inserting a new bouquet
     protected void subInsert(object sender, CommandEventArgs e)
     {
         switch (e.CommandName)
@@ -65,6 +75,7 @@ public partial class GiftShopAdmin_GiftShopStoreFront : System.Web.UI.Page
         }
     }
 
+    //success or failure message
     private void _strMes(bool flag, string str)
     {
         if (flag)
@@ -77,6 +88,7 @@ public partial class GiftShopAdmin_GiftShopStoreFront : System.Web.UI.Page
         }
     }
 
+    //update, delete, cancel
     protected void subUpDel(object sender, RepeaterCommandEventArgs e)
     {
         switch (e.CommandName)

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class giftShopThankyou : System.Web.UI.Page
 {
+    //creating a new instance of the GiftShopCard class
     clsGiftShopCard ObjCard = new clsGiftShopCard();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -16,8 +17,8 @@ public partial class giftShopThankyou : System.Web.UI.Page
         var price = Request.QueryString["amt"];
 
         lbl_thk.Text = "THANK YOU for your purchase.<br /><br />A receipt has been sent to the email that you provided. <br /><br /> If you would like to include a handwritten card please fill in your details and message below. " + id + status + price;
-        //You will be notified via email once the flowers have been delivered
         
+
         if (!Page.IsPostBack)
         {
             _subRebind();
