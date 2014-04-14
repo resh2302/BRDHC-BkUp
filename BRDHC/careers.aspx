@@ -1,11 +1,8 @@
-﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="careers.aspx.cs" Inherits="careers" Theme="HealthTools" %>
+﻿<%@ Page ValidateRequest="false" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="careers.aspx.cs" Inherits="careers" Theme="HealthTools" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
     <script type="text/javascript">
         $(function () {
             $(".displayCareers").accordion({
@@ -16,6 +13,16 @@
 
 
     </script>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
+    
+
+<asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
+
+       <asp:Panel ID="allOpps" runat="server">
+        <div class="msAll90 msPadBot10 msOH">
+
 <div id="careerWrapper">
 
     
@@ -91,6 +98,10 @@
 
 </div>
 
+
+</div>
+</asp:Panel>
+</asp:Panel>
 
 </asp:Content>
 

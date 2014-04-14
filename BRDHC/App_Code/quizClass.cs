@@ -44,7 +44,7 @@ public class quizClass
             objNewQuiz.THIScalories = _THIScalories;
             objNewQuiz.THISfat = _THISfat;
             objNewQuiz.THATname = _THATname;
-            objNewQuiz.THATimage = _THISimage;
+            objNewQuiz.THATimage = _THATimage;
             objNewQuiz.THATcalories = _THATcalories;
             objNewQuiz.THATfat = _THATfat;
             objNewQuiz.Answer = _Answer;

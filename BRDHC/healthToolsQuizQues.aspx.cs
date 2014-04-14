@@ -82,16 +82,16 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
     {
         if (grid_quiz.PageIndex < grid_quiz.PageCount - 1 )
         {
-            pnlContainer.Visible = true;
+            pnlQuiz.Visible = true;
             pnlResults.Visible = false;
             grid_quiz.PageIndex++;
             _subBind();
         }
         else
         {
-            pnlContainer.Visible = false;
+            pnlQuiz.Visible = false;
             pnlResults.Visible = true;
-            lblResults.Text = "Thank you for trying the Healthy Eating Quiz!<br /> You got" + score.ToString() + "answers correct.";
+            lblResults.Text = "Thank you for trying the Healthy Eating Quiz!<br /><br /> You scored " + score.ToString() + " out of 10.";
         }
 
     }

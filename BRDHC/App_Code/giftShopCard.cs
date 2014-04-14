@@ -24,6 +24,7 @@ public class clsGiftShopCard
         return allCard;
     }
 
+    //THIS IS AN INSERT
     public bool commitInsert(string _sName, string _sEmail, string _pName, string _pRoomNum, string _to, string _from, string _message)
     {
         GiftShopCardDataContext objCard = new GiftShopCardDataContext();
@@ -45,9 +46,22 @@ public class clsGiftShopCard
             //commit insert against db
             objCard.SubmitChanges();
             return true;
-        }
-    
+        }    
     }
+
+    //THIS IS A DELETE
+    public bool commitDelete(Guid _CardID)
+    {
+        GiftShopCardDataContext objCardDel = new GiftShopCardDataContext();
+        using (objCardDel)
+        {
+            var objDelCan = objCardDel.brdhc_GiftShopSendCards.Single(x => x.CardID == _CardID);
+            objCardDel.brdhc_GiftShopSendCards.DeleteOnSubmit(objDelCan); //if you want to delete all best to drop the table
+            objCardDel.SubmitChanges();
+            return true;
+        }
+    }
+
 }
 
 

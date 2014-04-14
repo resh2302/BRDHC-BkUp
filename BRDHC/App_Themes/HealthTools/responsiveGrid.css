@@ -7,26 +7,32 @@
  */
 
 .bootContainer {
-  padding-right: 15px;
-  padding-left: 15px;
+  width: 90%;
+  padding-right: 35px;
+  padding-left: 35px;
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 768px) {
+
+/*@media (max-width: 990px) {
   .bootContainer {
-    width: 750px;
+    
+  }
+}*/
+
+@media (max-width: 768px) {
+  .bootContainer {
+    /*width: 90%;*/
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
-@media (min-width: 992px) {
-  .bootContainer {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
+
+/*@media (min-width: 1200px) {
   .bootContainer {
     width: 1170px;
   }
-}
+}*/
 /*.container-fluid {
   padding-right: 15px;
   padding-left: 15px;

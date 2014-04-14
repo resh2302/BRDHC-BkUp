@@ -20,16 +20,16 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
         txt_THATcaloriesI.Text = string.Empty;
         txt_THATfatI.Text = string.Empty;
         txt_AnswerI.Text = string.Empty;
-        rpt_all.DataSource = objquiz.getQues();
-        rpt_all.DataBind();
+        ltv_all.DataSource = objquiz.getQues();
+        ltv_all.DataBind();
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            //Label lblDashboard = Master.dashboardHeading;
-            //lblDashboard.Text = "EDUCATION DASHBOARD : HEALTH QUIZ";
+            Label lblDashboard = Master.dashboardHeading;
+            lblDashboard.Text = "EDUCATION DASHBOARD : HEALTH QUIZ";
             _subRebind();
             
         }
@@ -93,7 +93,37 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
 
     protected void DataPager_PreRender(object sender, EventArgs e)
     {
-        rpt_all.DataSource = objquiz.getQues();
-        rpt_all.DataBind();
+        ltv_all.DataSource = objquiz.getQues();
+        ltv_all.DataBind();
     }
+
+
+    protected void UploadButton_Click(object sender, EventArgs e)
+    {
+        if (FileUploadPhoto.HasFile)
+        {
+            try
+            {
+                if (FileUploadPhoto.PostedFile.ContentType == "image/jpeg")
+                {
+                    if (FileUploadPhoto.PostedFile.ContentLength < 716800)
+                    {
+                        string filename = FileUploadPhoto.PostedFile.FileName;
+                        FileUploadPhoto.SaveAs(Server.MapPath("~/App_Themes/HealthTools/images/quiz/") + filename);
+                        UploadStatusLabel.Text = "Upload status: File uploaded!";
+                    }
+                    else
+                        UploadStatusLabel.Text = "Upload status: The file has to be less than 700 kb.";
+                }
+                else
+                    UploadStatusLabel.Text = "Upload status: Only JPEG files are accepted!";
+            }
+            catch (Exception ex)
+            {
+                UploadStatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+            }
+        }
+
+    }
+
 }
