@@ -44,7 +44,7 @@
                                
             <div id="logo_template">
 
-                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Login" />
+                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Logout" />
                     <asp:ImageButton ID="headerLogo" runat="server" ImageUrl="~/images/logoBRDHCgreen.png"  PostBackUrl="~/home.aspx" />
                     <asp:Label ID="Label1" runat="server" Text="Blind River District Health Centre" CssClass="hh1" />
            </div>
