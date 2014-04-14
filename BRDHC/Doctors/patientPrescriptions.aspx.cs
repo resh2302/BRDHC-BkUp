@@ -29,8 +29,31 @@ public partial class Doctors_patientPrescriptions : System.Web.UI.Page
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-       // pnlTable.Visible = true;
-       // pnlDetails.Visible = false;
         loadRecords();
+    }
+    protected void btnPresSearch_Click(object sender, EventArgs e)
+    {
+        loadRecords();
+    }
+    protected void grvRecords_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            Label lbl_PrescId = (Label)e.Row.FindControl("lbl_PrescId");
+            Button lbtnEdit = (Button)e.Row.FindControl("lbtnEdit");
+            Button lbtnDelete = (Button)e.Row.FindControl("lbtnDelete");
+            Button lbtnPresc = (Button)e.Row.FindControl("lbtnPresc");
+            lbtnDelete.OnClientClick = "javascript:deletePresc('" + e.Row.RowIndex + "','" + lbl_PrescId.Text + "',this); return false;";
+
+            //if (lbl_PrescId.Text == "0")
+            //{
+            //    lbtnEdit.Visible = false;
+            //}
+            //else
+            //{
+            //   // lbtnDelete.Attributes.Add("onClientClick", "javascript:alert('hello');");
+            //    lbtnPresc.Visible = false;
+            //}
+        }
     }
 }

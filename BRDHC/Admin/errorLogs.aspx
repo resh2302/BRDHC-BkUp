@@ -6,58 +6,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
         <asp:Panel ID="pnlTable" runat="server">
-            <asp:GridView ID="grdRecords" runat="server" AutoGenerateColumns="false" AllowPaging="True" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+            <asp:GridView ID="grdRecords" runat="server" Width="100%" OnPageIndexChanging="grdRecords_PageIndexChanging" PageSize="5" AutoGenerateColumns="False" AllowPaging="True" >
                 <Columns>
-                    <asp:TemplateField HeaderText="File Name">
+                    <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Label ID="lblFileName" runat="server" Text='<%# Eval("FileName")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Method Name">
-                        <ItemTemplate>
-                            <asp:Label ID="lblMethodName" runat="server" Text='<%# Eval("MethodName")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Event Name">
-                        <ItemTemplate>
-                            <asp:Label ID="lblEventName" runat="server" Text='<%# Eval("EventName")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Line Number">
-                        <ItemTemplate>
-                            <asp:Label ID="lblLineNum" runat="server" Text='<%# Eval("LineNumber")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Column Number">
-                        <ItemTemplate>
-                            <asp:Label ID="lblColNum" runat="server" Text='<%# Eval("ColumnNumber")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Message">
-                        <ItemTemplate>
-                            <asp:Label ID="lblMessage" runat="server" Text='<%# Eval("Message")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Exception Type">
-                        <ItemTemplate>
-                            <asp:Label ID="lblEType" runat="server" Text='<%# Eval("ExceptionType")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Exception Time">
-                        <ItemTemplate>
-                            <asp:Label ID="lblETime" runat="server" Text='<%# Eval("ExceptionTime")%>'></asp:Label>
+                            <br />
+                            <asp:Label ID="lbl_FName" SkinID="grdTitles" runat="server" Text='File Name: '></asp:Label><asp:Label ID="lblFileName" runat="server" Text='<%# Eval("FileName")%>'></asp:Label><br />
+                            <asp:Label ID="lbl_MName" SkinID="grdTitles" runat="server" Text='Method Name: '></asp:Label><asp:Label ID="lblMethodName" runat="server" Text='<%# Eval("MethodName")%>'></asp:Label><br />
+                            <%--<asp:Label ID="lbl_EName" SkinID="grdTitles" runat="server" Text='Event Name: '></asp:Label><asp:Label ID="lblEventName" runat="server" Text='<%# Eval("EventName")%>'></asp:Label><br />--%>
+                            <asp:Label ID="lbl_LNumber" SkinID="grdTitles" runat="server" Text='Line Number: '></asp:Label><asp:Label ID="lblLineNum" runat="server" Text='<%# Eval("LineNumber")%>'></asp:Label><br />
+                            <asp:Label ID="lbl_CNumber" SkinID="grdTitles" runat="server" Text='Column Number: '></asp:Label><asp:Label ID="lblColNum" runat="server" Text='<%# Eval("ColumnNumber")%>'></asp:Label><br />
+                            <asp:Label ID="lbl_Mess" SkinID="grdTitles" runat="server" Text='Message: '></asp:Label><asp:Label ID="lblMessage" runat="server" Text='<%# Eval("Message")%>'></asp:Label><br />
+                            <asp:Label ID="lbl_EType" SkinID="grdTitles" runat="server" Text='Exception Type: '></asp:Label><asp:Label ID="lblEType" runat="server" Text='<%# Eval("ExceptionType")%>'></asp:Label><br />
+                            <asp:Label ID="lbl_ETime" SkinID="grdTitles" runat="server" Text='Exception Time: '></asp:Label><asp:Label ID="lblETime" runat="server" Text='<%# Eval("ExceptionTime")%>'></asp:Label><br />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                <RowStyle BackColor="White" ForeColor="#330099" />
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                <PagerSettings Mode="NumericFirstLast" FirstPageText="First" PageButtonCount="5" LastPageText="Last" />
+                <PagerStyle HorizontalAlign="Right" />
             </asp:GridView>
         </asp:Panel>
     </asp:Panel>

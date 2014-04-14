@@ -106,7 +106,7 @@ public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
     {
         if (Page.IsValid)
         {
-            if (_userBasicInfoId != string.Empty)
+            if (!string.IsNullOrEmpty(_userBasicInfoId))
             {
                 updateUser();
             }
@@ -147,38 +147,46 @@ public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
                 if (Membership.ValidateUser(newUser.ToString(), password))
                 {
                     Roles.AddUserToRole(newUser.UserName, ddlRoles.SelectedItem.Text);
-
-                    saveBasicInfo(newUser.ProviderUserKey.ToString());
-
-                    string strFullName = txtFName.Text + " " + txtLName.Text;
-                    StringBuilder strBody = new StringBuilder();
-                   // strBody.Append("<div><a href='www.brdhchumber.com'><img src='www.brdhchumber.com/images/mailHeader.jpg' /></a>");
-                    strBody.Append("<br />");
-                    strBody.Append("<br />");
-                    strBody.Append("<h3>Hi! " + strFullName + "</h3>");
-                    strBody.Append("<br />");
-                    strBody.Append("<br />");
-                    strBody.Append("You have been registered to our system. Now you can login to your account on <a href='www.brdhchumber.com'>www.brdhchumber.com</a>.");
-                    strBody.Append("<br />");
-                    strBody.Append("Please use your health card number as your user name.");
-                    strBody.Append("<br />");
-                    strBody.Append("<br />");
-                    strBody.Append("Password:   " + password);
-                    strBody.Append("<br />");
-                    strBody.Append("<b>Note: </b> Please change your password when you first login");
-                    strBody.Append("<br />");
-                    strBody.Append("Wishing you very healthy life.");
-                    strBody.Append("<br />");
-                    strBody.Append("Team Humber");
-                    //strBody.Append("<br /></div>");
-
-                    string emailResult = objCommon.sendEMail(email, strBody.ToString(), "BRDHC Humber Registration", true);
-                    if (!string.IsNullOrEmpty(emailResult))
+                    Guid newUId = new Guid(newUser.ProviderUserKey.ToString());
+                    int res=saveBasicInfo(newUId);
+                    if (res == 1)
                     {
-                        lblErr.Text = emailResult;
+                        string strFullName = txtFName.Text + " " + txtLName.Text;
+                        StringBuilder strBody = new StringBuilder();
+                        // strBody.Append("<div><a href='www.brdhchumber.com'><img src='www.brdhchumber.com/images/mailHeader.jpg' /></a>");
+                        strBody.Append("<br />");
+                        strBody.Append("<br />");
+                        strBody.Append("<h3>Hi! " + strFullName + "</h3>");
+                        strBody.Append("<br />");
+                        strBody.Append("<br />");
+                        strBody.Append("You have been registered to our system. Now you can login to your account on <a href='www.brdhchumber.com'>www.brdhchumber.com</a>.");
+                        strBody.Append("<br />");
+                        strBody.Append("Please use your health card number as your user name.");
+                        strBody.Append("<br />");
+                        strBody.Append("<br />");
+                        strBody.Append("Password:   " + password);
+                        strBody.Append("<br />");
+                        strBody.Append("<b>Note: </b> Please change your password when you first login");
+                        strBody.Append("<br />");
+                        strBody.Append("Wishing you very healthy life.");
+                        strBody.Append("<br />");
+                        strBody.Append("Team Humber");
+                        //strBody.Append("<br /></div>");
+
+                        string emailResult = objCommon.sendEMail(email, strBody.ToString(), "BRDHC Humber Registration", true);
+                        if (!string.IsNullOrEmpty(emailResult))
+                        {
+                            lblErr.Text = emailResult;
+                        }
+                        lblErr.Text = ddlRoles.SelectedItem.Text + " registered successfully!";
+                    }
+                    else
+                    {
+                        Membership.DeleteUser(newUser.UserName);
+                        lblErr.Text = "Operation failed.";
+                        
                     }
                 }
-                lblErr.Text = ddlRoles.SelectedItem.Text + " registered successfully!";
             }
             catch (Exception ex)
             {
@@ -203,9 +211,9 @@ public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
             lblErr.Text = ex.Message.ToString();
         }
     }
-    private void saveBasicInfo(string userId)
+    private int saveBasicInfo(Guid userId)
     {
-        objUDet.saveUserBasicInfo(userId, txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlStateAjax.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, txtDepartment.Text, txtJoiningDate.Text, ddlSpecialities.SelectedValue.ToString(), txtCommunityName.Text);
+       return objUDet.saveUserBasicInfo(userId, txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlStateAjax.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, txtDepartment.Text, txtJoiningDate.Text, ddlSpecialities.SelectedValue.ToString(), txtCommunityName.Text);
     }
     private void updateBasicInfo()
     {

@@ -23,4 +23,9 @@ public partial class Admin_errorLogs : System.Web.UI.Page
         grdRecords.DataSource = objCom.getErrorLogs();
         grdRecords.DataBind();
     }
+    protected void grdRecords_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grdRecords.PageIndex = e.NewPageIndex; 
+        loadRecords();
+    }
 }

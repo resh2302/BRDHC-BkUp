@@ -130,6 +130,7 @@ public partial class Doctors_patients : System.Web.UI.Page
             {
                 Membership.DeleteUser(newUser.UserName);
                 lblErr.Text = ex.Message.ToString();
+                clsCommon.saveError(ex);
             }
         }
         return result;
@@ -140,8 +141,14 @@ public partial class Doctors_patients : System.Web.UI.Page
         string strDepartment = string.Empty;
         string strSpeciality = string.Empty;
         string txtCommunity = string.Empty;
-
-        objUDet.saveUserBasicInfo(userId, txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlStateAjax.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, strDepartment, txtRegDate.Text, strSpeciality, txtCommunity);
+        try
+        {
+            objUDet.saveUserBasicInfo(new Guid(userId), txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlStateAjax.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, strDepartment, txtRegDate.Text, strSpeciality, txtCommunity);
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
     }
 
     private string GetlblErr(MembershipCreateStatus status)

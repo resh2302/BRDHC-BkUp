@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="patientPrescriptions.aspx.cs" Inherits="Doctors_patientPrescriptions" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="Theme" AutoEventWireup="true" CodeFile="patientPrescriptions.aspx.cs" Inherits="Doctors_patientPrescriptions" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../styles/patientPrescriptions.css" />
     <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
 
-        <asp:Label ID="lblErr" runat="server" Visible="false" CssClass="statusMsg" />
+        <asp:Label ID="lblErr" runat="server" CssClass="statusMsg" />
         <br />
         <asp:Panel ID="pnlDetails" GroupingText="New Prescription" runat="server" CssClass="pnlLabel">
             <asp:Panel ID="pnlSearch" runat="server" CssClass="pnlLabel">
@@ -36,12 +36,14 @@
             <asp:Label ID="lblRepeat" Text="Repeat:" runat="server" CssClass="infoLabel" />
             <asp:TextBox ID="txtRepeat" runat="server" />
             <asp:RequiredFieldValidator ID="rfvRepeat" runat="server" ControlToValidate="txtRepeat" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="grpPres"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="cmpRepeat" runat="server" ControlToValidate="txtRepeat" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="grpPres" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
             <br />
 
             <asp:Label ID="lblDate" Text="Prescription Date:" runat="server" CssClass="infoLabel" />
             <asp:TextBox ID="txtDate" runat="server" />
             <ajax:CalendarExtender ID="calDate" FirstDayOfWeek="Sunday" EnableViewState="true" Format="yyyy-MM-dd" TargetControlID="txtDate" runat="server"></ajax:CalendarExtender>
             <asp:RequiredFieldValidator ID="rfvDate" runat="server" ControlToValidate="txtDate" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="grpPres"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="cmpDate" runat="server" ControlToValidate="txtDate" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="grpPres" Operator="DataTypeCheck" Type="Date"></asp:CompareValidator>
             <br />
             <br />
             <table id="tblMedDetail" style="width: 80%; border: 1px solid black;">
@@ -63,13 +65,13 @@
             <asp:Panel ID="pnlAppSearch" GroupingText="Apppointment Search" runat="server" CssClass="pnlLabel">
                 <asp:Panel ID="pnlSearchPres" runat="server" CssClass="pnlLabel">
                     <asp:Label ID="lblName" runat="server" AssociatedControlID="txtSearchPres" Text="Search by Patient" CssClass="infoLabel"></asp:Label>
-                    <asp:TextBox ID="txtSearchPres" runat="server"></asp:TextBox><asp:Button ID="btnPresSearch" runat="server" Text="Search" CausesValidation="false" />
+                    <asp:TextBox ID="txtSearchPres" runat="server"></asp:TextBox><asp:Button ID="btnPresSearch" runat="server" Text="Search" CausesValidation="false" OnClick="btnPresSearch_Click" />
                     <br />
                     <br />
-                    <asp:GridView ID="grvRecords" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <asp:GridView ID="grvRecords" runat="server" AutoGenerateColumns="False" OnRowDataBound="grvRecords_RowDataBound" CellPadding="10" ForeColor="#333333" GridLines="None">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
-                            <asp:TemplateField>
+                            <asp:TemplateField >
                                 <ItemTemplate>
                                     <br />
                                     <asp:Label ID="lblPresId" runat="server" Text="Prescription Id: " CssClass="infoLabel"></asp:Label>&nbsp;&nbsp;<asp:Label ID="lbl_PrescId" runat="server" Text='<%#Eval("PrescriptionId") %>'></asp:Label><br />
@@ -78,12 +80,12 @@
                                     <asp:Label ID="lblHCard" runat="server" Text="Patient Health Card: " CssClass="infoLabel"></asp:Label>&nbsp;&nbsp;<asp:Label ID="lbl_HCardh" runat="server" Text='<%#Eval("HealthCard") %>'></asp:Label><br />
                                     <asp:Label ID="lblPDate" runat="server" Text="Prescription Date: " CssClass="infoLabel"></asp:Label>&nbsp;&nbsp;<asp:Label ID="lbl_PDate" runat="server" Text='<%#Eval("DateWritten") %>'></asp:Label><br />
                                     <asp:Label ID="lblRepeat" runat="server" Text="Repeate: " CssClass="infoLabel"></asp:Label>&nbsp;&nbsp;<asp:Label ID="lbl_Repeat" runat="server" Text='<%#Eval("Repeat") %>'></asp:Label><br />
-                                    <asp:LinkButton ID="lbtnEdit" runat="server" OnClientClick="return false;" Text="Edit"></asp:LinkButton>&nbsp;&nbsp;
-                                    <asp:LinkButton ID="lbtnDelete" runat="server" OnClientClick="return confirm('Are you sure to delete?');" Text="Delete"></asp:LinkButton>&nbsp;&nbsp;
-                                     <%--<a id="lbtnPresc" href="#" onclick="javascript:editPrescription('<%# Container.ItemIndex %>', 'close');return false;">Go Back</a>--%>
-                                    <asp:LinkButton ID="lbtnPresc" runat="server" OnClientClick='<%# Eval("AppointmentId","editPrescription({0}); return false;") %>' Text="New Prescription"></asp:LinkButton>&nbsp;&nbsp;
+                                    <%--<asp:Button ID="lbtnPresc" runat="server" OnClientClick='<%# Eval("AppointmentId","editPrescription({0}); return false;") %>' Text="New Prescription"></asp:Button>--%>
+                                    <asp:Button ID="lbtnEdit" runat="server" OnClientClick='<%# Eval("AppointmentId","editPrescription({0}); return false;") %>' Text="Edit"></asp:Button>&nbsp;&nbsp;
+                                    <asp:Button ID="lbtnDelete" runat="server" Text="Delete"></asp:Button>
                                     <br />
-
+                                    <br />
+                                    <%--'<%# Container.DataItemIndex %>'--%>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
