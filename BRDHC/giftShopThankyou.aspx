@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/healthTools.master" AutoEventWireup="true" CodeFile="giftShopThankyou.aspx.cs" Inherits="giftShopThankyou" Theme="HealthTools" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="giftShopThankyou.aspx.cs" Inherits="giftShopThankyou" Theme="HealthTools" %>
 
 <%--overriding content on the masterpage--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">

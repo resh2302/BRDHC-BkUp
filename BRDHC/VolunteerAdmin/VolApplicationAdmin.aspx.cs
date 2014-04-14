@@ -8,22 +8,29 @@ using System.Web.UI.WebControls;
 public partial class VolunteerAdmin_VolApplicationAdmin : System.Web.UI.Page
 {
 
+    //creating a new instance of the volAppClass
     volAppClass objApp = new volAppClass();
 
+    //binding data on page load
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
+            //overriding the master dashobard heading
+            Label lblDashboard = Master.dashboardHeading;
+            lblDashboard.Text = "VOLUNTEER ADMIN : APPLICATION";
             _subRebind();
         }
     }
 
+    //binding data to the repeater
     private void _subRebind()
     {
         rpt_App.DataSource = objApp.getApps();
         rpt_App.DataBind();
     }
 
+    //update, delete and cancel
     protected void rpt_App_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         switch (e.CommandName)
@@ -38,7 +45,7 @@ public partial class VolunteerAdmin_VolApplicationAdmin : System.Web.UI.Page
                   Label lblStudent = (Label)e.Item.FindControl("lbl_student");
                   Label lblPrevExp = (Label)e.Item.FindControl("lbl_prevExp");
                   Label lblWhyVol = (Label)e.Item.FindControl("lbl_whyVol");
-                  Label txtReviewedU = (Label)e.Item.FindControl("txt_reviewedU");
+                  TextBox txtReviewedU = (TextBox)e.Item.FindControl("txt_reviewedU");
                   HiddenField hdfAppId = (HiddenField)e.Item.FindControl("hdf_AppId");
                   Guid AppId = Guid.Parse(hdfAppId.Value.ToString());
                   _strMes(objApp.commitUpdate(AppId, lblFName.Text, lblLName.Text, lblPhone.Text, lblEmail.Text, lblAddress.Text, lblOccupation.Text, lblStudent.Text, lblPrevExp.Text, lblWhyVol.Text, txtReviewedU.Text), "update");
@@ -55,16 +62,16 @@ public partial class VolunteerAdmin_VolApplicationAdmin : System.Web.UI.Page
         }
     }
 
-
+    //success or failure message
     private void _strMes(bool flag, string str)
     {
         if (flag)
         {
-            lbl_mes.Text = "Review " + str + " was successful";
+            lbl_mes.Text = "Notes " + str + " was successful";
         }
         else
         {
-            lbl_mes.Text = "Sorry, unable to " + str + " review";
+            lbl_mes.Text = "Sorry, unable to " + str + " notes";
         }
     }
 }

@@ -14,6 +14,12 @@
   max-width: 100%;
 }
 
+#footContainer {  
+  margin: 0 auto; 
+  width: 990px;
+  max-width: 100%;
+}
+
 
 .header_container {
 	width: 990px;

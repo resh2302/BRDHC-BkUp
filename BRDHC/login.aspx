@@ -13,7 +13,7 @@
     <div class="bootContainer">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 msParaNo">
 
-        <asp:Login ID="login_main" runat="server" PasswordRecoveryUrl="~/PasswordRecovery.aspx" DestinationPageUrl="~/Default.aspx" PasswordRecoveryText="Forgot Your Password?" />
+        <asp:Login ID="login_main" runat="server" PasswordRecoveryUrl="~/PasswordRecovery.aspx" DestinationPageUrl="~/Admin/appointments.aspx" PasswordRecoveryText="Forgot Your Password?" />
     
     </div>
     </div>

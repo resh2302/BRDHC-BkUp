@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="App_Themes/HealthTools/healthTools.css" />
     <link rel="stylesheet" href="App_Themes/HealthTools/responsiveGrid.css" />
 
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css' />
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
 
@@ -39,11 +40,13 @@
         <ajax:ToolkitScriptManager ID="ajaxSM" runat="server"></ajax:ToolkitScriptManager>
         
         
-            <div id="wrapper_template">                
+            <div id="wrapper_template"> 
+                               
             <div id="logo_template">
-                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Logout" />
-                    <img id="headerLogo" src="<%= ResolveUrl("~/images/logoBRDHCgreen.png") %>" />
-                    <h1>Blind River District Health Center</h1>        
+
+                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Login" />
+                    <asp:ImageButton ID="headerLogo" runat="server" ImageUrl="~/images/logoBRDHCgreen.png"  PostBackUrl="~/home.aspx" />
+                    <asp:Label ID="Label1" runat="server" Text="Blind River District Health Centre" CssClass="hh1" />
            </div>
         </div>
 
@@ -103,52 +106,107 @@
         </asp:Panel>
             <%-- CODE ENDS --%>
         </div>
-        <div id="footerContainer">
-            <div id="footer">
-                <section id="f1">
-                    <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Site Privacy</a></li>
-                        <li><a href="#">Copyright</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Finance</a></li>
-                        <li><a href="#">Accreditation</a></li>
-                        <li><a href="#">Public Reporting</a></li>
-                    </ul>
-                </section>
-                <section id="f2">
-                    <ul>
-                        <li class="lititle">Related Links</li>
-                        <li><a href="#">Algoma EMS</a></li>
-                        <li><a href="#">Canadian Diabetes Association</a></li>
-                        <li><a href="#">Canadian Healthcare Association</a></li>
-                        <li><a href="#">Canadian Health Network</a></li>
-                        <li><a href="#">Canadian Institute for Health Information</a></li>
-                        <li><a href="#">Canadian Care Ontario</a></li>
-                        <li><a href="#">College of Dietitians of Ontario</a></li>
-                    </ul>
-                </section>
-                <section id="f3">
-                    <ul>
-                        <li class="lititle">More Related Links</li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#">Dietitions of Canada</a></li>
-                        <li><a href="#">French Language Health Services</a></li>
-                        <li><a href="#">Health Canada</a></li>
-                        <li><a href="#">Northeast Cancer Centre</a></li>
-                        <li><a href="#">Ontario Community Support Association</a></li>
-                        <li><a href="#">Ontario Telehealth</a></li>
-                        <li><a href="#">Senior's Info</a></li>
-                    </ul>
-                </section>
-                <section id="arr">
-                    <p class="msTag">© 2013 BRDHC.ON.CA ALL RIGHTS RESERVED</p>
-                </section>
+
+
+        <div class="footerContainer">  <%--styleCSS width 100%--%>
+            <div id="footContainer"> <%--styleCSS width 990 --%>
+            <div class="containerFooter"> <%--responsive CSS width 90% --%>   
+
+               <div class="col-xs-12 col-sm-4 neutralDarkBkgd msPadTop30 msPadBot10" >
+                    <div class="col-xs-12">
+                    <asp:ImageButton runat="server" ID="img_fb" ImageUrl="~/App_Themes/Theme/images/fb.png" Width="60px" PostBackUrl="~/Default2.aspx" />
+                    <asp:ImageButton runat="server" ID="img_twitter" ImageUrl="~/App_Themes/Theme/images/twitter.png" Width="60px" PostBackUrl="~/Default2.aspx" /> 
+                    </div>
+
+                    <div class="col-xs-12 msPadTop20 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainLight" ID="lb_contactUs">Contact Us</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainLight" ID="lb_privacy">Site Privacy</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainLight" ID="lb_copyright">Copyright</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainLight" ID="lb_tou" >Terms of Use</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainLight" ID="lb_finance" >Finance</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainLight" ID="lb_accreditation" >Accreditation</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainLight" ID="lb_pr" >Public Reporting</asp:LinkButton>
+                    </div>                         
+               </div>
+
+                <div class="col-xs-12 col-sm-4 neutralDarkBkgd msPadTop30 msPadBot10" >                                
+                    <div class="col-xs-12  msPadBot10">
+                    <asp:Label runat="server" ID="lbl_smap" Text="SiteMap" CssClass="mainBkgd msFont11" />
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainBkgd" ID="lbl_aboutus" >&gt; About Us</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainBkgd" ID="lbl_pv" >&gt; Patients &amp; Visitors</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainBkgd" ID="lbl_hservices" >&gt; Health Services (A-Z)</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainBkgd" ID="lbl_resources" >&gt; Resources</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainBkgd" ID="lb_support" >&gt; Support Us</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="mainBkgd" ID="lb_contact" >&gt; Contact Us</asp:LinkButton>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 neutralDarkBkgd msPadTop30 msPadBot10" >
+
+                     <div class="col-xs-12  msPadBot10">
+                    <asp:Label runat="server" ID="lbl_rlinks" Text="Related Links" CssClass="attn msFont11" />
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_algoma" >Algoma EMS</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_cda">Canadian Diabetes Association</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_chca">Canadian Healthcare Association</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_chn">Canadian Health Network</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_cihi">Canadian Insitute for Health Information</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_cco">Canadian Care Ontario</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                   <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_cdo">College of Dietitians of Ontario</asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 msPadBot5">
+                   <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" CssClass="attn" ID="lb_more">&gt; MORE</asp:LinkButton>
+                    </div>       
+                </div>
+                
+                <div class="col-xs-12 neutralDarkBkgd msPadBot30">
+                    <asp:Label runat="server" ID="lbl_rr" Text="© 2014 BRDHC.ON.CA ALL RIGHTS RESERVED" class="msTag msRight" />
+                </div>
+
             </div>
-        </div>
+            </div>
+            </div>
+
     </form>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src='<%: ResolveUrl("~/js/jquery.slicknav.js") %>'></script>
+<%--    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>--%>
+    <script type="text/javascript" src='<%= ResolveUrl("~/js/jquery.slicknav.js") %>'></script>
     <!--<script src="~/jquery.slicknav.js"></script>-->
     <script type="text/javascript">
         $(document).ready(function () {

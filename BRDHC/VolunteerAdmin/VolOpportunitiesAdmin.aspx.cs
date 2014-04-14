@@ -7,22 +7,29 @@ using System.Web.UI.WebControls;
 
 public partial class VolunteerAdmin_VolOpportunitiesAdmin : System.Web.UI.Page
 {
+        //creating an instance of the volunteerClass
         volunteerClass objVol = new volunteerClass();
 
+        //binding data on page load
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                //overriding the master dashobard heading
+                Label lblDashboard = Master.dashboardHeading;
+                lblDashboard.Text = "VOLUNTEER ADMIN : OPPORTUNITIES";
                 _subRebind();
             }
         }
 
+        //binding data to the repeater
         private void _subRebind()
         {
             rpt_AdVol.DataSource = objVol.getOpps();
             rpt_AdVol.DataBind();
         }
 
+        //insert, update, delete or cancel
         protected void rpt_AdVol_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             switch (e.CommandName)
@@ -66,8 +73,8 @@ public partial class VolunteerAdmin_VolOpportunitiesAdmin : System.Web.UI.Page
             }
         }
 
-
-         private void _strMes(bool flag, string str)
+        //success or failure message
+        private void _strMes(bool flag, string str)
         {
             if (flag)
             {
