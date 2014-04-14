@@ -26,7 +26,7 @@
                     </div>
             
                     <div class="col-xs-3 msPadTop10 msCenter">
-                        <asp:Button ID="btn_loginTab" runat="server" CssClass="btn" Text="Login" />
+                        <asp:Button ID="btn_loginTab" runat="server" CssClass="btn" Text="Login" PostBackUrl="~/login.aspx" />
                     </div>
                 </div>
         </div>
