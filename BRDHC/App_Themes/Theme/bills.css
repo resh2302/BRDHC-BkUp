@@ -76,3 +76,7 @@ padding:5px;
 .ovScroll {
     overflow:scroll;
 }
+
+.r_pendingInv input {
+    margin-left: 0 !important;
+}

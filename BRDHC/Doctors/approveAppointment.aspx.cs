@@ -59,6 +59,8 @@ public partial class approveAppointment : System.Web.UI.Page
 
     protected void dlApp_ItemDataBound(object sender, DataListItemEventArgs e)
     {
+        if (e.Item.ItemType == ListItemType.Item)
+        {
             HiddenField hdfStatus = (HiddenField)e.Item.FindControl("hdfStatus");
             if (hdfStatus.Value == "Pending")
             {
@@ -70,7 +72,12 @@ public partial class approveAppointment : System.Web.UI.Page
                 RadioButtonList rbApprove = (RadioButtonList)e.Item.FindControl("rbApprove");
                 rbApprove.SelectedValue = "Accept";
             }
-    
+            else if (hdfStatus.Value == "Rejected")
+            {
+                RadioButtonList rbApprove = (RadioButtonList)e.Item.FindControl("rbApprove");
+                rbApprove.SelectedValue = "Reject";
+            }
+        }
     }
 
     protected void dlApp_ItemCommand(object source, DataListCommandEventArgs e)
@@ -89,9 +96,12 @@ public partial class approveAppointment : System.Web.UI.Page
             string emailResult = objCom.sendEMail(email, "<br/>Your appointment request for appID :" + appID + "has been accepted", "Your Appointment at BRDHC HUMBER Hospital", true);
             _subRebind();
         }
-        else
+        else if(rbApprove.SelectedValue == "Reject")
         {
-            // set to reject .. its pending for now
+            objApp.updateAppointmentRequest(appID, "Rejected");
+            string email = Membership.GetUser(new Guid(hdfPID.Value.ToString())).Email;
+            string emailResult = objCom.sendEMail(email, "<br/>Sorry your appointment request for appID :" + appID + "has been rejected. Please contact us for further details.", "Your Appointment at BRDHC HUMBER Hospital", true);
+            _subRebind();
         }
     }
 }
