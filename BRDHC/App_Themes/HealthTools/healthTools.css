@@ -110,6 +110,14 @@ html, body {
     width: 100%;
 }
 
+.footerContainer {
+    background: #3E423A; 
+    height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
 .msLineBot {
     border-bottom: 4px solid #B2BB5D;
 }
@@ -233,7 +241,8 @@ a:hover {
 }
 
 .msTag {
-    font-size: 0.8em;
+    font-size: 0.95em;
+    color: #fff;
 }
 
 
@@ -597,6 +606,10 @@ input[type="submit"], input[type="button"], input[type="reset"], button, .btn, .
 }
 
 /*PADDING BOTTOM*/
+
+.msPadBot5 {
+    padding-bottom: 5px;
+}
 
 .msPadBot10 {
     padding-bottom: 10px;
