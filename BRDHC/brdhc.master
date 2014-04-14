@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="App_Themes/HealthTools/healthTools.css" />
     <link rel="stylesheet" href="App_Themes/HealthTools/responsiveGrid.css" />
 
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css' />
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
 
@@ -39,11 +40,13 @@
         <ajax:ToolkitScriptManager ID="ajaxSM" runat="server"></ajax:ToolkitScriptManager>
         
         
-            <div id="wrapper_template">                
+            <div id="wrapper_template"> 
+                               
             <div id="logo_template">
-                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Logout" />
-                    <img id="headerLogo" src="<%= ResolveUrl("~/images/logoBRDHCgreen.png") %>" />
-                    <h1>Blind River District Health Center</h1>        
+
+                    <asp:LinkButton CssClass="btn loginBtn" PostBackUrl="~/login.aspx" runat="server" ID="btn_login" Text="Login" />
+                    <asp:ImageButton ID="headerLogo" runat="server" ImageUrl="~/images/logoBRDHCgreen.png"  PostBackUrl="~/home.aspx" />
+                    <asp:Label ID="Label1" runat="server" Text="Blind River District Health Centre" CssClass="hh1" />
            </div>
         </div>
 
