@@ -163,4 +163,17 @@ public class clsPrescriptions
         objDataContext.SubmitChanges();
         //return svTable.PrescriptionId.ToString();
     }
+
+    public void deletePres(int prescriptionId)
+    {
+        prescriptionsDataContext objDataContext = new prescriptionsDataContext();
+        // select the particular records from databse table and delete it
+        var tblRecords =
+            from a in objDataContext.brdhc_PatientPrescriptions
+            where (a.PrescriptionId == prescriptionId)
+            select a;
+        // call the function to delete it and submit the changes
+        objDataContext.brdhc_PatientPrescriptions.DeleteAllOnSubmit(tblRecords);
+        objDataContext.SubmitChanges();
+    }
 }
