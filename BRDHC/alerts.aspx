@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/homeMaster.master" Theme="Theme" AutoEventWireup="true" CodeFile="alerts.aspx.cs" Inherits="alerts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" Theme="Theme" AutoEventWireup="true" CodeFile="alerts.aspx.cs" Inherits="alerts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="styles/healthAlerts.css" rel="stylesheet" />
     <script type="text/javascript" src="js/healthAlert.js"></script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     <div>
         <asp:Label ID="lblMsg" Visible="false" runat="server" CssClass="statusMsg"></asp:Label>
         <h1>

@@ -68,8 +68,8 @@
                                                             <asp:TextBox ID="txtCost" runat="server" Text="" />
                                                             <asp:RequiredFieldValidator ID="rfvItemCost" ControlToValidate="txtCost" Text="*Please enter cost" Display="Static" SetFocusOnError="true" runat="server" ValidationGroup="vgItem" />
                                                             <asp:RequiredFieldValidator ID="rfvCost" ControlToValidate="txtCost" Text="*Please enter cost" Display="Static" SetFocusOnError="true" runat="server" ValidationGroup="vgInsert" />
-                                                            <asp:RegularExpressionValidator ID="revICost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgItem"/>
-                                                             <asp:RegularExpressionValidator ID="revItemCost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgInsert"/>
+                                                            <%--<asp:RegularExpressionValidator ID="revICost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgItem"/>--%>
+                                                             <%--<asp:RegularExpressionValidator ID="revItemCost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgInsert"/>--%>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>

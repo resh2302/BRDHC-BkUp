@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="displayUsers.aspx.cs" MasterPageFile="~/brdhc.master" Theme="Theme" Inherits="brdhcAdmin_displayUsers" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="registration.aspx.cs" MasterPageFile="~/brdhc.master" Theme="Theme" Inherits="brdhcAdmin_registration" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
@@ -20,6 +20,15 @@
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlRoles" runat="server" AutoPostBack="true" OnSelectedIndexChanged="subRoleChange"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblIdentity" runat="server" AssociatedControlID="txtIdentity" Text="Identity: "></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtIdentity" runat="server" MaxLength="20"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvIdentity" runat="server" ControlToValidate="txtIdentity" ErrorMessage="*" Display="Dynamic" SetFocusOnError="true" ToolTip="Identity is required." ValidationGroup="grpRegister"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -119,15 +128,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="lblIdentity" runat="server" AssociatedControlID="txtIdentity" Text="Identity:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtIdentity" runat="server" MaxLength="20"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvIdentity" runat="server" ControlToValidate="txtIdentity" ErrorMessage="*" Display="Dynamic" SetFocusOnError="true" ToolTip="Identity is required." ValidationGroup="grpRegister"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <asp:Label ID="lblAddress" runat="server" AssociatedControlID="txtAddress" Text="Address:"></asp:Label>
                         </td>
                         <td>
@@ -197,18 +197,20 @@
         </asp:Panel>
         <asp:Panel ID="pnlTable" CssClass="pnlTable table-responsive" runat="server">
             <div id="divDetails">
-                <asp:Button ID="btnAdd" runat="server" Text="Add New User" OnClick="btnAdd_Click" /><br />
+                <asp:Button ID="btnAdd" runat="server" Text="New Registration" OnClick="btnAdd_Click" /><br />
                 <br />
-                <table style="width:100%; border:none;">
-                    <tr>
-                        <td style="width: 25%; text-align: right; padding: 10px; border: none;">
-                            <asp:Label ID="lblRolesDes" runat="server" Text="Role:" AssociatedControlID="ddlRoles"></asp:Label>
-                        </td>
-                        <td style="width: 50%; text-align: left; padding: 20px; border: none;">
-                            <asp:DropDownList ID="ddlRolesDes" runat="server"></asp:DropDownList>&nbsp;&nbsp;<asp:Button ID="btnSearch" runat="server" Text="Search" CausesValidation="false" OnClick="subSearchUsers" />
-                        </td>
-                    </tr>
-                </table>
+                <asp:Panel ID="pnlSearch" runat="server">
+                    <table style="width: 100%; border: none;">
+                        <tr>
+                            <td style="width: 25%; text-align: right; padding: 10px; border: none;">
+                                <asp:Label ID="lblRolesDes" runat="server" Text="Role:" AssociatedControlID="ddlRoles"></asp:Label>
+                            </td>
+                            <td style="width: 50%; text-align: left; padding: 20px; border: none;">
+                                <asp:DropDownList ID="ddlRolesDes" runat="server"></asp:DropDownList>&nbsp;&nbsp;<asp:Button ID="btnSearch" runat="server" Text="Search" CausesValidation="false" OnClick="subSearchUsers" />
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
                 <asp:Repeater ID="rptUserDetails" runat="server" OnItemDataBound="rptUserDetails_ItemDataBound" OnItemCommand="rptUserDetails_ItemCommand">
                     <HeaderTemplate>
                         <table>
@@ -270,7 +272,7 @@
                         <%--<asp:Panel ID="pnlRPT" runat="server">--%>
                         <tr class="altItemTemp">
                             <td>
-                                <asp:Label ID="lblFullName" runat="server" Text='<%#Eval("Name") %>'></asp:Label>
+                                <asp:LinkButton ID="lnkFullName" runat="server" CommandName="editUser" Text='<%#Eval("Name") %>'></asp:LinkButton>
                             </td>
                             <td>
                                 <asp:Label ID="lblUName" runat="server" Text='<%#Eval("UserName") %>'></asp:Label>

@@ -14,17 +14,24 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
+public partial class brdhcAdmin_registration : System.Web.UI.Page
 {
     clsUserDetails objUDet = new clsUserDetails();
     clsCommon objCommon = new clsCommon();
     string roles = "";
     private static string _userId;
     private static string _userBasicInfoId;
+    private static string _roleName = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
+            MembershipUser user = Membership.GetUser();
+
+            if (Roles.IsUserInRole(user.UserName, "Doctors"))
+            {
+                pnlSearch.Visible = false;
+            }
             Label lblDashboard = Master.dashboardHeading;
             lblDashboard.Text = "ADMIN DASHBOARD : USERS";
 
@@ -48,7 +55,7 @@ public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
             ddlStateAjax.DataBind();
             ddlStateAjax.SelectedIndex = 0;
             loadCities();
-           // loadUserInformation();
+            loadUserInformation();
         }
     }    
     
@@ -252,7 +259,7 @@ public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
     private void loadUserInformation()
     {
         resetControls();
-        if (ddlRolesDes.SelectedIndex == 0) 
+        if (string.IsNullOrEmpty(_roleName)) 
         {
             lblErr.Visible = true;
             lblErr.Text = "Please select any role.";
@@ -262,10 +269,10 @@ public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
         {
 
             string appName = WebConfigurationManager.AppSettings["appName"].ToString();
-            string roleName;
-            roleName = "";
-            roleName = ddlRolesDes.SelectedItem.Text.ToLower();
-            List<sp_SearchUsersResult> objUsers = objUDet.getUserDetails(appName, roleName);
+            //string roleName;
+            //roleName = "";
+            //roleName = ddlRolesDes.SelectedItem.Text.ToLower();
+            List<sp_SearchUsersResult> objUsers = objUDet.getUserDetails(appName, _roleName);
             if (objUsers.Count > 0)
             {
                 rptUserDetails.Visible = true;
@@ -526,6 +533,7 @@ public partial class brdhcAdmin_displayUsers : System.Web.UI.Page
 
     protected void subSearchUsers(object sender, EventArgs e)
     {
+        _roleName = ddlRolesDes.SelectedItem.Text.ToLower();
         loadUserInformation();
     }
 }

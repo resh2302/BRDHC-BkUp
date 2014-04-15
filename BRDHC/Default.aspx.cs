@@ -22,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else if (Roles.IsUserInRole(user.UserName, "Doctors"))
         {
-            Response.Redirect("Doctors/patients.aspx");
+            Response.Redirect("Doctors/registration.aspx");
         }
         else if (Roles.IsUserInRole(user.UserName, "CommunityAdmin"))
         {
