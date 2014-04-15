@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="NewTime.aspx.cs" Inherits="NewTime" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="EmergencyNewTime.aspx.cs" Inherits="NewTime" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

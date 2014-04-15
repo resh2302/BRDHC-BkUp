@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="ViewAll.aspx.cs" Inherits="ViewAll" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" AutoEventWireup="true" CodeFile="EmergencyViewAll.aspx.cs" Inherits="ViewAll" %>
 
 <%--<%@ Register TagName="EmergencyMenu" TagPrefix="uc" Src="~/EmergencyAdmin/EmergencyMenu.ascx" %>--%>
 <%@ MasterType VirtualPath="~/brdhc.master" %>
