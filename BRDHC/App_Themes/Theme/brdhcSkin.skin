@@ -16,4 +16,5 @@ Default skin template. The following skins are provided as examples only.
 <asp:RequiredFieldValidator runat="server"  Display="Dynamic" ForeColor="Red" ></asp:RequiredFieldValidator>
 <asp:CompareValidator runat="server"  Display="Dynamic" ForeColor="Red" ></asp:CompareValidator>
   <asp:Label runat="server" Font-Size="20px" Font-Bold="true" SkinID="title"></asp:Label>
+  <asp:Label runat="server" Font-Size="16px" Font-Bold="true" SkinID="grdTitles"></asp:Label>
   <asp:Label runat="server" Font-Size="12px" SkinID="date"></asp:Label>

@@ -85,63 +85,80 @@ public class clsUserDetails
         return user.Cast<brdhc_UserBasicInfo>().ToList();
     }
 
-    public void saveUserBasicInfo(string userId, string firstName, string lastName, string dob, string gender, string identification, string address, string cityId, string stateId, string postalCode, string phone, string fax, string familyDoctor, string department, string joinDate, string speciality, string communityName) // save new record into databse
+    public int saveUserBasicInfo(Guid userId, string firstName, string lastName, string dob, string gender, string identification, string address, string cityId, string stateId, string postalCode, string phone, string fax, string familyDoctor, string department, string joinDate, string speciality, string communityName) // save new record into databse
     {
-        // create a new table with one row and this table is similar in schema with the table in database
-        brdhc_UserBasicInfo svTable = new brdhc_UserBasicInfo()
+        int result = 0;
+        try
         {
-            UserId = new Guid(userId),
-            FirstName = firstName.Trim(),
-            LastName = lastName.Trim(),
-            DOB = Convert.ToDateTime(dob),
-            Gender = Convert.ToChar(gender),
-            Identification = identification,
-            Address = address,
-            CityId = new Guid(cityId),
-            StateId = new Guid(stateId),
-            PostalCode = postalCode,
-            Phone = phone,
-            Fax = fax,
-            FamilyDoctor = familyDoctor,
-            Department = department,
-            JoinDate = Convert.ToDateTime(joinDate),
-            Speciality = new Guid(speciality),
-            CommunityGroupName = communityName
-        };
-        UserDetailsDataContext objReg = new UserDetailsDataContext();
-        // call the function to save the row into actual database table
-        objReg.brdhc_UserBasicInfos.InsertOnSubmit(svTable);
-        objReg.SubmitChanges();
+            // create a new table with one row and this table is similar in schema with the table in database
+            brdhc_UserBasicInfo svTable = new brdhc_UserBasicInfo()
+            {
+                UserId = userId,
+                FirstName = firstName.Trim(),
+                LastName = lastName.Trim(),
+                DOB = Convert.ToDateTime(dob),
+                Gender = Convert.ToChar(gender),
+                Identification = identification,
+                Address = address,
+                CityId = new Guid(cityId),
+                StateId = new Guid(stateId),
+                PostalCode = postalCode,
+                Phone = phone,
+                Fax = fax,
+                FamilyDoctor = familyDoctor,
+                Department = department,
+                JoinDate = Convert.ToDateTime(joinDate),
+                Speciality = new Guid(speciality),
+                CommunityGroupName = communityName
+            };
+            UserDetailsDataContext objReg = new UserDetailsDataContext();
+            // call the function to save the row into actual database table
+            objReg.brdhc_UserBasicInfos.InsertOnSubmit(svTable);
+            objReg.SubmitChanges();
+            result = 1;
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return result;
     }
 
     public void updateUserBasicInfo(string userBasicInfoId, string firstName, string lastName, string dob, string gender, string identification, string address, string cityId, string stateId, string postalCode, string phone, string fax, string familyDoctor, string department, string joinDate, string speciality, string communityName) // save update record into databse
     {
         // create a new table with one row and this table is similar in schema with the table in database
-     
-        UserDetailsDataContext objReg = new UserDetailsDataContext();
-        var user = objReg.brdhc_UserBasicInfos.Single(u => u.UserBasicInfoId == new Guid(userBasicInfoId));       
-        // make the changes
+        try
+        {
 
-        user.FirstName = firstName;
-        user.LastName = lastName;
-        user.DOB = DateTime.Parse(dob);
-        user.Gender = Char.Parse(gender);
-        user.Identification = identification;
-        user.Address = address;
-        user.CityId = Guid.Parse(cityId);
-        user.StateId = Guid.Parse(stateId);
-        user.PostalCode = postalCode;
-        user.Phone = phone;
-        user.Fax = fax;
-        user.FamilyDoctor = familyDoctor;
-        user.Department = department;
-        user.JoinDate = DateTime.Parse(joinDate);
-        if (speciality != string.Empty)
-            user.Speciality = new Guid(speciality);
-        user.CommunityGroupName = communityName;
+            UserDetailsDataContext objReg = new UserDetailsDataContext();
+            var user = objReg.brdhc_UserBasicInfos.Single(u => u.UserBasicInfoId == new Guid(userBasicInfoId));
+            // make the changes
 
-        // update the datebase table with new values
-        objReg.SubmitChanges();
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.DOB = DateTime.Parse(dob);
+            user.Gender = Char.Parse(gender);
+            user.Identification = identification;
+            user.Address = address;
+            user.CityId = Guid.Parse(cityId);
+            user.StateId = Guid.Parse(stateId);
+            user.PostalCode = postalCode;
+            user.Phone = phone;
+            user.Fax = fax;
+            user.FamilyDoctor = familyDoctor;
+            user.Department = department;
+            user.JoinDate = DateTime.Parse(joinDate);
+            if (speciality != string.Empty)
+                user.Speciality = new Guid(speciality);
+            user.CommunityGroupName = communityName;
+
+            // update the datebase table with new values
+            objReg.SubmitChanges();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
     }
 
 }

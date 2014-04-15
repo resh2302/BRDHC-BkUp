@@ -62,7 +62,7 @@ function getPrescriptionDetails($presId)
 }
 
 $(document).ready(function () {
-
+    $('#cphSiteMasterBody_lblErr').hide();
 
     $("#cphSiteMasterBody_hdfPresId").val("0")
 
@@ -73,11 +73,14 @@ $(document).ready(function () {
         $('#cphSiteMasterBody_pnlDetails').slideToggle("slow");
         $('#cphSiteMasterBody_pnlTable').slideToggle("slow");
 
+        $('#cphSiteMasterBody_txtSearch').val('');
+        $('#cphSiteMasterBody_txtDate').val('');
         clearMedicineDetails();
 
     });
 
     $('#cphSiteMasterBody_btnCancel').click(function (e) {
+        $('#cphSiteMasterBody_lblErr').hide();
         //e.preventDefault();
         //$('#cphSiteMasterBody_pnlDetails').slideToggle("slow");
         //$('#cphSiteMasterBody_pnlTable').slideToggle("slow");
@@ -91,6 +94,7 @@ $(document).ready(function () {
             clearMedicineDetails();
 
             getPatientPrescription($appId);
+            $('#cphSiteMasterBody_lblErr').hide();
         }
     });
 
@@ -180,17 +184,29 @@ $(document).ready(function () {
                         dataType: "json",
                         success: function (msg) {
                             var elem = msg.d;
-                            console.log('No error in details----' + elem);
+                            // console.log('No error in details----' + elem);
+                            if (elem == "pass") {
+                                $('#cphSiteMasterBody_lblErr').show();
+                                $('#cphSiteMasterBody_lblErr').text('Prescription and details saved successfully.');
+                            }
+                            else {
+                                $('#cphSiteMasterBody_lblErr').show();
+                                $('#cphSiteMasterBody_lblErr').text('Prescription saved successfully. but problem occured while saving details.');
+                            }
                         },
                         error: function (er) {
-                            console.log("This is details:------  " + er);
+                            //console.log("This is details:------  " + er);
+                            $('#cphSiteMasterBody_lblErr').show();
+                            $('#cphSiteMasterBody_lblErr').text('Problem occured while saving details.');
                         }
                     });
                 }
             },
             error: function (er) {
-                alert('error in prescription');
-                console.log("This is prescription:------  " + er);
+                //alert('error in prescription');
+                // console.log("This is prescription:------  " + er);
+                $('#cphSiteMasterBody_lblErr').show();
+                $('#cphSiteMasterBody_lblErr').text('Problem occured while saving prescription and details.');
             }
         });
     });
@@ -213,4 +229,43 @@ function editPrescription($appId)
     $('#cphSiteMasterBody_txtSearch').val($appId);
     getPatientPrescription($appId);
 
+}
+
+function deletePresc($grvRow, $delPrescId,$lnk)
+{
+    if (confirm('Are you sure to delete?')) {
+
+        $.ajax({
+            type: "POST",
+            url: "../wsPrescriptions.asmx/deletePrescription",
+            data: "{ prescriptionId: '" + $delPrescId + "' }",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (res) {
+                var myData = JSON.parse(res.d);
+                $('#cphSiteMasterBody_lblErr').show();
+                if (myData == "1") {
+                    $('#cphSiteMasterBody_lblErr').text('Prescription deleted.');
+                    $rwInd = $($lnk).parent('td').parent('tr').index();
+                    $('#cphSiteMasterBody_grvRecords tr:eq(' + $rwInd + ')').remove();
+                    //var row = $(this).parent('td').parent('tr');  // this is row that should be deleted
+                    //row.remove();
+
+                    //var tr_id = $(this).parents("#.record");
+                    //tr_id.css("background-color", "lightgreen");
+                    //tr_id.fadeOut(500, function () {
+                    //    tr_id.remove();
+                    //});
+
+                }
+                else {
+                    $('#cphSiteMasterBody_lblErr').text('Problem occured while saving details.');
+                }
+            },
+            error: function (er) {
+                $('#cphSiteMasterBody_lblErr').show();
+                $('#cphSiteMasterBody_lblErr').text('Problem occured while saving details.');
+            }
+        });
+    }
 }

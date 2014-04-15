@@ -43,25 +43,8 @@ public class wsPrescriptions : System.Web.Services.WebService {
     public string getPresDetails(string prescriptionId)
     {
         clsPrescriptions objPres = new clsPrescriptions();
-        sp_SearchPrescriptionDetailsResult data = new sp_SearchPrescriptionDetailsResult();
         List<sp_SearchPrescriptionDetailsResult> presc = objPres.getPrescriptionDetails(Convert.ToInt32(prescriptionId));
-        StringBuilder strB = new StringBuilder();
-
         System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-        //if (presc.Count() > 0)
-        //{
-        //    foreach (sp_SearchPrescriptionDetailsResult ob in presc)
-        //    {
-        //        data = ob;
-        //        js.Serialize(data, strB);
-        //        strB.Append(',');
-        //    }
-        //}
-
-        //strB.ToString().Remove(strB.ToString().LastIndexOf(','), 1);
-        // //js.Serialize(data, strB);
-        // return strB.ToString();
-
         return js.Serialize(presc);
     }
     
@@ -74,7 +57,7 @@ public class wsPrescriptions : System.Web.Services.WebService {
         string strResult = "0";
         if (prescriptionId != "0")
         {
-            strResult = prescriptionId;
+            strResult = objPres.updatePrescription(Convert.ToInt32(prescriptionId), Convert.ToInt32(appointmentId), Convert.ToInt32(repeat), Convert.ToDateTime(presDate));
         }
         else {
             try
@@ -118,5 +101,24 @@ public class wsPrescriptions : System.Web.Services.WebService {
 
         return strResult;
     }
-    
+
+    [WebMethod]
+    public string deletePrescription(string prescriptionId)
+    {
+        clsPrescriptions objPres = new clsPrescriptions();
+        string strResult = "0";
+        try
+        {
+            objPres.deletePresDetails(Convert.ToInt32(prescriptionId));
+            objPres.deletePres(Convert.ToInt32(prescriptionId));
+            strResult = "1";
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+            strResult = "0";
+        }
+        return strResult;
+    }
+
 }

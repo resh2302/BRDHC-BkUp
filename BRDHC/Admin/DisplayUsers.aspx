@@ -199,38 +199,36 @@
             <div id="divDetails">
                 <asp:Button ID="btnAdd" runat="server" Text="Add New User" OnClick="btnAdd_Click" /><br />
                 <br />
-                <table>
+                <table style="width:100%; border:none;">
                     <tr>
-                        <td style="width:25%; text-align: right;">
+                        <td style="width: 25%; text-align: right; padding: 10px; border: none;">
                             <asp:Label ID="lblRolesDes" runat="server" Text="Role:" AssociatedControlID="ddlRoles"></asp:Label>
                         </td>
-                        <td style="width: 75%; text-align: left;">
-                            <asp:DropDownList ID="ddlRolesDes" runat="server"></asp:DropDownList><asp:Button ID="btnSearch" runat="server" Text="Search" CausesValidation="false" OnClick="subSearchUsers" />
+                        <td style="width: 50%; text-align: left; padding: 20px; border: none;">
+                            <asp:DropDownList ID="ddlRolesDes" runat="server"></asp:DropDownList>&nbsp;&nbsp;<asp:Button ID="btnSearch" runat="server" Text="Search" CausesValidation="false" OnClick="subSearchUsers" />
                         </td>
                     </tr>
                 </table>
                 <asp:Repeater ID="rptUserDetails" runat="server" OnItemDataBound="rptUserDetails_ItemDataBound" OnItemCommand="rptUserDetails_ItemCommand">
                     <HeaderTemplate>
-                        <table class="userTable">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>User Name</th>
-                                    <th>Date of Birth</th>
-                                    <th>Identification</th>
-                                    <th>Department</th>
-                                    <th>Join Date</th>
-                                    <th>Specility</th>
-                                    <th>Community Group Name</th>
-                                    <th>Is Locked</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                        <table>
+                            <tr class="colHeaderRow">
+                                <td>Name</td>
+                                <td>User Name</td>
+                                <td>Date of Birth</td>
+                                <td>Identification</td>
+                                <td>Department</td>
+                                <td>Join Date</td>
+                                <td>Specility</td>
+                                <td>Community Group Name</td>
+                                <td>Is Locked</td>
+                                <td>Action</td>
+                            </tr>
                     </HeaderTemplate>
 
                     <ItemTemplate>
                         <%--<asp:Panel ID="pnlRPT" runat="server">--%>
-                        <tr>
+                        <tr class="itemTemp">
                             <td>
                                 <asp:LinkButton ID="lnkFullName" runat="server" CommandName="editUser" Text='<%#Eval("Name") %>'></asp:LinkButton>
                             </td>
@@ -268,45 +266,45 @@
 
                         <%--</asp:Panel>--%>
                     </ItemTemplate>
-                    <%--<AlternatingItemTemplate>
-                            <asp:Panel ID="pnlRPT" runat="server">
-                                <tr style="background-color: #E0E0F8;">
-                                    <td>
-                                        <asp:Label ID="lblFullName" runat="server" Text='<%#Eval("Name") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblUName" runat="server" Text='<%#Eval("UserName") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblDOB" runat="server" Text='<%#Eval("DOB") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblIdentification" runat="server" Text='<%#Eval("Identification") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblDep" runat="server" Text='<%#Eval("Department") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblJoinDate" runat="server" Text='<%#Eval("JoinDate") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblSpec" runat="server" Text='<%#Eval("Speciality") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblCName" runat="server" Text='<%#Eval("CommunityGroupName") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:Label ID="lblLock" runat="server" Text='<%#Eval("IsLocked") %>'></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:HiddenField ID="hdfUserId" runat="server" Value='<%#Eval("UserId") %>'></asp:HiddenField>
-                                        <asp:HiddenField ID="hdfLock" runat="server" Value='<%#Eval("IsLocked") %>'></asp:HiddenField>
-                                        <asp:Button ID="btnLock" runat="server" CommandName="lock" OnClientClick="return confirm('Are you sure?');" CommandArgument='<%#Eval("UserId") %>' />
-                                    </td>
-                                </tr>
+                    <AlternatingItemTemplate>
+                        <%--<asp:Panel ID="pnlRPT" runat="server">--%>
+                        <tr class="altItemTemp">
+                            <td>
+                                <asp:Label ID="lblFullName" runat="server" Text='<%#Eval("Name") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblUName" runat="server" Text='<%#Eval("UserName") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblDOB" runat="server" Text='<%#Eval("DOB") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblIdentification" runat="server" Text='<%#Eval("Identification") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblDep" runat="server" Text='<%#Eval("Department") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblJoinDate" runat="server" Text='<%#Eval("JoinDate") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblSpec" runat="server" Text='<%#Eval("Speciality") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblCName" runat="server" Text='<%#Eval("CommunityGroupName") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblLock" runat="server" Text='<%#Eval("IsLocked") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:HiddenField ID="hdfUserId" runat="server" Value='<%#Eval("UserId") %>'></asp:HiddenField>
+                                <asp:HiddenField ID="hdfLock" runat="server" Value='<%#Eval("IsLocked") %>'></asp:HiddenField>
+                                <asp:Button ID="btnLock" runat="server" CommandName="lock" OnClientClick="return confirm('Are you sure?');" CommandArgument='<%#Eval("UserId") %>' />
+                            </td>
+                        </tr>
 
-                            </asp:Panel>
-                        </AlternatingItemTemplate>--%>
+                        <%--</asp:Panel>--%>
+                    </AlternatingItemTemplate>
                     <FooterTemplate>
                         </table>
                     </FooterTemplate>

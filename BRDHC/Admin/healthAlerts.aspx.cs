@@ -52,7 +52,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
             pnlDetails.Visible = false;
             pnlTable.Visible = true;
             btnSU.Text = "Update";
-            //subLoadAppointments();
+            load_Records();
         }
         else
         {
