@@ -25,12 +25,13 @@ public class giftShopStoreClass
     }
 
     //THIS IS AN INSERT
-    public bool commitInsert(string _Name, string _Picture, string _Price)
+    public bool commitInsert(Guid _bouquetId, string _Name, string _Picture, string _Price)
     {
         giftShopStoreClassDataContext objBou = new giftShopStoreClassDataContext();
         using (objBou)
         {
             brdhc_GiftShopStore objNewBou = new brdhc_GiftShopStore();
+            objNewBou.BouquetID = _bouquetId;
             objNewBou.Name = _Name;
             objNewBou.Picture = _Picture;
             objNewBou.Price = _Price;

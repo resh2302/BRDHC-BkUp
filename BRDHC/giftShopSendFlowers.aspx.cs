@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 
 public partial class giftShopSendFlowers : System.Web.UI.Page
 {
+    string Name;
+    double Price;
+    
     //creating a new instance of the giftShopStoreClass
     giftShopStoreClass objBou = new giftShopStoreClass();
     
@@ -18,7 +21,6 @@ public partial class giftShopSendFlowers : System.Web.UI.Page
             _subBind();
         }
 
-        //String Name = FindControl("lbl_name");
     }
 
     //binding data in the repeater
@@ -33,7 +35,11 @@ public partial class giftShopSendFlowers : System.Web.UI.Page
         switch (e.CommandName)
         {
             case "btn_10_Command":
-                //Response.Redirect("https:www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=markiGiftshop@blah.com&currency_code=CAD&item_name=BRDHC_" + Name + "&amount=" + Price);
+                HiddenField HdfId = (HiddenField)e.Item.FindControl("hdf_id");
+                Name = HdfId.Value;
+                Label lblPrice = (Label)e.Item.FindControl("lblMsBqt1");
+                Price = Double.Parse(lblPrice.Text);
+                Response.Redirect("https:www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=markiGiftshop@blah.com&currency_code=CAD&item_name=BRDHC_" + Name + "&amount=" + Price);
                 break;
         }      
     }
