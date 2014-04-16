@@ -29,9 +29,11 @@
             <asp:Repeater runat="server" ID="rpt_shop" OnItemCommand="rpt_shop_ItemCommand">             
                 <ItemTemplate>
                 <div class="col-xs-6 col-sm-4 col-md-2 col-md-offset-1 msCenter">
+                    <asp:HiddenField ID="hdf_id" runat="server" Value='<%#Eval ("Name") %>' />
                     <asp:Image ID="msBouquet" ImageUrl='<%#Eval ("Picture") %>' runat="server" AlternateText="[image] of a bouquet of flowers" Width="150px" CssClass="msRdImg" />
                     <%--text and Eval inside the text field--%>
-                    <asp:Label runat="server" ID="lblMsBqt1" Text='<%# "Price: " + Eval ("Price") %>' CssClass="msDisBlk msPadTop10" />
+                    <asp:Label runat="server" ID="lblMsPrice" Text="Price :" CssClass="msPadTop20" />
+                    <asp:Label runat="server" ID="lblMsBqt1" Text='<%#Eval ("Price") %>' />
                     <asp:Button ID="btn_10" runat="server" CommandName="btn_10_Command" Text="Purchase" CssClass="btn msDisBlk msAllMarg20" />
                 </div>
                 </ItemTemplate>

@@ -213,9 +213,9 @@
                                        
                                 <%--Update, Delete Cancel buttons--%>
                                 <div class="col-xs-12 col-sm-6 col-sm-offset-2">
-                                <asp:Button ID="btn_update" runat="server" Text="Update" CommandName="Update" CssClass="msMargBot10 msMargTop20" ValidationGroup="update" />
-                                <asp:Button ID="btn_delete" runat="server" Text="Delete" CommandName="Delete" CssClass="msMargBot10 msMargTop20" OnClientClick="return confirm('Confirm Delete?');" CausesValidation="false" />
-                                 <asp:Button ID="btn_cancel2" runat="server" Text="Cancel" CssClass="msMargBot10 msMargTop20" CommandName="Cancel" CausesValidation="false" />
+                                <asp:Button ID="btn_update" runat="server" Text="Update" CommandName="UpdateU" CssClass="msMargBot10 msMargTop20" ValidationGroup="update" />
+                                <asp:Button ID="btn_delete" runat="server" Text="Delete" CommandName="DeleteU" CssClass="msMargBot10 msMargTop20" OnClientClick="return confirm('Confirm Delete?');" CausesValidation="false" />
+                                 <asp:Button ID="btn_cancel2" runat="server" Text="Cancel" CssClass="msMargBot10 msMargTop20" CommandName="CancelU" CausesValidation="false" />
                                   </div>
                             </ItemTemplate>
                         </asp:ListView>

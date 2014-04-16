@@ -45,7 +45,7 @@ public partial class VolunteerAdmin_VolApplicationAdmin : System.Web.UI.Page
                   Label lblStudent = (Label)e.Item.FindControl("lbl_student");
                   Label lblPrevExp = (Label)e.Item.FindControl("lbl_prevExp");
                   Label lblWhyVol = (Label)e.Item.FindControl("lbl_whyVol");
-                  TextBox txtReviewedU = (TextBox)e.Item.FindControl("txt_reviewedU");
+                  TextBox txtReviewedU = (TextBox)e.Item.FindControl("txt_reviewed");
                   HiddenField hdfAppId = (HiddenField)e.Item.FindControl("hdf_AppId");
                   Guid AppId = Guid.Parse(hdfAppId.Value.ToString());
                   _strMes(objApp.commitUpdate(AppId, lblFName.Text, lblLName.Text, lblPhone.Text, lblEmail.Text, lblAddress.Text, lblOccupation.Text, lblStudent.Text, lblPrevExp.Text, lblWhyVol.Text, txtReviewedU.Text), "update");

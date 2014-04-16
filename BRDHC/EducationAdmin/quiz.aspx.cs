@@ -63,7 +63,7 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
     {
         switch (e.CommandName)
         {
-            case "Update":
+            case "UpdateU":
                 TextBox txtTHISname = (TextBox)e.Item.FindControl("txt_THISnameE");
                 TextBox txtTHISimage = (TextBox)e.Item.FindControl("txt_THISimageE");
                 TextBox txtTHIScalories = (TextBox)e.Item.FindControl("txt_THIScaloriesE");
@@ -78,12 +78,12 @@ public partial class EducationAdmin_quiz : System.Web.UI.Page
                 _strMes(objquiz.commitUpdate(QuestionID, txtTHISname.Text, txtTHISimage.Text, int.Parse(txtTHIScalories.Text.ToString()), int.Parse(txtTHISfat.Text.ToString()), txtTHATname.Text, txtTHATimage.Text, int.Parse(txtTHATcalories.Text.ToString()), int.Parse(txtTHATfat.Text.ToString()), txtAnswer.Text), "update");
                 _subRebind();
                 break;
-            case "Delete":
+            case "DeleteU":
                 Guid _QuestionID = Guid.Parse(((HiddenField)e.Item.FindControl("hdf_idE")).Value);
                 _strMes(objquiz.commitDelete(_QuestionID), "delete");
                 _subRebind();
                 break;
-            case "Cancel":
+            case "CancelU":
                 _subRebind();
                 break;
         }
