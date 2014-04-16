@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="Theme" AutoEventWireup="true" CodeFile="appointments.aspx.cs" Inherits="Admin_appointments" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="HealthTools" AutoEventWireup="true" CodeFile="appointments.aspx.cs" Inherits="Admin_appointments" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">

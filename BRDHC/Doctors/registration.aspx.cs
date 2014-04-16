@@ -490,6 +490,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     # region ADD , CANCEL , RESET CONTROL SUB ROUTINES"
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        lblErr.Visible = false;
         lblErr.Text = string.Empty;
         pnlTable.Visible = false;
         pnlDetails.Visible = true;

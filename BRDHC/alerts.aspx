@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" Theme="Theme" AutoEventWireup="true" CodeFile="alerts.aspx.cs" Inherits="alerts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" Theme="HealthTools" AutoEventWireup="true" CodeFile="alerts.aspx.cs" Inherits="alerts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="styles/healthAlerts.css" rel="stylesheet" />

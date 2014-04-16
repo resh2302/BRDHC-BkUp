@@ -5,7 +5,7 @@
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 
 <asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
-    <link href="../styles/healthAlerts.css" rel="stylesheet" />
+    <%--<link href="../styles/healthAlerts.css" rel="stylesheet" />--%>
     <script type="text/javascript" src="../js/healthAlert.js"></script>
 </asp:Content>
 

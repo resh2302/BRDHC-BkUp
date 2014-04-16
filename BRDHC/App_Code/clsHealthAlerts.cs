@@ -42,48 +42,69 @@ public class clsHealthAlerts
 
     public void saveHealthAlert(Guid healthAlertId, string healthAlertTitle, string healthAlertDescription, DateTime alertDate, string userId, bool published) // save new record into databse
     {
-        // create a new table with one row and this table is similar in schema with the table in database
-        brdhc_HealthAlert svTable = new brdhc_HealthAlert()
+        try
         {
-            HealthAlertId = healthAlertId,
-            HealthAlertTitle = healthAlertTitle,
-            HealthAlertDescription = healthAlertDescription,
-            AlertDate = alertDate,
-            UserId = new Guid(userId),
-            Published = published
-        };
-        HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
-        // call the function to save the row into actual database table
-        objDataContext.brdhc_HealthAlerts.InsertOnSubmit(svTable);
-        objDataContext.SubmitChanges();
+            // create a new table with one row and this table is similar in schema with the table in database
+            brdhc_HealthAlert svTable = new brdhc_HealthAlert()
+            {
+                HealthAlertId = healthAlertId,
+                HealthAlertTitle = healthAlertTitle,
+                HealthAlertDescription = healthAlertDescription,
+                AlertDate = alertDate,
+                UserId = new Guid(userId),
+                Published = published
+            };
+            HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
+            // call the function to save the row into actual database table
+            objDataContext.brdhc_HealthAlerts.InsertOnSubmit(svTable);
+            objDataContext.SubmitChanges();
+        }        
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
     }
 
     public void updateHealthAlert(Guid healthAlertId, string healthAlertTitle, string healthAlertDescription, DateTime alertDate, string userId, bool published)
     {
-        HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
-        // select that particular row that is to be updated
-        var tblRecords = objDataContext.brdhc_HealthAlerts.Single(p => p.HealthAlertId == healthAlertId);
-        // make the changes     
-        tblRecords.HealthAlertTitle = healthAlertTitle;
-        tblRecords.HealthAlertDescription = healthAlertDescription;
-        tblRecords.AlertDate = alertDate;
-        tblRecords.UserId = new Guid(userId);
-        tblRecords.Published = published;
-        // update the datebase table with new values
-        objDataContext.SubmitChanges();
+        try
+        {
+            HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
+            // select that particular row that is to be updated
+            var tblRecords = objDataContext.brdhc_HealthAlerts.Single(p => p.HealthAlertId == healthAlertId);
+            // make the changes     
+            tblRecords.HealthAlertTitle = healthAlertTitle;
+            tblRecords.HealthAlertDescription = healthAlertDescription;
+            tblRecords.AlertDate = alertDate;
+            tblRecords.UserId = new Guid(userId);
+            tblRecords.Published = published;
+            // update the datebase table with new values
+            objDataContext.SubmitChanges();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
     }
 
     public void deleteHealthAlert(Guid healthAlertId)
     {
-        HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
-        // select the particular records from databse table and delete it
-        var tblRecords =
-            from a in objDataContext.brdhc_HealthAlerts
-            where (a.HealthAlertId == healthAlertId)
-            select a;
-        // call the function to delete it and submit the changes
-        objDataContext.brdhc_HealthAlerts.DeleteAllOnSubmit(tblRecords);
-        objDataContext.SubmitChanges();
+        try
+        {
+            HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
+            // select the particular records from databse table and delete it
+            var tblRecords =
+                from a in objDataContext.brdhc_HealthAlerts
+                where (a.HealthAlertId == healthAlertId)
+                select a;
+            // call the function to delete it and submit the changes
+            objDataContext.brdhc_HealthAlerts.DeleteAllOnSubmit(tblRecords);
+            objDataContext.SubmitChanges();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
     }
 
     public void resetForPublish()
@@ -101,14 +122,21 @@ public class clsHealthAlerts
 
     public static void unsubscribe(Guid userId)
     {
-        HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
-        // select the particular records from databse table and delete it
-        var tblRecords =
-            from a in objDataContext.brdhc_AlertSubscribers
-            where (a.UserId == userId)
-            select a;
-        // call the function to delete it and submit the changes
-        objDataContext.brdhc_AlertSubscribers.DeleteAllOnSubmit(tblRecords);
-        objDataContext.SubmitChanges();
+        try
+        {
+            HealthAlertsDataContext objDataContext = new HealthAlertsDataContext();
+            // select the particular records from databse table and delete it
+            var tblRecords =
+                from a in objDataContext.brdhc_AlertSubscribers
+                where (a.UserId == userId)
+                select a;
+            // call the function to delete it and submit the changes
+            objDataContext.brdhc_AlertSubscribers.DeleteAllOnSubmit(tblRecords);
+            objDataContext.SubmitChanges();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
     }
 }
