@@ -24,6 +24,7 @@
                 <asp:Menu ID="mnuLeft" runat="server" Orientation="Vertical" CssClass="Menu" StaticEnableDefaultPopOutImage="False" RenderingMode="List">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/ContactAdmin/ContactAdmin.aspx" Text="Contact Us" Value="New Item"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/FeedbackAdmin/feedbackAdmin.aspx" Text="Feedback" Value="New Item"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="#" Text="Events Calendar" Value="New Item"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="#" Text="Careers" Value="New Item"></asp:MenuItem>
                     </Items>
