@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="Theme" AutoEventWireup="true" CodeFile="errorLogs.aspx.cs" Inherits="Admin_errorLogs" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="HealthTools" AutoEventWireup="true" CodeFile="errorLogs.aspx.cs" Inherits="Admin_errorLogs" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

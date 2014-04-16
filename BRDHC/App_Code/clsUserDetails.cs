@@ -90,32 +90,61 @@ public class clsUserDetails
         int result = 0;
         try
         {
-            // create a new table with one row and this table is similar in schema with the table in database
-            brdhc_UserBasicInfo svTable = new brdhc_UserBasicInfo()
+            if (speciality != string.Empty)
             {
-                UserId = userId,
-                FirstName = firstName.Trim(),
-                LastName = lastName.Trim(),
-                DOB = Convert.ToDateTime(dob),
-                Gender = Convert.ToChar(gender),
-                Identification = identification,
-                Address = address,
-                CityId = new Guid(cityId),
-                StateId = new Guid(stateId),
-                PostalCode = postalCode,
-                Phone = phone,
-                Fax = fax,
-                FamilyDoctor = familyDoctor,
-                Department = department,
-                JoinDate = Convert.ToDateTime(joinDate),
-                Speciality = new Guid(speciality),
-                CommunityGroupName = communityName
-            };
-            UserDetailsDataContext objReg = new UserDetailsDataContext();
-            // call the function to save the row into actual database table
-            objReg.brdhc_UserBasicInfos.InsertOnSubmit(svTable);
-            objReg.SubmitChanges();
-            result = 1;
+                brdhc_UserBasicInfo svTable = new brdhc_UserBasicInfo()
+                {
+                    UserId = userId,
+                    FirstName = firstName.Trim(),
+                    LastName = lastName.Trim(),
+                    DOB = Convert.ToDateTime(dob),
+                    Gender = Convert.ToChar(gender),
+                    Identification = identification,
+                    Address = address,
+                    CityId = new Guid(cityId),
+                    StateId = new Guid(stateId),
+                    PostalCode = postalCode,
+                    Phone = phone,
+                    Fax = fax,
+                    FamilyDoctor = familyDoctor,
+                    Department = department,
+                    JoinDate = Convert.ToDateTime(joinDate),
+                    Speciality = new Guid(speciality),
+                    CommunityGroupName = communityName
+                };
+                UserDetailsDataContext objReg = new UserDetailsDataContext();
+                // call the function to save the row into actual database table
+                objReg.brdhc_UserBasicInfos.InsertOnSubmit(svTable);
+                objReg.SubmitChanges();
+                result = 1;
+            }
+            else
+            {
+                brdhc_UserBasicInfo svTable = new brdhc_UserBasicInfo()
+                {
+                    UserId = userId,
+                    FirstName = firstName.Trim(),
+                    LastName = lastName.Trim(),
+                    DOB = Convert.ToDateTime(dob),
+                    Gender = Convert.ToChar(gender),
+                    Identification = identification,
+                    Address = address,
+                    CityId = new Guid(cityId),
+                    StateId = new Guid(stateId),
+                    PostalCode = postalCode,
+                    Phone = phone,
+                    Fax = fax,
+                    FamilyDoctor = familyDoctor,
+                    Department = department,
+                    JoinDate = Convert.ToDateTime(joinDate),
+                    CommunityGroupName = communityName
+                };
+                UserDetailsDataContext objReg = new UserDetailsDataContext();
+                // call the function to save the row into actual database table
+                objReg.brdhc_UserBasicInfos.InsertOnSubmit(svTable);
+                objReg.SubmitChanges();
+                result = 1;
+            }
         }
         catch (Exception ex)
         {

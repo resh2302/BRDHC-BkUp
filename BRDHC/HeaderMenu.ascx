@@ -61,6 +61,7 @@
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Visiting Hours" Value="New Item"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Night Access" Value="New Item"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Senior Management Team" Value="New Item"></asp:MenuItem>
+                 <asp:MenuItem NavigateUrl="~/Feedback/feedback.aspx" Text="Feedback Survey" Value="New Item"></asp:MenuItem>
             </asp:MenuItem>           
            
         </Items>

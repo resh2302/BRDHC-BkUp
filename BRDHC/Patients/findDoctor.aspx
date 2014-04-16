@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="findDoctor.aspx.cs" Inherits="Patients_find_a_doctor" %>
 
-<%@ Register Src="~/Patients/patientLeftMenu.ascx" TagName="LeftMenu" TagPrefix="uc1" %>
+<%--<%@ Register Src="~/Patients/patientLeftMenu.ascx" TagName="LeftMenu" TagPrefix="uc1" %>--%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
@@ -22,7 +22,7 @@
         </asp:Panel>
         <asp:Panel ID="pnlDashboard" runat="server"> <%--REquired--%>
             <asp:Panel ID="pnlLeftMenu" CssClass="pnlLeftMenu" runat="server"> <%--REquired--%>
-                <uc1:LeftMenu ID="left_menu" runat="server" />
+                <%--<uc1:LeftMenu ID="left_menu" runat="server" />--%>
             </asp:Panel>
             <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server"> <%--REquired--%>
                 <asp:Panel ID="pnlDetails" GroupingText="Find a Doctor" runat="server" CssClass="pnlLabel">

@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="Theme" AutoEventWireup="true" CodeFile="patientPrescriptions.aspx.cs" Inherits="Doctors_patientPrescriptions" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="HealthTools" AutoEventWireup="true" CodeFile="patientPrescriptions.aspx.cs" Inherits="Doctors_patientPrescriptions" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     <script type="text/javascript" src="../js/prescriptions.js"></script>
-    <link rel="stylesheet" href="../styles/patientPrescriptions.css" />
+    <%--<link rel="stylesheet" href="../styles/patientPrescriptions.css" />--%>
     <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
 
         <asp:Label ID="lblErr" runat="server" CssClass="statusMsg" />
