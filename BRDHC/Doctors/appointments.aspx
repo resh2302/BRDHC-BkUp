@@ -25,11 +25,13 @@
                     <br />
                     <br />
 
+                    <asp:Panel ID="pnlDocsDDL" runat="server">
                     <asp:Label ID="lblDName" Text="Doctor Name:" runat="server" CssClass="infoLabel" />
                     <asp:DropDownList ID="ddlDoctor" AutoPostBack="true" OnSelectedIndexChanged="subChangeDoc" runat="server" />
                     <%-- Add validation --%>
                     <br />
                     <br />
+                    </asp:Panel>
 
                     <asp:Label ID="lblReason" Text="Reason" runat="server" CssClass="infoLabel" />
                     <asp:TextBox ID="txtReason" TextMode="MultiLine" Columns="20" Rows="5" runat="server" />
@@ -59,7 +61,7 @@
                 </asp:Panel>
                 <br />
                 <asp:Panel ID="pnlTable" CssClass="pnlTable table-responsive" runat="server">
-                    <asp:Button ID="brnBookNewApp" Text="Book An Appointment" runat="server" OnClick="subToggleForm" CausesValidation="false" />
+                    <asp:Button ID="brnBookNewApp" Text="Book An Appointment" runat="server" OnClick="subToggleForm" CausesValidation="false" />                   
                     <br />
                     <br />
                     <asp:Panel ID="pnlAppSearch" GroupingText="Apppointment Search" runat="server" CssClass="pnlLabel">
@@ -68,23 +70,25 @@
                             <asp:TextBox ID="txtSearchName" runat="server"></asp:TextBox><asp:Button ID="btnAppSearch" runat="server" Text="Search" CausesValidation="false" OnClick="subSearchAppointments" />
                         </asp:Panel>
                     </asp:Panel>
-                    <asp:Repeater ID="rptApp" runat="server" OnItemCommand="subCommands">
+                    <asp:Repeater ID="rptApp" runat="server" OnItemDataBound="subItemDataBound" OnItemCommand="subCommands">
                         <HeaderTemplate>
-                            <table class="appTable">
-                                <thead>
-                                    <tr>
-                                        <th>Doctor Name</th>
-                                        <th>Patient Name</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Reason</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                            <table>
+                                    <tr class="colHeaderRow">
+                                        <td>AppointmentId</td>
+                                        <td>Doctor Name</td>
+                                        <td>Patient Name</td>
+                                        <td>Date</td>
+                                        <td>Time</td>
+                                        <td>Reason</td>
+                                        <td>Status</td>
+                                        <td>Action</td>
                                     </tr>
-                                </thead>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <tr>
+                            <tr class="itemTemp">
+                                <td>
+                                    <asp:Label ID="lblAppId" runat="server" Text='<%#Eval("AppointmentId") %>' /></td>
+                                <td>
                                 <td>
                                     <asp:Label ID="lblDName" runat="server" Text='<%#Eval("DoctorName") %>' /></td>
                                 <td>

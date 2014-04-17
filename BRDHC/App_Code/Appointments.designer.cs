@@ -99,6 +99,13 @@ public partial class AppointmentsDataContext : System.Data.Linq.DataContext
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), applicationName, name);
 		return ((ISingleResult<sp_SearchAppsByPatientNameResult>)(result.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_SearchAppsByDoctorId")]
+	public ISingleResult<sp_SearchAppsByDoctorIdResult> sp_SearchAppsByDoctorId([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ApplicationName", DbType="NVarChar(256)")] string applicationName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(256)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> docId)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), applicationName, name, docId);
+		return ((ISingleResult<sp_SearchAppsByDoctorIdResult>)(result.ReturnValue));
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.brdhc_PatientAppointments")]
@@ -721,6 +728,194 @@ public partial class sp_SearchAppsByPatientNameResult
 	private System.DateTime _CreatedOnDate;
 	
 	public sp_SearchAppsByPatientNameResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorName", DbType="VarChar(101) NOT NULL", CanBeNull=false)]
+	public string DoctorName
+	{
+		get
+		{
+			return this._DoctorName;
+		}
+		set
+		{
+			if ((this._DoctorName != value))
+			{
+				this._DoctorName = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentId", DbType="Int NOT NULL")]
+	public int AppointmentId
+	{
+		get
+		{
+			return this._AppointmentId;
+		}
+		set
+		{
+			if ((this._AppointmentId != value))
+			{
+				this._AppointmentId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientUserId", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid PatientUserId
+	{
+		get
+		{
+			return this._PatientUserId;
+		}
+		set
+		{
+			if ((this._PatientUserId != value))
+			{
+				this._PatientUserId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorUserId", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid DoctorUserId
+	{
+		get
+		{
+			return this._DoctorUserId;
+		}
+		set
+		{
+			if ((this._DoctorUserId != value))
+			{
+				this._DoctorUserId = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientName", DbType="VarChar(101) NOT NULL", CanBeNull=false)]
+	public string PatientName
+	{
+		get
+		{
+			return this._PatientName;
+		}
+		set
+		{
+			if ((this._PatientName != value))
+			{
+				this._PatientName = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reason", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+	public string Reason
+	{
+		get
+		{
+			return this._Reason;
+		}
+		set
+		{
+			if ((this._Reason != value))
+			{
+				this._Reason = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentDate", DbType="VarChar(12)")]
+	public string AppointmentDate
+	{
+		get
+		{
+			return this._AppointmentDate;
+		}
+		set
+		{
+			if ((this._AppointmentDate != value))
+			{
+				this._AppointmentDate = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentTime", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string AppointmentTime
+	{
+		get
+		{
+			return this._AppointmentTime;
+		}
+		set
+		{
+			if ((this._AppointmentTime != value))
+			{
+				this._AppointmentTime = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string Status
+	{
+		get
+		{
+			return this._Status;
+		}
+		set
+		{
+			if ((this._Status != value))
+			{
+				this._Status = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedOnDate", DbType="Date NOT NULL")]
+	public System.DateTime CreatedOnDate
+	{
+		get
+		{
+			return this._CreatedOnDate;
+		}
+		set
+		{
+			if ((this._CreatedOnDate != value))
+			{
+				this._CreatedOnDate = value;
+			}
+		}
+	}
+}
+
+public partial class sp_SearchAppsByDoctorIdResult
+{
+	
+	private string _DoctorName;
+	
+	private int _AppointmentId;
+	
+	private System.Guid _PatientUserId;
+	
+	private System.Guid _DoctorUserId;
+	
+	private string _PatientName;
+	
+	private string _Reason;
+	
+	private string _AppointmentDate;
+	
+	private string _AppointmentTime;
+	
+	private string _Status;
+	
+	private System.DateTime _CreatedOnDate;
+	
+	public sp_SearchAppsByDoctorIdResult()
 	{
 	}
 	

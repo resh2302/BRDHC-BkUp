@@ -35,7 +35,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
             {
                 pnlSearch.Visible = false;
                 _roleToSearch = "Patients";
-                lblDashboard.Text = "DOCTORS DASHBOARD : PATIENTS";
+                lblDashboard.Text = "DOCTOR ADMIN DASHBOARD : PATIENTS";
                 pnlRoles.Visible = false;
             }
             else

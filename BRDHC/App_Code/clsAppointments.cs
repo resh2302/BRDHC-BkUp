@@ -32,6 +32,20 @@ public class clsAppointments
         }
         return myList;
     }
+    public List<sp_SearchAppsByDoctorIdResult> getAppointmentsByDoctorId(string applicationName, string patientName, Guid docId)
+    {
+        List<sp_SearchAppsByDoctorIdResult> myList = new List<sp_SearchAppsByDoctorIdResult>();
+        try
+        {
+            AppointmentsDataContext obj = new AppointmentsDataContext();
+            myList = obj.sp_SearchAppsByDoctorId(applicationName, patientName, docId).ToList();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return myList;
+    }
 
     public List<sp_GetBookedTimeResult> getBookedTimes(string doctorUserId, DateTime appointmentDate)
     {

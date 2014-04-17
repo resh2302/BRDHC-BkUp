@@ -55,4 +55,17 @@
       <Column Name="DateWritten" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.sp_SearchPrescriptionsByDocId" Method="sp_SearchPrescriptionsByDocId">
+    <Parameter Name="PatientName" Parameter="patientName" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="DocId" Parameter="docId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="sp_SearchPrescriptionsByDocIdResult">
+      <Column Name="AppointmentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PatientName" Type="System.String" DbType="VarChar(101) NOT NULL" CanBeNull="false" />
+      <Column Name="HealthCard" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DoctorName" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="PrescriptionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Repeat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateWritten" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -1,11 +1,16 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/brdhc.master" ValidateRequest="false" Theme="HealthTools" AutoEventWireup="true" CodeFile="healthAlerts.aspx.cs" Inherits="Admin_healthAlerts" %>
 
+<%-- AUTHOR:   JAGSIR SINGH --%>
+<%-- This page is for the admin side.
+    Admin can add, update, delete, publish the alerts and these alerts are saved into database and sent over emails of the users 
+    A Free Text Box Editor is used on this page for the description of the alert.
+    So admin can style the page--%>
+
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 
 <asp:Content ID="cntHead" ContentPlaceHolderID="head" runat="Server">
-    <%--<link href="../styles/healthAlerts.css" rel="stylesheet" />--%>
     <script type="text/javascript" src="../js/healthAlert.js"></script>
 </asp:Content>
 

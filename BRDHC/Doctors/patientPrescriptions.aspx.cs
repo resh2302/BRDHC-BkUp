@@ -4,15 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 public partial class Doctors_patientPrescriptions : System.Web.UI.Page
 {
+    MembershipUser user = Membership.GetUser();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
             Label lblDashboard = Master.dashboardHeading;
-            lblDashboard.Text = "DOCTORS DASHBOARD : PRESCRIPTIONS";
+            if (Roles.IsUserInRole(user.UserName, "Doctors"))
+            {
+                lblDashboard.Text = "DOCTOR ADMIN DASHBOARD : PRESCRIPTIONS";
+            }
+            else
+            {
+                lblDashboard.Text = "ADMIN DASHBOARD : PRESCRIPTIONS";
+            }
             loadRecords();
         }
 
@@ -20,11 +29,23 @@ public partial class Doctors_patientPrescriptions : System.Web.UI.Page
 
     protected void loadRecords() { 
         clsPrescriptions objPres = new clsPrescriptions();
-        List<sp_SearchPrescriptionsByPatientNameResult> objRes = objPres.getPrescriptionsByPatientName(txtSearchPres.Text);
-        if (objRes.Count > 0)
+        if (Roles.IsUserInRole(user.UserName, "Doctors"))
         {
-            grvRecords.DataSource = objRes;
-            grvRecords.DataBind();
+            List<sp_SearchPrescriptionsByDocIdResult> objRes = objPres.getPrescriptionsByDocId(txtSearchPres.Text, Guid.Parse(user.ProviderUserKey.ToString()));
+            if (objRes.Count > 0)
+            {
+                grvRecords.DataSource = objRes;
+                grvRecords.DataBind();
+            }
+        }
+        else
+        {
+            List<sp_SearchPrescriptionsByPatientNameResult> objRes = objPres.getPrescriptionsByPatientName(txtSearchPres.Text);
+            if (objRes.Count > 0)
+            {
+                grvRecords.DataSource = objRes;
+                grvRecords.DataBind();
+            }
         }
     }
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -45,15 +66,6 @@ public partial class Doctors_patientPrescriptions : System.Web.UI.Page
             Button lbtnPresc = (Button)e.Row.FindControl("lbtnPresc");
             lbtnDelete.OnClientClick = "javascript:deletePresc('" + e.Row.RowIndex + "','" + lbl_PrescId.Text + "',this); return false;";
 
-            //if (lbl_PrescId.Text == "0")
-            //{
-            //    lbtnEdit.Visible = false;
-            //}
-            //else
-            //{
-            //   // lbtnDelete.Attributes.Add("onClientClick", "javascript:alert('hello');");
-            //    lbtnPresc.Visible = false;
-            //}
         }
     }
 }

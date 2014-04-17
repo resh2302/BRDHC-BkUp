@@ -2,6 +2,8 @@
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <%-- AUTHOR:   JAGSIR SINGH --%>
+    <%-- This page is used to display all the exceptions raised on the site. --%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
     <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
@@ -13,7 +15,6 @@
                             <br />
                             <asp:Label ID="lbl_FName" SkinID="grdTitles" runat="server" Text='File Name: '></asp:Label><asp:Label ID="lblFileName" runat="server" Text='<%# Eval("FileName")%>'></asp:Label><br />
                             <asp:Label ID="lbl_MName" SkinID="grdTitles" runat="server" Text='Method Name: '></asp:Label><asp:Label ID="lblMethodName" runat="server" Text='<%# Eval("MethodName")%>'></asp:Label><br />
-                            <%--<asp:Label ID="lbl_EName" SkinID="grdTitles" runat="server" Text='Event Name: '></asp:Label><asp:Label ID="lblEventName" runat="server" Text='<%# Eval("EventName")%>'></asp:Label><br />--%>
                             <asp:Label ID="lbl_LNumber" SkinID="grdTitles" runat="server" Text='Line Number: '></asp:Label><asp:Label ID="lblLineNum" runat="server" Text='<%# Eval("LineNumber")%>'></asp:Label><br />
                             <asp:Label ID="lbl_CNumber" SkinID="grdTitles" runat="server" Text='Column Number: '></asp:Label><asp:Label ID="lblColNum" runat="server" Text='<%# Eval("ColumnNumber")%>'></asp:Label><br />
                             <asp:Label ID="lbl_Mess" SkinID="grdTitles" runat="server" Text='Message: '></asp:Label><asp:Label ID="lblMessage" runat="server" Text='<%# Eval("Message")%>'></asp:Label><br />
