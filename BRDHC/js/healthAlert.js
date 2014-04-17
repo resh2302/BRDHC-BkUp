@@ -27,13 +27,13 @@ $(document).ready(function () {
     });
 
 
-    $("#ContentPlaceHolder1_lbtnSend").click(function (e) {
+    $("#cphSiteMasterBody_lbtnSend").click(function (e) {
         e.preventDefault();
-        var em = $("#ContentPlaceHolder1_txtEmails").val();
+        var em = $("#cphSiteMasterBody_txtEmails").val();
         if (em != "") {
             $("#pImage").show();
             $("#tmpAlert").hide();
-            var id = $("#ContentPlaceHolder1_hfaid").val();
+            var id = $("#cphSiteMasterBody_hfaid").val();
             $.ajax({
                 type: "POST",
                 dataType: "json",

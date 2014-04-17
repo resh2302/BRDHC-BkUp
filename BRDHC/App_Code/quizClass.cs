@@ -1,4 +1,9 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////
+// AUTHOR:           MARKI SVEEN
+// DESCRIPTION:      CLASS FOR HEALTHY EATING QUIZ
+///////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,7 +41,7 @@ public class quizClass
     public bool commitInsert(string _THISname, string _THISimage, int _THIScalories, int _THISfat, string _THATname, string _THATimage, int _THATcalories, int _THATfat, string _Answer)
     {
         healthToolsDataContext objQuiz = new healthToolsDataContext();
-        using (objQuiz)
+        try
         {
             brdhc_HealthTools_Quiz objNewQuiz = new brdhc_HealthTools_Quiz();
             objNewQuiz.THISname = _THISname;
@@ -52,13 +57,18 @@ public class quizClass
             objQuiz.SubmitChanges(); //this will commit the changes
             return true; //boolean
         }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
+        }
     }
 
     //THIS IS AN UPDATE
     public bool commitUpdate(Guid _QuestionID, string _THISname, string _THISimage, int _THIScalories, int _THISfat, string _THATname, string _THATimage, int _THATcalories, int _THATfat, string _Answer)
     {
         healthToolsDataContext objQuiz = new healthToolsDataContext();
-        using (objQuiz)
+        try
         {
             //updating a single row at a time which row depends on the _id
             var objUpQuiz = objQuiz.brdhc_HealthTools_Quizs.Single(x => x.QuestionID == _QuestionID);
@@ -74,18 +84,28 @@ public class quizClass
             objQuiz.SubmitChanges(); //on submit use objQuiz
             return true;
         }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
+        }
     }
 
     //THIS IS A DELETE
     public bool commitDelete(Guid _QuestionID)
     {
         healthToolsDataContext objQuiz = new healthToolsDataContext();
-        using (objQuiz)
+        try
         {
             var objDelCan = objQuiz.brdhc_HealthTools_Quizs.Single(x => x.QuestionID == _QuestionID);
             objQuiz.brdhc_HealthTools_Quizs.DeleteOnSubmit(objDelCan); //if you want to delete all best to drop the table
             objQuiz.SubmitChanges();
             return true;
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
         }
     }
 }

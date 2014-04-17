@@ -52,7 +52,7 @@ public partial class VolunteerAdmin_VolApplicationAdmin : System.Web.UI.Page
                 _subRebind();
                 break;
             case "Delete":
-                Guid _OppId = Guid.Parse(((HiddenField)e.Item.FindControl("hdf_idE")).Value);
+                Guid _OppId = Guid.Parse(((HiddenField)e.Item.FindControl("hdf_AppId")).Value);
                 _strMes(objApp.commitDelete(_OppId), "delete");
                 _subRebind();
                 break;

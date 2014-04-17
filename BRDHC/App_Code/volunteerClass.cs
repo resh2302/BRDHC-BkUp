@@ -1,4 +1,9 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////
+// AUTHOR:           MARKI SVEEN
+// DESCRIPTION:      CLASS FOR VOLUNTEER OPPORTUNITIES
+///////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,7 +41,7 @@ public class volunteerClass
     public bool commitInsert(string _OppTitle, string _Skills, string _Benefits, string _Other, string _CommitmentHow, string _CommitmentWhen, string _ContactPerson, string _Department, string _Reviewed)
     {
         volunteerClassDataContext objVol = new volunteerClassDataContext();
-        using (objVol)
+        try
         {
             brdhc_volunteerOpp objNewOpp = new brdhc_volunteerOpp();
             objNewOpp.OppTitle = _OppTitle;
@@ -52,13 +57,18 @@ public class volunteerClass
             objVol.SubmitChanges(); //this will commit the changes
             return true; //boolean
         }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
+        }
     }
 
     //THIS IS AN UPDATE
     public bool commitUpdate(Guid _OppId, string _OppTitle, string _Skills, string _Benefits, string _Other, string _CommitmentHow, string _CommitmentWhen, string _ContactPerson, string _Department, string _Reviewed)
     {
         volunteerClassDataContext objVol = new volunteerClassDataContext();
-        using (objVol)
+        try
         {
             //updating a single row at a time which row depends on the _id
             var objUpQuiz = objVol.brdhc_volunteerOpps.Single(x => x.OppId == _OppId);
@@ -74,18 +84,28 @@ public class volunteerClass
             objVol.SubmitChanges(); //on submit use objVol
             return true;
         }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
+        }
     }
 
     //THIS IS A DELETE
     public bool commitDelete(Guid _OppId)
     {
         volunteerClassDataContext objVol = new volunteerClassDataContext();
-        using (objVol)
+        try
         {
             var objDelCan = objVol.brdhc_volunteerOpps.Single(x => x.OppId == _OppId);
             objVol.brdhc_volunteerOpps.DeleteOnSubmit(objDelCan); //if you want to delete all best to drop the table
             objVol.SubmitChanges();
             return true;
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
         }
     }
 }

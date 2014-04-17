@@ -18,6 +18,8 @@ public partial class Admin_appointments : System.Web.UI.Page
     static string strTime;
     static string strAppointmentId;
     # endregion
+    MembershipUser user = Membership.GetUser();
+    static string strDocName = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,10 +27,19 @@ public partial class Admin_appointments : System.Web.UI.Page
         {
             calDate.StartDate = DateTime.Now;
             Label lblDashboard = Master.dashboardHeading;
-            lblDashboard.Text = "ADMIN DASHBOARD : APPOINTMENTS";
-            subLoadDoctors();
-           // calDate.SelectedDate = DateTime.Now.AddDays(30);
-           // subLoadTimes();
+            if (Roles.IsUserInRole(user.UserName, "Doctors"))
+            {
+                lblDashboard.Text = "DOCTOR ADMIN DASHBOARD : APPOINTMENTS"; 
+                pnlDocsDDL.Visible = false;
+            }
+            else
+            {
+                pnlDocsDDL.Visible = true;
+                lblDashboard.Text = "ADMIN DASHBOARD : APPOINTMENTS";
+                subLoadDoctors();
+            }
+            subLoadAppointments();
+
             pnlDetails.Visible = false;
         }
 
@@ -96,7 +107,10 @@ public partial class Admin_appointments : System.Web.UI.Page
         txtPName.Text = string.Empty;
         txtDate.Text = string.Empty;
         txtReason.Text = string.Empty;
-        ddlDoctor.SelectedIndex = 0;
+        if (!Roles.IsUserInRole(user.UserName, "Doctors"))
+        {
+            ddlDoctor.SelectedIndex = 0;
+        }
         ddlTimes.Items.Clear();
         strPatientUserId = string.Empty;
         strAppointmentId = string.Empty;
@@ -108,19 +122,41 @@ public partial class Admin_appointments : System.Web.UI.Page
     protected void subLoadAppointments()
     {
         string appName = WebConfigurationManager.AppSettings["appName"].ToString();
-        List<sp_SearchAppsByPatientNameResult> objRecords = objApp.getAppointmentsByPatientName(appName, txtSearchName.Text);
-        if (objRecords.Count > 0)
+       
+        if (Roles.IsUserInRole(user.UserName, "Doctors"))
         {
-            lblErr.Visible = false;
-            rptApp.Visible = true;
-            rptApp.DataSource = objRecords;
-            rptApp.DataBind();
+            List<sp_SearchAppsByDoctorIdResult> objRecords = objApp.getAppointmentsByDoctorId(appName, txtSearchName.Text, Guid.Parse(user.ProviderUserKey.ToString()));
+
+            if (objRecords.Count > 0)
+            {
+                lblErr.Visible = false;
+                rptApp.Visible = true;
+                rptApp.DataSource = objRecords;
+                rptApp.DataBind();
+            }
+            else
+            {
+                lblErr.Visible = true;
+                lblErr.Text = "No records found.";
+                rptApp.Visible = false;
+            }
         }
         else
         {
-            lblErr.Visible = true;
-            lblErr.Text = "No records found.";
-            rptApp.Visible = false;
+            List<sp_SearchAppsByPatientNameResult> objRecords = objApp.getAppointmentsByPatientName(appName, txtSearchName.Text);
+            if (objRecords.Count > 0)
+            {
+                lblErr.Visible = false;
+                rptApp.Visible = true;
+                rptApp.DataSource = objRecords;
+                rptApp.DataBind();
+            }
+            else
+            {
+                lblErr.Visible = true;
+                lblErr.Text = "No records found.";
+                rptApp.Visible = false;
+            }
         }
     }
     protected void subCommands(object source, RepeaterCommandEventArgs e)
@@ -135,6 +171,17 @@ public partial class Admin_appointments : System.Web.UI.Page
                 break;
         }
     }
+    protected void subItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            string appDate = ((Label)e.Item.FindControl("lblDate")).Text;
+            if (Convert.ToDateTime(appDate) < DateTime.Now)
+            {
+                ((Button)e.Item.FindControl("btnEdit")).Visible = false;
+            }
+        }
+    }
     # endregion
 
     #region "SAVE UPDATE AND DELETE"
@@ -145,15 +192,25 @@ public partial class Admin_appointments : System.Web.UI.Page
             lblErr.Visible = true;
             try
             {
+                string docId = string.Empty;
+                if (Roles.IsUserInRole(user.UserName, "Doctors"))
+                {
+                    docId = user.ProviderUserKey.ToString();
+                }
+                else
+                {
+                    docId = ddlDoctor.SelectedValue.ToString();
+                }
+
                 string strHead = "";
                 if (string.IsNullOrEmpty(strAppointmentId))
                 {
-                    objApp.bookAppointment(strPatientUserId, ddlDoctor.SelectedValue.ToString(), txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, "Accepted");
+                    objApp.bookAppointment(strPatientUserId, docId, txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, "Accepted");
                     strHead = "Your appointment has been booked with doctor ";
                 }
                 else
                 {
-                    objApp.updateAppointment(strAppointmentId, strPatientUserId, ddlDoctor.SelectedValue.ToString(), txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, "Accepted");
+                    objApp.updateAppointment(strAppointmentId, strPatientUserId, docId, txtDate.Text, ddlTimes.SelectedItem.Text, txtReason.Text, "Accepted");
                     strHead = "Your appointment has been rescheduled with doctor ";
                 }
                 string strFullName = txtPName.Text;
@@ -165,7 +222,7 @@ public partial class Admin_appointments : System.Web.UI.Page
                 strBody.Append("<br />");
                 strBody.Append("<br />");
                 strBody.Append(strHead);
-                strBody.Append("<strong>" + ddlDoctor.SelectedItem.Text + "</strong>");
+                strBody.Append("<strong>" + strDocName + "</strong>");
                 strBody.Append("<br />");
                 strBody.Append("Please bring list of medicines you are taking at the time.");
                 strBody.Append("<br />");
@@ -217,6 +274,7 @@ public partial class Admin_appointments : System.Web.UI.Page
         lblErr.Visible = false;
         pnlDetails.Visible = true;
         btnSU.Text = "Reschedule";
+        strDocName = ((Label)e.Item.FindControl("lblDName")).Text;
         txtPName.Text = ((Label)e.Item.FindControl("lblPName")).Text;
         ddlDoctor.SelectedValue = ((HiddenField)e.Item.FindControl("hdfDId")).Value;
         txtDate.Text = ((Label)e.Item.FindControl("lblDate")).Text;
@@ -244,8 +302,16 @@ public partial class Admin_appointments : System.Web.UI.Page
         subLoadTimes();
 
         lblErr.Visible = false;
-        // lblDate.Text = "Hello";
-        List<sp_GetBookedTimeResult> objAvailTimes = objApp.getBookedTimes(ddlDoctor.SelectedValue.ToString(), DateTime.Parse(txtDate.Text));
+        string docId = string.Empty;
+        if (Roles.IsUserInRole(user.UserName, "Doctors"))
+        {
+            docId = user.ProviderUserKey.ToString();
+        }
+        else
+        {
+            docId = ddlDoctor.SelectedValue.ToString();
+        }
+        List<sp_GetBookedTimeResult> objAvailTimes = objApp.getBookedTimes(docId, DateTime.Parse(txtDate.Text));
         if (objAvailTimes.Count > 0)
         {
             foreach (sp_GetBookedTimeResult ob in objAvailTimes)

@@ -21,19 +21,27 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     string roles = "";
     private static string _userId;
     private static string _userBasicInfoId;
-    private static string _roleName = string.Empty;
+    private static string _roleToSearch = string.Empty;
+    MembershipUser user = Membership.GetUser();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            MembershipUser user = Membership.GetUser();
+            Label lblDashboard = Master.dashboardHeading;
+
 
             if (Roles.IsUserInRole(user.UserName, "Doctors"))
             {
                 pnlSearch.Visible = false;
+                _roleToSearch = "Patients";
+                lblDashboard.Text = "DOCTOR ADMIN DASHBOARD : PATIENTS";
+                pnlRoles.Visible = false;
             }
-            Label lblDashboard = Master.dashboardHeading;
-            lblDashboard.Text = "ADMIN DASHBOARD : USERS";
+            else
+            {
+                lblDashboard.Text = "ADMIN DASHBOARD : USERS";
+            }
 
             pnlDetails.Visible = false;
             ddlRolesDes.DataSource = Roles.GetAllRoles();
@@ -49,11 +57,11 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
 
             calJoingDate.SelectedDate = DateTime.Now;
             Guid countryId = new Guid("6d3ec4aa-dc75-497b-ac89-9499530c27f1");
-            ddlStateAjax.DataSource = objCommon.getStatesByCountryId(countryId);
-            ddlStateAjax.DataTextField = "State";
-            ddlStateAjax.DataValueField = "StateId";
-            ddlStateAjax.DataBind();
-            ddlStateAjax.SelectedIndex = 0;
+            ddlState.DataSource = objCommon.getStatesByCountryId(countryId);
+            ddlState.DataTextField = "State";
+            ddlState.DataValueField = "StateId";
+            ddlState.DataBind();
+            ddlState.SelectedIndex = 0;
             loadCities();
             loadUserInformation();
         }
@@ -62,7 +70,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     # region "Load DropDowns"
     protected void loadCities()
     {
-        ddlCity.DataSource = objCommon.getCitiesByStateId(new Guid(ddlStateAjax.SelectedValue.ToString()));
+        ddlCity.DataSource = objCommon.getCitiesByStateId(new Guid(ddlState.SelectedValue.ToString()));
         ddlCity.DataTextField = "City";
         ddlCity.DataValueField = "CityId";
         ddlCity.DataBind();
@@ -81,29 +89,48 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     }
     private void subCheckRoles()
     {
-        switch (ddlRoles.SelectedItem.Text.ToLower())
+        if (Roles.IsUserInRole(user.UserName.ToLower(), "doctors"))
         {
-            case "patients":
-                lblIdentity.Text = "Health Card Number";
-                pnlPatients.Visible = true;
-                pnlDoctors.Visible = false;
-                lblJoinDate.Text = "Registration Date";
-                pnlDepartment.Visible = false;
-                break;
-            case "doctors":
-                pnlPatients.Visible = false;
-                pnlDoctors.Visible = true;
-                lblJoinDate.Text = "Joinging Date";
-                pnlDepartment.Visible = true;
-                lblIdentity.Text = "Licence Number";
-                break;
-            default:
-                pnlPatients.Visible = false;
-                pnlDoctors.Visible = false;
-                pnlDepartment.Visible = true;
-                lblJoinDate.Text = "Joinging Date";
-                lblIdentity.Text = "Identity";
-                break;
+            lblIdentity.Text = "Health Card Number";
+            pnlPatients.Visible = true;
+            pnlDoctors.Visible = false;
+            lblJoinDate.Text = "Registration Date";
+            pnlDepartment.Visible = false;
+        }
+        else
+        {
+            if (ddlRoles.SelectedItem.Text.ToLower() == "communityadmin")
+            {
+                pnlComName.Visible = true;
+            }
+            else
+            {
+                pnlComName.Visible = false;
+            }
+            switch (ddlRoles.SelectedItem.Text.ToLower())
+            {
+                case "patients":
+                    lblIdentity.Text = "Health Card Number";
+                    pnlPatients.Visible = true;
+                    pnlDoctors.Visible = false;
+                    lblJoinDate.Text = "Registration Date";
+                    pnlDepartment.Visible = false;
+                    break;
+                case "doctors":
+                    pnlPatients.Visible = false;
+                    pnlDoctors.Visible = true;
+                    lblJoinDate.Text = "Joinging Date";
+                    pnlDepartment.Visible = true;
+                    lblIdentity.Text = "Licence Number";
+                    break;
+                default:
+                    pnlPatients.Visible = false;
+                    pnlDoctors.Visible = false;
+                    pnlDepartment.Visible = true;
+                    lblJoinDate.Text = "Joinging Date";
+                    lblIdentity.Text = "Identity";
+                    break;
+            }
         }
     }
     # endregion
@@ -153,7 +180,14 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
             {
                 if (Membership.ValidateUser(newUser.ToString(), password))
                 {
-                    Roles.AddUserToRole(newUser.UserName, ddlRoles.SelectedItem.Text);
+                    if (Roles.IsUserInRole(user.UserName, "Doctors"))
+                    {
+                        Roles.AddUserToRole(newUser.UserName, "Patients");
+                    }
+                    else
+                    {
+                        Roles.AddUserToRole(newUser.UserName, ddlRoles.SelectedItem.Text);
+                    }
                     Guid newUId = new Guid(newUser.ProviderUserKey.ToString());
                     int res=saveBasicInfo(newUId);
                     if (res == 1)
@@ -220,11 +254,11 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     }
     private int saveBasicInfo(Guid userId)
     {
-       return objUDet.saveUserBasicInfo(userId, txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlStateAjax.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, txtDepartment.Text, txtJoiningDate.Text, ddlSpecialities.SelectedValue.ToString(), txtCommunityName.Text);
+       return objUDet.saveUserBasicInfo(userId, txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlState.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, txtDepartment.Text, txtJoiningDate.Text, ddlSpecialities.SelectedValue.ToString(), txtCommunityName.Text);
     }
     private void updateBasicInfo()
     {
-        objUDet.updateUserBasicInfo(_userBasicInfoId, txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlStateAjax.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, txtDepartment.Text, txtJoiningDate.Text, ddlSpecialities.SelectedValue.ToString(), txtCommunityName.Text);
+        objUDet.updateUserBasicInfo(_userBasicInfoId, txtFName.Text, txtLName.Text, txtDOB.Text, rdblGender.SelectedItem.Value.ToString(), txtIdentity.Text, txtAddress.Text, ddlCity.SelectedValue.ToString(), ddlState.SelectedValue.ToString(), txtPostalCode.Text, txtPhone.Text, txtFax.Text, txtFDoctor.Text, txtDepartment.Text, txtJoiningDate.Text, ddlSpecialities.SelectedValue.ToString(), txtCommunityName.Text);
     }
 
     private string GetlblErr(MembershipCreateStatus status)
@@ -232,7 +266,21 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
         switch (status)
         {
             case MembershipCreateStatus.DuplicateUserName:
-                return "Username already exists. Please enter a different user name.";
+                string strMsg = string.Empty;
+                if (Roles.IsUserInRole(user.UserName, "Doctors"))
+                {
+                    strMsg = "Another user is already registered with this Health Card Numer. Please verify the Health Card Number again!";
+                }
+                else if (ddlRoles.SelectedItem.Text.ToLower() == "doctors")
+                {
+                    strMsg = "Another user is already registered with this Licence Number. Please verify the again!";
+                }
+                else
+                {
+                    strMsg = "Another user is already registered with this Identification. Please verify the again!";
+                }
+                
+                return strMsg;
             case MembershipCreateStatus.DuplicateEmail:
                 return "A username for that e-mail address already exists. Please enter a different e-mail address.";
             case MembershipCreateStatus.InvalidPassword:
@@ -258,8 +306,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     #region "Repeater Events and Bind"
     private void loadUserInformation()
     {
-        resetControls();
-        if (string.IsNullOrEmpty(_roleName)) 
+        if (string.IsNullOrEmpty(_roleToSearch)) 
         {
             lblErr.Visible = true;
             lblErr.Text = "Please select any role.";
@@ -268,21 +315,24 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
         else
         {
 
+            lblErr.Visible = false;
             string appName = WebConfigurationManager.AppSettings["appName"].ToString();
             //string roleName;
             //roleName = "";
             //roleName = ddlRolesDes.SelectedItem.Text.ToLower();
-            List<sp_SearchUsersResult> objUsers = objUDet.getUserDetails(appName, _roleName);
+            List<sp_SearchUsersResult> objUsers = objUDet.getUserDetails(appName, _roleToSearch);
             if (objUsers.Count > 0)
             {
                 rptUserDetails.Visible = true;
                 rptUserDetails.DataSource = objUsers;
                 rptUserDetails.DataBind();
+                
             }
             else
             {
                 lblErr.Visible = true;
                 lblErr.Text = "No records found.";
+                rptUserDetails.Visible = false;
             }
         }
     }
@@ -399,6 +449,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
                 break;
 
         }
+
     }
     protected void lockUser(RepeaterCommandEventArgs e)
     {
@@ -455,7 +506,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
             txtEmail.Text = objUser[0].Email;
             txtIdentity.Text = objUser[0].Identification;
             txtAddress.Text = objUser[0].Address;
-            ddlStateAjax.SelectedValue = objUser[0].StateId.ToString();
+            ddlState.SelectedValue = objUser[0].StateId.ToString();
             loadCities();
             ddlCity.SelectedValue = objUser[0].CityId.ToString();
             txtPostalCode.Text = objUser[0].PostalCode;
@@ -490,6 +541,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     # region ADD , CANCEL , RESET CONTROL SUB ROUTINES"
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        resetControls();
         lblErr.Visible = false;
         lblErr.Text = string.Empty;
         pnlTable.Visible = false;
@@ -498,6 +550,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        resetControls();
         lblErr.Visible = false;
         pnlTable.Visible = true;
         pnlDetails.Visible = false;
@@ -525,8 +578,8 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
             ddlRoles.SelectedIndex = 0;        
         if (ddlSpecialities.Items.Count > 0)
             ddlSpecialities.SelectedIndex = 0;
-        if (ddlStateAjax.Items.Count > 0)
-            ddlStateAjax.SelectedIndex = 0;
+        if (ddlState.Items.Count > 0)
+            ddlState.SelectedIndex = 0;
         loadCities();
 
     }
@@ -534,7 +587,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
 
     protected void subSearchUsers(object sender, EventArgs e)
     {
-        _roleName = ddlRolesDes.SelectedItem.Text.ToLower();
+        _roleToSearch = ddlRolesDes.SelectedItem.Text.ToLower();
         loadUserInformation();
     }
 }

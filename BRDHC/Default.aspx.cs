@@ -14,7 +14,7 @@ public partial class _Default : System.Web.UI.Page
 
         if (Roles.IsUserInRole(user.UserName, "Administration"))
         {
-            Response.Redirect("Admin/appointments.aspx");
+            Response.Redirect("Admin/errorLogs.aspx");
         }
         else if (Roles.IsUserInRole(user.UserName, "Patients"))
         {

@@ -26,11 +26,12 @@ public class clsEmergency
     }
 
     // insert new wait time
-    public bool insertWaitTime(TimeSpan _time, DateTime _addedOn, string _updateBy)
+    public bool insertWaitTime(Guid id, TimeSpan _time, DateTime _addedOn, string _updateBy)
     {
         EmergencyDataContext objRecord = new EmergencyDataContext();
         using (objRecord){
             brdhc_Emergency objNewRecord = new brdhc_Emergency();
+            objNewRecord.EmergencyID = id;
             objNewRecord.WaitTime = _time;
             objNewRecord.AddedOn = _addedOn;
             objNewRecord.UpdatedBy = _updateBy;

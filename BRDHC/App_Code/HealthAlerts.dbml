@@ -12,6 +12,7 @@
   </Table>
   <Table Name="dbo.brdhc_AlertSubscribers" Member="brdhc_AlertSubscribers">
     <Type Name="brdhc_AlertSubscriber">
+      <Column Name="AlertSubscriptionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>

@@ -100,7 +100,7 @@ public partial class healthToolsQuizQues : System.Web.UI.Page
         {
             pnlQuiz.Visible = false;
             pnlResults.Visible = true;
-            lblResults.Text = "Thank you for trying the Healthy Eating Quiz!<br /><br /> You scored " + score.ToString() + " out of 10.";
+            lblResults.Text = "Thank you for trying the Healthy Eating Quiz!<br /><br /> You scored " + score.ToString() + " out of " + grid_quiz.PageCount;
         }
 
     }

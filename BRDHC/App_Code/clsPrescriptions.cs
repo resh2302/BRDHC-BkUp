@@ -60,6 +60,20 @@ public class clsPrescriptions
         }
         return myList;
     }
+    public List<sp_SearchPrescriptionsByDocIdResult> getPrescriptionsByDocId(string patientName, Guid docId)
+    {
+        List<sp_SearchPrescriptionsByDocIdResult> myList = new List<sp_SearchPrescriptionsByDocIdResult>();
+        try
+        {
+            prescriptionsDataContext obj = new prescriptionsDataContext();
+            myList = obj.sp_SearchPrescriptionsByDocId(patientName, docId).ToList();
+        }
+        catch (Exception ex)
+        {
+            clsCommon.saveError(ex);
+        }
+        return myList;
+    }
 
     public string savePrescription(int appointmentId, int repeat, DateTime presDate) // save new record into databse
     {

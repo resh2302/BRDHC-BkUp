@@ -11,17 +11,15 @@ public partial class unsubscribe : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            if (Request.QueryString["uid"] != null && Request.QueryString["uid"] != string.Empty)
+            Guid uid = new Guid(Request.QueryString["uid"].ToString());
+            try
             {
-                Guid uid = new Guid(Request.QueryString["uid"].ToString());
-                try
-                {
-                    clsHealthAlerts.unsubscribe(uid);
-                }
-                catch (Exception ex)
-                {
-                    lblMsg.Text = ex.Message.ToString();
-                }
+                clsHealthAlerts.unsubscribe(uid);
+                lblMsg.Text = "Your email has been r69emoved from the list.";
+            }
+            catch (Exception ex)
+            {
+                lblMsg.Text = ex.Message.ToString();
             }
         }
     }

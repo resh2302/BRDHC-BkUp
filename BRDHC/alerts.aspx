@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" Theme="HealthTools" AutoEventWireup="true" CodeFile="alerts.aspx.cs" Inherits="alerts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link href="styles/healthAlerts.css" rel="stylesheet" />
+    <%--<link href="styles/healthAlerts.css" rel="stylesheet" />--%>
     <script type="text/javascript" src="js/healthAlert.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
@@ -21,7 +21,7 @@
         <input type='submit' name='tmpAlertOpen' id='tmpAlertOpen' value='Send to friend' />
         <div id="tmpAlert">
             <div id="mailMsg" class="statusMsg"></div>
-            <asp:TextBox ID="txtEmails" runat="server"></asp:TextBox>
+            <asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>&nbsp;<asp:TextBox ID="txtEmails" runat="server" Width="275px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvEmails" runat="server" ControlToValidate="txtEmails" Text="*" SetFocusOnError="true" ValidationGroup="grpEmails"></asp:RequiredFieldValidator><br />
             <br />
             <div class="tmpBtns">
