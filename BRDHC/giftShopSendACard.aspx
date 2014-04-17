@@ -24,7 +24,7 @@
                  
         <div class="col-xs-12 col-sm-6 msPadTop40">
            <%--Your name label and textbox--%>               
-           <div class="col-xs-12"> 
+           <div class="col-xs-12 msMargBot10"> 
                <div class="col-xs-12 col-sm-6">
                     <asp:Label ID="mslbl_sName" runat="server" Text="Your name" CssClass="msFont11" AssociatedControlID="msSACYourName" />
                 </div>
@@ -35,7 +35,7 @@
             </div>
 
             <%--Your email label and textbox--%>
-            <div class="col-xs-12"> 
+            <div class="col-xs-12 msMargBot20"> 
                <div class="col-xs-12 col-sm-6">
                     <asp:Label ID="mslbl_sEmail" runat="server" Text="Your email" CssClass="msFont11" AssociatedControlID="msSACYourEmail" />
                 </div>
@@ -46,7 +46,7 @@
             </div>
 
             <%--Patient's name label and textbox--%>
-            <div class="col-xs-12"> 
+            <div class="col-xs-12 msMargBot10"> 
                <div class="col-xs-12 col-sm-6">
                     <asp:Label ID="mslbl_pName" runat="server" Text="Patient's name" CssClass="msFont11" AssociatedControlID="msSACPname" />
                 </div>
@@ -64,6 +64,7 @@
                 <div class="col-xs-12 col-sm-6">
                     <asp:TextBox ID="msSACPrn" runat="server" CssClass="msPadAll2" Width="100%" />
                 <asp:RequiredFieldValidator ID="rfv_pRoomNum" runat="server" Text="*Required" ControlToValidate="msSACPrn" ValidationGroup="insert" />
+                <asp:RegularExpressionValidator ValidationExpression="^[A-Za-z0-9]{4}" ID="reg_rmnum" runat="server" Text="*Must be 4 letters or numbers ex.H456" ControlToValidate="msSACPrn" ValidationGroup="insert" />
                 </div>  
            </div>
 
@@ -76,7 +77,7 @@
 
         <div class="col-xs-12 col-sm-4">
             <%--To label and textbox--%>
-             <div class="col-xs-12"> 
+             <div class="col-xs-12 msMargBot10"> 
                <div class="col-xs-12 col-sm-3">
                     <asp:Label ID="mslbl_to" runat="server" Text="To:" CssClass="msFont11" AssociatedControlID="msSACTo" />
                 </div>
@@ -112,7 +113,7 @@
              </div>     
                
             <%--Send now button--%>
-            <div class="col-xs-12  msMargBot30">
+            <div class="col-xs-12  msMargBot30 msMargTop10">
                 <asp:Button CssClass="btn msRight" runat="server" ID="btnSendFlowers" Text="Send now" OnCommand="btnSendFlowers_Command" CommandName="Insert" ValidationGroup="insert"  />
             </div>
 

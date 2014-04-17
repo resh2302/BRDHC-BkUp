@@ -14,11 +14,11 @@ public partial class giftShopThankyou : System.Web.UI.Page
     {
         var id = Request.QueryString["tx"];
         var status = Request.QueryString["st"];
-        var price = Request.QueryString["amt"];
+        //var price = Request.QueryString["amt"]; I decided not to include the price from the query string
 
-        lbl_thk.Text = "THANK YOU for your purchase.<br /><br />A receipt has been sent to the email that you provided. <br /><br /> If you would like to include a handwritten card please fill in your details and message below. " + id + status + price;
+        lbl_thk.Text = "Your purchase is " + status + ".<br /><br />Here is your confirmation id: " + id + ".<br /><br />A receipt has been sent to the email that you provided. <br /><br /> If you would like to include a handwritten card please fill in your details and message below.";
         
-
+        //empty textboxes on page load
         if (!Page.IsPostBack)
         {
             _subRebind();
@@ -29,7 +29,8 @@ public partial class giftShopThankyou : System.Web.UI.Page
     {
         if (e.CommandName == "Insert")
         {
-            _strOutput(ObjCard.commitInsert(msSACYourName.Text, msSACYourEmail.Text, msSACPname.Text, msSACPrn.Text, msSACTo.Text, msSACFrom.Text, msSACYourMessage.Text), "sent");
+            Guid CardId = new Guid();
+            _strOutput(ObjCard.commitInsert(CardId, msSACYourName.Text, msSACYourEmail.Text, msSACPname.Text, msSACPrn.Text, msSACTo.Text, msSACFrom.Text, msSACYourMessage.Text), "sent");
             _subRebind();
             _panelControl(pnlMsSent);
         }
@@ -57,9 +58,13 @@ public partial class giftShopThankyou : System.Web.UI.Page
     private void _strOutput(bool flag, string str)
     {
         if (flag)
-            mSlblTks.Text = "Your message has been " + str + ". <br /><br /> You will be notified via email once your card has been delivered.";
+        {
+            mSlblTks.Text = "Your message has been " + str + ".";
+        }
         else
+        {
             mSlblTks.Text = "Unfortunately your message was no able to be " + str + ". <br /><br /> Please call 111-222-3333 to have your message taken over the phone.";
+        }
 
     }
 

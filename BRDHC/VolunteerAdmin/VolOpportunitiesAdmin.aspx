@@ -12,7 +12,7 @@
             <div class="bootContainer">
             
                 <div class="col-xs-12">
-                <asp:Label ID="lbl_mes" runat="server" CssClass="msPara attn" />
+                <asp:Label ID="lbl_mes" runat="server" CssClass="msPara attn msPadTop10 msPadBot10" />
                 </div>
                     
                 <%--subHeader and panel--%>
@@ -24,7 +24,7 @@
                         <asp:Panel ID="pnl_volOpps" GroupingText="Volunteer Opportunities - INSERT" runat="server">
                      
                         <%--Insert: Opportunity Title label and textbox--%>
-                        <div class="col-xs-12"> 
+                        <div class="col-xs-12 msMargBot10"> 
                             <div class="col-xs-12 col-sm-4">  
                             <asp:Label ID="lbl_oppTitle" runat="server" text="Opportunity Title" CssClass="msFont11" />
                             </div>
@@ -35,7 +35,7 @@
                         </div>
 
                         <%--Insert: Skills label and textbox--%>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_skills" runat="server" text="Skills" CssClass="msFont11" />
                             </div>
@@ -46,7 +46,7 @@
                         </div>
                         
                         <%--Insert: Benefits label and textbox--%>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_benefits" runat="server" text="Benefits" CssClass="msFont11" />
                             </div>
@@ -57,7 +57,7 @@
                         </div>
 
                         <%--Insert: Other label and textbox--%>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_other" runat="server" text="Other Requirements" CssClass="msFont11" />
                             </div>
@@ -68,7 +68,7 @@
                         </div>
 
                         <%--Insert: Time Commitment label and textbox--%>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_how" runat="server" text="Time Commitment" CssClass="msFont11" />
                             </div>
@@ -79,7 +79,7 @@
                         </div>
                          
                         <%--Insert: Date and Time label and textbox--%>       
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_when" runat="server" text="Date and Time" CssClass="msFont11" />
                             </div>
@@ -90,7 +90,7 @@
                         </div>
 
                         <%--Insert: Contact person label and textbox--%>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_contact" runat="server" text="Contact Person" CssClass="msFont11" />
                             </div>
@@ -101,7 +101,7 @@
                         </div>
 
                         <%--Insert: Department label and textbox--%>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_department" runat="server" text="Department" CssClass="msFont11" />
                             </div>
@@ -112,7 +112,7 @@
                         </div>
                         
                         <%--Insert: Reviewed label and textbox--%>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 msMargBot10">
                             <div class="col-xs-12 col-sm-4">
                             <asp:Label ID="lbl_reviewed" runat="server" text="Reviewed" CssClass="msFont11" />
                             </div>
