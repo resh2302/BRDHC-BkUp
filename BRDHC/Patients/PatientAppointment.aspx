@@ -12,6 +12,8 @@
         <%--/ #pnlHead--%>
         <asp:Panel ID="pnlDashboard" CssClass="pnlDashboard fullWidth" runat="server">
             <asp:Panel ID="pnlContent" CssClass="pnlContent fullWidth " runat="server">
+                
+                <asp:Label ID="lblStatus" runat="server" Visible="false" CssClass="statusMsg" />
                 <%-- ajax control toolkit tabcontainer used to display to tabs - Making requests , request status --%>
                 <ajax:TabContainer ID="tcAppointments" runat="server" ActiveTabIndex="0" OnDemand="true" TabStripPlacement="Top">
                     <%-- Tab for making requests --%>
