@@ -14,7 +14,7 @@ Default skin template. The following skins are provided as examples only.
 <asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
 --%>
 <asp:RequiredFieldValidator runat="server"  Display="Dynamic" ForeColor="Red" ></asp:RequiredFieldValidator>
-<asp:RegularExpressionValidator runat="server" Display=Dynamic" ForeColor="Red" ></asp:RegularExpressionValidator>
+<asp:RegularExpressionValidator runat="server" Display="Dynamic" ForeColor="Red" ></asp:RegularExpressionValidator>
 
 <asp:CompareValidator runat="server"  Display="Dynamic" ForeColor="Red" ></asp:CompareValidator>
   <asp:Label runat="server" Font-Size="20px" Font-Bold="true" SkinID="title"></asp:Label>
