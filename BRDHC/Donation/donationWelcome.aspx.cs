@@ -10,7 +10,7 @@ public partial class Donation_donationWelcome : System.Web.UI.Page
     
         protected void subClick(object sender, EventArgs e)
     {
-        Response.Redirect("~/Donation/donateNow.aspx");   
+        Response.Redirect("~/Donation/donateNow.aspx");   //on button click redirects to given url
     }
     
 }

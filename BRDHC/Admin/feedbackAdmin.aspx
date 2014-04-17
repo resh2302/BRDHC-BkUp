@@ -6,7 +6,7 @@
    
      <asp:Label ID="lbl_message" CssClass="message" runat="server"/>
    
-      
+      <%-- using the list view to get data from tables --%>
      <asp:ListView ID="dl_main" runat="server" OnItemCommand="subDel">
          <ItemTemplate>
               <table class="blueTable table">

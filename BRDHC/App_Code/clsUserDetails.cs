@@ -44,16 +44,6 @@ public class clsUserDetails
         return obj.sp_SearchUsersById(new Guid(userId)).ToList();
     }
 
-    public IQueryable<brdhc_DoctorSpeciality> getDoctorsBySpeciality()
-    {
-        UserDetailsDataContext udObj = new UserDetailsDataContext();
-        var doctors =
-            from d in udObj.brdhc_DoctorSpecialities
-            orderby d.Speciality
-            select d;
-        return doctors;
-    }
-
 
     public List<sp_SearchUsersByParamResult> getDoctors(string applicationName, string roleName, string name)
     {
@@ -62,11 +52,23 @@ public class clsUserDetails
         return objdoc.sp_SearchUsersByParam(applicationName, roleName, name).ToList();
     }
 
+    //getting doctors using stored procedures (Krunal)
     public List<sp_SearchDoctorsBySpecialityResult> getDocBySpe(string applicationName , string speciality)
     {
         List<sp_SearchDoctorsBySpecialityResult> myList = new List<sp_SearchDoctorsBySpecialityResult>();
         UserDetailsDataContext objdoc = new UserDetailsDataContext();
         return objdoc.sp_SearchDoctorsBySpeciality(applicationName,speciality).ToList();
+    }
+
+    //loading docs from brdhc_speciality table.
+    public IQueryable<brdhc_DoctorSpeciality> getDoctorsBySpeciality()
+    {
+        UserDetailsDataContext udObj = new UserDetailsDataContext();
+        var doctors =
+            from d in udObj.brdhc_DoctorSpecialities
+            orderby d.Speciality
+            select d;
+        return doctors;
     }
 
     public List<sp_getAllPatientNamesResult> getAllPatientNames()

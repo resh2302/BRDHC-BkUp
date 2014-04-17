@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class FeedbackAdmin_feedbackAdmin : System.Web.UI.Page
 {
+    //creating the object of feedback class
     clsCommon objSendMail = new clsCommon();
     feedback obj = new feedback();
     protected void Page_Load(object sender, EventArgs e)
@@ -36,15 +37,18 @@ public partial class FeedbackAdmin_feedbackAdmin : System.Web.UI.Page
 
     private void _subRebind()
     {
+        //binding the listview
         dl_main.DataSource = obj.getFeedbacks();
         dl_main.DataBind();
     }
 
+    //
     protected void subDelete(ListViewCommandEventArgs e)
     {
         lbl_message.Visible = true;
         int id = Convert.ToInt32(e.CommandArgument.ToString());
         bool result;
+        //calling the method commitDelete from feedback.cs class
         result = obj.commitDelete(id);
         if (result)
         {

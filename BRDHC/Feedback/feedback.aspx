@@ -5,9 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
 
      <div class="bootContainer">
+         <%-- Main panel --%>
         <asp:Panel ID="pnl_feedback" runat="server">
             <asp:Label ID="lbl_message" CssClass="message" runat="server"/>
+            <%-- Repeater --%>
         <asp:Repeater ID="rpt_feedback" runat="server" OnItemCommand="insertFeedback">
+
             <HeaderTemplate>
                 <br />
                     <asp:Label ID="lbl_heading" Text="Thank you for your interest in BRDHC Hospital. Please share your feedback on 
@@ -15,7 +18,8 @@
              <br />
                 
                 <br />
-               
+               <%-- Labels and Text boxes with validation and required field validators --%>
+                <%-- Label and textbox for first name --%>
                 <asp:Label ID="lbl_fname" Text="First name:" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_fname" runat="server" CssClass="textContact" />
                 <asp:RequiredFieldValidator SetFocusOnError="true" Display="Dynamic"
@@ -28,6 +32,7 @@
                                 ForeColor="#FF0000" />
                     
                 <br />
+                 <%-- Label and textbox for last name --%>
                 <asp:Label ID="lbl_lname" Text="Last name:" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_lname" runat="server" CssClass="textContact" />
                 <asp:RequiredFieldValidator SetFocusOnError="true" Display="Dynamic"
@@ -39,6 +44,7 @@
                                 Text="*Required"
                                 ForeColor="#FF0000" />
                 <br />
+                 <%-- Label and textbox for if patient --%>
                 <asp:Label ID="lbl_patient" Text="Are you a Patient:" CssClass="infoLabel" runat="server" />
                 <asp:RadioButtonList ID="r_isPatient" runat="server" RepeatDirection="Horizontal"  RepeatLayout="Flow">
                     <asp:ListItem Text="Yes" Value="Yes"/>
@@ -53,6 +59,7 @@
                   <br />
                 <asp:Label ID="lbl_email" Text="Email :" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_email" runat="server" CssClass="textContact" />
+                <%-- required field and regularexpression validators for email --%>
                 <asp:RequiredFieldValidator SetFocusOnError="true" Display="Dynamic"
                                  ID="rfv_email"  
                                    runat="server"  
@@ -71,6 +78,7 @@
                                 Text="*Please enter proper email address" 
                                 ForeColor="#FF0000" />
                 <br />
+                 <%-- Label and textbox for phone number --%>
                 <asp:Label ID="lbl_phone" Text="Phone Number:" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_phone" runat="server" CssClass="textContact" ToolTip="647-000-0000" />
                 <asp:RequiredFieldValidator SetFocusOnError="true" Display="Dynamic"
@@ -87,6 +95,7 @@
                     ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}">
                     </asp:RegularExpressionValidator>
                 <br />
+                 <%-- Label and textbox for city --%>
                 <asp:Label ID="lbl_city" Text="City :" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_city" runat="server" CssClass="textContact" />
                 <asp:RequiredFieldValidator SetFocusOnError="true" Display="Dynamic"
@@ -100,6 +109,7 @@
 
 
                 <br />
+                 <%-- Label and textbox for state --%>
                 <asp:Label ID="lbl_state" Text="State :" runat="server" CssClass="infoLabel" />
                 <asp:TextBox ID="txt_state" runat="server" CssClass="textContact" />
                 <asp:RequiredFieldValidator SetFocusOnError="true" Display="Dynamic"
@@ -112,6 +122,7 @@
                                 ForeColor="#FF0000" />
 
                 <br />
+                 <%-- Label and textbox for feedback --%>
                 <asp:Label ID="lbl_feedback" Text="Feedback:" runat="server" CssClass="infoLabel" />
                  <br />
                 <asp:TextBox ID="txt_feedback" runat="server" CssClass="textContact" TextMode="MultiLine" Width="600" />
@@ -128,6 +139,7 @@
                 <br />
                 <asp:Button ID="btn_sub" Text="Submit" runat="server" CommandName="Insert" ValidationGroup="group1" />
                 <asp:Button ID="btn_back" runat="server" CssClass="btnCancel" Text="Cancel" CommandName="Cancel" CausesValidation="false" />
+                 <%-- validation summary to show all the errors --%>
                 <asp:ValidationSummary ID="Vali_summ" runat="server" HeaderText="Errors:" DisplayMode="List" ShowMessageBox="true" ShowSummary="false" ForeColor="#FF0000" Font-Bold="true" ValidationGroup="group1"/>
                 <br />
                 <br />

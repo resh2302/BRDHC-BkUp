@@ -128,7 +128,7 @@
                 <div class="msPadRL20">
                     <asp:Label runat="server" ID="lbl_doc" Text="Find a Doctor" CssClass="msh2home" />
                     <asp:Label runat="server" ID="lbl_docTxt" CssClass="msphome">Chocolate bar wafer toffee wafer danish. Pie chocolate bar tootsie roll ice. Chocolate bar wafer toffee wafer danish.</asp:Label>
-                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" ID="lkn_doc" Text="SEARCH &gt;" CssClass="mslink mainDark lnkbtn msRight" />
+                    <asp:LinkButton PostBackUrl="~/findDoctor.aspx" runat="server" ID="lkn_doc" Text="SEARCH &gt;" CssClass="mslink mainDark lnkbtn msRight" />
                 </div>
             </div>
 
@@ -175,7 +175,7 @@
                 <div class="msPadRL20">
                     <asp:Label runat="server" ID="lbl_" Text="Donate" CssClass="msh2home" />
                     <asp:Label runat="server" ID="Label2" CssClass="msphome">The Within Reach campaign was launched April 1, 2012 with the goal of funding a "wish list"...</asp:Label>
-                    <asp:LinkButton PostBackUrl="~/Default2.aspx" runat="server" ID="lkb_donate" Text="DONATE &gt;" CssClass="mslink attnImp lnkbtn msRight" />
+                    <asp:LinkButton PostBackUrl="~/Donation/donationWelcome.aspx" runat="server" ID="lkb_donate" Text="DONATE &gt;" CssClass="mslink attnImp lnkbtn msRight" />
                 </div>
             </div>
             </div>
