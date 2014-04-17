@@ -12,7 +12,7 @@ public partial class giftShopSendACard : System.Web.UI.Page
     //creating a new instance of our class
     clsGiftShopCard ObjCard = new clsGiftShopCard();
     
-    //binding data on page load
+    //empty textboxes on page load
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -26,7 +26,8 @@ public partial class giftShopSendACard : System.Web.UI.Page
     {
         if (e.CommandName == "Insert")
         {
-        _strOutput(ObjCard.commitInsert(msSACYourName.Text, msSACYourEmail.Text, msSACPname.Text, msSACPrn.Text, msSACTo.Text, msSACFrom.Text, msSACYourMessage.Text), "sent");
+            Guid CardId = new Guid();
+            _strOutput(ObjCard.commitInsert(CardId, msSACYourName.Text, msSACYourEmail.Text, msSACPname.Text, msSACPrn.Text, msSACTo.Text, msSACFrom.Text, msSACYourMessage.Text), "sent");
             _subRebind();
             _panelControl(pnlMsSent);
         }
@@ -41,7 +42,7 @@ public partial class giftShopSendACard : System.Web.UI.Page
         pnl.Visible = true;
     }
 
-    //
+    //empty textboxes
     private void _subRebind()
     {
         msSACYourName.Text = string.Empty;
@@ -56,10 +57,13 @@ public partial class giftShopSendACard : System.Web.UI.Page
     private void _strOutput(bool flag, string str)
     {
         if (flag)
+        {
             mSlblTks.Text = "Your message has been " + str + ". <br /><br />Your card will be delivered in the next 24 hours.";
-            // You will be notified via email once your card has been delivered.
+        }
         else
+        {
             mSlblTks.Text = "Unfortunately your message was no able to be " + str + ". <br /><br /> Please call 111-222-3333 to have your message taken over the phone.";
+        }
     
     }
 

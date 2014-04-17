@@ -10,14 +10,16 @@
 
             <%--container for responsiveness--%>
             <div class="bootContainer">
-                    
-                <div class="col-xs-12">
-                <asp:Label runat="server" ID="lbl_mes" />
-                </div>
 
              <%--subHeader and panel--%>
             <div class="col-xs-12">
             <asp:Panel ID="pnl_volpp" GroupingText="Volunteer Application - REVIEW & DELETE" runat="server">
+            
+            <%--Confirmation message--%>
+            <div class="col-xs-12">
+                <asp:Label runat="server" ID="lbl_mes" CssClass="attn msFont11 msPadTop10 msPadBot20" />
+            </div>
+
                 <asp:Repeater runat="server" ID="rpt_App" OnItemCommand="rpt_App_ItemCommand">
                     <ItemTemplate>
                             <asp:HiddenField runat="server" ID="hdf_AppId" Value='<%#Eval("AppId") %>' />
@@ -90,7 +92,7 @@
                         </div>
 
                         <%--Delete and cancel buttons--%>
-                        <div class="col-xs-12 msMargBot10 msPadTop20">
+                        <div class="col-xs-12 msMargBot20 msPadTop20">
                         <asp:Button ID="btn_delete" runat="server" Text="Delete" CommandName="Delete" OnClientClick="return confirm('Confirm Delete?');" />
                         <asp:Button ID="btn_cancel" runat="server" Text="Cancel" CommandName="Cancel" />
                         </div>

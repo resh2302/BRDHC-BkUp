@@ -14,9 +14,7 @@
                 <%--subHeader and panel--%>
                 <asp:Panel ID="Panel4" GroupingText="QUIZ - INSERT" runat="server">
                      
-                    <div class="col-xs-12">       
-                    <asp:Label ID="lbl_mes" runat="server" />
-                    </div><br />
+                  
                                 <%--Insert: THIS name label and textbox--%>
                                 <div class="col-xs-12 col-sm-4 col-sm-offset-1">
                                 <asp:Label ID="lbl_THISnameI" runat="server" text="THIS Name" CssClass="msFont11" />
@@ -42,6 +40,7 @@
                                 <div class="col-xs-12 col-sm-6">
                                 <asp:TextBox ID="txt_THIScaloriesI" runat="server" CssClass="msPadAll2 msMargRL10" Width="100%" />
                                 <asp:RequiredFieldValidator ID="rfv_THIScaloriesI" runat="server" Text="*Required" ControlToValidate="txt_THIScaloriesI" ValidationGroup="insert" />
+                                <asp:RegularExpressionValidator ID="regex_THIScal" runat="server" ControlToValidate="txt_THIScaloriesI" ValidationExpression="^\d+" ValidationGroup="insert" Text="*Must be a number" />
                                 </div>
 
                                 <%--Insert: THIS Fat label and textbox--%>
@@ -51,6 +50,7 @@
                                 <div class="col-xs-12 col-sm-6">
                                 <asp:TextBox ID="txt_THISfatI" runat="server" CssClass="msPadAll2 msMargRL10" Width="100%" />
                                 <asp:RequiredFieldValidator ID="rfv_THISfatI" runat="server" Text="*Required" ControlToValidate="txt_THISfatI" ValidationGroup="insert" />
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_THISfatI" ValidationExpression="\d+" ValidationGroup="insert" Text="*Must be a number" />
                                 </div>
 
                                 <%--Insert: THAT Name label and textbox--%>
@@ -78,6 +78,7 @@
                                 <div class="col-xs-12 col-sm-6">
                                 <asp:TextBox ID="txt_THATcaloriesI" runat="server" CssClass="msPadAll2 msMargRL10" Width="100%" />
                                 <asp:RequiredFieldValidator ID="rfv_THATcaloriesI" runat="server" Text="*Required" ControlToValidate="txt_THATcaloriesI" ValidationGroup="insert" />
+                                <asp:RegularExpressionValidator ID="regex_THATcal" runat="server" ControlToValidate="txt_THATcaloriesI" ValidationExpression="\d+" ValidationGroup="insert" Text="*Must be a number" />
                                 </div>
                             
                                 <%--Insert: THAT Fat label and textbox--%>
@@ -87,6 +88,7 @@
                                 <div class="col-xs-12 col-sm-6">
                                 <asp:TextBox ID="txt_THATfatI" runat="server" CssClass="msPadAll2 msMargRL10" Width="100%" />
                                 <asp:RequiredFieldValidator ID="rfv_THATfatI" runat="server" Text="*Required" ControlToValidate="txt_THATfatI" ValidationGroup="insert" />
+                                <asp:RegularExpressionValidator ID="regex_THATfat" runat="server" ControlToValidate="txt_THATfatI" ValidationExpression="\d+" ValidationGroup="insert" Text="*Must be a number" />
                                 </div>              
                             
                                 <%--Insert: Answer label and textbox--%>
@@ -107,6 +109,11 @@
                                     <asp:Button ID="btn_cancel" runat="server" Text="Cancel" OnCommand="subAdmin" CommandName="Cancel" CssClass="msMargBot10 msMargTop20" CausesValidation="false" />
                                     </div>
                                 </div>  
+
+                                <%--Confirmation message--%>
+                                <div class="col-xs-12">       
+                                <asp:Label ID="lbl_mes" runat="server" CssClass="msPadTop10 msPadBot10 attn" />
+                                </div><br />
                 </asp:Panel>   
                          
                              
@@ -213,9 +220,9 @@
                                        
                                 <%--Update, Delete Cancel buttons--%>
                                 <div class="col-xs-12 col-sm-6 col-sm-offset-2">
-                                <asp:Button ID="btn_update" runat="server" Text="Update" CommandName="Update" CssClass="msMargBot10 msMargTop20" ValidationGroup="update" />
-                                <asp:Button ID="btn_delete" runat="server" Text="Delete" CommandName="Delete" CssClass="msMargBot10 msMargTop20" OnClientClick="return confirm('Confirm Delete?');" CausesValidation="false" />
-                                 <asp:Button ID="btn_cancel2" runat="server" Text="Cancel" CssClass="msMargBot10 msMargTop20" CommandName="Cancel" CausesValidation="false" />
+                                <asp:Button ID="btn_update" runat="server" Text="Update" CommandName="UpdateU" CssClass="msMargBot10 msMargTop20" ValidationGroup="update" />
+                                <asp:Button ID="btn_delete" runat="server" Text="Delete" CommandName="DeleteU" CssClass="msMargBot10 msMargTop20" OnClientClick="return confirm('Confirm Delete?');" CausesValidation="false" />
+                                 <asp:Button ID="btn_cancel2" runat="server" Text="Cancel" CssClass="msMargBot10 msMargTop20" CommandName="CancelU" CausesValidation="false" />
                                   </div>
                             </ItemTemplate>
                         </asp:ListView>

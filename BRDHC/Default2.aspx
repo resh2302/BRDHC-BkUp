@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/healthTools.master" CodeFile="Default2.aspx.cs" Theme="HealthTools" Inherits="Default2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/site.master" CodeFile="Default2.aspx.cs" Theme="HealthTools" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

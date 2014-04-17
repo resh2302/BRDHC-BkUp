@@ -56,7 +56,7 @@ public class wsHealthAlerts : System.Web.Services.WebService
         strBody.Append("<br />");
         strBody.Append("<h3>Hi!</h3>");
         strBody.Append("<br />");
-        strBody.Append("There is alert on brdhc hospital. Click <a href='www.brdhchumber.com/alerts.aspx/aid=" + _aid + "'>Here</a> to check.");
+        strBody.Append("There is alert on brdhc hospital. Click <a href='www.brdhchumber.com/alerts.aspx?aid=" + _aid + "'>Here</a> to check.");
         strBody.Append("<br />");
         string emailResult = objCom.sendEMail(toEmail, strBody.ToString(), "BRDHC Humber Alerts", true);
         if (string.IsNullOrEmpty(emailResult))

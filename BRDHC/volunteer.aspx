@@ -64,14 +64,18 @@
                                         <div class="col-xs-12 msPadTop10">
                                         <asp:Label ID="lbl_other" runat="server" Text="Other requirements: " CssClass="neutralLight" /> <%#Eval("Other") %>
                                         </div>
-
+                                        <div class="col-xs-12 msPadTop10">
                                         <asp:Label ID="lbl_time" runat="server" Text="Time commitment: " CssClass="neutralLight" /> <%#Eval("CommitmentHow") %>
-                                        <br />
+                                        </div>
+                                        <div class="col-xs-12 msPadTop10">
                                         <asp:Label ID="lbl_engagement" runat="server" Text="Date an Time of volunteer engagaement: " CssClass="neutralLight" /> <%#Eval("CommitmentWhen") %>
-                                        <br />
+                                        </div>
+                                        <div class="col-xs-12 msPadTop10">
                                         <asp:Label ID="lbl_contact" runat="server" Text="Contact person: " CssClass="neutralLight" /> <%#Eval("ContactPerson") %>
-                                        <br />
+                                        </div>
+                                        <div class="col-xs-12 msPadTop10">
                                         <asp:Label ID="lbl_department" runat="server" Text="Department: " CssClass="neutralLight" /> <%#Eval("Department") %>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -155,7 +159,6 @@
                 </div>
                 <div class="col-xs-12 col-sm-3">
                     <asp:TextBox ID="msStudent" runat="server" CssClass="msTxtBox12 msPadAll2" Width="100%" />
-                    <asp:RequiredFieldValidator ID="rfv_Student" runat="server" Text="*Required" ControlToValidate="msStudent" ValidationGroup="insert" />
                 </div>
              </div>
 
@@ -175,19 +178,19 @@
 
                 <%--Submit button--%>
                 <div class="col-xs-12  msMargBot30">
-                <asp:Button CssClass="btn msLeft" runat="server" ID="btnSubmitVolApp" Text="Submit" OnCommand="btnSubmitVolApp_Command" CommandName="Insert" ValidationGroup="insert"  />
+                <asp:Button CssClass="btn msLeft" runat="server" ID="btnSubmitVolApp" Text="Submit" OnClick="btnSubmitVolApp_Click" ValidationGroup="insert"  />
                 </div>
         
       </asp:Panel>
-          
-    </div>
                              
   </asp:Panel>
 
-  <asp:Panel ID="pnlMsSent" runat="server" Visible="false">
-      <div class="col-xs-12 msOH msPadBot30 msPadTop30">
-          <asp:Label ID="mSlblTks" runat="server" CssClass="msHeader3 msImp" />
-       </div>
-   </asp:Panel>
+      <asp:Panel ID="pnlMsSent" runat="server" Visible="false">
+          <div class="col-xs-12 msOH msPadBot30 msPadTop30">
+              <asp:Label ID="mSlblTks" runat="server" CssClass="msHeader3 msImp" />
+           </div>
+       </asp:Panel>
+
+   </div>
 
 </asp:Content>

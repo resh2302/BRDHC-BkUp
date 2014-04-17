@@ -8,10 +8,10 @@
         <elementListCompartment Id="fff36bdf-650b-4b14-b3a5-6ddfd8b0f8bd" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="9ab6d630-2173-40de-a4e6-32a917fc755d" absoluteBounds="4.125, 2.75, 2, 1.0016910807291668">
+    <classShape Id="fe278656-f2da-445f-88dd-e3ba1da311b6" absoluteBounds="5.125, 2.75, 2, 1.1939925130208333">
       <DataClassMoniker Name="/HealthAlertsDataContext/brdhc_AlertSubscriber" />
       <nestedChildShapes>
-        <elementListCompartment Id="7f968fd5-9520-41c3-9ecc-bf1ec1876ba8" absoluteBounds="4.14, 3.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="92eb17a9-d613-4835-a72a-f1cd2119b88d" absoluteBounds="5.14, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

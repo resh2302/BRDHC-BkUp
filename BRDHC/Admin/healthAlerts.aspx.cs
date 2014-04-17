@@ -153,7 +153,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
                     strBody.Append("<br />");
                     strBody.Append(description);
                     strBody.Append("<br />");
-                    strBody.Append("<b>Note: </b> If you do not want to get future emails <a href='www.brdhchumber.com/unsubscribe.aspx?uid='" + subscriberId + "'>unsubscribe<a/> here.");
+                    strBody.Append("<b>Note: </b> If you do not want to get future emails <a href='www.brdhchumber.com/unsubscribe.aspx?uid=" + subscriberId + "'>unsubscribe<a/> here.");
                     strBody.Append("<br />");
                     strBody.Append("Wishing you very healthy life.");
                     strBody.Append("<br />");

@@ -1,4 +1,9 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////
+// AUTHOR:           MARKI SVEEN
+// DESCRIPTION:      CLASS FOR GIFT SHOP STORE (FLOWERS)
+///////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,12 +30,13 @@ public class giftShopStoreClass
     }
 
     //THIS IS AN INSERT
-    public bool commitInsert(string _Name, string _Picture, string _Price)
+    public bool commitInsert(Guid _bouquetId, string _Name, string _Picture, string _Price)
     {
         giftShopStoreClassDataContext objBou = new giftShopStoreClassDataContext();
-        using (objBou)
+        try
         {
             brdhc_GiftShopStore objNewBou = new brdhc_GiftShopStore();
+            objNewBou.BouquetID = _bouquetId;
             objNewBou.Name = _Name;
             objNewBou.Picture = _Picture;
             objNewBou.Price = _Price;
@@ -39,13 +45,18 @@ public class giftShopStoreClass
             objBou.SubmitChanges(); //this will commit the changes
             return true; //boolean
         }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
+        }
     }
 
     //THIS IS AN UPDATE
     public bool commitUpdate(Guid _BouquetID, string _Name, string _Picture, string _Price)
     {
         giftShopStoreClassDataContext objBou = new giftShopStoreClassDataContext();
-        using (objBou)
+        try
         {
             //updating a single row at a time which row depends on the _id
             var objUpBou = objBou.brdhc_GiftShopStores.Single(x => x.BouquetID == _BouquetID);
@@ -55,18 +66,28 @@ public class giftShopStoreClass
             objBou.SubmitChanges(); //this will commit the changes
             return true; //boolean
         }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
+        }
     }
 
     //THIS IS A DELETE
     public bool commitDelete(Guid _BouquetID)
     {
         giftShopStoreClassDataContext objBou = new giftShopStoreClassDataContext();
-        using (objBou)
+        try
         {
             var objDelBou = objBou.brdhc_GiftShopStores.Single(x => x.BouquetID == _BouquetID);
             objBou.brdhc_GiftShopStores.DeleteOnSubmit(objDelBou); //if you want to delete all best to drop the table
             objBou.SubmitChanges(); //this will commit the changes
             return true; //boolean
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
         }
     }
 

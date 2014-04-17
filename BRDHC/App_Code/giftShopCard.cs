@@ -1,4 +1,9 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////
+// AUTHOR:           MARKI SVEEN
+// DESCRIPTION:      CLASS FOR GIFT SHOP CARDS
+///////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,15 +30,16 @@ public class clsGiftShopCard
     }
 
     //THIS IS AN INSERT
-    public bool commitInsert(string _sName, string _sEmail, string _pName, string _pRoomNum, string _to, string _from, string _message)
+    public bool commitInsert(Guid _cardId, string _sName, string _sEmail, string _pName, string _pRoomNum, string _to, string _from, string _message)
     {
         GiftShopCardDataContext objCard = new GiftShopCardDataContext();
         //to ensure all data will be disposed when finished
-        using (objCard)
-        { 
+        try
+        {
             //create an instance of the table
             brdhc_GiftShopSendCard objNewCard = new brdhc_GiftShopSendCard();
             //set the table columns being passed from giftShopSendACard.aspx page
+            objNewCard.CardID = _cardId;
             objNewCard.senderName = _sName;
             objNewCard.senderEmail = _sEmail;
             objNewCard.patientName = _pName;
@@ -46,7 +52,12 @@ public class clsGiftShopCard
             //commit insert against db
             objCard.SubmitChanges();
             return true;
-        }    
+        }
+        catch (Exception e)
+        {
+            clsCommon.saveError(e);
+            return false;
+        }
     }
 
     //THIS IS A DELETE
