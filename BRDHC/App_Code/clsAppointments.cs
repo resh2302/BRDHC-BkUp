@@ -60,7 +60,7 @@ public class clsAppointments
             AppointmentDate = Convert.ToDateTime(appointmentDate),
             AppointmentTime = appointmentTime,
             Reason = reason,
-            approvalStatus = approvalStatus // Jagsir I have changed this - Reshma
+            approvalStatus = approvalStatus 
         };
             AppointmentsDataContext objApp = new AppointmentsDataContext();
             // call the function to save the row into actual database table
@@ -86,8 +86,8 @@ public class clsAppointments
             appointment.AppointmentDate = Convert.ToDateTime(appointmentDate);
             appointment.AppointmentTime = appointmentTime;
             appointment.Reason = reason;
-            appointment.approvalStatus = approvalStatus; // Jagsir I have changed this - Reshma
-            appointment.CreatedOnDate = DateTime.Now; // Jagsir I added this because the default value gave some very old date - Reshma
+            appointment.approvalStatus = approvalStatus; 
+            appointment.CreatedOnDate = DateTime.Now; 
         // update the datebase table with new values
             objApp.SubmitChanges();
         }
@@ -127,7 +127,7 @@ public class clsAppointments
     public List<sp_getAppByDocIDResult> getAppByDocID(Guid docID) // added by REshma
     {
         List<sp_getAppByDocIDResult> myList = new List<sp_getAppByDocIDResult>();
-        AppointmentsDataContext obj = new AppointmentsDataContext();
+        AppointmentsDataContext obj = new AppointmentsDataContext();        
         return obj.sp_getAppByDocID(docID).ToList();
     }
 

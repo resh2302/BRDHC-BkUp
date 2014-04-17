@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/brdhc.master" CodeFile="CreateInvoice.aspx.cs" Inherits="Doctors_CreateInvoice" Theme="Theme" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/brdhc.master" CodeFile="createInvoice.aspx.cs" Inherits="Doctors_CreateInvoice" Theme="Theme" %>
 
 <%@ MasterType VirtualPath="~/brdhc.master" %>
 
@@ -20,8 +20,9 @@
                 <asp:UpdatePanel ID="upInvoice" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
 
-
+                        <%-- tab container for creating invoice, display pending and paid invoice --%>
                         <ajax:TabContainer ID="tcInvoice" runat="server" ActiveTabIndex="0" OnDemand="true" TabStripPlacement="Top">
+                              <%-- tab panel for creating invoice --%>
                             <ajax:TabPanel ID="tabCreate" runat="server" HeaderText="Create Invoice" OnDemandMode="Always">
                                 <ContentTemplate>
                                     <asp:Panel ID="pnlAdd" GroupingText="Invoice Info" runat="server" CssClass="pnlSection">
@@ -38,7 +39,7 @@
                                         <asp:TextBox ID="txtInvDate" runat="server" Enabled="false" />
                                         <br />
                                         <asp:Label ID="lblDueDate" runat="server" Text="Due On : " CssClass="infoLabel" />
-                                        <asp:TextBox ID="txtDueDate" runat="server" />
+                                        <asp:TextBox ID="txtDueDate" runat="server" onkeypress="return false;" />
                                         <ajax:CalendarExtender
                                             ID="ceDueDate"
                                             TargetControlID="txtDueDate"
@@ -68,16 +69,18 @@
                                                             <asp:TextBox ID="txtCost" runat="server" Text="" />
                                                             <asp:RequiredFieldValidator ID="rfvItemCost" ControlToValidate="txtCost" Text="*Please enter cost" Display="Static" SetFocusOnError="true" runat="server" ValidationGroup="vgItem" />
                                                             <asp:RequiredFieldValidator ID="rfvCost" ControlToValidate="txtCost" Text="*Please enter cost" Display="Static" SetFocusOnError="true" runat="server" ValidationGroup="vgInsert" />
-                                                            <%--<asp:RegularExpressionValidator ID="revICost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgItem"/>--%>
-                                                             <%--<asp:RegularExpressionValidator ID="revItemCost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgInsert"/>--%>
+                                                            <asp:RangeValidator ID="revICost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in format:00.00" MinimumValue="0.0" MaximumValue="10000.00" Type="Double" SetFocusOnError="true" runat="server" ValidationGroup="vgItem"/>
+                                                             <asp:RangeValidator ID="revItemCost" ControlToValidate="txtCost" Display="Static" Text="*Please eneter cost in format: 00.00" MinimumValue="0.0" MaximumValue="10000.00" Type="Double"  SetFocusOnError="true" runat="server" ValidationGroup="vgInsert"/>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
+                                                            <%-- remove invoice item from current viewsatate --%>
                                                             <asp:LinkButton ID="lnkRemove" Text="Remove" CssClass="lnk" runat="server" CausesValidation="false" CommandName="Delete" />
                                                         </ItemTemplate>
                                                         <FooterStyle HorizontalAlign="NotSet" />
                                                         <FooterTemplate>
+                                                            <%-- click to add more items in the current viewstate --%>
                                                             <asp:LinkButton ID="btnAddITem" runat="server" CssClass="lnk" Text="Add Item" CausesValidation="true" ValidationGroup="vgItem" OnClick="btnAddITem_Click" />
                                                         </FooterTemplate>
                                                     </asp:TemplateField>
@@ -91,17 +94,20 @@
                                             <asp:Label ID="lblTotal" runat="server" Text="Total: " CssClass="infoLabel" />
                                             <asp:TextBox ID="txtTotal" runat="server" Enabled="false" Text="00.00" />
                                             <asp:RequiredFieldValidator ID="rfvTotal" ControlToValidate="txtTotal" Text="*Please click on GET TOTAL" ValidationGroup="vgInsert" runat="server" />
+                                            <%-- click to get total --%>
                                             <asp:Button Text="Get Total" runat="server" ID="btnTotal" OnClick="btnTotal_Click" />
                                         </asp:Panel>
+
+                                        <%-- click to insert invoice and invoice items in database --%>
                                         <asp:Button ID="btnInsert" runat="server" Text="CREATE INVOICE" OnClick="btnInsert_Click" ValidationGroup="vgInsert" />
                                     </asp:Panel>
                                 </ContentTemplate>
                             </ajax:TabPanel>
-
+                            <%-- tab panel for pending invoices --%>
                             <ajax:TabPanel ID="tabPending" runat="server" HeaderText="Pending Invoices" OnDemandMode="Always">
                                 <ContentTemplate>
                                     <asp:Panel ID="pnlView" CssClass="ovScroll" GroupingText="All Invoices" runat="server">
-
+                                        <%-- gridview for pending invoices, can also update and delete --%>
                                         <asp:GridView ID="gvPending" DataKeyNames="InvoiceID" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPending_PageIndexChanging" OnRowCommand="gvPending_RowCommand" CssClass="r_pendingInv">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Invoice ID">
@@ -126,7 +132,8 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Due On">
                                                     <ItemTemplate>
-                                                        <asp:TextBox ID="txtDueDate" runat="server" Text='<%#Eval("DueOn", "{0:d}") %>' />
+                                                        <%-- only due date is updateable --%>
+                                                        <asp:TextBox ID="txtDueDate" runat="server" Text='<%#Eval("DueOn", "{0:d}") %>' onkeypress="return false;" />
                                                         <asp:RequiredFieldValidator ID="rfvDate" Text="*Please select due date" ControlToValidate="txtDueDate" SetFocusOnError="true" Display="Static" runat="server" />
                                                         <ajax:CalendarExtender
                                                             ID="ceDueDate"
@@ -146,6 +153,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="View Items">
                                                     <ItemTemplate>
+                                                        <%-- click to open popup with invoice items --%>
                                                         <asp:LinkButton ID="lnkItems" Text="View Items" runat="server" OnClick="lnkItems_Click" CommandArgument="0" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -165,9 +173,10 @@
                                     </asp:Panel>
                                 </ContentTemplate>
                             </ajax:TabPanel>
-
+                            <%-- tab panel for paid invoices --%>
                             <ajax:TabPanel ID="tabPaid" runat="server" HeaderText="Paid Invoices" OnDemandMode="Always">
                                 <ContentTemplate>
+                                    <%-- gridview for paid invoices --%>
                                     <asp:GridView ID="gvPaid" DataKeyNames="InvoiceID" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvPaid_PageIndexChanging">
                                         <Columns>
                                             <asp:TemplateField HeaderText="Invoice ID">
@@ -177,6 +186,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Transaction ID">
                                                 <ItemTemplate>
+                                                    <%-- transaction Id recieved from paypal --%>
                                                     <%#Eval("TransactionID") %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -218,6 +228,7 @@
 
                                             <asp:TemplateField HeaderText="View Items">
                                                 <ItemTemplate>
+                                                    <%-- click button to show popup with invoice items --%>
                                                     <asp:LinkButton ID="lnkItems" OnClick="lnkItems_Click1" Text="View Items" runat="server" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -234,16 +245,16 @@
                 <%-- Modal --%>
                 <asp:UpdatePanel ID="upMain" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <%-- This invisible button is for the modal's targetcontrolId but the modal will actually be triggered through #lnkItems  --%>
+                        <%-- This invisible button is for the modal's targetcontrolId but the modal will actually be triggered through #lnkItems from the code behind  --%>
                         <asp:Button ID="btnInvisible" runat="server" Style="display: none" />
-
+                        <%-- modal for invoice items --%>
                         <ajax:ModalPopupExtender ID="mpeItems" runat="server"
                             OkControlID="btnOkay"
                             TargetControlID="btnInvisible" PopupControlID="pnlItemsPopup"
                             PopupDragHandleControlID="PopupHeader" Drag="true"
                             BackgroundCssClass="ModalPopupBG" Enabled="true">
                         </ajax:ModalPopupExtender>
-
+                        <%-- popup panel for modalextender --%>
                         <asp:Panel ID="pnlItemsPopup" Style="display: none" runat="server">
                             <div class="popupItems">
                                 <div class="PopupHeader" id="PopupHeader">
@@ -256,7 +267,7 @@
 
                                             <asp:Panel ID="gvWrapper" CssClass="r_gvWrapper" runat="server">
 
-
+                                                <%-- gridview for invoice items --%>
                                                 <asp:GridView ID="gvSubItems" runat="server" AutoGenerateColumns="False" OnRowCommand="gvSubItems_RowCommand" CssClass="gvSubItems" DataKeyNames="ItemId">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Item Name">
@@ -272,8 +283,7 @@
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="txtICost" runat="server" Text='<%#Eval("ItemCost") %>' />
                                                                 <asp:RequiredFieldValidator ID="rfvCost" ControlToValidate="txtICost" Text="*Please enter cost" Display="Static" SetFocusOnError="true" runat="server" ValidationGroup="vgItemupdate" />
-                                                                <asp:RegularExpressionValidator ID="revCost" ControlToValidate="txtICost" Display="Static" Text="*Please eneter cost in one of these formats: 0 or 0.0" SetFocusOnError="true" runat="server" ValidationGroup="vgItemupdate" />
-                                                                <%-- validation for number format --%>
+                                                                <asp:RangeValidator ID="revICost" ControlToValidate="txtICost" Display="Static" Text="*Please eneter cost in format:00.00" MinimumValue="0.0" MaximumValue="10000.00" Type="Double" SetFocusOnError="true" runat="server" ValidationGroup="vgItem"/>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField>

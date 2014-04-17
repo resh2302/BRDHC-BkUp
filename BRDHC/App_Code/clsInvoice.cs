@@ -6,13 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-//using System.Collections.ArrayList;
 
 
 public class clsInvoice
 {
-    public static Guid insertedInvoiceID;
-   
+   //method to get all invoices
     public IQueryable<brdhc_Invoice> getInvoices()
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -20,6 +18,7 @@ public class clsInvoice
         return allInvoices;
     }
 
+    //method to get all invoices by patient Id and status
     public IQueryable<brdhc_Invoice> getInvoicesByPatientIDandStatus(Guid pID, string status)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -27,19 +26,21 @@ public class clsInvoice
         return allInvoices;
     }
 
+    //method to get all invoices by doctor logged in
     public List<sp_getInvoiceByDocNameResult> getInvoicesbyDocUname(string docUsername)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
         return objInvoiceDC.sp_getInvoiceByDocName(docUsername).ToList();
     }
 
+    //method to get all invoices by doctor logged in and invoice status
     public List<sp_getInvoiceByDocStatusResult> getInvoicebyDocStatus(string docUsername, string status)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
         return objInvoiceDC.sp_getInvoiceByDocStatus(docUsername, status).ToList();
     }
 
-
+    //method to get all invoices by ID
     public IQueryable<brdhc_Invoice> getInvoicesById(Guid id)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -47,6 +48,7 @@ public class clsInvoice
         return invoice;
     }
 
+    //method to insert invoice
     public void insertInvoice(Guid _pID, DateTime _createdOn, string _createdBy, string _reason, string _status, DateTime _dueOn, Double _total)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -74,24 +76,7 @@ public class clsInvoice
         }
     }
 
-   /* public void insertAmount(Guid invoiceID, double amount)
-    {
-        InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
-        try
-        {
-            brdhc_Invoice objInv = new brdhc_Invoice();
-            objInv.TotalAmt = amount;
-
-            objInvoiceDC.brdhc_Invoices.InsertOnSubmit(objInv);
-            objInvoiceDC.SubmitChanges();
-
-        }
-        catch (Exception e)
-        {
-            clsCommon.saveError(e);
-        }
-    }
-    */
+  //method to update transaction if completed
     public void updateTransaction(Guid invID, string txID, DateTime txDate)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -110,6 +95,7 @@ public class clsInvoice
         }
     }
 
+    //method to update invoice, only due date allowed
     public void updateDueDate(Guid invID, DateTime dueOn)
     {
         InvoicesDataContext objInvoiceDC = new InvoicesDataContext();
@@ -125,6 +111,7 @@ public class clsInvoice
         }
     }
 
+    //method to delete invoice
     public void deleteInvoice(Guid invID)
     { 
         

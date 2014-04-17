@@ -34,14 +34,13 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
             }
         }
     }
-
+    //method to bind all the controls and reset input fields
     protected void _subRebind() {
         
         strDocUname = Membership.GetUser().ToString();
-
+        // all patient names shown in dropdown
         ddlInvoice.DataSource = objUser.getAllPatientNames();
-        ddlInvoice.DataTextField = "patientName";
-        
+        ddlInvoice.DataTextField = "patientName";        
         ddlInvoice.DataValueField = "UserId";
         ddlInvoice.DataBind();
 
@@ -58,6 +57,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         txtDueDate.Text = string.Empty;
         txtTotal.Text = string.Empty;
 
+        //set the initial row of invoice items table
         setInitialItemRow();
 
     }
@@ -67,12 +67,13 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         txtPatientID.ToolTip = txtPatientID.Text = ddlInvoice.SelectedValue.ToString();        
     }
 
+    //method to insert invoice and invoice items
     protected void btnInsert_Click(object sender, EventArgs e)
     {
         // insert invoice
          objInvoice.insertInvoice( Guid.Parse(txtPatientID.Text), DateTime.Parse(txtInvDate.Text),  txtCreatedBy.Text, "reason" , "Pending", DateTime.Parse(txtDueDate.Text), Double.Parse(txtTotal.Text.ToString()));
         
-
+        //get all invoice items
         foreach (GridViewRow row in gvItems.Rows)
         {
             TextBox txtDesc = (TextBox)row.FindControl("txtItem");
@@ -88,6 +89,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
             else
             {
                 double cost = Double.Parse(costText.ToString());
+                // insert all invoice items
                 objItems.insertItem(insertedInvoiceID, desc, cost);  
             }
             
@@ -97,32 +99,20 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         
     }
 
-    private void _strMessage(bool flag, string str)
-    {
-        if (flag)
-        {
-            lblStatus.Visible = true;
-            lblStatus.Text = str + " was successful.";
-                     
-        }
-        else
-        {
-            lblStatus.Visible = true;
-            lblStatus.Text = "Sorry, unable to " + str + " invoice";
-        }
-    }
-
-
+    //method called when add item clicked
     protected void btnAddITem_Click(object sender, EventArgs e) // only create new textboxes
     {
+        //function to add a new row with textboxes
         AddNewRowToGrid();
     }
-    
 
+    //function to set the initial row of invoice items table    
     private void setInitialItemRow()
     {
+        //create a datatable
         DataTable dt = new DataTable();
         DataRow dr = null;
+        //create 3 columns
         dt.Columns.Add(new DataColumn("ItemNumber"));
         dt.Columns.Add(new DataColumn("Column1"));
         dt.Columns.Add(new DataColumn("Column2"));
@@ -136,10 +126,12 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         // Storing the datatable in viewstate
         ViewState["CurrentTable"] = dt;
 
+        //bind the datatable to the gridview of invoice items
         gvItems.DataSource = dt;
         gvItems.DataBind();
     }
 
+    // set previous data on datatable on postback
     private void SetPreviousData()
     {
         int rowIndex = 0;
@@ -162,6 +154,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         }
     }
 
+    // add new row with textboxes to table
     private void AddNewRowToGrid()
     {
         int rowIndex = 0;
@@ -202,24 +195,27 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         SetPreviousData();
     }
 
-   
+   // method to get total cost for invoice
     protected void btnTotal_Click(object sender, EventArgs e)
     {
         
         double total = 0.0;
+        //get each item in gridview
         foreach (GridViewRow row in gvItems.Rows)
         {
             TextBox txtCost = (TextBox)row.FindControl("txtCost");
             string cost = txtCost.Text.ToString();
 
             if (cost == ""){
+                // if cost not entered considered cost as 0, probably this is not required now because requiredfield validator is added but cannot test because login does not work as reported earlier.
                 cost = "0.0";
             }
             else {
+                //add each invoice item cost
                 total += Double.Parse(cost);                   
             }
         }
-
+        //show total in textbox
         txtTotal.Text = total.ToString();
 
     }
@@ -237,15 +233,15 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
 
     protected void gvItems_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        //Set Previous Data on Postbacks
-        //SetPreviousData();
+        
         if (ViewState["CurrentTable"] != null)
         {
             DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
-           
+           //remove the row selected
             dtCurrentTable.Rows.RemoveAt(e.RowIndex);
+            // save current datatable as viewstate
             ViewState["CurrentTable"] = dtCurrentTable;
-
+            //bind the gridview again with datatable
             gvItems.DataSource = dtCurrentTable;
             gvItems.DataBind();
             
@@ -254,28 +250,6 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         SetPreviousData();
     }
 
-    
-
-   /* private void removeAllItems(GridViewDeleteEventArgs e)
-    { 
-        foreach (GridViewRow row in gvItems.Rows)
-        {
-            if (ViewState["CurrentTable"] != null)
-            {
-                DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
-                if (e.RowIndex == 0)
-                {
-                    Response.Write("<script>alert('Hello');</script>");
-                }
-                else
-                {
-                    dtCurrentTable.Rows.RemoveAt(e.RowIndex);                
-                }
-                gvItems.DataSource = dtCurrentTable;
-                gvItems.DataBind();
-            }
-        }
-    }*/
 
     protected void gvPaid_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -293,7 +267,7 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
     {
         string strSelectedInvID = e.CommandArgument.ToString();
         lblID.Text = strSelectedInvID;
-
+        // bind gridview for invoice items
         selectedInvID = Guid.Parse(lblID.Text);
         gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
         gvSubItems.DataBind();
@@ -309,10 +283,12 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
 
         string strSelectedInvID = gvPending.DataKeys[row.RowIndex].Value.ToString();
         lblID.Text = strSelectedInvID;
-
+        // bind gridview for invoice items
         selectedInvID = Guid.Parse(lblID.Text);
         gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
         gvSubItems.DataBind();
+
+        //show popup
         upMain.Update();
         mpeItems.Show();
     }
@@ -333,11 +309,12 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
             case "update":
                 TextBox txtItem = gvSubItems.Rows[rowIndex].FindControl("txtIName") as TextBox;
                 TextBox txtICost = gvSubItems.Rows[rowIndex].FindControl("txtICost") as TextBox;
-
+                //update invoice items
                 objItems.updateItem(Guid.Parse(hdfInvID.Value.ToString()), txtItem.Text.ToString(), Double.Parse(txtICost.Text.ToString()), Guid.Parse(hdfItemID.Value.ToString()));
                 break;
 
             case "delete":
+                //delete invoiceitems
                 objItems.deleteItem(Guid.Parse(hdfItemID.Value.ToString()), Guid.Parse(hdfInvID.Value.ToString()));
                 break;
         }
@@ -360,12 +337,13 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
         {
             case "update":
                 TextBox txtDueDate = gvPending.Rows[rowIndex].FindControl("txtDueDate") as TextBox;
-                //call update method
+                //call update method for invoice
                 objInvoice.updateDueDate(Guid.Parse(lblID.Text), DateTime.Parse(txtDueDate.Text));
                 break;
 
             case "delete":
-                //call delete method
+                //call delete method for invoice
+
                 objInvoice.deleteInvoice(Guid.Parse(lblID.Text));
                 break;
         }
@@ -378,10 +356,11 @@ public partial class Doctors_CreateInvoice : System.Web.UI.Page
 
         string strSelectedInvID = gvPaid.DataKeys[row.RowIndex].Value.ToString();
         lblID.Text = strSelectedInvID;
-
+        // bind gridview for invoice items
         selectedInvID = Guid.Parse(lblID.Text);
         gvSubItems.DataSource = objItems.getItemsByInvoiceID(selectedInvID);
         gvSubItems.DataBind();
+        //show popup
         upMain.Update();
         mpeItems.Show();
     }

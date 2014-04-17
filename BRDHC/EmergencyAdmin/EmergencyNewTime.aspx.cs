@@ -21,6 +21,7 @@ public partial class NewTime : System.Web.UI.Page
         
     }
 
+    // bind rpeater and reset text boxes
     private void _subRebind()
     {
         txtHrs.Text = "00";
@@ -30,6 +31,7 @@ public partial class NewTime : System.Web.UI.Page
           
     }
 
+    // method called for insert and cancel
     protected void subAdmin(object sender, CommandEventArgs e) {
         switch (e.CommandName)
         {
@@ -38,7 +40,7 @@ public partial class NewTime : System.Web.UI.Page
                 int min = int.Parse(txtMin.Text);
                 TimeSpan time = new TimeSpan(hrs,min,00);
                 string updatedBy = User.Identity.Name.ToString();
-                _strMessage( objEmergency.insertWaitTime(time,DateTime.Now,updatedBy),"insert");
+                _strMessage( objEmergency.insertWaitTime(new Guid(),time,DateTime.Now,updatedBy),"insert");
                 _subRebind();
                 break;
             case "Cancel":
@@ -47,20 +49,19 @@ public partial class NewTime : System.Web.UI.Page
         }
     }
 
+    // method used to display success message
     private void _strMessage(bool flag, string str)
     {
         if (flag)
         {
             lblStatus.Visible = true;
             lblStatus.Text = str + " was successful";
-            //upStatus.Update();
             
         }
         else
         {
             lblStatus.Visible = true;
             lblStatus.Text = "Sorry, unable to " + str + " time";
-            //upStatus.Update();
         }
     }
 }
