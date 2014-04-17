@@ -15,7 +15,7 @@ public partial class unsubscribe : System.Web.UI.Page
             try
             {
                 clsHealthAlerts.unsubscribe(uid);
-                lblMsg.Text = "Your email has been removed from the list.";
+                lblMsg.Text = "Your email has been r69emoved from the list.";
             }
             catch (Exception ex)
             {
