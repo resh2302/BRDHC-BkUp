@@ -92,6 +92,9 @@
     font-weight: bold;
     margin-bottom: 20px;
 }
+.viewStyle p {
+color:black;
+}
 
     .statusMsg:first-letter {
         text-transform:capitalize;

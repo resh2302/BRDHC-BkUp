@@ -11,10 +11,14 @@ public partial class ContactAdmin : System.Web.UI.Page
     clsCommon objSendMail = new clsCommon();
 
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {          
+        Label lblDashboard = Master.dashboardHeading;
+        lblDashboard.Text = "CONTACT ADMIN DASHBOARD :";
+        lbl_message.Visible = false;
         if (!Page.IsPostBack)
         {
             subLoadAll();
+
         }
     }
     private void subLoadAll()
@@ -91,8 +95,8 @@ public partial class ContactAdmin : System.Web.UI.Page
         }
         private void _strMessage()
         {
-            
-            lbl_message.Text = "Message was successfull deleted";
+            lbl_message.Visible = true;
+            lbl_message.Text = "Message was successfully deleted";
 
         }
 }

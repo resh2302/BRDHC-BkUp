@@ -419,7 +419,7 @@ input[type="submit"], input[type="button"], input[type="reset"], button, .btn, .
     margin: 5px;
 }
 
-#d_panel th, tr, td {
+#d_panel th, #d_panel tr,#d_panel td {
     width: 100%;
 }
 

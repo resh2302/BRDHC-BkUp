@@ -356,7 +356,7 @@ h1 {
 
    input[type="button"]
     {
-        width:10%;
+        width:100%;
         padding:2px;
         margin:5px;
         font-size:0.9em;
@@ -481,8 +481,8 @@ h1 {
 
     input[type="button"]
     {
-        width:16%;
-        padding:1px;
+        width:100%;
+        padding:2px;
         margin:5px;
         font-size:0.8em;
     }

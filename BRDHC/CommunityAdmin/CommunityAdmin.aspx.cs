@@ -9,6 +9,7 @@ public partial class brdhcCommunity_CommunityAdmin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Label lblDashboard = Master.dashboardHeading;
+        lblDashboard.Text = "COMMUNITY ADMIN DASHBOARD :";
     }
 }

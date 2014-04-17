@@ -9,42 +9,48 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
 
-<div id="container">
+<div class="bootContainer">
 <asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
-<div class="msAll98 msPadBot10 msOH">
-
-    <div id="contactLeft">
+<div class="addPadding">
+    
+    <div class="col-xs-12 col-sm-6">
     <section id="cHeader">Contact Us</section>
         <h2>Leave Us a Message</h2>
         <asp:Label ID="lbl_message" CssClass="message" runat="server" /> 
         <br />
         <br />
-        <asp:Label ID="Lbl_sub" Text="Subject:" runat="server" CssClass="infoLabel" />
+        <asp:Label ID="Lbl_sub" Text="Subject:" runat="server" CssClass="infoLabel " />
         <asp:TextBox ID="txt_sub" runat="server" CssClass="textContact" />
+        <asp:RequiredFieldValidator ID="rfv_sub" runat="server" Text="*Required" ValidationGroup="Contact" ControlToValidate="txt_sub" />
         <br />     
         <asp:Label ID="lbl_fname" Text="First Name:" runat="server" CssClass="infoLabel" />
         <asp:TextBox ID="txt_fname" runat="server" CssClass="textContact" />
+        <asp:RequiredFieldValidator ID="rfv_name" runat="server" Text="*Required" ValidationGroup="Contact" ControlToValidate="txt_fname" />
         <br />
         <asp:Label ID="lbl_lname" Text="Last Name:" runat="server" CssClass="infoLabel" />
         <asp:TextBox ID="txt_lname" runat="server" CssClass="textContact" />
+        <asp:RequiredFieldValidator ID="rfv_lname" runat="server" Text="*Required" ValidationGroup="Contact" ControlToValidate="txt_lname" />
         <br />
         <asp:Label ID="lblEmail" Text="Email:" runat="server" CssClass="infoLabel" />
         <asp:TextBox ID="txt_email" runat="server" CssClass="textContact" />
+        <asp:RequiredFieldValidator ID="rfv_email" runat="server" Text="*Required" ValidationGroup="Contact" ControlToValidate="txt_email"  />
         <br />
         <asp:Label ID="lbl_phone" Text="Phone:" runat="server" CssClass="infoLabel" />
         <asp:TextBox ID="txt_phone" runat="server" CssClass="textContact" />
+        <asp:RequiredFieldValidator ID="rfv_phone" runat="server" Text="*Required" ValidationGroup="Contact" ControlToValidate="txt_phone" />
         <br />
         <asp:Label ID="lbl_msg" runat="server" Text="Message" CssClass="infoLabel" />
         <br />
-        <asp:TextBox id="txt_msg" TextMode="multiline" Columns="50" Rows="15" runat="server"/>
+        <asp:TextBox id="txt_msg" TextMode="multiline" Columns="45" Rows="15" runat="server" CssClass="textArea"/>
+        <asp:RequiredFieldValidator ID="rfv_msg" runat="server" Text="*Required" ValidationGroup="Contact" ControlToValidate="txt_msg" />
         <br />
-        <asp:Button ID="btn_msg" Text="Send" runat="server" CommandName="Insert" OnClientClick="return confirm('Are you sure you would like to send a Message?')" OnCommand="subMessage" />
+        <asp:Button ID="btn_msg" Text="Send" runat="server" CommandName="Insert" OnClientClick="return confirm('Are you sure you would like to send a Message?')" OnCommand="subMessage" ValidationGroup="Contact" CausesValidation="true" />
         <br />
     </div>
 
 
 
-    <section id="contactRight">
+    <section class="col-xs-12 col-sm-6">
     <script>
         var directionsDisplay;
         var directionsService = new google.maps.DirectionsService();
@@ -73,7 +79,7 @@
 
             var infowindow = new google.maps.InfoWindow({
                 content: "<h3>Blind River District Health Center</h3>" + "<br/>" +
-                    "<p style='margin-top:-30px'> 525 Causley St, Blind River, ON P0R</p>"
+                    "<article style='margin-top:-30px'> 525 Causley St, Blind River, ON P0R</article>"
             });
 
             infowindow.open(map, marker);
@@ -107,7 +113,7 @@
     </script>
     <div id="mapWrapper">
     <h1>Find Us</h1>
-    <div id="googleMap"  style="width:450px;height:380px;" ></div>
+    <div id="googleMap"></div>
 
     <div id="panelWrapper">
     <div id="d_panel"></div>

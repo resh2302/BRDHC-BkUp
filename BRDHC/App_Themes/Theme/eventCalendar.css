@@ -1,0 +1,70 @@
+﻿#cHeader {
+    font-size: 30px;
+    border-bottom: 2px solid #b2bb5d;
+    color: #668d8e;
+}
+.hEvents {
+font-size:24;
+color: #668d8e;
+border-bottom: 2px solid #b2bb5d;
+}
+p {
+color:black;
+}
+#pnl_calendar .col-md-4 {
+    margin:0 auto;
+}
+.sCalendar {
+margin-bottom:15px;
+}
+.bCalendar {
+margin-bottom:15px;
+}
+.eventsWrapper {
+background-color:rgba(250,250,250,0.5);
+padding:10px;
+overflow:auto;
+}
+.eHeader {
+margin-top:10px;
+padding:5px;
+background-color:rgba(250,250,250,0.5);
+margin:0 auto;
+font-size:18px;
+color:#417378;
+font-family: 'Roboto', serif;
+margin-bottom:20px;
+}
+.eArticles {
+padding:10px;
+background-color:rgba(250,250,250,0.5);
+color:#417378;
+font-weight:bold;
+}
+.upEvents {
+background-color:rgba(250,250,250,0.5);
+padding:5px;
+}
+.uTitle {
+font-size:18px;
+font-weight:bold;
+}
+.uBy {
+font-size:18px;
+font-weight:bold;
+}
+.uDesc {
+font-size:15px;
+font-family: 'Roboto', serif;
+}
+.uDate {
+font-size:13px;
+}
+.addBorder {
+    border-bottom: 2px solid #29aeae;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+eImg {
+border: 2px solid  #29aeae;
+}

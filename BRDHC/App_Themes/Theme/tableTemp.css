@@ -2,7 +2,7 @@
 /*Resource found on Css-Tricks, adjustments and additions made by Ryan*/
 
 /* Force table to not be like tables anymore */
-	.blueTable table, thead, tbody, th, td, tr, .appTable table, .userTable table, .contactTable tr { 
+	.blueTable table, .blueTable thead, .blueTable tbody, .blueTable th, .blueTable td,.blueTable  tr, .appTable table, .userTable table, .contactTable tr { 
 		display: block;
 	}
 	

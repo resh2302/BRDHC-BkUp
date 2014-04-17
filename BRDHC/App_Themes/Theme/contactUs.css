@@ -1,10 +1,22 @@
 ﻿#googleMap {
-
+width:95%;
+height:380px;
+border: 2px solid #668d8e;
+}
+.addPadding {
+padding:5px;
+background-color:rgba(250,250,250, 0.5);
+}
+p {
+color:black;
 }
 #contactLeft {
     float:left;
     width:450px;
     margin-bottom:50px;
+}
+.textArea {
+max-width:95%;
 }
 #contactRight {
     width:50%;
@@ -24,11 +36,14 @@ width:450px;
 height:0px;
 overflow:scroll;
 }
+.viewsStyle p{
+color:black;
+}
 #d_panel {
     font-size:15px;
 width:450px;
 }
-    #d_panel th, tr, td {
+    #d_panel th,#d_panel tr,#d_panel td {
     width:425px;
     }
 #cHeader {
@@ -68,4 +83,21 @@ overflow:hidden;
 }
 .cSmall {
 font-size:11px;
+}
+#careerWrapper p{
+color:black;
+}
+@media only screen and (max-width: 480px) {
+    .textContact {
+    width:98%;
+    margin-left:-10px;
+    margin:0 auto;
+    }
+    
+    input[type="button"],input[type="submit"]
+    {
+        width:100%;
+        padding:2px;
+        font-size:0.8em;
+    }
 }

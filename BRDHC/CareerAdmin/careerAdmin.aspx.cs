@@ -12,6 +12,8 @@ public partial class careerAdmin : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Label lblDashboard = Master.dashboardHeading;
+        lblDashboard.Text = "CAREER ADMIN DASHBOARD :";
         if (!Page.IsPostBack)
         {
             subLoadAll();

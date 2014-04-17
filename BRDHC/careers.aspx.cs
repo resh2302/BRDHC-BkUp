@@ -14,6 +14,7 @@ public partial class careers : System.Web.UI.Page
 
     private void _panelControl(Panel pnl)
     {
+        
         pnl_main.Visible = false;
         pnl_apply.Visible = false;
         pnl.Visible = true;
@@ -22,6 +23,7 @@ public partial class careers : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            
             _subRebind();
             _panelControl(pnl_main);
         }

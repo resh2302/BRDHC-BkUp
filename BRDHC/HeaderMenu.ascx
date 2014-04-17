@@ -41,7 +41,7 @@
 
             <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Community Resources" Value="New Item">
                 <asp:MenuItem NavigateUrl="~/healthToolsQuiz.aspx" Text="Health Tools" Value="New Item"></asp:MenuItem>
-                <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Programs" Value="New Item"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/eventsCalendar.aspx" Text="Events" Value="New Item"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Meals on Wheels" Value="New Item"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Housing" Value="New Item"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Transportation" Value="New Item"></asp:MenuItem>
@@ -56,7 +56,7 @@
             <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="BRDHC Auxiliary" Value="New Item"></asp:MenuItem>
             </asp:MenuItem>
 
-             <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Contact us" Value="New Item">
+             <asp:MenuItem NavigateUrl="~/contactUs.aspx" Text="Contact us" Value="New Item">
                 <asp:MenuItem NavigateUrl="~/contactUs.aspx" Text="Location" Value="New Item"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Visiting Hours" Value="New Item"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Night Access" Value="New Item"></asp:MenuItem>
