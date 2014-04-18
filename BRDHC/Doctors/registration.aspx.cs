@@ -91,7 +91,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     {
         if (Roles.IsUserInRole(user.UserName.ToLower(), "doctors"))
         {
-            lblIdentity.Text = "Health Card Number";
+            lblIdentity.Text = "Health Card Number [User Name]: ";
             pnlPatients.Visible = true;
             pnlDoctors.Visible = false;
             lblJoinDate.Text = "Registration Date";
@@ -110,25 +110,25 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
             switch (ddlRoles.SelectedItem.Text.ToLower())
             {
                 case "patients":
-                    lblIdentity.Text = "Health Card Number";
+                    lblIdentity.Text = "Health Card Number [User Name]: ";
                     pnlPatients.Visible = true;
                     pnlDoctors.Visible = false;
-                    lblJoinDate.Text = "Registration Date";
+                    lblJoinDate.Text = "Registration Date: ";
                     pnlDepartment.Visible = false;
                     break;
                 case "doctors":
                     pnlPatients.Visible = false;
                     pnlDoctors.Visible = true;
-                    lblJoinDate.Text = "Joinging Date";
+                    lblJoinDate.Text = "Joinging Date: ";
                     pnlDepartment.Visible = true;
-                    lblIdentity.Text = "Licence Number";
+                    lblIdentity.Text = "Licence Number [User Name]: ";
                     break;
                 default:
                     pnlPatients.Visible = false;
                     pnlDoctors.Visible = false;
                     pnlDepartment.Visible = true;
-                    lblJoinDate.Text = "Joinging Date";
-                    lblIdentity.Text = "Identity";
+                    lblJoinDate.Text = "Joinging Date: ";
+                    lblIdentity.Text = "Identity [User Name]: ";
                     break;
             }
         }

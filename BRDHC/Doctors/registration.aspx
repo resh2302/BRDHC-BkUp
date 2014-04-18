@@ -23,7 +23,7 @@
                 </asp:Panel>
 
                 <div class="col-xs-12 col-sm-4 col-sm-offset-1">
-                    <asp:Label ID="lblIdentity" runat="server" AssociatedControlID="txtIdentity" Text="Identity: "></asp:Label>
+                    <asp:Label ID="lblIdentity" runat="server" AssociatedControlID="txtIdentity" Text="Identity [User Name]:  "></asp:Label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <asp:TextBox ID="txtIdentity" runat="server" MaxLength="20"></asp:TextBox>

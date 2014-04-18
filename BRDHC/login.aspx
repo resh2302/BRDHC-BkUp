@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" runat="Server">
 
-    <asp:Panel ID="pnlContainer" CssClass="pnlContainer" runat="server">
+    <asp:Panel ID="pnlContainer" CssClass="pnlContainer" DefaultButton="login_main$LoginButton" runat="server">
 
         <div id="container">
             <div class="msAll98 msPadBot10 msPadTop30">
