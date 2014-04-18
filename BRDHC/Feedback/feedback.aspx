@@ -1,4 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" Theme="Theme" AutoEventWireup="true" CodeFile="feedback.aspx.cs" Inherits="Feedback_feedback" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="HealthTools" AutoEventWireup="true" CodeFile="feedback.aspx.cs" Inherits="Feedback_feedback" %>
+
+<%@ MasterType VirtualPath="~/brdhc.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
