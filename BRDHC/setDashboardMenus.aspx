@@ -29,7 +29,7 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <asp:Label ID="Label1" runat="server" Text="ID: " />
+                            <asp:Label ID="Label1" runat="server" Text="Menu Id: " />
                             <asp:Label ID="lbl_idE" runat="server" Text='<%#Eval("MenuId") %>' />
                         </td>
                         <td>
@@ -45,7 +45,7 @@
                             <asp:TextBox ID="txt_RoelName" runat="server" Text='<%#Eval("RoleName") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="lbl_ParentID" runat="server" Text="Role Name: " />
+                            <asp:Label ID="lbl_ParentID" runat="server" Text="Parent Menu Id: " />
                             <asp:TextBox ID="txt_ParentId" runat="server" Text='<%#Eval("ParentId") %>' />
                         </td>
                         <td>

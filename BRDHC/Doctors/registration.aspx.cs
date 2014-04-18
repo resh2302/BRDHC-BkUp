@@ -91,7 +91,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
     {
         if (Roles.IsUserInRole(user.UserName.ToLower(), "doctors"))
         {
-            lblIdentity.Text = "Health Card Number [User Name]: ";
+            lblIdentity.Text = "Health Card [User Name]: ";
             pnlPatients.Visible = true;
             pnlDoctors.Visible = false;
             lblJoinDate.Text = "Registration Date";
@@ -110,7 +110,7 @@ public partial class brdhcAdmin_registration : System.Web.UI.Page
             switch (ddlRoles.SelectedItem.Text.ToLower())
             {
                 case "patients":
-                    lblIdentity.Text = "Health Card Number [User Name]: ";
+                    lblIdentity.Text = "Health Card [User Name]: ";
                     pnlPatients.Visible = true;
                     pnlDoctors.Visible = false;
                     lblJoinDate.Text = "Registration Date: ";
