@@ -1,9 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" Theme="Theme" AutoEventWireup="true" CodeFile="feedbackAdmin.aspx.cs" Inherits="FeedbackAdmin_feedbackAdmin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/brdhc.master" Theme="Theme" AutoEventWireup="true" CodeFile="feedbackAdmin.aspx.cs" Inherits="FeedbackAdmin_feedbackAdmin" %>
 
+<%@ MasterType VirtualPath="~/brdhc.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
-   
+   <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
+        <div class="bootContainer">
      <asp:Label ID="lbl_message" CssClass="message" runat="server"/>
    
       <%-- using the list view to get data from tables --%>
@@ -40,7 +42,8 @@
                        </table>
                   </ItemTemplate>
             </asp:ListView>
-         
+            </div>
+         </asp:Panel>
 </asp:Content>
 
 

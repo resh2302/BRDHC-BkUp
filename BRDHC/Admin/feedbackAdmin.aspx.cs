@@ -15,6 +15,8 @@ public partial class FeedbackAdmin_feedbackAdmin : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             _subRebind();
+            Label lblDashboard = Master.dashboardHeading;
+            lblDashboard.Text = "ADMIN DASHBOARD : FEEDBACK"; 
         }
     }
 
