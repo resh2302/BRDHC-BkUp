@@ -24,25 +24,17 @@ public partial class _Default : System.Web.UI.Page
         {
             Response.Redirect("Doctors/registration.aspx");
         }
-        else if (Roles.IsUserInRole(user.UserName, "CommunityAdmin"))
-        {
-            Response.Redirect("CommunityAdmin/CommunityAdmin.aspx");
-        }
-        else if (Roles.IsUserInRole(user.UserName, "AlertAdmin"))
-        {
-            Response.Redirect("AlertAdmin/AlertAdmin.aspx");
-        }
         else if (Roles.IsUserInRole(user.UserName, "ContactAdmin"))
         {
-            Response.Redirect("ContactAdmin/ContactAdmin.aspx");
+            Response.Redirect("CareerAdmin/CareerAdmin.aspx");
         }
         else if (Roles.IsUserInRole(user.UserName, "EducationAdmin"))
         {
-            Response.Redirect("EducationAdmin/EducationAdmin.aspx");
+            Response.Redirect("EducationAdmin/quiz.aspx");
         }
         else if (Roles.IsUserInRole(user.UserName, "EmergencyAdmin"))
         {
-            Response.Redirect("EmergencyAdmin/EmergencyAdminDashboard.aspx");
+            Response.Redirect("EmergencyAdmin/EmergencyNewTime.aspx");
         }
         else if (Roles.IsUserInRole(user.UserName, "GiftShopAdmin"))
         {
@@ -50,7 +42,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else if (Roles.IsUserInRole(user.UserName, "HumanResources"))
         {
-            Response.Redirect("HumanResources/HumanResources.aspx");
+            Response.Redirect("VolunteerAdmin/VolApplicationAdmin.aspx");
         }
     }
 }
