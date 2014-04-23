@@ -3,9 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphSiteMasterBody" Runat="Server">
-    <asp:Label ID="lblTY" runat="server" Text="Thank You. Your transaction was successful" />
+     <asp:Panel ID="pnlContent" CssClass="pnlContent" runat="server">
+        <div class="bootContainer">
     <%-- Capture data in querystring and display message according to status --%>
 
     <asp:Label ID="lblData" runat="server" />
+            </div>
+         </asp:Panel>
 </asp:Content>
 

@@ -16,7 +16,7 @@ public partial class BillThankYou : System.Web.UI.Page
         string txID = Request.QueryString["tx"];
         string txStatus = Request.QueryString["st"];
         
-        string str = "tx : "+ Request.QueryString["tx"]+" amt : "+Request.QueryString["amt"]+ " st :"+Request.QueryString["st"]+" item_number :"+ Request.QueryString["item_number"];
+       
         
 
         if (txStatus == "Completed")
@@ -25,8 +25,7 @@ public partial class BillThankYou : System.Web.UI.Page
             lblData.Text += "<br/> Please make a note of the following details : ";
             lblData.Text += "<br/> <b> Transaction ID : </b>" + txID;
             lblData.Text += "<br/> <b> Paid on date : </b>" + DateTime.Now;
-            lblData.Text += "<br/> <br/> <br/>";
-            lblData.Text += str;
+            
 
             // update db
             objInv.updateTransaction(invID, txID, DateTime.Now);
