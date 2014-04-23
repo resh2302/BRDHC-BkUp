@@ -46,13 +46,13 @@
     </div>
 
     <div class="subMasterContainer">
-            <div class="col-xs-12">
+            <div class="col-xs-12" id="mailAlert" runat="server">
             <%--Alerts section--%>
             <div class="col-xs-12 attnImpBkgd mainBkgd msMargTop10 msPadTop20 msOH">
                 <div class="msPadRL20">
                     <asp:Label runat="server" ID="lbl_alert" Text="Alerts" CssClass="msh2home" />
                     <asp:Label runat="server" ID="lbl_alertTxt" CssClass="msphome">THIS IS A STUDENT PROJECT. THIS IS NOT THE BRDHC WEBSITE!</asp:Label>
-                    <div id="divDesc" runat="server" class="topAlertBox"></div>
+                    <div id="divDesc" runat="server"></div>
                     <asp:LinkButton PostBackUrl="~/alerts.aspx" runat="server" ID="lkb_alert" Text="READ MORE &gt;" CssClass="msphome mainBkgd lnkbtn msRight" />
                 </div>
             </div>

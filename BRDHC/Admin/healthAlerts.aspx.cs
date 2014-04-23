@@ -21,7 +21,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             Label lblDashboard = Master.dashboardHeading;
-            lblDashboard.Text = "ADMIN DASHBOARD : HEALTH ALERTS";
+            lblDashboard.Text = "ADMIN DASHBOARD : ALERTS";
             pnlDetails.Visible = false;
             // bind the alerts to the list show on the page
             load_Records();
@@ -64,7 +64,10 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
             pnlTable.Visible = false;
             btnSU.Text = "Save";
             // clear all the control on the form 
-            clearControls();
+            _healthAlertId = Guid.Empty;
+            txtATitle.Text = string.Empty;
+            txtDesc.Text = string.Empty;
+            lblErr.Visible = false;
         }
     }
 
@@ -77,6 +80,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
         txtDesc.Text = string.Empty;
         lblErr.Visible = false;
         load_Records();
+
     }
 
     protected void subSaveUpdate(object sender, EventArgs e)
@@ -166,7 +170,7 @@ public partial class Admin_healthAlerts : System.Web.UI.Page
                     strBody.Append("<br />");
                     strBody.Append(description);
                     strBody.Append("<br />");
-                    strBody.Append("<b>Note: </b> If you do not want to get future emails <a href='www.brdhchumber.com/unsubscribe.aspx?uid=" + subscriberId + "'>unsubscribe<a/> here.");
+                    strBody.Append("<b>Note: </b> If you do not want to get future emails <a href='http://www.brdhchumber.com/unsubscribe.aspx?uid=" + subscriberId + "'>unsubscribe<a/> here.");
                     strBody.Append("<br />");
                     strBody.Append("Wishing you very healthy life.");
                     strBody.Append("<br />");

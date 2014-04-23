@@ -25,11 +25,15 @@ public partial class home : System.Web.UI.Page
             string desc = alert.First().HealthAlertDescription;
             if (alert.First().HealthAlertDescription.Count() > 300)
             {
-                desc = desc.Substring(0, 300);
+                desc = desc.Substring(0, 200);
             }
             divDesc.InnerHtml += desc;
-            divDesc.InnerHtml += "</article><a class='rm_green' href='alerts.aspx?aid=" + alert.First().HealthAlertId.ToString() + "'>READ MORE</a>";
+            lkb_alert.PostBackUrl = "alerts.aspx?aid=" + alert.First().HealthAlertId.ToString();
+           // divDesc.InnerHtml += "</article><a class='rm_green' href='alerts.aspx?aid=" + alert.First().HealthAlertId.ToString() + "'>READ MORE</a>";
             //lbtnMore.PostBackUrl = "~/alerts.aspx?aid=" + alert.HealthAlertId.ToString();
+        }
+        else {
+            mailAlert.Visible = false;
         }
     }
 

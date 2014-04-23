@@ -91,7 +91,7 @@
 
                                         <br />
                                         <div>
-                                            <asp:Label runat="server" ID="lblDescription" Text='<%#Eval("HealthAlertDescription") %>'>
+                                            <asp:Label runat="server" ForeColor="Black" ID="lblDescription" Text='<%#Eval("HealthAlertDescription") %>'>
                                             </asp:Label>
                                             <a id="RM_<%# Container.ItemIndex %>" href="#" onclick="javascript:switchViews('<%# Container.ItemIndex %>', 'show');return false;">Read More</a>
                                             <br />
