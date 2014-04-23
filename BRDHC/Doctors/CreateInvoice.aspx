@@ -54,7 +54,7 @@
                                     <asp:Panel ID="pnlAmount" GroupingText="Invoice Items" runat="server">
                                         <asp:Panel ID="pnlItems" runat="server">
 
-                                            <asp:GridView ID="gvItems" CssClass="c" runat="server" ShowFooter="true" OnRowDeleting="gvItems_RowDeleting" AutoGenerateColumns="false">
+                                            <asp:GridView ID="gvItems" CssClass="r_gvItems" runat="server" ShowFooter="true" OnRowDeleting="gvItems_RowDeleting" AutoGenerateColumns="false">
                                                 <Columns>
                                                     <asp:BoundField HeaderText="Item Number" DataField="ItemNumber" />
                                                     <asp:TemplateField HeaderText="Description">
