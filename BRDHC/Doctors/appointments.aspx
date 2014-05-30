@@ -74,21 +74,20 @@
                         <HeaderTemplate>
                             <table>
                                     <tr class="colHeaderRow">
-                                        <td>AppointmentId</td>
-                                        <td>Doctor Name</td>
-                                        <td>Patient Name</td>
-                                        <td>Date</td>
-                                        <td>Time</td>
-                                        <td>Reason</td>
-                                        <td>Status</td>
-                                        <td>Action</td>
+                                        <th>AppointmentId</th>
+                                        <th>Doctor</th>
+                                        <th>Patient</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Reason</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <tr class="itemTemp">
                                 <td>
                                     <asp:Label ID="lblAppId" runat="server" Text='<%#Eval("AppointmentId") %>' /></td>
-                                <td>
                                 <td>
                                     <asp:Label ID="lblDName" runat="server" Text='<%#Eval("DoctorName") %>' /></td>
                                 <td>
